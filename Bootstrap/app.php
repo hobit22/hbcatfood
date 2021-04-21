@@ -65,4 +65,35 @@ class App
 
 		return $GLOBALS['instances'][$nsp];
 	}
+	
+	/**
+	* REQUEST URI -> 매칭되는 컨트롤러 호출
+	*
+	* URI 정제 -> 정규표현식 -> preg_match 
+	*/
+	public static function routes()
+	{
+		//"/shop/goods/list?test=1&test=2"
+		// /~phpshop/goods/list
+		// shop/goods/list
+		// array_reverse -> 배열을 반대로 순서로 변경
+		// /shop/admin/goods/list
+		$uri = $_SERVER['REQUEST_URI'];
+		$pattern = "/\/([^\?~]+)/";
+		if (preg_match($pattern, $uri, $matches)) {
+			$path = array_reverse(explode("/", $matches[1]));
+			
+			$folder = ucfirst($path[1]);
+			$file = ucfirst($path[0]);
+
+			$type = "Front";
+			if (count($path) > 2 && strtolower($path[2]) == 'admin') {
+				$type = "Admin";
+			}
+
+			$nsp = "\\Controller\\{$type}\\{$folder}\\{$file}Controller";
+			$controller = self::load($nsp);
+			$controller->index();
+		} 
+	}
 }
