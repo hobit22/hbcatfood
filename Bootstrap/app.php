@@ -73,11 +73,6 @@ class App
 	*/
 	public static function routes()
 	{
-		//"/shop/goods/list?test=1&test=2"
-		// /~phpshop/goods/list
-		// shop/goods/list
-		// array_reverse -> 배열을 반대로 순서로 변경
-		// /shop/admin/goods/list
 		$uri = $_SERVER['REQUEST_URI'];
 		$pattern = "/\/([^\?~]+)/";
 		if (preg_match($pattern, $uri, $matches)) {
@@ -98,5 +93,19 @@ class App
 			$controller->index();
 			$controller->footer();
 		} 
+	}
+	
+	/**
+	* 뷰 출력 
+	*
+	* @param String $skinPath 출력할 뷰 파일 경로 
+	* @param String $data 뷰에 넘길 데이터 
+	*/
+	public static function render($skinPath, $data = [])
+	{
+		echo $skinPath;
+		if (!$skinPath)
+			return;
+		
 	}
 }
