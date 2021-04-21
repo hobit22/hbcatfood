@@ -2,7 +2,7 @@
 
 namespace Component\Core;
 
-
+use App;
 use PDOStatement;
 
 /**
@@ -28,8 +28,11 @@ class DB extends \PDO {
 			$config = parse_ini_file(__DIR__ . "/../../../config.ini");
 			$dsn = "mysql:host={$config['host']};dbname={$config['dbname']}";
 			parent::__construct($dsn, $config['username'], $config['password']);
+
+			App::log("DB 연결 성공");
+
 		} catch (\PDOException $e) {
-			echo $e->getMessage();
+			App::log($e->getMessage(), 'error');
 			exit;
 		}
 	}
@@ -332,7 +335,8 @@ class DB extends \PDO {
 			$this->whereParams['offset'] = $this->offset?$this->offset:0;
 			$this->whereParams["limit"] = $this->limit;
 		}
-
+		debug($sql);
+exit;
 		$stmt = $this->prepare($sql);
 		
 		// 바인딩 처리 
@@ -449,10 +453,15 @@ class DB extends \PDO {
 	public function procBinds(PDOStatement &$stmt) {
 		$binds = $this->getBinds();
 
+		$logs = [];
 		foreach ($binds as $k => $v) {
 			$type = is_numeric($v)?\PDO::PARAM_INT:\PDO::PARAM_STR;
 			$stmt->bindValue(":{$k}", $v, $type);
+			$logs[] = "{$k} : {$v}";
 		}
+
+		$logs = "SQL BINDS - " . implode(",", $logs);
+		App::log($logs);
 	}
 	
 	/**
@@ -492,5 +501,21 @@ class DB extends \PDO {
 	*/
 	public function getErrors() {
 		return $this->errors;
+	}
+	
+	/**
+	* 데이터베이스 오류 처리 
+	*
+	* @return Array
+	*/
+	public function errorInfo()
+	{
+		$errors = parent::errorInfo();
+
+		if ($errors) { // 데이터베이스 오류 로그 기록 
+			App::log(implode(":", $errors), 'error');
+		}
+
+		return $errors;
 	}
 }
