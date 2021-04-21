@@ -5,7 +5,9 @@
 * pathinfo -> 파일 경로의 정보 -> 디렉토리, 파일명, 확장자 
 * isset -> 값이 지정이 되어 있는 체크
 */
-$folders = ["Component", "Controller", "Controller/Admin", "Controller/Front", "Controller/Mobile"];
+$folders = ["Component", "Controller/Admin", "Controller/Front", "Controller/Mobile"];
+include_once __DIR__ . "/../Controller/Controller.php";
+
 foreach ($folders as $folder) {
 	$path = __DIR__ . "/../{$folder}/*";
 	foreach (glob($path) as $filePath) {

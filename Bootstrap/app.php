@@ -116,7 +116,6 @@ class App
 		// URL에 따라서 Admin, Front, Mobile인지를 구분 
 		$viewType = self::viewType();
 		$path = __DIR__ . "/../Views/{$viewType}/{$skinPath}.php";
-		
 		ob_start();
 		include $path;
 		$content = ob_get_clean();
