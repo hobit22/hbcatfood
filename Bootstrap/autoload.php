@@ -12,12 +12,12 @@ foreach ($folders as $folder) {
 		$pi = pathinfo($filePath);
 		// php 파일 - 바로 추가 
 		if (isset($pi['extension']) && strtolower($pi['extension']) == 'php') {	
-			include $filePath;
+			include_once $filePath;
 		} else if (is_dir($filePath)) { // 한번더 순회 처리 
 			foreach (glob($filePath . "/*") as $file) {
 				$_pi = pathinfo($file);
 				if (isset($_pi['extension']) && strtolower($_pi['extension']) == 'php') {
-					include $file;
+					include_once $file;
 				}
 			}
 		}

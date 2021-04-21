@@ -93,7 +93,10 @@ class App
 
 			$nsp = "\\Controller\\{$type}\\{$folder}\\{$file}Controller";
 			$controller = self::load($nsp);
+
+			$controller->header();
 			$controller->index();
+			$controller->footer();
 		} 
 	}
 }

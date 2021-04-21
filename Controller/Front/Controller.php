@@ -3,25 +3,24 @@
 namespace Controller\Front;
 
 /**
-* Front 컨트롤러 
+* Front 페이지 메인 Controller 
 *
 */
 class Controller extends \Controller 
-{
-	// front 페이지 header 
+{	
+	// front header
 	public function header()
 	{
-
+		echo "헤더";
 	}
-	
-	// front 페이지 본문
+	// front 메인 
 	public function index()
 	{
 
 	}
-	// front 페이지 footer
-	public function footer();
+	// front footer
+	public function footer()
 	{
-
+		echo "footer";
 	}
 }
