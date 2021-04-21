@@ -29,7 +29,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '6c9e5bc2786b822b930d15afb952f21137da5759',
+    'reference' => 'ad9332f185af0e3cea93afd691e74d8aa95941ff',
     'name' => '__root__',
   ),
   'versions' => 
@@ -41,7 +41,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '6c9e5bc2786b822b930d15afb952f21137da5759',
+      'reference' => 'ad9332f185af0e3cea93afd691e74d8aa95941ff',
     ),
     'filp/whoops' => 
     array (
