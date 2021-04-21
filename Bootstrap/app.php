@@ -103,9 +103,47 @@ class App
 	*/
 	public static function render($skinPath, $data = [])
 	{
-		echo $skinPath;
 		if (!$skinPath)
 			return;
 		
+		/*
+		* extract 
+		*  배열을 분해 -> 키이름을 변수명 분해
+		* ["test1" => 1, "test2" => 2]  -> $test1 = 1, $test2 = 2
+		*/
+		if ($data && is_array($data)) extract($data);
+
+		// URL에 따라서 Admin, Front, Mobile인지를 구분 
+		$viewType = self::viewType();
+		$path = __DIR__ . "/../Views/{$viewType}/{$skinPath}.php";
+		
+		ob_start();
+		include $path;
+		$content = ob_get_clean();
+
+		echo $content;
+	}
+	
+	/**
+	* Admin, Front, Mobile 구분
+	*
+	* 1. Admin, Front 구분 
+			- URI에 /admin이 포함되어 있는 경우 - Admin 아니면 Front 
+
+	* @return String Admin, Front, Mobile
+	*/
+	public static function viewType()
+	{
+		$type = "Front";
+		$uri = $_SERVER['REQUEST_URI'];
+		$pattern = "/\/([^\?~]+)/";
+		if (preg_match($pattern, $uri, $matches)) {
+			$path = array_reverse(explode("/", $matches[1]));
+			if (count($path) > 2 && strtolower($path[2]) == 'admin') {
+				$type = "Admin";
+			}
+		}
+
+		return $type;
 	}
 }
