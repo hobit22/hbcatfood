@@ -1,0 +1,35 @@
+<?php
+
+include "vendor/autoload.php";
+
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+
+/**
+filp/whoops -> 에러, 예외 UI 형태로 출력 
+monolog/monlog -> 로거(기록)
+
+// 에러 -> ErrorException -> 에러를 에러가 아니라 Exception 변환
+
+set_error_handler -> 사이트에 에러가 발생하면 여기에 등록한 함수를 한번 거
+*/
+
+set_error_handler(function ($errno, $errstr, $errfile, $errline) {
+	throw new ErrorException($errstr, $errno, 0, $errfile, $errline);
+});
+
+$whoops = new \Whoops\Run;
+$whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+$whoops->register();
+
+
+
+
+// create a log channel
+$log = new Logger('general');
+$log->pushHandler(new StreamHandler('log/'.date("Ymd").".log", Logger::DEBUG));
+
+// info, error, warning, notice, 
+
+$log->info("info 로그1");
+$log->error("error 로그2");
