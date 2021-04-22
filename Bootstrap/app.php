@@ -74,10 +74,16 @@ class App
 	*/
 	public static function routes()
 	{
+		// 프론트 메인 Controller 기본값
+		$nsp = "\\Controller\\Front\\Main\\IndexController";
+		
 		$uri = $_SERVER['REQUEST_URI'];
 		$pattern = "/\/([^\?~]+)/";
 		if (preg_match($pattern, $uri, $matches)) {
 			$config = getConfig();
+			if (!preg_match("/\/$/", $matches[0])) {
+				$matches[0] .= "/";
+			}
 			$path = explode("/", $matches[1]);
 			if ($config['mainurl'] && $config['mainurl'] != '/') {
 				$matches[0] = str_replace($config['mainurl'], "", $matches[0]);
@@ -86,14 +92,18 @@ class App
 			
 			$path = array_reverse($path);
 			
+			// 메인페이지 
+			if (empty($path[0])) {
+				$path = ["index", "main"];
+			}
+				
 			if (count($path) == 1) {
 				if ($path[0] == 'admin') { // 어드민 메인 
 					array_unshift($path, "index", "main");
 				} else { // 프론트 각 폴더별 메인 
-					
+					array_unshift($path, 'index');
 				}
 			}
-			
 			
 			$folder = ucfirst($path[1]);
 			$file = ucfirst($path[0]);
@@ -104,12 +114,13 @@ class App
 			}
 
 			$nsp = "\\Controller\\{$type}\\{$folder}\\{$file}Controller";
-			$controller = self::load($nsp);
-
-			$controller->header();
-			$controller->index();
-			$controller->footer();
 		} 
+		
+		$controller = self::load($nsp);
+
+		$controller->header();
+		$controller->index();
+		$controller->footer();
 	}
 	
 	/**
