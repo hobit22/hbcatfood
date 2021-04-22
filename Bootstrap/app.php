@@ -70,6 +70,7 @@ class App
 	* REQUEST URI -> 매칭되는 컨트롤러 호출
 	*
 	* URI 정제 -> 정규표현식 -> preg_match 
+	* array_unshift / array_push 
 	*/
 	public static function routes()
 	{
@@ -86,11 +87,12 @@ class App
 			$path = array_reverse($path);
 			
 			if (count($path) == 1) {
-				if ($path[0] == 'admin') {
+				if ($path[0] == 'admin') { // 어드민 메인 
+					array_unshift($path, "index", "main");
+				} else { // 프론트 각 폴더별 메인 
 					
 				}
-			} 
-			exit;
+			}
 			
 			
 			$folder = ucfirst($path[1]);
