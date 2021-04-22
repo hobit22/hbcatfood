@@ -15,3 +15,24 @@ function debug($v = null)
 	print_r($v);
 	echo "</xmp>";
 }
+
+
+/**
+* DB 인스턴스 호출 
+*
+* @return Instance
+*/
+function db()
+{
+	return \App::load(\Component\Core\DB::class);
+}
+
+/**
+* Request 인스턴스 호출 
+*
+* @return Instance
+*/
+function request()
+{
+	return \App::load(\Component\Core\Request::class);
+}
