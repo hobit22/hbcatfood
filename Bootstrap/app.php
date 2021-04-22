@@ -109,8 +109,11 @@ class App
 				} else { // 프론트 각 폴더별 메인 
 					array_unshift($path, 'index');
 				}
+			// 예) /admin/goods 
+			} else if (count($path) == 2 && strtolower($path[1]) == 'admin') {
+				array_unshift($path, "index");
 			}
-			
+					
 			$folder = ucfirst($path[1]);
 			$file = ucfirst($path[0]);
 			
