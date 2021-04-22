@@ -335,8 +335,7 @@ class DB extends \PDO {
 			$this->whereParams['offset'] = $this->offset?$this->offset:0;
 			$this->whereParams["limit"] = $this->limit;
 		}
-		debug($sql);
-exit;
+
 		$stmt = $this->prepare($sql);
 		
 		// 바인딩 처리 
