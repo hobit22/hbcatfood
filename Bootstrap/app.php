@@ -206,6 +206,8 @@ class App
 	{
 		$list = [];
 		$list[] = __DIR__ . "/../Controller/Controller.php";
+		$list[] = __DIR__ . "/../Controller/Front/Controller.php";
+		$list[] = __DIR__ . "/../Controller/Admin/Controller.php";
 		
 		if (!$dirs) return $list;
 		foreach ($dirs as $dir) {
