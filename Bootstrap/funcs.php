@@ -36,3 +36,30 @@ function request()
 {
 	return \App::load(\Component\Core\Request::class);
 }
+
+/**
+* 사이트 설정 
+*
+* @return Array
+*/
+function getConfig()
+{	
+	$config = [];
+	$path = __DIR__ . "/../../config.ini";
+	if (file_exists($path)) {
+		$config = parse_ini_file($path);
+	}
+	return $config;
+}
+
+/**
+* 사이트 FULL URL 생성 함수 
+*
+* @return String
+*/
+function siteUrl($url = null)
+{
+	$config = getConfig();
+	
+	return $config['mainurl'] . $url;
+}
