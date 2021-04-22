@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 include __DIR__ . "/../vendor/autoload.php"; // 컴포저로 설치한 모듈 자동 추가
 
 /* filp/whoops S */

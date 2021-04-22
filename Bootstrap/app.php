@@ -125,6 +125,19 @@ class App
 			$nsp = "\\Controller\\{$type}\\{$folder}\\{$file}Controller";
 		} 
 		
+		/**
+		* 없는 페이지 체크 - class_exists 
+		*  클래스가 존재 X -> 없는 페이지 -> 없는 페이지 안내로 이동 
+		* Response 헤더 -> Location -> 페이지 이동
+		*/
+		if (!class_exists($nsp)) {
+			// 없는 페이지 
+			$_SESSION['errorURL'] = $_SERVER['REQUEST_URI'];
+			$errorUrl = siteUrl("error/e404");
+			header("Location: {$errorUrl}");
+			exit;
+		}
+		
 		$controller = self::load($nsp);
 
 		$controller->header();
