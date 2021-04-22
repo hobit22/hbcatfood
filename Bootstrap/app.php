@@ -84,7 +84,12 @@ class App
 			}
 			
 			$path = array_reverse($path);
-			debug($path);
+			
+			if (count($path) == 1) {
+				if ($path[0] == 'admin') {
+					
+				}
+			} 
 			exit;
 			
 			
