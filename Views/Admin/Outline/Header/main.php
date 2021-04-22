@@ -3,6 +3,8 @@
 	<head>
 		<meta charset='utf-8'>
 		<link rel="stylesheet" type="text/css" href="<?=siteUrl("assets/admin/css/style.css")?>">
+		[[addCss]]
 		<script src='<?=siteUrl("assets/admin/js/common.js")?>'></script>
+		[[addScript]]
 	</head>
 	<body>

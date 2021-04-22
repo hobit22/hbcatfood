@@ -13,7 +13,9 @@ class Controller extends \Controller
 	protected $footerPath = "";
 	protected $layoutBlank = false;
 
-
+	protected $css = []; // 추가 CSS
+	protected $script = []; // 추가 Script 
+	
 	// front header
 	public function header()
 	{

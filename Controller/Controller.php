@@ -11,6 +11,9 @@ abstract class Controller
 	protected $footerPath = "";
 	protected $layoutBlank = false;
 	
+	protected $css = []; // 추가 CSS
+	protected $script = []; // 추가 Script 
+	
 	abstract public function header();
 	abstract public function index();
 	abstract public function footer();
@@ -44,6 +47,30 @@ abstract class Controller
 
 		$this->footerPath = $footerPath;
 
+		return $this;
+	}
+	
+	/**
+	* CSS 추가 
+	*
+	* @param Array $css 
+	* @return $this
+	*/
+	public function addCss($css = [])
+	{
+		$this->css = $css;
+		return $this;
+	}
+	
+	/**
+	* Javascript 추가 
+	*
+	* @param Array $script 
+	* @return $this
+	*/
+	public function addScript($script = [])
+	{
+		$this->script = $script;
 		return $this;
 	}
 }

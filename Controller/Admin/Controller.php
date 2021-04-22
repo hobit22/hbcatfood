@@ -13,7 +13,9 @@ class Controller extends \Controller
 	protected $footerPath = "";
 	protected $layoutBlank = false;
 
-
+	protected $css = []; // 추가 CSS
+	protected $script = []; // 추가 Script 
+	
 	// Admin header
 	public function header()
 	{
@@ -25,6 +27,25 @@ class Controller extends \Controller
 		ob_start();
 		include $headerPath;
 		$content = ob_get_clean();
+		// [[addCss]], [[addScript]]
+		/** CSS, JS 추가 처리 S  */
+		$addCss = $addScript = "";
+		if ($this->css) {
+			foreach ($this->css as $css) {
+				$addCss .= "<link rel='stylesheet' type='text/css' href='".siteUrl("assets/admin/css/{$css}.css")."'>".PHP_EOL;
+			}
+		}
+		
+		if ($this->script) {
+			foreach ($this->script as $script) {
+				$addScript .= "<script src='".siteUrl("assets/admin/js/{$script}.js")."'></script>".PHP_EOL;
+			}
+		}
+		
+		$content = str_replace("[[addCss]]", $addCss, $content);
+		$content = str_replace("[[addScript]]", $addScript, $content);
+		/** CSS, JS 추가 처리 E */
+		
 		echo $content;
 	}
 	// Admin 메인 
