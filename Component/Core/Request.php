@@ -21,9 +21,7 @@ class Request
 		$this->_get = $_GET;
 		$this->_post = $_POST;
 		$this->_files = $_FILES;
-		
-		unset($_GET, $_POST, $_FILES);
-		
+				
 		// 접속자 IP
 		App::log("접속자 IP : " .$_SERVER['REMOTE_ADDR']);
 		

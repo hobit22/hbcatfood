@@ -15,4 +15,6 @@ include "funcs.php"; // 공통함수
 include "app.php"; // 공통 클래스 App
 include "autoload.php"; // Component, Controller 파일 자동 추가 
 
+$request = App::load(\Component\Core\Request::class);
+
 App::routes(); // 라우터 처리 
