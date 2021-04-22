@@ -2,6 +2,8 @@
 
 namespace Component\Core;
 
+use App;
+
 /**
 * GET, POST, FILE 조회 가능한 클래스 
 *
