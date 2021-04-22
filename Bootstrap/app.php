@@ -84,13 +84,19 @@ class App
 			if (!preg_match("/\/$/", $matches[0])) {
 				$matches[0] .= "/";
 			}
+
 			$path = explode("/", $matches[1]);
 			if ($config['mainurl'] && $config['mainurl'] != '/') {
 				$matches[0] = str_replace($config['mainurl'], "", $matches[0]);
 				$path = explode("/", $matches[0]);
 			}
 			
-			$path = array_reverse($path);
+			foreach ($path as $k => $v) {
+				if (!$v) {
+					unset($path[$k]);
+				}
+			}	
+			$path = array_reverse(array_values($path));
 			
 			// 메인페이지 
 			if (empty($path[0])) {
