@@ -76,11 +76,21 @@ class App
 		$uri = $_SERVER['REQUEST_URI'];
 		$pattern = "/\/([^\?~]+)/";
 		if (preg_match($pattern, $uri, $matches)) {
-			$path = array_reverse(explode("/", $matches[1]));
+			$config = getConfig();
+			$path = explode("/", $matches[1]);
+			if ($config['mainurl'] && $config['mainurl'] != '/') {
+				$matches[0] = str_replace($config['mainurl'], "", $matches[0]);
+				$path = explode("/", $matches[0]);
+			}
+			
+			$path = array_reverse($path);
+			debug($path);
+			exit;
+			
 			
 			$folder = ucfirst($path[1]);
 			$file = ucfirst($path[0]);
-
+			
 			$type = "Front";
 			if (count($path) > 2 && strtolower($path[2]) == 'admin') {
 				$type = "Admin";
