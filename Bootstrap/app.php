@@ -141,6 +141,9 @@ class App
 		$controller = self::load($nsp);
 
 		$controller->header();
+		if (method_exists($controller, 'mainMenu')) {
+			$controller->mainMenu();
+		}
 		$controller->index();
 		$controller->footer();
 	}

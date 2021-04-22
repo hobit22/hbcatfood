@@ -66,4 +66,13 @@ class Controller extends \Controller
 		$content = ob_get_clean();
 		echo $content;
 	}
+	
+	/** 메인 메뉴 */
+	public function mainMenu()
+	{
+		ob_start();
+		include __DIR__ . "/../../Views/Admin/Menus/main.php";
+		$content = ob_get_clean();
+		echo $content;
+	}
 }
