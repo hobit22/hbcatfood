@@ -5,6 +5,12 @@
 */
 abstract class Controller
 {
+	/** 공통 속성 */
+	protected $outlinePath = __DIR__ . "/../../Views/Front/Outline";
+	protected $headerPath = "";
+	protected $footerPath = "";
+	protected $layoutBlank = false;
+	
 	abstract public function header();
 	abstract public function index();
 	abstract public function footer();

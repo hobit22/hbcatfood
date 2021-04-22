@@ -8,9 +8,9 @@ namespace Controller\Admin;
 */
 class Controller extends \Controller 
 {
-	private $outlinePath = __DIR__ . "/../../Views/Admin/Outline";
-	private $headerPath = "";
-	private $footerPath = "";
+	protected $outlinePath = __DIR__ . "/../../Views/Admin/Outline";
+	protected $headerPath = "";
+	protected $footerPath = "";
 	protected $layoutBlank = false;
 
 

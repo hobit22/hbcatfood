@@ -238,7 +238,7 @@ class DB extends \PDO {
 									VALUES (".implode(",", $params).")";
 		// SQL 생성 E 
 		// SQL 실행 S
-		$stmt = $this->prepare($sql);
+		$stmt = $this->_prepare($sql);
 		
 		// 바인딩 처리 
 		$this->procBinds($stmt);
@@ -276,7 +276,7 @@ class DB extends \PDO {
 		/* SQL 생성 E */
 		
 		/* SQL 실행 S */
-		$stmt = $this->prepare($sql);
+		$stmt = $this->_prepare($sql);
 				
 		/* 바인딩 처리 */
 		$this->procBinds($stmt);
@@ -301,7 +301,7 @@ class DB extends \PDO {
 		$sql = "DELETE FROM " . $this->tableName;
 		// where 조건 추가 
 		$this->addWhere($sql);
-		$stmt = $this->prepare($sql);
+		$stmt = $this->_prepare($sql);
 
 		// 바인딩 처리 
 		$this->procBinds($stmt);
@@ -336,7 +336,7 @@ class DB extends \PDO {
 			$this->whereParams["limit"] = $this->limit;
 		}
 
-		$stmt = $this->prepare($sql);
+		$stmt = $this->_prepare($sql);
 		
 		// 바인딩 처리 
 		$this->procBinds($stmt);
@@ -458,9 +458,11 @@ class DB extends \PDO {
 			$stmt->bindValue(":{$k}", $v, $type);
 			$logs[] = "{$k} : {$v}";
 		}
-
-		$logs = "SQL BINDS - " . implode(",", $logs);
-		App::log($logs);
+		
+		if ($logs) {
+			$logs = "SQL BINDS - " . implode(",", $logs);
+			App::log($logs);
+		}
 	}
 	
 	/**
@@ -476,7 +478,7 @@ class DB extends \PDO {
 	{
 		if (!$sql) return false;
 		
-		$stmt = $this->prepare($sql);
+		$stmt = $this->_prepare($sql);
 		if ($binds) {
 			foreach ($binds as $column => $value) {
 				$type = (is_numeric($value))?PDO::PARAM_INT:PDO::PARAM_STR;
@@ -516,5 +518,19 @@ class DB extends \PDO {
 		}
 
 		return $errors;
+	}
+	
+	/**
+	* PDO::prepare 로그 기록위한 재정의
+	*
+	* @param String $sql SQL 구문
+	* @return PDOStatement
+	*/
+	public function _prepare($sql)
+	{
+		$stmt = $this->prepare($sql);
+		
+		App::log("SQL - ".$sql);
+		return $stmt;
 	}
 }

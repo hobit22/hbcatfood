@@ -145,4 +145,38 @@ class App
 
 		return $type;
 	}
+	
+	/**
+	* 초기 boot시 Component, Controller 추가될 될 파일 목록 
+	*
+	* @param Array 조회할 디렉토리
+	* @return Array
+	*/
+	public static function includeFiles($dirs = [])
+	{
+		$list = [];
+		$list[] = __DIR__ . "/../Controller/Controller.php";
+		
+		if (!$dirs) return $list;
+		foreach ($dirs as $dir) {
+			$path = $dir."/*";
+			$flist = glob($path);
+			if (!$flist) break;
+			foreach ($flist as $f) {
+				$pi = pathinfo($f);
+				// PHP 파일이면 추가 목록(list)에 추가 
+				if (isset($pi['extension']) && strtolower($pi['extension']) == 'php') {
+					$list[] = $f;
+				} elseif (is_dir($f)) { // 디렉토리면 재귀적으로 순회
+					$_list = self::includeFiles([$f]);
+					if ($_list) {
+						$list = array_merge($list, $_list);
+					}
+				}
+			}
+		}
+		
+		$list = array_unique($list);
+		return $list;
+	}
 }
