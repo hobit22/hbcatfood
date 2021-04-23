@@ -3,6 +3,7 @@
 namespace Controller\Admin\Member;
 
 use App;
+use Controller\Admin\Member\Traits\SubMenu;
 
 /**
 * 회원 목록 
@@ -10,6 +11,8 @@ use App;
 */
 class ListController extends \Controller\Admin\Controller
 {
+	use SubMenu;
+	
 	public function index()
 	{
 		$data = [

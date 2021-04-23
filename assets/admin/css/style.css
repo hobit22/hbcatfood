@@ -9,7 +9,13 @@ ul { list-style: none; padding: 0; margin: 0; }
 .main_menu { background-color: #d5d5d5; }
 .main_menu:after { clear: left; content: ''; display: block; }
 .main_menu li { float: left; }
-.main_menu li a { display: block; padding: 20px; font-weight: bold; }
+.main_menu li a { display: block; padding: 20px; font-weight: bold; font-size: 15px; }
 .main_menu li a:hover, .main_menu li a.on { background-color: orange; }
 
 /*  메인 메뉴 - /menus/main.php  E */
+
+/* 서브 메뉴 S */
+.sub_menu:after { clear: left; content: ''; display: block; }
+.sub_menu li { float: left; }
+.sub_menu li a { display: block; padding: 15px 20px; }
+/* 서브 메뉴 E */

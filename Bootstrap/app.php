@@ -141,9 +141,15 @@ class App
 		$controller = self::load($nsp);
 
 		$controller->header();
+		// 메인 메뉴 
 		if (method_exists($controller, 'mainMenu')) {
 			$controller->mainMenu();
 		}
+		// 서브 메뉴 
+		if (method_exists($controller, 'subMenu')) {
+			$controller->subMenu();
+		}
+		
 		$controller->index();
 		$controller->footer();
 	}
