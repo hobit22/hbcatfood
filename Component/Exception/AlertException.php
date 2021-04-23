@@ -25,20 +25,20 @@ class AlertException extends \Exception
 		$this->action = $action;
 		$this->target = $target;
 		
-		App::log(__CLASS__ . " : {$message}");
+		App::log(__CLASS__ . " : {$message}", "error");
 	}
 	
 	public function __toString()
 	{
 		// is_numeric  -> 숫자인지 아닌지 체크 
-		echo "<script>alert('".$this->getMessage()."');</script>";
+		$html = "<script>alert('".$this->getMessage()."');</script>";
 		if ($this->action) {
 			if (is_numeric($this->action)) { // 숫자 이면 history.go
-				echo "<script>" . $this->target . ".history.go(".$this->action.");</script>";
+				$html .= "<script>" . $this->target . ".history.go(".$this->action.");</script>";
 			} else { // location.href
-				echo "<script>" . $this->target . ".location.href='".$this->action."';</script>";
+				$html .= "<script>" . $this->target . ".location.href='".$this->action."';</script>";
 			}
 		}
-		exit;
+		return $html;
 	}
 }
