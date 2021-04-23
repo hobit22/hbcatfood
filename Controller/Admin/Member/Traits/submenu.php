@@ -12,6 +12,7 @@ trait SubMenu
 {
 	public function subMenu()
 	{
-		App::render("Member/Menus/sub");
+		$menu = $this->subCode?$this->subCode:"";
+		App::render("Member/Menus/sub", ["menu" => $menu]);
 	}
 }

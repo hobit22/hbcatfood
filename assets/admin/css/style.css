@@ -15,7 +15,9 @@ ul { list-style: none; padding: 0; margin: 0; }
 /*  메인 메뉴 - /menus/main.php  E */
 
 /* 서브 메뉴 S */
+.sub_menu { background-color: #a5c2f0; }
 .sub_menu:after { clear: left; content: ''; display: block; }
 .sub_menu li { float: left; }
-.sub_menu li a { display: block; padding: 15px 20px; }
+.sub_menu li a { display: block; padding: 15px 20px; font-weight: bold; }
+.sub_menu li a:hover, .sub_menu li a.on { background-color: #3474d9; }
 /* 서브 메뉴 E */

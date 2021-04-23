@@ -2,6 +2,8 @@
 
 namespace Controller\Admin;
 
+use App;
+
 /**
 * 관리자 페이지 메인 Controller 
 *
@@ -12,9 +14,11 @@ class Controller extends \Controller
 	protected $headerPath = "";
 	protected $footerPath = "";
 	protected $layoutBlank = false;
-
+	
 	protected $css = []; // 추가 CSS
 	protected $script = []; // 추가 Script 
+	
+	protected $mainCode = "";
 	
 	// Admin header
 	public function header()
@@ -70,9 +74,7 @@ class Controller extends \Controller
 	/** 메인 메뉴 */
 	public function mainMenu()
 	{
-		ob_start();
-		include __DIR__ . "/../../Views/Admin/Menus/main.php";
-		$content = ob_get_clean();
-		echo $content;
+		$menu = $this->mainCode?$this->mainCode:"";
+		App::render("Menus/main", ["menu" => $menu]);
 	}
 }
