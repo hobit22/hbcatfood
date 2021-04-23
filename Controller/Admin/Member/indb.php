@@ -16,6 +16,11 @@ class IndbController extends \Controller\Admin\Controller
 	public function index()
 	{
 		$in = request()->all();
-		debug($in);
+		switch($in['mode']) {
+			// 회원 가입
+			case "register" :
+			
+				break;
+		}
 	}
 }

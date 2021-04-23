@@ -55,6 +55,8 @@ class DB extends \PDO {
 	*/
 	public function table($tableName, $joinTable = []) {
 
+		$config = getConfig();
+		
 		/* 초기화 S */
 		$this->whereParams = $this->where = $this->data = [];
 		$this->limit = $this->offset = 0;
@@ -66,7 +68,7 @@ class DB extends \PDO {
 		* 속성을 따로 정의 하지 않고 값을 대입하면 
 		* public 속성으로 자동 생성된다.
 		*/
-		$this->tableName = $tableName;
+		$this->tableName = $config['prefix'].$tableName;
 		
 		/** 테이블 JOIN 처리 S */
 		if ($joinTable) {
@@ -85,7 +87,7 @@ class DB extends \PDO {
 					default : // INNER JOIN 
 						$table = " INNER JOIN ";
 				}
-				$table .= $tableNm . " ON " .$args[0] . " = " . $args[1];
+				$table .= $config['prefix'].$tableNm . " ON " .$args[0] . " = " . $args[1];
 				
 				$tables[] = $table;
 			}
