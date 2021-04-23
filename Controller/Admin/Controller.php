@@ -74,6 +74,8 @@ class Controller extends \Controller
 	/** 메인 메뉴 */
 	public function mainMenu()
 	{
+		if ($this->layoutBlank) return;
+		
 		$menu = $this->mainCode?$this->mainCode:"";
 		App::render("Menus/main", ["menu" => $menu]);
 	}

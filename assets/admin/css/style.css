@@ -1,9 +1,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap');
-* { box-sizing: border-box; color: #212121; font-family: 'Nanum Gothic', sans-serif; }
+* { box-sizing: border-box; color: #212121; font-family: 'Nanum Gothic', sans-serif; outline: none; }
 body { padding: 0; margin: 0; }
 html { font-size: 13px; }
 a { text-decoration: none; }
 ul { list-style: none; padding: 0; margin: 0; }
+
+/* 공통 S */
+.title1 { font-size: 13px; font-weight: bold; box-shadow: 2px 2px 5px #d5d5d5; padding: 7px 20px; border-radius: 3px; }
+
+dl { padding: 0; margin: 0; display: table; width: 100%; }
+dt { display: table-cell; vertical-align: middle; width: 120px; padding: 10px; }
+dd { display: table-cell; vertical-align: middle; padding: 10px; }
+input[type='text'], 
+input[type='password'], 
+input[type='email'], 
+input[type='number'], select { border: 1px solid #d5d5d5; height: 35px; border-radius: 5px; width: 100%; padding: 0 10px; }
+input[type='text']:focus, 
+input[type='password']:focus, 
+input[type='email']:focus, 
+input[type='number']:focus, select:focus { border-color: blue; }
+
+.content_box { margin: 20px; }
+
+.btn1 { background-color: blue; border: 0; color: #ffffff; padding: 10px 25px; border-radius: 5px; cursor: pointer; }
+.btn1:hover { background-color: skyblue; color: #212121; }
+
+.mt20 { margin-top: 20px !important; }
+.mb20 { margin-bottom: 20px !important; }
+
+/* 공통 E */
+
 
 /*  메인 메뉴 - /menus/main.php  S */
 .main_menu { background-color: #d5d5d5; }
