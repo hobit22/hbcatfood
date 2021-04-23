@@ -2,6 +2,7 @@
 
 namespace Component\Member;
 
+use App;
 use Component\Exception\Member\MemberRegisterException;
 
 /**
@@ -41,13 +42,14 @@ class Member
 	*/
 	public function validator($mode = "register")
 	{
+		$exception = "\\Component\\Exception\\Member\\Member".ucfirst($mode)."Exception";
 		if (!$this->params) {
-			$exception = "Member".ucfirst($mode)."Exception";
 			throw new $exception("유효성 검사할 데이터가 없습니다.");
 		}
 		switch ($mode) {
 			/** 회원가입 유효성 검사 */
 			case "register" : 
+				/** 필수 데이터 체크 S */
 				$required = $this->requiredColumns;
 				$required['memPw'] = '비밀번호';
 				$missing = [];
@@ -58,13 +60,52 @@ class Member
 				}
 				
 				if ($missing) {
-					throw new MemberRegisterException("필수 입력 데이터 누락 - (".implode(",", $missing).")");
+					throw new $exception("필수 입력 데이터 누락 - (".implode(",", $missing).")");
 				}
+				/* 필수 데이터 체크 E */
 				
+				/** 아이디 체크 */
+				$this->validateMemId($mode);
+				
+				
+				/** 비밀번호 체크 S */
+				
+				/** 비밀번호 체크 E */
 				break;
 		}
 		
 		return $this;
+	}
+	
+	/**
+	* 회원 아이디 유효성 검사 
+	*
+	*  1. 이미 가입된 아이디 인지 체크 
+	*  2. 자리수  8~30 사이
+	*  3. 소문자영문자 + 숫자
+	*/
+	public function validateMemId($mode = 'register')
+	{
+		$mode = $mode?$mode:"register";
+		$exception = "\\Component\\Exception\\Member\\Member".ucfirst($mode)."Exception";
+		$memId = $this->params['memId'] ?? "";
+		if (!$memId) {
+			throw new $exception("아이디를 입력하세요.");
+		}
+		
+		/* 중복 아이디 체크 S */
+		$cnt = db()->table("member")->where(["memId" => $memId])->count();
+		if ($cnt > 0) {
+			throw new $exception("이미 가입된 아이디 입니다 - {$memId}");
+		}
+		/* 중복 아이디 체크 E */
+		
+		/* 자리수 + 문자 제한 체크 S */
+		if (strlen($memId) < 8 || strlen($memId) > 30 || preg_match("/[^a-z0-9]/", $memId)) {
+			throw new $exception("아이디는 8~30자리의 소문자영문자와 숫자로 구성해 주세요.");
+		}
+		/* 자리수 + 문자 제한 체크 E */
+		
 	}
 	
 	/**
@@ -74,10 +115,11 @@ class Member
 	*/
 	public function register()
 	{
+		$security = App::load(\Component\Core\Security::class);
 		$inData = [
 			'memId' => $this->params['memId'],
 			'level' => $this->params['level']?$this->params['level']:0,
-			'memPw' => '',
+			'memPw' => $security->createHash($this->params['memPw']),
 			'memNm' => $this->params['memNm'],
 			'email' => $this->params['email'],
 			'cellPhone' => $this->params['cellPhone'],
