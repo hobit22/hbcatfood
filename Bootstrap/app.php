@@ -197,19 +197,7 @@ class App
 	*/
 	public static function viewType()
 	{
-		$type = "Front";
-		/*
-		$uri = $_SERVER['REQUEST_URI'];
-		
-		$pattern = "/\/([^\?~]+)/";
-		if (preg_match($pattern, $uri, $matches)) {
-			$path = array_reverse(explode("/", $matches[1]));
-			if (count($path) > 2 && strtolower($path[2]) == 'admin') {
-				$type = "Admin";
-			}
-		}
-		*/
-		
+		$type = "Front";		
 		$uri = $_SERVER['REQUEST_URI'];
 		$pattern = "/\/([^\?~]+)/";
 		if (preg_match($pattern, $uri, $matches)) {
