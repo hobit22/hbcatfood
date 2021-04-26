@@ -18,10 +18,20 @@ class LoginOkController extends \Controller\Admin\Controller
 	
 	public function index()
 	{
-		$in = request()->all();
-		$member = App::load(\Component\Member\Member::class);
-		$member->login($in['memId'], $in['memPw']);
-		
+		try {
+			$in = request()->all();
+			$member = App::load(\Component\Member\Member::class);
+			
+			if (!$in['memId'])
+				throw new LoginException("아이디를 입력해 주세요.");
+			
+			if (!$in['memPw'])
+				throw new LoginException("비밀번호를 입력해 주세요.");
+			
+			$member->login($in['memId'], $in['memPw']);
+		} catch (LoginException $e) {
+			echo $e;
+		}
 		
 	}
 }
