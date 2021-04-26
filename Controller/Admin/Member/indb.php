@@ -39,7 +39,7 @@ class IndbController extends \Controller\Admin\Controller
 					break;
 				/** 회원 목록 수정 */
 				case "update_list" : 
-					if (!isset($in['memNo'] || count($in['memNo']) == 0) {
+					if (!isset($in['memNo']) || count($in['memNo']) == 0) {
 						throw new AlertException("수정할 회원을 선택하세요.");
 					}
 					
@@ -48,10 +48,19 @@ class IndbController extends \Controller\Admin\Controller
 						$member->changeLevel($memNo, $level);
 					}
 					
+					reload("parent");
 					break;
 				/** 회원목록 삭제 */
 				case "delete_list" : 
-				
+					if (!isset($in['memNo']) || count($in['memNo']) == 0) {
+						throw new AlertException("삭제할 회원을 선택하세요.");
+					}
+					
+					foreach ($in['memNo'] as $memNo) {
+						$member->delete($memNo);
+					}
+					
+					reload("parent");
 					break;
 			}
 		} catch (MemberRegisterException $e) {

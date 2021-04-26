@@ -77,3 +77,14 @@ function go($url, $target = "self")
 	echo "<script>{$target}.location.href='{$url}';</script>";
 	exit;
 }
+
+/**
+* 페이지 새로고침 
+*
+* @param String $target 새로고침할 창(self - 현재창, parent - 부모창)
+*/
+function reload($target = "self")
+{
+	echo "<script>{$target}.location.reload();</script>";
+	exit;
+}

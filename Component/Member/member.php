@@ -233,4 +233,37 @@ class Member
 		
 		return $memNo;
 	}
+	
+	/**
+	* 회원 삭제 
+	*
+	* @param Integer $memNo 회원번호 
+	* @return Boolean
+	*/
+	public function delete($memNo)
+	{
+		$result = db()->table("member")
+							->where(["memNo" => $memNo])
+							->delete();
+		
+		return $result !== false;
+	}
+	
+	/**
+	* 회원 등급변경 
+	*
+	* @param Integer $memNo 회원번호
+	* @param Integer $level 회원 등급
+	*
+	* @return Boolean
+	*/
+	public function changeLevel($memNo, $level)
+	{
+		$result = db()->table("member")
+							->data(["level" => $level])
+							->where(["memNo" => $memNo])
+							->update();
+		
+		return $result !== false;
+	}
 }
