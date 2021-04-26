@@ -308,7 +308,7 @@ class Member
 		
 		if (!is_numeric($memNo)) { // 숫자가 아닌 경우는 아이디 -> 회원 번호 변경
 			$row = db()->table('member')
-							->select("memNo");
+							->select("memNo")
 							->where(["memId" => $memNo])
 							->row();
 			if ($row && isset($row['memNo'])) $memNo = $row['memNo'];

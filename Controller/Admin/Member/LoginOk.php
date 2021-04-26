@@ -28,7 +28,12 @@ class LoginOkController extends \Controller\Admin\Controller
 			if (!$in['memPw'])
 				throw new LoginException("비밀번호를 입력해 주세요.");
 			
-			$member->login($in['memId'], $in['memPw']);
+			$result = $member->login($in['memId'], $in['memPw']);
+			if ($result === false) { // 로그인 실패 
+				throw new LoginException($member->errMessage);
+			}
+			
+			go("admin", "parent");
 		} catch (LoginException $e) {
 			echo $e;
 		}
