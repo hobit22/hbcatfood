@@ -3,6 +3,7 @@
 namespace Controller\Admin\Member;
 
 use App;
+use Component\Exception\Member\LoginException;
 
 /**
 * 관리자 로그인 처리 
