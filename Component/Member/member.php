@@ -12,6 +12,7 @@ use Component\Exception\Member\MemberRegisterException;
 class Member
 {
 	private $params = []; // 처리할 데이터 
+	private $exception = "";
 	
 	/** 회원 필수 데이터 컬럼 */
 	private $requiredColumns = [
@@ -43,6 +44,8 @@ class Member
 	public function validator($mode = "register")
 	{
 		$exception = "\\Component\\Exception\\Member\\Member".ucfirst($mode)."Exception";
+		$this->exception = $exception;
+		
 		if (!$this->params) {
 			throw new $exception("유효성 검사할 데이터가 없습니다.");
 		}
@@ -65,16 +68,17 @@ class Member
 				/* 필수 데이터 체크 E */
 				
 				/** 아이디 체크 */
-				$this->validateMemId($mode);
+				$this->validateMemId();
 				
 				/** 비밀번호 체크 */
-				$this->validatePassword($mode);
+				$this->validatePassword();
 			
 				/** 이메일 체크 */
-				$this->validateEmail($mode);
+				$this->validateEmail();
 				
 				/** 휴대전화번호 체크 */
-		
+				$this->validateCellPhone();
+				
 				break;
 		}
 		
@@ -88,10 +92,9 @@ class Member
 	*  2. 자리수  8~30 사이
 	*  3. 소문자영문자 + 숫자
 	*/
-	public function validateMemId($mode = 'register')
+	public function validateMemId()
 	{
-		$mode = $mode?$mode:"register";
-		$exception = "\\Component\\Exception\\Member\\Member".ucfirst($mode)."Exception";
+		$exception = $this->exception;
 		$memId = $this->params['memId'] ?? "";
 		if (!$memId) {
 			throw new $exception("아이디를 입력하세요.");
@@ -118,10 +121,9 @@ class Member
 	* @param String $mode 처리(register - 회원가입, update - 회원정보 수정)
 	* @throw Exception 유효성검사 실패 
 	*/
-	public function validatePassword($mode = 'register')
+	public function validatePassword();
 	{
-		$mode = $mode?$mode:"register";
-		$exception = "\\Component\\Exception\\Member\\Member".ucfirst($mode)."Exception";
+		$exception = $this->exception;
 		
 		$memPw = $this->params['memPw'] ?? "";
 		$memPwRe = $this->params['memPwRe'] ?? "";
@@ -155,10 +157,9 @@ class Member
 	*
 	* @throw Exception 유효성 검사 실패 
 	*/
-	public function validateEmail($mode = "register")
+	public function validateEmail()
 	{
-		$mode = $mode?$mode:"register";
-		$exception = "\\Component\\Exception\\Member\\Member".ucfirst($mode)."Exception";
+		$exception = $this->exception;
 		
 		$email = $this->params['email'] ?? "";
 		// 이메일이 없으면 중지 
@@ -174,6 +175,39 @@ class Member
 		if ($email === false) { // 유효성 검사 실패 
 			throw $exception("이메일 형식이 아닙니다.");
 		}
+	}
+	
+	/**
+	* 휴대전화번호 유효성 검사 
+	*
+	* @throw Exception 유효성 검사 실패
+	*/
+	public function validateCellPhone()
+	{
+		$exception = $this->exception;
+		$cellPhone = $this->params['cellPhone'] ?? "";
+		if (!$cellPhone) 
+			return;
+		
+		/**
+		   010-3481-2101
+		   010_3481_2101
+		   01034812101
+		   010 3481 2101
+		   1. 검증 통일성을 위해서 숫자만 추출 
+		   2. 패턴
+			   /(01[016789])(\d{3,4})(\d{4})/
+			   
+		    3. 유효성 검사
+			4. 전화번호 formating -> 010-3481-2101
+		*/
+		$cellPhone = preg_replace("/[^\d]/", "", $cellPhone);
+		$pattern = "/(01[016789])(\d{3,4})(\d{4)/";
+		if (!preg_match($pattern, $cellPhone)) {
+			throw new $exception("휴대전화번호 형식이 아닙니다.");
+		}
+		
+		$this->params['cellPhone'] = preg_replace($pattern, "$1-$2-$3", $cellPhone);
 	}
 	
 	/**
