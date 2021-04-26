@@ -18,9 +18,8 @@ class ListController extends \Controller\Admin\Controller
 	
 	public function index()
 	{
-		$data = [
-			'menu' => 'member',
-		];
+		$member = App::load(\Component\Member\MemberAdmin::class);
+		$data = $member->getList();
 		App::render("Member/list", $data);
 	}
 }
