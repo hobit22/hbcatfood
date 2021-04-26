@@ -69,7 +69,12 @@ class Member
 				
 				/** 비밀번호 체크 */
 				$this->validatePassword($mode);
-
+			
+				/** 이메일 체크 */
+				$this->validateEmail($mode);
+				
+				/** 휴대전화번호 체크 */
+		
 				break;
 		}
 		
@@ -142,6 +147,32 @@ class Member
 		$msg = "비밀번호는 8~30자리의 알파벳(대문자 포함), 숫자, 특수문자로 조합하여 만들어 주세요.";
 		if (strlen($memPw) < 8 || strlen($memPw) > 30 || !preg_match("/[a-z]/", $memPw) || !preg_match("/[A-Z]/", $memPw) || !preg_match("/[\d]/", $memPw) || !preg_match("/[~!@#$\^&*()]/", $memPw)) {
 			throw new $exception($msg);
+		}
+	}
+	
+	/**
+	* 이메일 유효성 검사 체크 
+	*
+	* @throw Exception 유효성 검사 실패 
+	*/
+	public function validateEmail($mode = "register")
+	{
+		$mode = $mode?$mode:"register";
+		$exception = "\\Component\\Exception\\Member\\Member".ucfirst($mode)."Exception";
+		
+		$email = $this->params['email'] ?? "";
+		// 이메일이 없으면 중지 
+		if (!$email)
+			return;
+		
+		/**
+		filter_var 
+		FILTER_VALIDATE_EMAIL
+		*/
+		
+		$email = filter_var($email, FILTER_VALIDATE_EMAIL);
+		if ($email === false) { // 유효성 검사 실패 
+			throw $exception("이메일 형식이 아닙니다.");
 		}
 	}
 	
