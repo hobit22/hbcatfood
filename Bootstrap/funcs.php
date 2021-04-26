@@ -63,3 +63,17 @@ function siteUrl($url = null)
 	
 	return $config['mainurl'] . $url;
 }
+
+/**
+* 페이지 이동 
+*
+* @param String $url 이동할 경로 
+* @param String $target 이동할 창(self - 현재창, parent - 부모창)
+*/
+function go($url, $target = "self")
+{
+	$url = siteUrl($url);
+	
+	echo "<script>{$target}.location.href='{$url}';</script>";
+	exit;
+}

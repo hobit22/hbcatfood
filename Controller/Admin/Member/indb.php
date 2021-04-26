@@ -25,9 +25,17 @@ class IndbController extends \Controller\Admin\Controller
 			switch($in['mode']) {
 				// 회원 가입
 				case "register" :
-					$member->data($in)
-								->validator("register")
-								->register();
+					$result = $member->data($in)
+											->validator("register")
+											->register();
+											
+					if ($result === false) { // 회원가입 실패
+						throw new MemberRegisterException("회원가입 실패!");
+					}
+					
+					// 회원 가입 성공
+					go("admin/member/list", "parent");
+					
 					break;
 			}
 		} catch (MemberRegisterException $e) {

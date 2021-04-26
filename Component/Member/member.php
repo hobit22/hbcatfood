@@ -189,6 +189,7 @@ class Member
 		if (!$cellPhone) 
 			return;
 		
+;
 		/**
 		   010-3481-2101
 		   010_3481_2101
@@ -202,7 +203,7 @@ class Member
 			4. 전화번호 formating -> 010-3481-2101
 		*/
 		$cellPhone = preg_replace("/[^\d]/", "", $cellPhone);
-		$pattern = "/(01[016789])(\d{3,4})(\d{4)/";
+		$pattern = "/(01[016789])(\d{3,4})(\d{4})/";
 		if (!preg_match($pattern, $cellPhone)) {
 			throw new $exception("휴대전화번호 형식이 아닙니다.");
 		}
