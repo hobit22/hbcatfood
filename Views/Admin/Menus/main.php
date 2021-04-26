@@ -12,5 +12,10 @@
 			회원관리
 		</a>
 	</li>
+	<?php if (isLogin()) : ?>
+	<li>
+		<a href='<?=siteUrl("admin/member/logout")?>'>로그아웃</a>
+	</li>
+	<?php endif; ?>
 </ul>
 </nav>
