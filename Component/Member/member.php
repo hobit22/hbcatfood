@@ -322,4 +322,25 @@ class Member
 						
 		return $row;
 	}
+	
+	/**
+	* 로그인 여부 체크 
+	*
+	* @return Boolean 
+	*/
+	public function isLogin()
+	{
+		$memNo = $_SESSION['memNo'] ?? 0;
+		
+		return $memNo > 0;
+	}
+	
+	/**
+	* 로그아웃 
+	*
+	*/
+	public function logout()
+	{
+		session_destroy();
+	}
 }

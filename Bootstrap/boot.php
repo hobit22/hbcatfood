@@ -19,4 +19,5 @@ include "autoload.php"; // Component, Controller 파일 자동 추가
 
 $request = App::load(\Component\Core\Request::class);
 
+App::loginSession(); // 로그인 세션 처리 
 App::routes(); // 라우터 처리 

@@ -264,4 +264,20 @@ class App
 		$list = array_unique($list);
 		return $list;
 	}
+	
+	/**
+	* 로그인한 회원정보 세션에 유지 
+	*
+	*/
+	public static function loginSession()
+	{
+		$member = App::load(\Component\Member\Member::class);
+		if ($member->isLogin()) {
+			$info = $member->get(); // 현재 로그인한 회원의 정보 
+			if ($info) {
+				unset($info['memPw']);
+				$_SESSION['member'] = $info;
+			} // endif 
+		} // endif 
+	}
 }

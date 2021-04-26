@@ -88,3 +88,15 @@ function reload($target = "self")
 	echo "<script>{$target}.location.reload();</script>";
 	exit;
 }
+
+/**
+* 로그인여부 체크 
+*
+* @return Boolean
+*/
+function isLogin()
+{
+	$member = App::load(\Component\Member\Member::class);
+	
+	return $member->isLogin();
+}
