@@ -28,6 +28,11 @@ class Controller extends \Controller
 
 		$commonHeader = $this->outlinePath . "/Header/main.php";
 		$headerPath = $this->headerPath?$this->headerPath:$commonHeader;
+		
+		// 파일이 없으면 추가 X
+		if (!file_exists($headerPath))
+			return;
+		
 		ob_start();
 		include $headerPath;
 		$content = ob_get_clean();
@@ -65,6 +70,11 @@ class Controller extends \Controller
 
 		$commonFooter = $this->outlinePath . "/Footer/main.php";
 		$footerPath = $this->footerPath?$this->footerPath:$commonFooter;
+		
+		// 파일이 없으면 추가 X
+		if (!file_exists($footerPath))
+			return;
+		
 		ob_start();
 		include $footerPath;
 		$content = ob_get_clean();
