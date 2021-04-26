@@ -121,7 +121,7 @@ class App
 			if (count($path) > 2 && strtolower($path[2]) == 'admin') {
 				$type = "Admin";
 			}
-
+			
 			$nsp = "\\Controller\\{$type}\\{$folder}\\{$file}Controller";
 		} 
 		
@@ -139,7 +139,7 @@ class App
 		}
 		
 		$controller = self::load($nsp);
-
+		
 		$controller->header();
 		// 메인 메뉴 
 		if (method_exists($controller, 'mainMenu')) {
@@ -198,13 +198,44 @@ class App
 	public static function viewType()
 	{
 		$type = "Front";
+		/*
 		$uri = $_SERVER['REQUEST_URI'];
+		
 		$pattern = "/\/([^\?~]+)/";
 		if (preg_match($pattern, $uri, $matches)) {
 			$path = array_reverse(explode("/", $matches[1]));
 			if (count($path) > 2 && strtolower($path[2]) == 'admin') {
 				$type = "Admin";
 			}
+		}
+		*/
+		
+		$uri = $_SERVER['REQUEST_URI'];
+		$pattern = "/\/([^\?~]+)/";
+		if (preg_match($pattern, $uri, $matches)) {
+			$config = getConfig();
+			if (!preg_match("/\/$/", $matches[0])) {
+				$matches[0] .= "/";
+			}
+
+			$path = explode("/", $matches[1]);
+			if ($config['mainurl'] && $config['mainurl'] != '/') {
+				$matches[0] = str_replace($config['mainurl'], "", $matches[0]);
+				$path = explode("/", $matches[0]);
+			}
+			
+			foreach ($path as $k => $v) {
+				if (!$v) {
+					unset($path[$k]);
+				}
+			}	
+			$path = array_reverse(array_values($path));
+			if (isset($path[0]) && strtolower($path[0]) == 'admin') {
+				$type = 'Admin';
+			} else if (isset($path[2]) && strtolower($path[2]) == 'admin') {
+				$type = 'Admin';
+			}
+
 		}
 
 		return $type;
