@@ -1,0 +1,6 @@
+body { background-color: #caddfc; }
+
+.login_box { width: 320px; position: fixed; left: calc(50% - 160px); top: calc(50% - 90px); }
+.login_box h1 { font-size: 20px; text-align: center; }
+.login_box input[type='text'] { margin-bottom: 5px; }
+.login_box input[type='submit'] { background-color: #000f26; color: #ffffff; border: 0; width: 100%; height: 45px; cursor: pointer; border-radius: 5px; margin-top: 15px; }
