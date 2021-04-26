@@ -266,4 +266,45 @@ class Member
 		
 		return $result !== false;
 	}
+	
+	/**
+	* 로그인 처리 
+	*
+	* @param String $memId 아이디
+	* @param String $memPw 비밀번호 
+	*
+	* @return Boolean 성공 true, 실패 false
+	*/
+	public function login($memId, $memPw)
+	{
+		$info = $this->get($memId);
+	}
+	
+	/**
+	* 회원정보 조회
+	*
+	* @param Integer|String 숫자 - 회원번호, 문자 - 아이디 
+	* @return Array
+	*/
+	public function get($memNo = null)
+	{
+		$memNo = $memNo?$memNo:$_SESSION['memNo'];
+		if (!$memNo) return [];
+		
+		if (!is_numeric($memNo)) { // 숫자가 아닌 경우는 아이디 -> 회원 번호 변경
+			$row = db()->table('member')
+							->select("memNo");
+							->where(["memId" => $memNo])
+							->row();
+			if ($row && isset($row['memNo'])) $memNo = $row['memNo'];
+		}
+		
+		if (!$memNo) return [];
+		
+		$row = db()->table("member")
+						->where(["memNo" => $memNo])
+						->row();
+						
+		return $row;
+	}
 }
