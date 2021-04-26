@@ -121,7 +121,7 @@ class Member
 	* @param String $mode 처리(register - 회원가입, update - 회원정보 수정)
 	* @throw Exception 유효성검사 실패 
 	*/
-	public function validatePassword();
+	public function validatePassword()
 	{
 		$exception = $this->exception;
 		
