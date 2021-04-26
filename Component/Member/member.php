@@ -278,6 +278,21 @@ class Member
 	public function login($memId, $memPw)
 	{
 		$info = $this->get($memId);
+		if (!$info) {
+			$this->errMessage = "존재하지 않는 회원입니다.";
+			return false;
+		}
+		
+		$security = App::load(\Component\Core\Security::class);
+		$result = $security->compareHash($memPw, $info['memPw']);
+		if (!$result) { 
+			$this->errMessage = "로그인 비밀번호 불일치";
+			return false;
+		}
+		
+		$_SESSION['memNo'] = $info['memNo'];
+		
+		return true;
 	}
 	
 	/**

@@ -20,5 +20,7 @@ class LoginOkController extends \Controller\Admin\Controller
 		$in = request()->all();
 		$member = App::load(\Component\Member\Member::class);
 		$member->login($in['memId'], $in['memPw']);
+		
+		
 	}
 }
