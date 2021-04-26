@@ -38,6 +38,9 @@ input[type='number']:focus, select:focus { border-color: blue; }
 /* 페이지네이션 */
 .pagination { text-align: center; padding: 15px 0; }
 
+
+.action_box { background-color: #f8f8f8; padding: 5px 10px; border: 1px solid #d5d5d5; }
+.action_box select { max-width: 150px; margin-right: 5px; }
 /* 공통 E */
 
 
