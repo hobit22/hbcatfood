@@ -31,7 +31,7 @@ class IndbController extends \Controller\Admin\Controller
 					break;
 			}
 		} catch (MemberRegisterException $e) {
-			echo new AlertException($e->getMessage());
+			echo $e;
 		} catch (AlertException $e) {
 			echo $e;
 			exit;

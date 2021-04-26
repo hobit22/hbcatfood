@@ -67,10 +67,9 @@ class Member
 				/** 아이디 체크 */
 				$this->validateMemId($mode);
 				
-				
-				/** 비밀번호 체크 S */
-				
-				/** 비밀번호 체크 E */
+				/** 비밀번호 체크 */
+				$this->validatePassword($mode);
+
 				break;
 		}
 		
@@ -106,6 +105,44 @@ class Member
 		}
 		/* 자리수 + 문자 제한 체크 E */
 		
+	}
+	
+	/**
+	* 비밀번호 유효성 검사 
+	*
+	* @param String $mode 처리(register - 회원가입, update - 회원정보 수정)
+	* @throw Exception 유효성검사 실패 
+	*/
+	public function validatePassword($mode = 'register')
+	{
+		$mode = $mode?$mode:"register";
+		$exception = "\\Component\\Exception\\Member\\Member".ucfirst($mode)."Exception";
+		
+		$memPw = $this->params['memPw'] ?? "";
+		$memPwRe = $this->params['memPwRe'] ?? "";
+				
+		if (!$memPw) {
+			throw new $exception("비밀번호를 입력하세요.");
+		}
+		
+		if (!$memPwRe) {
+			throw new $exception("비밀번호 확인을 해 주세요.");
+		}
+		
+		if ($memPw != $memPwRe) {
+			throw new $exception("비밀번호가 일치하지 않습니다.");
+		}
+		
+		/**
+			복잡성 
+			1. 자리수(8~30)
+			2. 알파벳 + 숫자 + 특수문자 포함(반드시 1개이상)하는 조건 
+			3. 알파벳은 최소 1자리는 대문자 
+		*/
+		$msg = "비밀번호는 8~30자리의 알파벳(대문자 포함), 숫자, 특수문자로 조합하여 만들어 주세요.";
+		if (strlen($memPw) < 8 || strlen($memPw) > 30 || !preg_match("/[a-z]/", $memPw) || !preg_match("/[A-Z]/", $memPw) || !preg_match("/[\d]/", $memPw) || !preg_match("/[~!@#$\^&*()]/", $memPw)) {
+			throw new $exception($msg);
+		}
 	}
 	
 	/**

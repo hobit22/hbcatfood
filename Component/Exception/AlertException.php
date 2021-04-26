@@ -10,8 +10,8 @@ use App;
 */
 class AlertException extends \Exception
 {	
-	private $action = 0;
-	private $target = 'self';
+	protected $action = 0;
+	protected $target = 'self';
 	
 	/**
 	* action 값이 숫자 -> history.go
