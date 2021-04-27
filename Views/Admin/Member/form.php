@@ -1,14 +1,14 @@
 <!-- 회원 등록/수정 양식 -->
-<div class='title1'>회원 등록</div>
+<div class='title1'>회원 <?=isset($memNo)?"수정":"등록"?></div>
 <div class='content_box'>
 	<form method='post' action='<?=siteUrl("admin/member/indb")?>' target='ifrmHidden' autocomplete='off'>
-	<input type='hidden' name='mode' value='register'>
+	<input type='hidden' name='mode' value='<?=isset($memNo)?"update":"register"?>'>
 	<dl>
 		<dt>회원등급</dt>
 		<dd>
 			<select name='level'>
 			<?php for ($i = 0; $i <= 10; $i++) : ?>
-				<option value='<?=$i?>'><?=$i?></option>
+				<option value='<?=$i?>'<?php if (isset($level) && $level == $i) echo " selected"?>><?=$i?></option>
 			<?php endfor; ?>
 			</select>
 		</dd>
@@ -16,7 +16,7 @@
 	<dl>
 		<dt>아이디</dt>
 		<dd>
-			<input type='text' name='memId'>
+			<input type='text' name='memId' value='<?=isset($memId)?$memId:""?>'>
 		</dd>
 	</dl>
 	<dl>
@@ -34,23 +34,23 @@
 	<dl>
 		<dt>회원명</dt>
 		<dd>
-			<input type='text' name='memNm'>
+			<input type='text' name='memNm' value='<?=isset($memNm)?$memNm:""?>'>
 		</dd>
 	</dl>
 	<dl>
 		<dt>이메일</dt>
 		<dd>
-			<input type='email' name='email'>
+			<input type='email' name='email' value='<?=isset($email)?$email:""?>'>
 		</dd>
 	</dl>
 	<dl>
 		<dt>휴대전화</dt>
 		<dd>
-			<input type='text' name='cellPhone'>
+			<input type='text' name='cellPhone' value='<?=isset($cellPhone)?$cellPhone:""?>'>
 		</dd>
 	</dl>
 	
-	<input type='submit' value='회원가입처리' onclick="return confirm('정말 가입처리 하시겠습니까?');" class='btn1 mt20'>
+	<input type='submit' value='회원<?=isset($memNo)?"수정":"가입"?>처리' onclick="return confirm('정말 <?=isset($memNo)?"수정":"가입"?>처리 하시겠습니까?');" class='btn1 mt20'>
 	</form>
 </div>
 <!--// content_box -->

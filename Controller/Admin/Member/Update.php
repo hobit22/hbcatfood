@@ -21,7 +21,6 @@ class UpdateController extends \Controller\Admin\Controller
 		$member = App::load(\Component\Member\Member::class);
 		$memNo = request()->get("memNo");
 		$info = $member->get($memNo);
-		debug($info);
-		App::render("Member/form");
+		App::render("Member/form", $info);
 	}
 }
