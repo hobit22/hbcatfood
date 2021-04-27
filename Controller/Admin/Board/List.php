@@ -18,6 +18,11 @@ class ListController extends \Controller\Admin\Controller
 	
 	public function index()
 	{
-		App::render("Board/list");
+		$board = App::load(\Component\Board\Board::class);
+		$data = [
+			'list' => $board->getBoards(),
+			'skins' => $board->getSkins(),
+		];
+		App::render("Board/list", $data);
 	}
 }

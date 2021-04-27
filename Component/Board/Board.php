@@ -61,4 +61,16 @@ class Board
 		
 		return $skins;
 	}
+	
+	/**
+	* 게시판 목록 
+	*
+	* @return Array
+	*/
+	public function getBoards()
+	{
+		$list = db()->table("board")->orderBy([["regDt", "desc"]])->rows();
+		
+		return $list;
+	}
 }
