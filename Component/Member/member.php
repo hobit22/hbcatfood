@@ -16,7 +16,6 @@ class Member
 	
 	/** 회원 필수 데이터 컬럼 */
 	private $requiredColumns = [
-		'memId' => '회원아이디',
 		'memNm' => '회원명',
 	];
 	
@@ -58,6 +57,7 @@ class Member
 				$required = $this->requiredColumns;
 				
 				if ($mode == 'register') { // 회원 가입일때만 비밀번호 필수 컬럼
+					$required['memId'] = '회원아이디';
 					$required['memPw'] = '비밀번호';
 				}
 				

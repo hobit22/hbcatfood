@@ -12,6 +12,12 @@
 			회원관리
 		</a>
 	</li>
+	<li>
+		<a href='<?=siteUrl("admin/board")?>'<?php if ($menu == 'board') echo " class='on'";?>>
+			<i class='xi-pen'></i>
+			게시판관리
+		</a>
+	</li>
 	<?php if (isLogin()) : ?>
 	<li>
 		<a href='<?=siteUrl("admin/member/logout")?>'>로그아웃</a>
