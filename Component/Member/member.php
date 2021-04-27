@@ -273,7 +273,6 @@ class Member
 						  ->update();
 		
 		return $result !== false;
-		
 	}
 	
 	/**

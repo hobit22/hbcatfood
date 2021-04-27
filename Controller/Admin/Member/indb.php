@@ -43,6 +43,12 @@ class IndbController extends \Controller\Admin\Controller
 											->validator("update")
 											->update();
 											
+					if ($result === false) { // 회원정보수정 실패 
+						throw new MemberUpdateException("회원정보수정 실패!");
+					}
+									
+					// 회원 정보 수정 성공
+					go("admin/member/list", "parent");
 					break;
 				/** 회원 목록 수정 */
 				case "update_list" : 
