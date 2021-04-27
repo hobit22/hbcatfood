@@ -355,7 +355,9 @@ class DB extends \PDO {
 	public function row() {
 		$this->limit = 1;
 		$rows = $this->rows();
-		return $rows[0];
+		$row = isset($rows[0])?$rows[0]:[];
+		
+		return $row;
 	}
 	
 	/**
