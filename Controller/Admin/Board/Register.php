@@ -18,6 +18,8 @@ class RegisterController extends \Controller\Admin\Controller
 	
 	public function index()
 	{
+		$board = App::load(\Component\Board\Board::class);
+		$skins = $board->getSkins();
 		App::render("Board/form");
 	}
 }
