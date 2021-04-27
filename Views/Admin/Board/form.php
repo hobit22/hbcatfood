@@ -26,7 +26,13 @@
 			</tr>
 			<tr>
 				<th>스킨</th>
-				<td></td>
+				<td>
+					<select name='boardSkin'>
+					<?php foreach ($skins as $skin) : ?>
+						<option value='<?=$skin?>'><?=$skin?></option>
+					<?php endforeach; ?>
+					</select>
+				</td>
 			</tr>
 		</table>
 		<input type='submit' value='게시판 생성하기' class='btn1 mt20' onclick="return confirm('정말 생성하시겠습니까?');">

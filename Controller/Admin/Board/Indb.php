@@ -30,6 +30,7 @@ class IndbController extends \Controller\Admin\Controller
 					 게시판 아이디 -> 생성 
 					 + 추가 설정 
 					*/
+
 					$result = $board->createBoard($in['id'], $in['boardNm'], $in);
 					if ($result === false) {
 						throw new BoardAdminException("게시판 생성 실패!");

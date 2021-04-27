@@ -29,7 +29,7 @@ class Board
 		
 		if ($extra) {
 			foreach ($extra as $k => $v) {
-				if (!in_array($k, ['id', 'boardNm'])) {
+				if (in_array($k, ['id', 'boardNm', 'mode'])) {
 					continue;
 				}
 				

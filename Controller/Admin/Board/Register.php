@@ -20,6 +20,9 @@ class RegisterController extends \Controller\Admin\Controller
 	{
 		$board = App::load(\Component\Board\Board::class);
 		$skins = $board->getSkins();
-		App::render("Board/form");
+		$data = [
+			'skins' => $skins,
+		];
+		App::render("Board/form", $data);
 	}
 }
