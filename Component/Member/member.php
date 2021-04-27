@@ -248,6 +248,35 @@ class Member
 	}
 	
 	/**
+	* 회원정보 수정 
+	*
+	* @return Boolean 성공시 true, 실패시 false
+	*/
+	public function update()
+	{
+		$upData = [
+			'level' => $this->params['level'] ?? 0,
+			'memNm' => $this->params['memNm'],
+			'email' => $this->params['email'],
+			'cellPhone' => $this->params['cellPhone'],
+		];
+		
+		// 비밀번호 변경시 
+		if ($this->params['memPw']) {
+			$security = App::load(\Component\Core\Security::class);
+			$upData['memPw'] = $security->createHash($this->params['memPw']);
+		}
+		
+		$result = db()->table("member")
+						  ->data($upData)
+						  ->where(["memNo" => $this->params['memNo']])
+						  ->update();
+		
+		return $result !== false;
+		
+	}
+	
+	/**
 	* 회원 삭제 
 	*
 	* @param Integer $memNo 회원번호 

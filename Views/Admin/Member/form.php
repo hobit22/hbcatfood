@@ -19,7 +19,11 @@
 	<dl>
 		<dt>아이디</dt>
 		<dd>
+			<?php if(isset($memNo)) : ?>
+			<?=$memId?>
+			<?php else : ?>
 			<input type='text' name='memId' value='<?=isset($memId)?$memId:""?>'>
+			<?php endif; ?>
 		</dd>
 	</dl>
 	<dl>
