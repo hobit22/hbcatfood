@@ -44,6 +44,37 @@ class Board
 	}
 	
 	/**
+	* 게시판 설정 수정 
+	*
+	* @param String $id 게시판 아이디
+	* @param Array $upData 수정할 설정 
+	* @return Boolean
+	*/
+	public function updateBoard($id, $upData)
+	{
+		$upData['modDt'] = date("Y-m-d H:i:s");
+		$result = db()->table("board")
+							->data($upData)
+							->where(["id" => $id])
+							->update();
+		
+		return $result !== false;
+	}
+	
+	/**
+	* 게시판 설정 삭제 
+	*
+	* @param String $id 게시판 아이디 
+	* @return Boolean 
+	*/
+	public function deleteBoard($id)
+	{
+		$result = db()->table("board")->where(["id" => $id])->delete();
+		
+		return $result !== false;
+	}
+	
+	/**
 	* 게시판 스킨 목록 
 	*
 	* @return Array
