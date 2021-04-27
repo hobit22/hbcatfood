@@ -37,6 +37,11 @@ input[type='number']:focus, select:focus { border-color: blue; }
 .table_rows td { border-bottom: 1px solid #f8f8f8; padding: 7px 10px; }
 .table_rows tbody tr:nth-child(2n) td { background-color: #f5f5d5; }
 
+.table_cols { width: 100%; border-spacing: 0; padding: 0; }
+.table_cols th { background-color: #f8f8f8; width: 120px; padding: 10px; border-bottom: 1px solid #d5d5d5; }
+.table_cols td { padding: 10px; border-bottom: 1px solid #d5d5d5; }
+.table_cols tr:first-child th, .table_cols tr:first-child td { border-top: 1px solid #d5d5d5; }
+
 /* 페이지네이션 */
 .pagination { text-align: center; padding: 15px 0; }
 

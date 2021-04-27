@@ -20,7 +20,7 @@
 				<td>
 					<input type='radio' name='useReply' value='0' id='useReplay0'>
 					<label for='useReply0'>사용안함</label>
-					<input type='radio' name='useReply' value='1' id='useReply1'>
+					<input type='radio' name='useReply' value='1' id='useReply1' checked>
 					<label for='useReply1'>사용함</label>
 				</td>
 			</tr>
@@ -29,6 +29,6 @@
 				<td></td>
 			</tr>
 		</table>
-		<input type='submit' value='게시판 생성하기' class='btn1' onclick="return confirm('정말 생성하시겠습니까?');">
+		<input type='submit' value='게시판 생성하기' class='btn1 mt20' onclick="return confirm('정말 생성하시겠습니까?');">
 	</form>
 </div>
