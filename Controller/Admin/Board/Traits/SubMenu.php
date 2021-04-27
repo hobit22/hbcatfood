@@ -2,6 +2,8 @@
 
 namespace Controller\Admin\Board\Traits;
 
+use App;
+
 /**
 * 게시판 관리 서브 메뉴
 *
