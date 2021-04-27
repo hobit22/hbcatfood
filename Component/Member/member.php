@@ -50,11 +50,17 @@ class Member
 			throw new $exception("유효성 검사할 데이터가 없습니다.");
 		}
 		switch ($mode) {
+			/** 회원정보 수정 유효성 검사 */
+			case "update" : 
 			/** 회원가입 유효성 검사 */
 			case "register" : 
 				/** 필수 데이터 체크 S */
 				$required = $this->requiredColumns;
-				$required['memPw'] = '비밀번호';
+				
+				if ($mode == 'register') { // 회원 가입일때만 비밀번호 필수 컬럼
+					$required['memPw'] = '비밀번호';
+				}
+				
 				$missing = [];
 				foreach ($required as $col => $colNm) {
 					if (!$this->params[$col]) {
@@ -68,10 +74,17 @@ class Member
 				/* 필수 데이터 체크 E */
 				
 				/** 아이디 체크 */
-				$this->validateMemId();
+				if ($mode == 'register') {
+					$this->validateMemId();
+				}
 				
 				/** 비밀번호 체크 */
-				$this->validatePassword();
+				if ($mode == 'register') { // 회원가입일땐 반드시 비밀번호 체크 
+					$this->validatePassword();
+				// 회원정보 수정일때 비빌번호 변경 처리시만 체크 
+				} else if ($mode == 'update' && $this->params['memPw']) { 
+					$this->validatePassword();
+				}
 			
 				/** 이메일 체크 */
 				$this->validateEmail();

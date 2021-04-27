@@ -3,6 +3,9 @@
 <div class='content_box'>
 	<form method='post' action='<?=siteUrl("admin/member/indb")?>' target='ifrmHidden' autocomplete='off'>
 	<input type='hidden' name='mode' value='<?=isset($memNo)?"update":"register"?>'>
+	<?php if (isset($memNo)) : ?>
+	<input type='hidden' name='memNo' value='<?=$memNo?>'>
+	<?php endif; ?>
 	<dl>
 		<dt>회원등급</dt>
 		<dd>

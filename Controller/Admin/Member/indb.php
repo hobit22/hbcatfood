@@ -37,6 +37,13 @@ class IndbController extends \Controller\Admin\Controller
 					go("admin/member/list", "parent");
 					
 					break;
+				// 회원 정보 수정 
+				case "update" : 
+					$result = $member->data($in)
+											->validator("update")
+											->update();
+											
+					break;
 				/** 회원 목록 수정 */
 				case "update_list" : 
 					if (!isset($in['memNo']) || count($in['memNo']) == 0) {
