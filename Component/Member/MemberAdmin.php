@@ -11,7 +11,7 @@ use App;
 *
 */
 class MemberAdmin extends \Component\Member\Member
-{
+{	
 	/**
 	* 회원목록
 	*
@@ -46,5 +46,24 @@ class MemberAdmin extends \Component\Member\Member
 			'pagination' => $pagination,
 			'total' => $total,
 		];
+	}
+	
+	/**
+	* 관리자페이지 접근 제한 처리
+	*
+	*/
+	public function accessCheck()
+	{
+		$isAdmin = false; // 관리자 여부 체크 - false
+		if (isLogin()) {
+			if ($_SESSION['member']['level'] == 10) {
+				$isAdmin = true;
+			}
+		} // endif
+		
+		if (!$isAdmin) { // 관리자가 아니면 관리자 로그인 페이지로 이동
+			go("admin/member/login");
+		}
+		
 	}
 }

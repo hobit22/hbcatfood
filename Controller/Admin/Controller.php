@@ -20,6 +20,13 @@ class Controller extends \Controller
 	
 	protected $mainCode = "";
 	
+	public function __construct()
+	{
+		// 관리자 페이지 접근 제한 처리
+		$memberAdmin = App::load(\Component\Member\MemberAdmin::class);
+		$memberAdmin->accessCheck();
+	}
+	
 	// Admin header
 	public function header()
 	{

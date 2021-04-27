@@ -33,7 +33,9 @@
 		<td align='center'><?=$li['memNm']?></td>
 		<td align='center'><?=$li['email']?></td>
 		<td align='center'><?=$li['cellPhone']?></td>
-		<td></td>
+		<td>
+			<a href='<?=siteUrl("admin/member/update")?>?memNo=<?=$li['memNo']?>' class='btn2'>수정하기</a>
+		</td>
 	</tr>
 <?php endforeach; ?>	
 	</tbody>

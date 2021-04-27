@@ -2,6 +2,8 @@
 
 namespace Component\Exception\Member;
 
+use App;
+
 /**
 * 로그인 Exception 
 *

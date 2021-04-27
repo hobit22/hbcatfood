@@ -25,6 +25,8 @@ input[type='number']:focus, select:focus { border-color: blue; }
 .btn1 { background-color: blue; border: 0; color: #ffffff; padding: 10px 25px; border-radius: 5px; cursor: pointer; }
 .btn1:hover { background-color: skyblue; color: #212121; }
 
+.btn2 { background-color: orange; border: 0; color: #ffffff; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 11px; display: inline-block; }
+
 .mt20 { margin-top: 20px !important; }
 .mb20 { margin-bottom: 20px !important; }
 
