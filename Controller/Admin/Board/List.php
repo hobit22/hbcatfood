@@ -8,5 +8,6 @@ namespace Controller\Admin\Board;
 */
 class ListController extends \Controller\Admin\Controller
 {
-	
+	protected $mainCode = 'board';
+	private $subCode = "list";
 }
