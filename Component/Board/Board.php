@@ -263,13 +263,15 @@ class Board
 	*
 	* @param String $id 게시판 아이디 
 	* @param Integer $page 페이지번호
+	* @param String $qs GET 쿼리스트링 
+	*
 	* @return Array 
 					- list 게시글 목록 
 					- pagination 페이징 HTML
 					- total 전체 게시글 수 
 					- offset 게시글 시작 지점
 	*/
-	public function getList($id, $page = 1)
+	public function getList($id, $page = 1, $qs = "")
 	{
 		$page = $page?$page:1;
 		$limit = 20;
@@ -280,8 +282,23 @@ class Board
 		
 		$list = db()->table("boardData")
 						->where(["boardId" => $id])
+						->limit($limit, $offset)
 						->orderBy([["regDt", "desc"]])
 						->rows();
-		debug($list);
+		
+		$url = siteUrl("board/list")."?id={$id}";
+		if ($qs) $url .= "&".$qs;
+		
+		$paginator = App::load(\Component\Pagination::class, $page, $limit, $total, $url);
+		$pagination = $paginator->getPages();
+		
+		$result = [
+			'list' => $list,
+			'pagination' => $pagination,
+			'total' => $total,
+			'offset' => $offset,
+		];
+		
+		return $result;
 	}
 }
