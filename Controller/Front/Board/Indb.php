@@ -27,6 +27,13 @@ class IndbController extends \Controller\Front\Controller
 					$idx = $board->data($in)
 									   ->validator() // 유효성 검사 
 									   ->register(); // 작성 
+									   
+					if ($idx === false) {
+						throw new BoardFrontException("게시글 작성 실패!");
+					}
+					
+					// 게시글 작성 성공 -> board/view?idx=게시글
+					go("board/view?idx={$idx}", "parent");
 					break;
 			}
 		} catch (BoardFrontException $e) {

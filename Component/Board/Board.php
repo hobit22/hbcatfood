@@ -199,4 +199,28 @@ class Board
 		
 		return $result;
 	}
+	
+	/**
+	* 게시글 조회 
+	*
+	* @param Integer $idx 게시글 번호 
+	* @return Array
+	*/
+	public function get($idx)
+	{
+		// yh_boardData, yh_board 
+		$config = getConfig();
+		
+		$fields = "{$config['prefix']}boardData.*, {$config['prefix']}member.memId, {$config['prefix']}member.memNm, {$config['prefix']}board.boardNm, {$config['prefix']}board.boardSkin";
+		$joinTable = [
+			'board' => [$config['prefix']."boardData.boardId", $config['prefix']."board.id", "left"],
+			'member' => [$config['prefix']."boardData.memNo", $config['prefix']."member.memNo", "left"],
+		];
+		$data = db()->table("boardData", $joinTable)
+					  ->select($fields)
+					  ->where([$config['prefix']."boardData.idx" => $idx])
+					  ->row();
+		
+		debug($data);
+	}
 }
