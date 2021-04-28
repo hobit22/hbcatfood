@@ -23,6 +23,6 @@
 	<dd></dd>
 </dl>
 <button type='button' class='cancel_btn'>취소하기</button>
-<button type='button' class='write_btn'>작성하기</button>
+<button type='submit' class='write_btn'>작성하기</button>
 </div>
 <!--// board_skin_default -->
