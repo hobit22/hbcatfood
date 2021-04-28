@@ -201,6 +201,40 @@ class Board
 	}
 	
 	/**
+	* 게시글 수정 
+	*
+	* @return Boolean 성공 true, 실패 false
+	*/
+	public function update()
+	{
+		$upData = [
+			'poster' => $this->params['poster'],
+			'subject' => $this->params['subject'],
+			'contents' => $this->params['contents'],
+			'modDt' => date("Y-m-d H:i:s"),
+		];
+		$result = db()->table("boardData")
+							->data($upData)
+							->where(["idx" => $this->params['idx']])
+							->update();
+		
+		return $result !== false;
+	}
+	
+	/**
+	* 게시글 삭제 
+	*
+	* @param Integer $idx 게시글 번호 
+	* @return Boolean 
+	*/
+	public function delete($idx)
+	{
+		$result = db()->table("boardData")->where(["idx" => $idx])->delete();
+		
+		return $result !== false;
+	}
+	
+	/**
 	* 게시글 조회 
 	*
 	* @param Integer $idx 게시글 번호 
