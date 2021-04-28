@@ -4,6 +4,7 @@ namespace Component\Board;
 
 use App;
 use Component\Exception\Board\BoardAdminException;
+use Component\Exception\Board\BoardFrontException;
 
 /**
 * 게시판 관련 Component
@@ -143,9 +144,38 @@ class Board
 	* 게시글 작성/수정 유효성 검사 
 	*
 	* @return $this
+	* @throw BoardFrontException
 	*/
 	public function validator()
 	{
+		if (!$this->params) {
+			throw new BoardFrontException("유효성 검사할 데이터가 존재하지 않습니다.");
+		}
+		
+		if (!isset($this->params['boardId']) || !$this->params['boardId']) {
+			throw new BoardFrontException("잘못된 접근입니다.");
+		}
+		
+		// 게시글 수정 - mode - update 수정시 게시글 번호 누락(idx)
+		if (isset($this->params['mode']) && $this->params['mode'] == 'update' && (!isset($this->params['idx']) || !$this->params['idx'])) {
+			throw new BoardFrontException("잘못된 접근입니다.");
+		}
+		
+		/** 필수 데이터 체크 S */
+		$missing = [];
+		foreach ($this->requiredColumns as $column => $colStr) {
+			if (!isset($this->params[$column]) || !$this->params[$column]) { // 필수 데이터 누락
+				$missing[] = $colStr;
+			}
+		}
+		
+		if ($missing) { // 누락 데이터가 있는 경우 
+			throw new BoardFrontException("필수 입력 항목 누락 - " . implode(",", $missing));
+		}
+		
+		/** 필수 데이터 체크 E */
+		
+		
 		return $this;
 	}
 }
