@@ -104,4 +104,17 @@ class Board
 		
 		return $list;
 	}
+	
+	/**
+	* 게시판 설정 
+	*
+	* @param String $id 게시판 아이디 
+	* @return Array
+	*/
+	public function getBoard($id)
+	{
+		$row = db()->table("board")->where(["id" => $id])->row();
+		
+		return $row;
+	}
 }

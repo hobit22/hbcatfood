@@ -90,6 +90,31 @@ function reload($target = "self")
 }
 
 /**
+* 메세지 alert 처리, 이동 또는 뒤로 가기 처리 
+*
+* @param String $msg 알림 메세지
+* @param Integer|String $action 
+						숫자 -> history.go  (뒤로, 앞으로)
+						문자 -> location.href (페이지 이동)
+* @param String $target 
+								- self - 현재창 이동 
+								- parent - 부모창 이동 
+*/
+function msg($msg, $action = 0, $target = 'self') 
+{
+	
+	echo "<script>alert('{$msg}');</script>";
+	if ($action) {
+		if (is_numeric($action)) { // history.go 
+			echo "<script>{$target}.history.go({$action});</script>";
+		} else { // location.href 
+			echo "<script>{$target}.location.href='{$action}';</script>";
+		}
+		exit;
+	} // endif 
+}
+
+/**
 * 로그인여부 체크 
 *
 * @return Boolean
