@@ -257,4 +257,31 @@ class Board
 		
 		return $data;
 	}
+	
+	/**
+	* 게시글 목록 
+	*
+	* @param String $id 게시판 아이디 
+	* @param Integer $page 페이지번호
+	* @return Array 
+					- list 게시글 목록 
+					- pagination 페이징 HTML
+					- total 전체 게시글 수 
+					- offset 게시글 시작 지점
+	*/
+	public function getList($id, $page = 1)
+	{
+		$page = $page?$page:1;
+		$limit = 20;
+		$offset = ($page - 1) * $limit;
+		$total = db()->table("boardData")
+						->where(["boardId" => $id])
+						->count();
+		
+		$list = db()->table("boardData")
+						->where(["boardId" => $id])
+						->orderBy([["regDt", "desc"]])
+						->rows();
+		debug($list);
+	}
 }
