@@ -175,7 +175,28 @@ class Board
 		
 		/** 필수 데이터 체크 E */
 		
-		
 		return $this;
+	}
+	
+	/**
+	* 게시글 등록 
+	*
+	* @return Integer|Boolean 등록 성공 - 게시글 번호(idx), 실패 - false
+	*/
+	public function register()
+	{
+		// memNo - 0(비회원 게시글), memNo > 0 - 회원 게시글
+		$memNo = isLogin()?$_SESSION['memNo']:0;
+		$inData = [
+			'memNo' => $memNo,
+			'boardId' => $this->params['boardId'],
+			'poster' => $this->params['poster'],
+			'subject' => $this->params['subject'],
+			'contents' => $this->params['contents'],
+		];
+		
+		$result = db()->table("boardData")->data($inData)->insert();
+		
+		return $result;
 	}
 }
