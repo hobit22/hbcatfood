@@ -11,6 +11,14 @@ use Component\Exception\Board\BoardAdminException;
 */
 class Board
 {
+	private $params = []; // 처리할 데이터 
+	// 필수 데이터 컬럼 
+	private $requiredColumns = [
+		'poster' => "작성자",
+		'subject' => "제목",
+		'contents' => "내용",
+	];
+	
 	/**
 	* 게시판 생성 
 	*
@@ -116,5 +124,28 @@ class Board
 		$row = db()->table("board")->where(["id" => $id])->row();
 		
 		return $row;
+	}
+	
+	/**
+	* 처리할 데이터 설정 
+	*
+	* @param Array $params 처리할 데이터 
+	* @return $this
+	*/
+	public function data($params = [])
+	{
+		$this->params = $params;
+		
+		return $this;
+	}
+	
+	/**
+	* 게시글 작성/수정 유효성 검사 
+	*
+	* @return $this
+	*/
+	public function validator()
+	{
+		return $this;
 	}
 }
