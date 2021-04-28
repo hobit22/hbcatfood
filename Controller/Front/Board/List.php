@@ -32,5 +32,8 @@ class ListController extends \Controller\Front\Controller
 		
 		// 게시글 목록 
 		$result = $board->getList($id, $page);
+		$data = array_merge($data, $result);
+		
+		App::render("Board/list", $data);
 	}
 }
