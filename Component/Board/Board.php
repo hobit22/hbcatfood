@@ -276,14 +276,24 @@ class Board
 		$page = $page?$page:1;
 		$limit = 20;
 		$offset = ($page - 1) * $limit;
-		$total = db()->table("boardData")
-						->where(["boardId" => $id])
+		
+		$config = getConfig();
+		$px = $config['prefix'];
+		
+		$joinTable = [
+			'member' => [$px."boardData.memNo", $px."member.memNo", "left"],
+		];
+		
+		$total = db()->table("boardData", $joinTable)
+						->where(["{$px}boardData.boardId" => $id])
 						->count();
 		
-		$list = db()->table("boardData")
-						->where(["boardId" => $id])
+		$columns = "{$px}boardData.*, {$px}member.memNm, {$px}member.memId";
+		$list = db()->table("boardData", $joinTable)
+						->where(["{$px}boardData.boardId" => $id])
+						->select($columns)
 						->limit($limit, $offset)
-						->orderBy([["regDt", "desc"]])
+						->orderBy([["{$px}boardData.regDt", "desc"]])
 						->rows();
 		
 		$url = siteUrl("board/list")."?id={$id}";
