@@ -211,7 +211,7 @@ class Board
 		// yh_boardData, yh_board 
 		$config = getConfig();
 		
-		$fields = "{$config['prefix']}boardData.*, {$config['prefix']}member.memId, {$config['prefix']}member.memNm, {$config['prefix']}board.boardNm, {$config['prefix']}board.boardSkin";
+		$fields = "{$config['prefix']}boardData.*, {$config['prefix']}member.memId, {$config['prefix']}member.memNm, {$config['prefix']}board.boardNm, {$config['prefix']}board.boardSkin, {$config['prefix']}board.id";
 		$joinTable = [
 			'board' => [$config['prefix']."boardData.boardId", $config['prefix']."board.id", "left"],
 			'member' => [$config['prefix']."boardData.memNo", $config['prefix']."member.memNo", "left"],

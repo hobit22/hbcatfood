@@ -3,19 +3,19 @@
 <dl>
 	<dt>작성자</dt>
 	<dd>
-		<input type='text' name='poster' value='<?=isLogin()?$_SESSION['member']['memNm']:""?>'>
+		<input type='text' name='poster' value='<?php if (isset($poster)) { echo $poster; } elseif (!isset($poster) && isLogin()) { echo $_SESSION['member']['memNm']; }?>'>
 	</dd>
 </dl>
 <dl>
 	<dt>제목</dt>
 	<dd>
-		<input type='text' name='subject'>
+		<input type='text' name='subject' value='<?=isset($subject)?$subject:""?>'>
 	</dd>
 </dl>
 <dl>
 	<dt>내용</dt>
 	<dd>
-		<textarea name='contents' id='contents'></textarea>
+		<textarea name='contents' id='contents'><?=isset($contents)?$contents:""?></textarea>
 	</dd>
 </dl>
 <dl>
