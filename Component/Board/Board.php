@@ -221,6 +221,6 @@ class Board
 					  ->where([$config['prefix']."boardData.idx" => $idx])
 					  ->row();
 		
-		debug($data);
+		return $data;
 	}
 }
