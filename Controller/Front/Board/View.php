@@ -10,6 +10,11 @@ use App;
 */
 class ViewController extends \Controller\Front\Controller
 {
+	public function __construct()
+	{
+		$this->addCss(["board"]);
+	}
+	
 	public function index()
 	{
 		$idx = request()->get("idx");
@@ -19,7 +24,10 @@ class ViewController extends \Controller\Front\Controller
 		
 		$board = App::load(\Component\Board\Board::class);
 		$data = $board->get($idx);
+		if (!$data) {
+			return msg("게시글이 존재하지 않습니다.", -1);
+		}
 	
-		App::render("Board/view", ["boardSkin" => "Default"]);
+		App::render("Board/view", $data);
 	}
 }
