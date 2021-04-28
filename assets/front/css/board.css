@@ -3,3 +3,14 @@
 .board_skin_default.view .subject { border: 1px solid #d5d5d5; padding: 15px 10px; font-size: 14px; }
 .board_skin_default.view .post_info { padding: 15px 10px; text-align: right; }
 .board_skin_default.view .contents { border: 1px solid #d5d5d5; padding: 15px; margin-bottom: 10px; min-height: 350px; }
+
+
+/** 게시글 목록 - list.php */
+.board_skin_default.list .list_rows { border-bottom: 1px solid #d5d5d5; }
+.board_skin_default.list .list_rows:first-child { border-top: 1px solid #d5d5d5; }
+.board_skin_default.list .list_rows .subject { float: left; width: calc(100% - 250px); display: block; padding: 10px; }
+.board_skin_default.list .list_rows .post_info { float: right;  width: 250px; padding: 10px; text-align: right; }
+.board_skin_default.list .list_rows:after { clear: both; content: ''; display: block; }
+
+.board_skin_default.list .list_rows:nth-child(2n) { background-color: #f8f8f8; }
+

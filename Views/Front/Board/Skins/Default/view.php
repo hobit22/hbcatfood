@@ -7,8 +7,9 @@
 	</div>
 	<div class='contents'><?=$contents?></div>
 	
-	<a href='<?=siteUrl("board/list")?>?id=<?=$boardId?>' class='btn1'>목록</a>
-	<a href='<?=siteUrl("board/update")?>?idx=<?=$idx?>' class='btn1'>수정</a>
-	<a href='<?=siteUrl("board/indb")?>?mode=delete&idx=<?=$idx?>' onclick="return confirm('정말 삭제하시겠습니까?');" class='btn1'>삭제</a>
+	<a href='<?=siteUrl("board/list")?>?id=<?=$boardId?>' class='btn1'>글목록</a>
+	<a href='<?=siteUrl("board/write")?>?id=<?=$boardId?>' class='btn1'>글쓰기</a>
+	<a href='<?=siteUrl("board/update")?>?idx=<?=$idx?>' class='btn1'>글수정</a>
+	<a href='<?=siteUrl("board/indb")?>?mode=delete&idx=<?=$idx?>' onclick="return confirm('정말 삭제하시겠습니까?');" class='btn1'>글삭제</a>
 </div>
 <!--// board_skin_default -->

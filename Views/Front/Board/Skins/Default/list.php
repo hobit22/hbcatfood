@@ -2,13 +2,14 @@
 <div class='board_skin_default list'>
 	<ul>
 	<?php foreach ($list as $li) : ?>
-		<li>
+		<li class='list_rows'>
 			<a href='<?=siteUrl("board/view")?>?idx=<?=$li['idx']?>' class='subject'>
 				<?=$li['subject']?>
 			</a>
-			<div class='poster_info'>
+			<div class='post_info'>
 				<?=$li['poster']?>
 				<?=$li['memNo']?"(".$li['memId'].")":""?>
+				/ <?=date("Y.m.d", strtotime($li['regDt']))?>
 			</div>
 		</li>
 	<?php endforeach; ?>

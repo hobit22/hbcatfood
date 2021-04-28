@@ -19,3 +19,6 @@ input[type='number']:focus, select:focus { border-color: blue; }
 
 /** 버튼 공통 */
 .btn1 { background-color: blue; color: #ffffff; padding: 5px 10px; cursor: pointer; border: 0; margin-right: 2px; }
+
+/** 페이지네이션 */
+.pagination { text-align: center; padding: 10px; }
