@@ -10,6 +10,12 @@ use App;
 */
 class WriteController extends \Controller\Front\Controller
 {
+	public function __construct()
+	{		
+		$this->addCss(["board"])
+				->addScript(["board"]);
+	}
+	
 	public function index()
 	{
 		/**
