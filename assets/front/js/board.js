@@ -1,5 +1,8 @@
 $(function() {
-	CKEDITOR.replace("contents");
+	CKEDITOR.replace("contents", {
+		removePlugins : "image",
+	});
+	
 	CKEDITOR.config.height = 350;
 	
 	/** 본문 이미지 추가 */
@@ -52,7 +55,7 @@ function fileUploadCallback(data) {
 	CKEDITOR.instances.contents.insertHtml(tag);
 	
 	const html = `<span class='file_box' data-idx='${data.idx}' data-url='${data.url}'>
-						${data.fileName}
+						<a href='../file/download?idx=${data.idx}' target='ifrmHidden'>${data.fileName}</a>
 						<i class='remove xi-file-remove'></i>
 						<i class='addContents xi-upload'></i>
 						</span>`;
