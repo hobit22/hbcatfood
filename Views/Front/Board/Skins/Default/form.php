@@ -22,6 +22,7 @@
 	<dt>이미지</dt>
 	<dd>
 		<span class='btn1' onclick="layer.popup('../file/upload?gid=<?=$gid?>&type=image', 300, 200);">이미지 추가</span>
+		<span class='uploaded_images'></span>
 	</dd>
 </dl>
 <button type='button' class='cancel_btn'>취소하기</button>
