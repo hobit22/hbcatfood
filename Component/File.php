@@ -3,6 +3,7 @@
 namespace Component;
 
 use App;
+use Component\Exception\File\FileUploadException;
 
 /**
 * 파일 Component
@@ -30,6 +31,63 @@ class File
 	*/
 	public function upload($gid, $name, $type = "all", $useException = false)
 	{
+		$files = request()->files();
+		$file = isset($files[$name])?$files[$name]:[];
+		// 파일 유효성 검사 S
+		if (!$file || !$file['tmp_name']) {
+			if ($useException) {
+				throw new FileUploadException("파일을 업로드해 주세요.");
+			}
+			
+			return false;
+		}
 		
+		if ($file['error']) {
+			if ($useException) {
+				throw new FileUploadException("파일 업로드 에러!");
+			}
+			
+			return false;
+		}
+		
+		if ($type == 'image' && !preg_match("/^image/", $file['type'])) { // 이미지 파일만 업로드 하는데, 이미지가 아닌 경우 
+			if ($useException) {
+				throw new FileUploadException("이미지형식의 파일만 업로드 가능합니다.");
+			}
+			
+			return false;
+		}
+		// 파일 유효성 검사 E 
+		
+		/**
+			파일 저장 처리 
+			1. 파일 데이터를 DB 기록 -> idx 
+			2. 업로드될 파일 경로  /assets/upload/번호 폴더/idx에 업로드 
+			3. yh_fileInfo - isDone -> 1로 업데이트 
+		*/
+		$inData = [
+			'fileName' => $file['name'],
+			'mimeType' => $file['type'],
+			'gid' => $gid
+		];
+		
+		$idx = db()->table("fileInfo")->data($inData)->insert();
+		if ($idx > 0) {
+			$folder = $idx % 10;
+			$dirPath = $this->uploadPath .$folder;
+			if (!file_exists($dirPath)) {
+				mkdir($dirPath);
+			}
+			
+			if (file_exists($dirPath)) {
+				move_uploaded_file($file['tmp_name'], $dirPath."/".$idx);
+				
+				/*
+				db()->table("fileInfo")
+					->data(["isDone" => 1])
+				*/
+					
+			}
+		}
 	}
 }

@@ -38,6 +38,8 @@ class UploadOkController extends \Controller\Front\Controller
 				1. file 태그 name 
 				2. 파일 형식제한(이미지, 이미지외 파일)
 			*/
+			$file = App::load(Component\File::class);
+			$idx = $file->upload($gid, "file", "image", true);
 			
 			
 		} catch (FileUploadException $e) {
