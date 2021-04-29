@@ -21,6 +21,12 @@ class DeleteController extends \Controller\Front\Controller
 		$file = App::load(\Component\File::class);
 		if ($idx) {
 			$result = $file->delete($idx);
+			if ($result) {
+				echo 1; // 파일 삭제 성공시 1
+				exit;
+			}
 		} // endif
+		
+		echo 0; // 파일 삭제 실패시 0 
 	}
 }

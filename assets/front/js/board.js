@@ -19,9 +19,13 @@ $(function() {
 			url : "../file/delete",
 			type : "post",
 			data : { idx : idx },
-			dataType : "html",
+			dataType : "text",
 			success : function(res) {
-				console.log(res);
+				if (res == "1") {
+					$fileBox.remove(); 
+				} else {
+					alert("파일 삭제 실패!");
+				}
 			},
 			error : function(err) {
 				console.error(err);
