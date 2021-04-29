@@ -1,3 +1,4 @@
+<div class='board_title'><?=$boardNm?></div>
 <?php
 // 게시판 목록
 $path = __DIR__ . "/Skins/".$boardSkin."/list.php";

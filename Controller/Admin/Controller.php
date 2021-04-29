@@ -48,13 +48,13 @@ class Controller extends \Controller
 		$addCss = $addScript = "";
 		if ($this->css) {
 			foreach ($this->css as $css) {
-				$addCss .= "<link rel='stylesheet' type='text/css' href='".siteUrl("assets/admin/css/{$css}.css")."'>".PHP_EOL;
+				$addCss .= "<link rel='stylesheet' type='text/css' href='".siteUrl("assets/admin/css/{$css}.css")."?t=".time()."'>".PHP_EOL;
 			}
 		}
 		
 		if ($this->script) {
 			foreach ($this->script as $script) {
-				$addScript .= "<script src='".siteUrl("assets/admin/js/{$script}.js")."'></script>".PHP_EOL;
+				$addScript .= "<script src='".siteUrl("assets/admin/js/{$script}.js")."?t=".time()."'></script>".PHP_EOL;
 			}
 		}
 		

@@ -1,3 +1,6 @@
+/* 게시판 공통 */
+.board_title { font-size: 15px; font-weight: bold; padding: 15px 0; text-shadow: 1px 1px 2px #d5d5d5; }
+
 /** Default 스킨 */
 /** 게시글 보기 - view.php */
 .board_skin_default.view .subject { border: 1px solid #d5d5d5; padding: 15px 10px; font-size: 14px; }

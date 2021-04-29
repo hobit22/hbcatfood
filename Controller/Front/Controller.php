@@ -38,13 +38,13 @@ class Controller extends \Controller
 		$addCss = $addScript = "";
 		if ($this->css) {
 			foreach ($this->css as $css) {
-				$addCss .= "<link rel='stylesheet' type='text/css' href='".siteUrl("assets/front/css/{$css}.css")."'>".PHP_EOL;
+				$addCss .= "<link rel='stylesheet' type='text/css' href='".siteUrl("assets/front/css/{$css}.css")."?t=".time()."'>".PHP_EOL;
 			}
 		}
 		
 		if ($this->script) {
 			foreach ($this->script as $script) {
-				$addScript .= "<script src='".siteUrl("assets/front/js/{$script}.js")."'></script>".PHP_EOL;
+				$addScript .= "<script src='".siteUrl("assets/front/js/{$script}.js")."?t=".time()."'></script>".PHP_EOL;
 			}
 		}
 		
