@@ -34,6 +34,7 @@ class UploadOkController extends \Controller\Front\Controller
 			}
 			
 			/**
+				0. gid
 				1. file 태그 name 
 				2. 파일 형식제한(이미지, 이미지외 파일)
 			*/
