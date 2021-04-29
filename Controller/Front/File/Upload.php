@@ -20,10 +20,11 @@ class UploadController extends \Controller\Front\Controller
 	public function index()
 	{
 		$gid = request()->get("gid");
+		$type = request()->get("type");
 		if (!$gid) {
 			return msg("잘못된 접근입니다.");
 		}
 		
-		App::render("File/upload", ["gid" => $gid]);
+		App::render("File/upload", ["gid" => $gid, 'type' => $type]);
 	}
 }

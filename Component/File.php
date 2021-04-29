@@ -94,4 +94,18 @@ class File
 		
 		return false; // 처리 실패시 false
 	}
+	
+	/**
+	* 업로드된 파일 URL
+	*
+	* @param Integer $idx 파일 추가 번호
+	* @return String 
+	*/ 
+	public function getUploadedUrl($idx)
+	{
+		$folder = $idx % 10;
+		$url = siteUrl("assets/upload/{$folder}/{$idx}");
+		
+		return $url;
+	}
 }
