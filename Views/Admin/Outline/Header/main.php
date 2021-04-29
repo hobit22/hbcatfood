@@ -7,6 +7,7 @@
 		[[addCss]]
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<script src='<?=siteUrl("assets/common/ckeditor/ckeditor.js")?>'></script>
+		<script src='<?=siteUrl("assets/common/js/layer.js")?>?t=<?=time()?>'></script>
 		<script src='<?=siteUrl("assets/admin/js/common.js")?>?t=<?=time()?>'></script>
 		[[addScript]]
 	</head>

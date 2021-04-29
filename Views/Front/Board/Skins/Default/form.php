@@ -20,7 +20,9 @@
 </dl>
 <dl>
 	<dt>이미지</dt>
-	<dd></dd>
+	<dd>
+		<span class='btn1'>이미지 추가</span>
+	</dd>
 </dl>
 <button type='button' class='cancel_btn'>취소하기</button>
 <button type='submit' class='write_btn'><?=isset($idx)?"수정":"작성"?>하기</button>
