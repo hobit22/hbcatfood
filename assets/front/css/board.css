@@ -1,6 +1,10 @@
 /* 게시판 공통 */
 .board_title { font-size: 15px; font-weight: bold; padding: 15px 0; text-shadow: 1px 1px 2px #d5d5d5; }
 
+.file_box { border: 1px solid #d5d5d5; padding: 7px 10px; border-radius: 5px; cursor: pointer; margin-right: 2px; }
+.file_box i { font-size: 15px; vertical-align: middle; }
+.file_box a:hover { text-decoration: underline; }
+
 /** Default 스킨 */
 /** 게시글 보기 - view.php */
 .board_skin_default.view .subject { border: 1px solid #d5d5d5; padding: 15px 10px; font-size: 14px; }
