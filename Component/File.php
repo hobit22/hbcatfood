@@ -110,6 +110,20 @@ class File
 	}
 	
 	/**
+	* 업로드된 파일 경로 
+	*
+	* @param Integer $idx 파일 추가 번호
+	* @return String 
+	*/
+	public function getUploadedPath($idx)
+	{
+		$folder = $idx % 10;
+		$path = $this->uploadPath . $folder . "/".$idx;
+		
+		return $path;
+	}
+	
+	/**
 	* 업로드된 파일 정보
 	*
 	* @param Integer $idx 파일 등록번호 
