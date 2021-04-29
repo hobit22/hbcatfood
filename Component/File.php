@@ -80,14 +80,18 @@ class File
 			}
 			
 			if (file_exists($dirPath)) {
-				move_uploaded_file($file['tmp_name'], $dirPath."/".$idx);
-				
-				/*
-				db()->table("fileInfo")
-					->data(["isDone" => 1])
-				*/
-					
-			}
-		}
+				$result = move_uploaded_file($file['tmp_name'], $dirPath."/".$idx);
+				if ($result) {
+					db()->table("fileInfo")
+						->data(["isDone" => 1])
+						->where(["idx" => $idx])
+						->update();
+						
+					return $idx; // 파일 업로드가 잘 처리되면 idx
+				} // endif 
+			} // endif 
+		} // endif 
+		
+		return false; // 처리 실패시 false
 	}
 }
