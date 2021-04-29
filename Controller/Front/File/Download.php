@@ -26,9 +26,15 @@ class DownloadController extends \Controller\Front\Controller
 			
 			$file = App::load(\Component\File::class);
 			$fileInfo = $file->get($idx);
+			$uploadedPath = $file->getUploadedPath($idx); // 업로드된 파일 경로
+			if (!$fileInfo || !file_exists($uploadedPath)) {
+				throw new FileDownloadException("파일이 존재하지 않습니다.");
+			}
 			
-			//if (!$fileInfo)
-			
+			header("Content-Type: application/octet-stream");
+			header("Content-Disposition: attachment; filename={$fileInfo['fileName']}");
+			header("Content-Length: ". filesize($uploadedPath));
+			readFile($uploadedPath);
 			
 		} catch (FileDownloadException $e) {
 			echo $e;
