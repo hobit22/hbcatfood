@@ -27,3 +27,6 @@ input[type='number']:focus, select:focus { border-color: blue; }
 .dn { display: none !important; }
 #layer_dim { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 100; background:rgba(0, 0, 0, 0.7); cursor: pointer; }
 #layer_popup { position: fixed; top: 0; left: 0; background-color: #ffffff; overflow: hidden; border-radius: 20px; z-index: 101; }
+
+/** 파일 업로드 */
+.file_upload_form { text-align: center; margin-top: 50px; }
