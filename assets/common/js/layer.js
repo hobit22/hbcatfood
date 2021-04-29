@@ -37,12 +37,21 @@ const layer = {
 			top : ypos + "px",
 		});
 		
+		$("#layer_popup, #layer_dim").removeClass("dn");
 	},
 	/**
 	* 레이어 팝업 닫기 
 	*
 	*/
 	close : function() {
-		
+		$("#layer_popup").remove();
+		$("#layer_dim").removeClass("dn").addClass("dn");
 	}
 };
+
+$(function() {
+	// 레이어 백그라운드 클릭시 레이어 팝업 닫기 
+	$("#layer_dim").click(function() {
+		layer.close();
+	});
+});
