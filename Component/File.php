@@ -124,4 +124,23 @@ class File
 		
 		return $data;
 	}
+	
+	/**
+	* 파일 삭제 처리 
+	*
+	* 	unlink
+	* @param Integer $idx 파일 추가 번호
+	* @return Boolean
+	*/
+	public function delete($idx)
+	{
+		$folder = $idx % 10;
+		$path = $this->uploadPath . $folder . "/".$idx;
+		if (unlink($path)) { // 삭제 성공 -> DB 삭제 
+			$result = db()->table("fileInfo")->where(["idx" => $idx])->delete();
+			return $result !== false; // 성공시 true, 실패시 false
+		}
+		
+		return false; // 파일 삭제 실패 
+	}
 }

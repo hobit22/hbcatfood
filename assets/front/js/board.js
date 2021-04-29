@@ -3,11 +3,30 @@ $(function() {
 	CKEDITOR.config.height = 350;
 	
 	/** 본문 이미지 추가 */
-	$("body").on("click", ".addContents", function() {
+	$("body").on("click", ".file_box .addContents", function() {
 		$fileBox = $(this).closest(".file_box");
 		const url = $fileBox.data("url");
 		const tag = `<img src='${url}'>`;
 		CKEDITOR.instances.contents.insertHtml(tag);
+	});
+	
+	/** 이미지 파일 삭제 */
+	$("body").on("click", ".file_box .remove", function() {
+		$fileBox = $(this).closest(".file_box");
+		const idx = $fileBox.data('idx');
+		
+		$.ajax({
+			url : "../file/delete",
+			type : "post",
+			data : { idx : idx },
+			dataType : "html",
+			success : function(res) {
+				console.log(res);
+			},
+			error : function(err) {
+				console.error(err);
+			}
+		});
 	});
 });
 
