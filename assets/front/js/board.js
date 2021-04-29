@@ -5,6 +5,9 @@ $(function() {
 	/** 본문 이미지 추가 */
 	$("body").on("click", ".addContents", function() {
 		$fileBox = $(this).closest(".file_box");
+		const url = $fileBox.data("url");
+		const tag = `<img src='${url}'>`;
+		CKEDITOR.instances.contents.insertHtml(tag);
 	});
 });
 
