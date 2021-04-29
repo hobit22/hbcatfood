@@ -1,4 +1,4 @@
 <!-- 파일 업로드 양식 -->
-<form method='post' action='<?=siteUrl("file/indb")?>' target='ifrmHidden' enctype="multipart/form-data">
-
+<form id='fileFrm' method='post' action='<?=siteUrl("file/uploadOk")?>' target='ifrmHidden' enctype="multipart/form-data">
+	<input type='file' name='file'>
 </form>

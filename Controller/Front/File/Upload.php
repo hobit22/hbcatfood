@@ -13,7 +13,8 @@ class UploadController extends \Controller\Front\Controller
 	public function __construct()
 	{
 		$this->setHeader("popup")
-			  ->setFooter("popup");
+			  ->setFooter("popup")
+			  ->addScript(["upload"]);
 	}
 	
 	public function index()
