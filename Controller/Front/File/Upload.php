@@ -15,4 +15,9 @@ class UploadController extends \Controller\Front\Controller
 		$this->setHeader("popup")
 			  ->setFooter("popup");
 	}
+	
+	public function index()
+	{
+		App::render("File/upload");
+	}
 }

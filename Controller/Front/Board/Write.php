@@ -36,6 +36,7 @@ class WriteController extends \Controller\Front\Controller
 			return msg("게시판이 존재하지 않습니다.", -1);
 		}
 		
+		$conf['gid'] = gid(); // 그룹 ID
 		App::render("Board/form", $conf);
 	}
 }

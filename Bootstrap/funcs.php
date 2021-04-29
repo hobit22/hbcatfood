@@ -125,3 +125,13 @@ function isLogin()
 	
 	return $member->isLogin();
 }
+
+/**
+* 그룹 ID(유일한 값)
+* md5 -> hash -> md5 형식의 해시 
+* @return String
+*/
+function gid()
+{ 
+	return md5(uniqid());
+}

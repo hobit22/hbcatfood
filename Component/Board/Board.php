@@ -188,6 +188,7 @@ class Board
 		// memNo - 0(비회원 게시글), memNo > 0 - 회원 게시글
 		$memNo = isLogin()?$_SESSION['memNo']:0;
 		$inData = [
+			'gid' => $this->params['gid'],
 			'memNo' => $memNo,
 			'boardId' => $this->params['boardId'],
 			'poster' => $this->params['poster'],
