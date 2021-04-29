@@ -37,8 +37,17 @@ class UploadOkController extends \Controller\Front\Controller
 				throw new FileUploadException("파일 업로드 실패!");
 			}
 			
-			// 서버에 업로드된 URL 
-			$fileUrl = $file->getUploadedUrl($idx);
+			// 업로드된 파일 정보 
+			$data = $file->get($idx);
+			$data = json_encode($data); // JSON 형태로 변환 
+			echo "
+				<script>
+				if (typeof parent.parent.fileUploadCallback == 'function') {
+					parent.parent.fileUploadCallback({$data});
+				}
+				
+				</script>";
+			
 			
 			
 			

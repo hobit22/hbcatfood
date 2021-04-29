@@ -108,4 +108,20 @@ class File
 		
 		return $url;
 	}
+	
+	/**
+	* 업로드된 파일 정보
+	*
+	* @param Integer $idx 파일 등록번호 
+	* @return Array
+	*/
+	public function get($idx) 
+	{
+		$data = db()->table("fileInfo")->where(["idx" => $idx])->row();
+		if ($data) {
+			$data['url'] = $this->getUploadedUrl($idx);
+		}
+		
+		return $data;
+	}
 }
