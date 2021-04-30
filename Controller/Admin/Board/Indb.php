@@ -50,7 +50,7 @@ class IndbController extends \Controller\Admin\Controller
 						throw new BoardAdminException("설정 저장 실패!");
 					}
 					
-					reload("parent");
+					go("admin/board/list", "parent");
 					
 					break;
 				/** 게시판 설정 수정(목록) */
