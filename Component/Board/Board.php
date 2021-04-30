@@ -45,7 +45,11 @@ class Board
 				$inData[$k] = $v;
 				
 			} // endforeach 
+			// 배열과 같은 입체적인 데이터를 -> 콤마(,) 구분한 문자열로 
+			$inData['columns'] = $inData['columns']?implode(",", $inData['columns']):"";
+			
 		} // endif 
+	
 		
 		$result = db()->table("board")->data($inData)->insert();
 		
@@ -68,6 +72,8 @@ class Board
 			}
 			$_upData[$k] = $v;
 		}
+		
+		$_upData['columns'] = $_upData['columns']?implode(",", $_upData['columns']):"";
 		
 		$_upData['modDt'] = date("Y-m-d H:i:s");
 
