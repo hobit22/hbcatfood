@@ -9,7 +9,7 @@
 /** 게시글 보기 - view.php */
 .board_skin_default.view .subject { border: 1px solid #d5d5d5; padding: 15px 10px; font-size: 14px; }
 .board_skin_default.view .post_info { padding: 15px 10px; text-align: right; }
-.board_skin_default.view .download { border-top: 1px solid #d5d5d5; padding: 10px; }
+.board_skin_default.view .rows { border-top: 1px solid #d5d5d5; padding: 10px; }
 .board_skin_default.view .contents { border: 1px solid #d5d5d5; padding: 15px; margin-bottom: 10px; min-height: 350px; }
 
 
