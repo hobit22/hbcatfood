@@ -25,14 +25,35 @@ class File
 								image -> 이미지 파일만 
 								all -> 전체 파일( 값이 없으면 전체로)
 	* @param Boolean $useException FileUploadException throw 할지 여부 
+	* @param Boolean $isAttached true - 첨부파일, false - 이미지 파일 
 	* @return Integer|Boolean 
 						업로드 성공시 - 파일 추가 번호(idx) 
 						실패 - false
 	*/
-	public function upload($gid, $name, $type = "all", $useException = false)
+	public function upload($gid, $name, $type = "all", $useException = false, $isAttached = false)
 	{
 		$files = request()->files();
 		$file = isset($files[$name])?$files[$name]:[];
+		
+		$list = [];
+		// multiple로 업로드한 경우 
+		if (isset($file['tmp_name']) && is_array($file['tmp_name'])) {
+			foreach ($file['tmp_name'] as $k => $v) {
+				$data = [
+					'name' => $file['name'][$k],
+					'type' => $file['type'][$k],
+					'tmp_name' => $v,
+					'error' => $file['error'][$k],
+					'size' => $file['size'][$k],
+				];
+				
+				$list[] = $data;
+			}
+		} else { // 단일 파일을 업로드한 경우 
+			$list[] = $file;
+		}
+		exit;
+		
 		// 파일 유효성 검사 S
 		if (!$file || !$file['tmp_name']) {
 			if ($useException) {

@@ -337,8 +337,8 @@ class Board
 	{
 		$name = $name?$name:"file";
 		
-		$files = request()->files();
-		debug($files);
+		$file = App::load(\Component\File::class);
+		$file->upload($gid, $name, 'all', false, true);
 		exit;
 	}
 }
