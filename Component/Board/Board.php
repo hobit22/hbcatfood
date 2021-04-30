@@ -63,13 +63,14 @@ class Board
 	{
 		$_upData = [];
 		foreach ($upData as $k => $v) {
-			if (!in_array($k, ["id", 'mode'])) {
+			if (in_array($k, ["id", 'mode'])) {
 				continue;
 			}
 			$_upData[$k] = $v;
 		}
 		
 		$_upData['modDt'] = date("Y-m-d H:i:s");
+
 		$result = db()->table("board")
 							->data($_upData)
 							->where(["id" => $id])
