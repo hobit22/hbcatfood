@@ -5,6 +5,14 @@
 		Poster : <?=$poster?>(<?=$memNo?$memId:"비회원"?>)
 		/ Date : <?=date("Y.m.d H:i", strtotime($regDt))?>
 	</div>
+	<?php if (isset($attachFiles['files'])) : ?>
+	<?php foreach ($attachFiles['files'] as $k => $file) : ?>
+	<div class='download'>
+		첨부파일<?=$k+1?> : <a href='<?=siteUrl("file/download")?>?idx=<?=$file['idx']?>' target='ifrmHidden'><?=$file['fileName']?></a>
+	</div>
+	<?php endforeach; ?>
+	<?php endif; ?>
+	
 	<div class='contents'><?=$contents?></div>
 	
 	<a href='<?=siteUrl("board/list")?>?id=<?=$boardId?>' class='btn1'>글목록</a>
