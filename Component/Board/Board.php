@@ -338,7 +338,8 @@ class Board
 		$name = $name?$name:"file";
 		
 		$file = App::load(\Component\File::class);
-		$file->upload($gid, $name, 'all', false, true);
+		$idxes = $file->upload($gid, $name, 'all', false, true);
+		debug($idxes);
 		exit;
 	}
 }

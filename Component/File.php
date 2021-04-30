@@ -52,68 +52,81 @@ class File
 		} else { // 단일 파일을 업로드한 경우 
 			$list[] = $file;
 		}
-		exit;
 		
-		// 파일 유효성 검사 S
-		if (!$file || !$file['tmp_name']) {
-			if ($useException) {
-				throw new FileUploadException("파일을 업로드해 주세요.");
+		$idxes = [];
+		foreach ($list as $file) {
+			// 파일 유효성 검사 S
+			if (!$file || !$file['tmp_name']) {
+				if ($useException) {
+					throw new FileUploadException("파일을 업로드해 주세요.");
+				}
+				
+				continue;
 			}
 			
-			return false;
-		}
-		
-		if ($file['error']) {
-			if ($useException) {
-				throw new FileUploadException("파일 업로드 에러!");
+			if ($file['error']) {
+				if ($useException) {
+					throw new FileUploadException("파일 업로드 에러!");
+				}
+				
+				continue;
 			}
 			
-			return false;
-		}
-		
-		if ($type == 'image' && !preg_match("/^image/", $file['type'])) { // 이미지 파일만 업로드 하는데, 이미지가 아닌 경우 
-			if ($useException) {
-				throw new FileUploadException("이미지형식의 파일만 업로드 가능합니다.");
+			if ($type == 'image' && !preg_match("/^image/", $file['type'])) { // 이미지 파일만 업로드 하는데, 이미지가 아닌 경우 
+				if ($useException) {
+					throw new FileUploadException("이미지형식의 파일만 업로드 가능합니다.");
+				}
+				
+				continue;
 			}
+			// 파일 유효성 검사 E 
 			
-			return false;
-		}
-		// 파일 유효성 검사 E 
-		
-		/**
-			파일 저장 처리 
-			1. 파일 데이터를 DB 기록 -> idx 
-			2. 업로드될 파일 경로  /assets/upload/번호 폴더/idx에 업로드 
-			3. yh_fileInfo - isDone -> 1로 업데이트 
-		*/
-		$inData = [
-			'fileName' => $file['name'],
-			'mimeType' => $file['type'],
-			'gid' => $gid
-		];
-		
-		$idx = db()->table("fileInfo")->data($inData)->insert();
-		if ($idx > 0) {
-			$folder = $idx % 10;
-			$dirPath = $this->uploadPath .$folder;
-			if (!file_exists($dirPath)) {
-				mkdir($dirPath);
-			}
+			/**
+				파일 저장 처리 
+				1. 파일 데이터를 DB 기록 -> idx 
+				2. 업로드될 파일 경로  /assets/upload/번호 폴더/idx에 업로드 
+				3. yh_fileInfo - isDone -> 1로 업데이트 
+			*/
+			$inData = [
+				'fileName' => $file['name'],
+				'mimeType' => $file['type'],
+				'gid' => $gid,
+				'isAttached' => $isAttached?1:0, // 첨부파일인지 아닌지 
+			];
 			
-			if (file_exists($dirPath)) {
-				$result = move_uploaded_file($file['tmp_name'], $dirPath."/".$idx);
-				if ($result) {
-					db()->table("fileInfo")
-						->data(["isDone" => 1])
-						->where(["idx" => $idx])
-						->update();
-						
-					return $idx; // 파일 업로드가 잘 처리되면 idx
+			$idx = db()->table("fileInfo")->data($inData)->insert();
+			if ($idx > 0) {
+				$folder = $idx % 10;
+				$dirPath = $this->uploadPath .$folder;
+				if (!file_exists($dirPath)) {
+					mkdir($dirPath);
+				}
+				
+				if (file_exists($dirPath)) {
+					$result = move_uploaded_file($file['tmp_name'], $dirPath."/".$idx);
+					if ($result) {
+						db()->table("fileInfo")
+							->data(["isDone" => 1])
+							->where(["idx" => $idx])
+							->update();
+							
+						// 파일 업로드가 잘 처리되면 idx를 idxes 담는다
+						$idxes[] = $idx;
+					} // endif 
 				} // endif 
 			} // endif 
-		} // endif 
+		} // endforeach
 		
-		return false; // 처리 실패시 false
+		if ($idxes) {
+			if (count($idxes) == 1) { // 단일파일을 업로드한 경우 $idx만 반환
+				return $idxes[0];
+			} 
+			
+			// multiple인 경우는 $idxes 반환 
+			return $idxes;
+		} else {			
+			return false; // 처리 실패시 false
+		}
 	}
 	
 	/**
@@ -199,7 +212,7 @@ class File
 			$li['url'] = $this->getUploadedUrl($li['idx']); // 파일 URL
 			$li['path'] = $this->getUploadedPath($li['idx']); // 파일 업로드 경로
 			
-			if (preg_match("/^image/", $li['mimeType'])) { // 이미지 
+			if (preg_match("/^image/", $li['mimeType']) && !$li['isAttached']) { // 이미지 파일이고 첨부파일 아닌 경우 
 				$images[] = $li;
 			} else { // 이미지외 파일 
 				$files[] = $li;
