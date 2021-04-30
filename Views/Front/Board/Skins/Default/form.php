@@ -38,7 +38,7 @@
 <dl>
 	<dt>파일첨부</dt>
 	<dd>
-		<input type='file' name='file' multiple>
+		<input type='file' name='file[]' multiple>
 	</dd>
 </dl>
 <button type='button' class='cancel_btn'>취소하기</button>
