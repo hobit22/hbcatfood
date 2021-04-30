@@ -7,6 +7,18 @@
 	</dd>
 </dl>
 <dl>
+	<dt>링크</dt>
+	<dd>
+		<input type='text' name='link' value='<?=isset($link)?$link:""?>'>
+	</dd>
+</dl>
+<dl>
+	<dt>이메일</dt>
+	<dd>
+		<input type='email' name='email' value='<?=isset($email)?$email:""?>'>
+	</dd>
+</dl>
+<dl>
 	<dt>제목</dt>
 	<dd>
 		<input type='text' name='subject' value='<?=isset($subject)?$subject:""?>'>

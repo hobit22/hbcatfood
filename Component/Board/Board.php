@@ -194,6 +194,9 @@ class Board
 			'poster' => $this->params['poster'],
 			'subject' => $this->params['subject'],
 			'contents' => $this->params['contents'],
+			'email' => isset($this->params['email'])?$this->params['email']:"",
+			'link' => isset($this->params['link'])?$this->params['link']:"",
+			'ip' => $_SERVER['REMOTE_ADDR'],
 		];
 		
 		$result = db()->table("boardData")->data($inData)->insert();
@@ -217,6 +220,8 @@ class Board
 			'poster' => $this->params['poster'],
 			'subject' => $this->params['subject'],
 			'contents' => $this->params['contents'],
+			'email' => isset($this->params['email'])?$this->params['email']:"",
+			'link' => isset($this->params['link'])?$this->params['link']:"",
 			'modDt' => date("Y-m-d H:i:s"),
 		];
 		$result = db()->table("boardData")

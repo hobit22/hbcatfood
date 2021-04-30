@@ -5,9 +5,19 @@
 		Poster : <?=$poster?>(<?=$memNo?$memId:"비회원"?>)
 		/ Date : <?=date("Y.m.d H:i", strtotime($regDt))?>
 	</div>
+	<?php if ($link) : ?>
+	<div class='rows'>
+		링크 : <a href='<?=$link?>' target='_blank'><?=$link?></a>
+	</div>
+	<?php endif; ?>
+	<?php if ($email) : ?>
+	<div class='rows'>
+		이메일 : <a href='mailto:<?=$email?>'><?=$email?></a>
+	</div>
+	<?php endif; ?>
 	<?php if (isset($attachFiles['files'])) : ?>
 	<?php foreach ($attachFiles['files'] as $k => $file) : ?>
-	<div class='download'>
+	<div class='rows'>
 		첨부파일<?=$k+1?> : <a href='<?=siteUrl("file/download")?>?idx=<?=$file['idx']?>' target='ifrmHidden'><?=$file['fileName']?></a>
 	</div>
 	<?php endforeach; ?>
