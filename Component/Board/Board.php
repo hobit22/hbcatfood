@@ -61,9 +61,17 @@ class Board
 	*/
 	public function updateBoard($id, $upData)
 	{
-		$upData['modDt'] = date("Y-m-d H:i:s");
+		$_upData = [];
+		foreach ($upData as $k => $v) {
+			if (!in_array($k, ["id", 'mode'])) {
+				continue;
+			}
+			$_upData[$k] = $v;
+		}
+		
+		$_upData['modDt'] = date("Y-m-d H:i:s");
 		$result = db()->table("board")
-							->data($upData)
+							->data($_upData)
 							->where(["id" => $id])
 							->update();
 		

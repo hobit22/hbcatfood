@@ -40,6 +40,20 @@ class IndbController extends \Controller\Admin\Controller
 					go("admin/board/list", "parent");
 					break;
 				/** 게시판 설정 수정 */
+				case "update_board" : 
+					if (!isset($in['id']) || !$in['id']) {
+						throw new BoardAdminException("잘못된 접근입니다.");
+					}
+					
+					$result = $board->updateBoard($in['id'], $in);
+					if ($result === false) {
+						throw new BoardAdminException("설정 저장 실패!");
+					}
+					
+					reload("parent");
+					
+					break;
+				/** 게시판 설정 수정(목록) */
 				case "update_board_list" : 
 					if (!isset($in['id'])) {
 						throw new BoardAdminException("수정할 게시판을 선택하세요.");
