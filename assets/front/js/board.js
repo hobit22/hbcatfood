@@ -1,7 +1,5 @@
 $(function() {
-	CKEDITOR.replace("contents", {
-		removePlugins : "image",
-	});
+	CKEDITOR.replace("contents");
 	
 	CKEDITOR.config.height = 350;
 	

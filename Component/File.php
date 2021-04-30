@@ -157,4 +157,34 @@ class File
 		
 		return false; // 파일 삭제 실패 
 	}
+	
+	/**
+	* 그룹 ID별 파일 목록 
+	*
+	* @param String $gid - 그룹 ID 
+	* @return Array
+	*					- 이미지파일 images 
+						- 일반파일  - files
+	*/
+	public function getGroupFiles($gid)
+	{
+		$images = $files = [];
+		$list = db()->table("fileInfo")
+					   ->where(["gid" => $gid])
+					   ->orderby([["regDt", "asc"]])
+					   ->rows();
+		
+		foreach ($list as $li) {
+			if (preg_match("/^image/", $li['mimeType'])) { // 이미지 
+				$images[] = $li;
+			} else { // 이미지외 파일 
+				$files[] = $li;
+			}
+		} // endforeach 
+		
+		return [
+			'images' => $images,
+			'files' => $files,
+		];
+	}
 }

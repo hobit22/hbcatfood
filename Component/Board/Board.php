@@ -256,6 +256,11 @@ class Board
 					  ->where([$config['prefix']."boardData.idx" => $idx])
 					  ->row();
 		
+		if ($data) {
+			$file = App::load(\Component\File::class);
+			$files = $file->getGroupFiles($data['gid']);
+		}
+		
 		return $data;
 	}
 	
