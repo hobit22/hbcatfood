@@ -35,6 +35,12 @@
 		</span>
 	</dd>
 </dl>
+<dl>
+	<dt>파일첨부</dt>
+	<dd>
+		<input type='file' name='file' multiple>
+	</dd>
+</dl>
 <button type='button' class='cancel_btn'>취소하기</button>
 <button type='submit' class='write_btn'><?=isset($idx)?"수정":"작성"?>하기</button>
 </div>

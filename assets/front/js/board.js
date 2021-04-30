@@ -13,6 +13,10 @@ $(function() {
 	
 	/** 이미지 파일 삭제 */
 	$("body").on("click", ".file_box .remove", function() {
+		if (!confirm("정말 삭제하시겠습니까")) {
+			return;
+		}
+		
 		$fileBox = $(this).closest(".file_box");
 		const idx = $fileBox.data('idx');
 		
