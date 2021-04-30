@@ -175,6 +175,9 @@ class File
 					   ->rows();
 		
 		foreach ($list as $li) {
+			$li['url'] = $this->getUploadedUrl($li['idx']); // 파일 URL
+			$li['path'] = $this->getUploadedPath($li['idx']); // 파일 업로드 경로
+			
 			if (preg_match("/^image/", $li['mimeType'])) { // 이미지 
 				$images[] = $li;
 			} else { // 이미지외 파일 
