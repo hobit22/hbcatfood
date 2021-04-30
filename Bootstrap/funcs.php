@@ -135,3 +135,16 @@ function gid()
 { 
 	return md5(uniqid());
 }
+
+/**
+* 접속 브라우저별 사용자 구분 ID 
+*  (IP + 브라우저 정보(user-agent)
+*   IP - > $_SERVER['REMOTE_ADDR'] 
+*   user-agent -> $_SERVER['HTTP_USER_AGENT']
+*/
+function browserId()
+{
+	$bid = md5($_SERVER['REMOTE_ADDR'].$_SERVER['HTTP_USER_AGENT']);
+	
+	return $bid;
+}

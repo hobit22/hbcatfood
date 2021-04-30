@@ -2,7 +2,8 @@
 <div class='board_skin_default view'>
 	<div class='subject'><?=$subject?></div>
 	<div class='post_info'>
-		Poster : <?=$poster?>(<?=$memNo?$memId:"비회원"?>)
+		Poster : <?=$poster?>(<?=$memNo?$memId:"비회원"?>) 
+		/ Hit : <?=number_format($hit)?> 
 		/ Date : <?=date("Y.m.d H:i", strtotime($regDt))?>
 	</div>
 	<?php if ($link) : ?>

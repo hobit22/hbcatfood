@@ -55,6 +55,13 @@
 					<label for='columns_email'>이메일</label>
 				</td>
 			</tr>
+			<tr>
+				<th>기타설정</th>
+				<td>
+					<input type='checkbox' name='useViewList' value='1' id='use_view_list'<?php if (isset($useViewList) && $useViewList) echo " checked";?>>
+					<label for='use_view_list'>게시글 보기 하단 리스트 노출</label>
+				</td>
+			</tr>
 		</table>
 		<input type='submit' value='게시판 <?=isset($id)?"설정":"생성"?>하기' class='btn1 mt20' onclick="return confirm('정말 <?=isset($id)?"설정":"생성"?>하시겠습니까?');">
 	</form>

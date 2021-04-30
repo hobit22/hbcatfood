@@ -37,18 +37,9 @@ class Board
 		];
 		
 		if ($extra) {
-			foreach ($extra as $k => $v) {
-				if (in_array($k, ['id', 'boardNm', 'mode'])) {
-					continue;
-				}
-				
-				$inData[$k] = $v;
-				
-			} // endforeach 
-			// 배열과 같은 입체적인 데이터를 -> 콤마(,) 구분한 문자열로 
-			$inData['columns'] = $inData['columns']?implode(",", $inData['columns']):"";
-			
-		} // endif 
+			$extra = $this->confColumns($extra);
+			$inData = array_merge($inData, $extra);
+		}
 	
 		
 		$result = db()->table("board")->data($inData)->insert();
@@ -65,18 +56,8 @@ class Board
 	*/
 	public function updateBoard($id, $upData)
 	{
-		$_upData = [];
-		foreach ($upData as $k => $v) {
-			if (in_array($k, ["id", 'mode'])) {
-				continue;
-			}
-			$_upData[$k] = $v;
-		}
 		
-		if (isset($_upData['columns'])) {
-			$_upData['columns'] = $_upData['columns']?implode(",", $_upData['columns']):"";
-		}
-		
+		$_upData = $this->confColumns($upData);
 		$_upData['modDt'] = date("Y-m-d H:i:s");
 
 		$result = db()->table("board")
@@ -85,6 +66,31 @@ class Board
 							->update();
 		
 		return $result !== false;
+	}
+	
+	/**
+	* 게시판 등록, 설정 공통 컬럼 
+	*
+	*/
+	public function confColumns($data)
+	{
+		$dbData = [];
+		foreach ($data as $k => $v) {
+			if (in_array($k, ["id", 'mode'])) {
+				continue;
+			}
+			$dbData[$k] = $v;
+		}
+		
+		if (isset($dbData['columns'])) {
+			$dbData['columns'] = $dbData['columns']?implode(",", $dbData['columns']):"";
+		}
+		
+		if (isset($dbData['useViewList']) {
+			$dbData['useViewList'] = $dbData['useViewList']?1:0;
+		}
+		
+		return $dbData;
 	}
 	
 	/**
@@ -369,5 +375,29 @@ class Board
 		$idxes = $file->upload($gid, $name, 'all', false, true);
 		
 		return $idxes;
+	}
+	
+	
+	/**
+	* 게시글 조회수 업데이트 
+	*
+	* @param Integer $idx 게시글 번호 
+	*/
+	public function updateViewCount($idx)
+	{
+		// 게시글 번호 + 브라우저ID 추가 
+		try {
+			db()->table("boardView")
+				->data(["idx" => $idx, "browserId" => browserId()])
+				->insert();
+		} catch (\PDOException $e) {}
+		
+		// 게시글에 조회 수 업데이트 
+		$hit = db()->table("boardView")->where(["idx" => $idx])->count();
+		
+		db()->table("boardData")
+			->data(["hit" => $hit])
+			->where(["idx" => $idx])
+			->update();
 	}
 }
