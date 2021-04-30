@@ -40,6 +40,7 @@
 					</td>
 					<td align='center'><?=$li['regDt']?></td>
 					<td>
+						<a href='<?=siteUrl("admin/board/update")?>?id=<?=$li['id']?>' class='btn2'>설정하기</a>
 						<a href='<?=siteUrl("board/list")?>?id=<?=$li['id']?>' target='_blank' class='btn2'>게시글 목록</a>
 						<a href='<?=siteUrl("board/write")?>?id=<?=$li['id']?>' target='_blank' class='btn2'>게시글 작성</a>
 					</td>
