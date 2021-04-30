@@ -22,7 +22,17 @@
 	<dt>이미지</dt>
 	<dd>
 		<span class='btn1' onclick="layer.popup('../file/upload?gid=<?=$gid?>&type=image', 280, 130);">이미지 추가</span>
-		<span class='uploaded_images'></span>
+		<span class='uploaded_images'>
+		<?php if (isset($attachFiles) && isset($attachFiles['images'])) : ?>
+		<?php foreach ($attachFiles['images'] as $file) : ?>
+		<span class='file_box' data-idx='<?=$file['idx']?>' data-url='${data.url}'>
+			<a href='../file/download?idx=<?=$file['idx']?>' target='ifrmHidden'><?=$file['fileName']?></a>
+			<i class='remove xi-file-remove'></i>
+			<i class='addContents xi-upload'></i>
+		</span>
+		<?php endforeach;?>
+		<?php endif; ?>
+		</span>
 	</dd>
 </dl>
 <button type='button' class='cancel_btn'>취소하기</button>

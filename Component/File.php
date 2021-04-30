@@ -170,7 +170,7 @@ class File
 	{
 		$images = $files = [];
 		$list = db()->table("fileInfo")
-					   ->where(["gid" => $gid])
+					   ->where(["gid" => $gid, "isDone" => 1])
 					   ->orderby([["regDt", "asc"]])
 					   ->rows();
 		

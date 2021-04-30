@@ -258,7 +258,7 @@ class Board
 		
 		if ($data) {
 			$file = App::load(\Component\File::class);
-			$files = $file->getGroupFiles($data['gid']);
+			$data['attachFiles'] = $file->getGroupFiles($data['gid']);
 		}
 		
 		return $data;
