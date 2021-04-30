@@ -331,7 +331,10 @@ class Board
 	/**
 	* 첨부된 파일 처리 
 	*
-	* @return void
+	* @param String $gid 그룹 ID
+	* @param String $name 파일태그의 name 
+	*
+	* @return Array 파일 추가 번호(배열)
 	*/
 	public function processUploadFiles($gid, $name = 'file')
 	{
@@ -339,7 +342,7 @@ class Board
 		
 		$file = App::load(\Component\File::class);
 		$idxes = $file->upload($gid, $name, 'all', false, true);
-		debug($idxes);
-		exit;
+		
+		return $idxes;
 	}
 }

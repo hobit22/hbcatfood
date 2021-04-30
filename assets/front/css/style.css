@@ -30,3 +30,5 @@ input[type='number']:focus, select:focus { border-color: blue; }
 
 /** 파일 업로드 */
 .file_upload_form { text-align: center; margin-top: 50px; }
+
+.mt10 { margin-top: 10px !important; }

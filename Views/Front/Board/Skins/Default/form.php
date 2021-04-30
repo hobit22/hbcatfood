@@ -39,6 +39,16 @@
 	<dt>파일첨부</dt>
 	<dd>
 		<input type='file' name='file[]' multiple>
+		<?php if (isset($attachFiles) && isset($attachFiles['files'])) : ?>
+		<div class='uploaded_files mt10'>
+			<?php foreach ($attachFiles['files'] as $file) : ?>
+			<span class='file_box' data-idx='<?=$file['idx']?>' data-url='<?=$file['url']?>'>
+				<a href='<?=siteUrl("file/download")?>?idx=<?=$file['idx']?>' target='ifrmHidden'><?=$file['fileName']?></a>
+				<i class='remove xi-file-remove'></i>
+			</span>
+			<?php endforeach;?>
+		</div>
+		<?php endif; ?>
 	</dd>
 </dl>
 <button type='button' class='cancel_btn'>취소하기</button>

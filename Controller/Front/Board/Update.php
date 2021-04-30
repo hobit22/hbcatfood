@@ -28,7 +28,7 @@ class UpdateController extends \Controller\Front\Controller
 		if (!$data) {
 			return msg("게시글이 존재하지 않습니다.", -1);
 		}
-		
+				
 		App::render("Board/form", $data);
 	}
 }
