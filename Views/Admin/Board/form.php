@@ -42,16 +42,16 @@
 			<tr>
 				<th>노출항목</th>
 				<td>
-					<input type='checkbox' name='columns[]' value='file' id='columns_file'>
+					<input type='checkbox' name='columns[]' value='file' id='columns_file'<?php if(isset($columns) && in_array("file", $columns)) echo " checked";?>>
 					<label for='columns_file'>파일첨부</label>
 					
-					<input type='checkbox' name='columns[]' value='image' id='columns_image'>
+					<input type='checkbox' name='columns[]' value='image' id='columns_image'<?php if(isset($columns) && in_array('image', $columns)) echo " checked";?>>
 					<label for='columns_image'>이미지</label>
 					
-					<input type='checkbox' name='columns[]' value='link' id='columns_link'>
+					<input type='checkbox' name='columns[]' value='link' id='columns_link'<?php if (isset($columns) && in_array('link', $columns)) echo " checked";?>>
 					<label for='columns_link'>링크</label>
 					
-					<input type='checkbox' name='columns[]' value='email' id='columns_email'>
+					<input type='checkbox' name='columns[]' value='email' id='columns_email'<?php if (isset($columns) && in_array("email", $columns)) echo " checked";?>>
 					<label for='columns_email'>이메일</label>
 				</td>
 			</tr>

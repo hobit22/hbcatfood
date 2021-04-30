@@ -73,7 +73,9 @@ class Board
 			$_upData[$k] = $v;
 		}
 		
-		$_upData['columns'] = $_upData['columns']?implode(",", $_upData['columns']):"";
+		if (isset($_upData['columns'])) {
+			$_upData['columns'] = $_upData['columns']?implode(",", $_upData['columns']):"";
+		}
 		
 		$_upData['modDt'] = date("Y-m-d H:i:s");
 
@@ -138,6 +140,9 @@ class Board
 	public function getBoard($id)
 	{
 		$row = db()->table("board")->where(["id" => $id])->row();
+		if ($row) {
+			$row['columns'] = $row['columns']?explode(",", $row['columns']):[];
+		}
 		
 		return $row;
 	}

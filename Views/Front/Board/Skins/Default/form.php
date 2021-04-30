@@ -6,18 +6,22 @@
 		<input type='text' name='poster' value='<?php if (isset($poster)) { echo $poster; } elseif (!isset($poster) && isLogin()) { echo $_SESSION['member']['memNm']; }?>'>
 	</dd>
 </dl>
+<?php if (in_array("link", $columns)) : ?>
 <dl>
 	<dt>링크</dt>
 	<dd>
 		<input type='text' name='link' value='<?=isset($link)?$link:""?>'>
 	</dd>
 </dl>
+<?php endif; ?>
+<?php if (in_array("email", $columns)) : ?>
 <dl>
 	<dt>이메일</dt>
 	<dd>
 		<input type='email' name='email' value='<?=isset($email)?$email:""?>'>
 	</dd>
 </dl>
+<?php endif; ?>
 <dl>
 	<dt>제목</dt>
 	<dd>
@@ -30,6 +34,7 @@
 		<textarea name='contents' id='contents'><?=isset($contents)?$contents:""?></textarea>
 	</dd>
 </dl>
+<?php if (in_array('image', $columns)) : ?>
 <dl>
 	<dt>이미지</dt>
 	<dd>
@@ -47,6 +52,8 @@
 		</span>
 	</dd>
 </dl>
+<?php endif; ?>
+<?php if (in_array('file', $columns)) : ?>
 <dl>
 	<dt>파일첨부</dt>
 	<dd>
@@ -63,6 +70,7 @@
 		<?php endif; ?>
 	</dd>
 </dl>
+<?php endif; ?>
 <button type='button' class='cancel_btn'>취소하기</button>
 <button type='submit' class='write_btn'><?=isset($idx)?"수정":"작성"?>하기</button>
 </div>
