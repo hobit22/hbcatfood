@@ -86,7 +86,7 @@ class Board
 			$dbData['columns'] = $dbData['columns']?implode(",", $dbData['columns']):"";
 		}
 		
-		if (isset($dbData['useViewList']) {
+		if (isset($dbData['useViewList'])) {
 			$dbData['useViewList'] = $dbData['useViewList']?1:0;
 		}
 		
