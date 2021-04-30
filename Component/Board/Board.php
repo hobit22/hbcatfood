@@ -197,6 +197,11 @@ class Board
 		];
 		
 		$result = db()->table("boardData")->data($inData)->insert();
+		if ($result !== false) { // 게시글 등록이 성공 했을때 
+			// 파일 첨부 처리
+			$this->processUploadFiles();
+		}
+		
 		
 		return $result;
 	}
@@ -218,6 +223,11 @@ class Board
 							->data($upData)
 							->where(["idx" => $this->params['idx']])
 							->update();
+		
+		if ($result !== false) { // 게시글 수정 성공시 
+			// 업로드 파일 처리 
+			$this->processUploadFiles();
+		}
 		
 		return $result !== false;
 	}
