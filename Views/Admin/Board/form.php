@@ -39,7 +39,23 @@
 					</select>
 				</td>
 			</tr>
+			<tr>
+				<th>노출항목</th>
+				<td>
+					<input type='checkbox' name='columns[]' value='file' id='columns_file'>
+					<label for='columns_file'>파일첨부</label>
+					
+					<input type='checkbox' name='columns[]' value='image' id='columns_image'>
+					<label for='columns_image'>이미지</label>
+					
+					<input type='checkbox' name='columns[]' value='link' id='columns_link'>
+					<label for='columns_link'>링크</label>
+					
+					<input type='checkbox' name='columns[]' value='email' id='columns_email'>
+					<label for='columns_email'>이메일</label>
+				</td>
+			</tr>
 		</table>
-		<input type='submit' value='게시판 생성하기' class='btn1 mt20' onclick="return confirm('정말 생성하시겠습니까?');">
+		<input type='submit' value='게시판 <?=isset($id)?"설정":"생성"?>하기' class='btn1 mt20' onclick="return confirm('정말 <?=isset($id)?"설정":"생성"?>하시겠습니까?');">
 	</form>
 </div>
