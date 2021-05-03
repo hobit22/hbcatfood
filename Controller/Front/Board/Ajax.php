@@ -28,9 +28,12 @@ class AjaxController extends \Controller\Front\Controller
 					if (!$in['idx']) {
 						throw new BoardFrontException("잘못된 접근입니다.");
 					}
-					
-					$data = $board->getComment($in['idx']);
-					
+								
+					$data = [
+						'error' => 0,
+						'data' => $board->getComment($in['idx']),
+					];
+					echo json_encode($data);
 					break;
 			}
 			
