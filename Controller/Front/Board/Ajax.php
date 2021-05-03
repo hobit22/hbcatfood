@@ -21,8 +21,26 @@ class AjaxController extends \Controller\Front\Controller
 		try {
 			$in = request()->all();
 			$board = App::load(\Component\Board\Board::class);
-		} catch (BoardFrontException $e) {
 			
+			switch($in['mode']) {
+				/** 댓글 내용 추출 */
+				case "get_comment" : 
+					if (!$in['idx']) {
+						throw new BoardFrontException("잘못된 접근입니다.");
+					}
+					
+					$data = $board->getComment($in['idx']);
+					
+					break;
+			}
+			
+		} catch (BoardFrontException $e) {
+			$data = [
+				'error' => 1,
+				'message' => $e->getMessage(),
+			];
+			
+			echo json_encode($data);
 		}
 	}
 }

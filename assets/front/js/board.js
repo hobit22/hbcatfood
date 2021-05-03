@@ -68,6 +68,25 @@ $(function() {
 		});
 	});
 	
+	/** 댓글 수정 */
+	$(".update_comment").click(function() {
+		$li = $(this).closest("li");
+		const idx = $li.data("idx");
+		
+		$.ajax({
+			url : "../board/ajax",
+			type : "get",
+			data : { mode : "get_comment", idx : idx },
+			dataType : "html",
+			success : function (res) {
+				console.log(res);
+			},
+			error : function (err) {
+				console.error(err);
+			}
+		});
+	});
+	
 });
 
 
