@@ -52,9 +52,15 @@ $(function() {
 			url : "../board/indb",
 			type : "post", 
 			data : { mode : "delete_comment", idx : idx },
-			dataType : "html",
+			dataType : "text",
 			success : function (res) {
-				console.log(res);
+				res = res.trim();
+				if (res == '1') { // 삭제 성공 
+					alert("댓글 삭제 성공");
+					$li.remove();
+				} else { // 삭제 실패 
+					alert("삭제 실패!");
+				}
 			},
 			error : function (err) {
 				console.error(err);
