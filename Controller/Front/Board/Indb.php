@@ -77,7 +77,9 @@ class IndbController extends \Controller\Front\Controller
 						throw new BoardFrontException("댓글 등록 실패!");
 					}
 					
-					// 댓글 등록 성공시는 새고로침하여 추가된 댓글 나열  
+					// 댓글 등록 성공시는  추가된 댓글 나열  
+					//$url = "board/view?idx=".$in['idxBoard']."#comment_".$idx;
+					//go($url, "parent");
 					reload("parent");
 					break;
 			}
