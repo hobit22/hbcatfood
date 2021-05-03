@@ -23,3 +23,8 @@
 
 .board_skin_default.list .list_rows:nth-child(2n) { background-color: #f8f8f8; }
 
+/** 댓글 - comment.php */
+.board_skin_default.comment .comment_list li { border: 1px solid #d5d5d5; padding: 15px; border-radius: 15px; margin-bottom: 10px; position: relative; }
+
+.board_skin_default.comment .comment_list .btns { position: absolute; right: 15px; bottom: 15px; }
+.board_skin_default.comment .comment_list .post_info { font-size: 12px; margin-top: 20px; }
