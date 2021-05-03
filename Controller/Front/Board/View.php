@@ -37,7 +37,7 @@ class ViewController extends \Controller\Front\Controller
 		// 댓글 사용 처리 S 
 		if ($conf['useReply']) {
 			ob_start();
-			App::load("Board/comment", $conf); 
+			App::render("Board/comment", $conf); 
 			$data['commentContents'] = ob_get_clean();
 		}
 		// 댓글 사용 처리 E
