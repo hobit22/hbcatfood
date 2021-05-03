@@ -1,7 +1,8 @@
 $(function() {
-	CKEDITOR.replace("contents");
-	
-	CKEDITOR.config.height = 350;
+	if ($("#contents").length > 0) {
+		CKEDITOR.replace("contents");	
+		CKEDITOR.config.height = 350;
+	}
 	
 	/** 본문 이미지 추가 */
 	$("body").on("click", ".file_box .addContents", function() {
@@ -37,6 +38,30 @@ $(function() {
 			}
 		});
 	});
+	
+	/** 댓글 삭제 */
+	$(".delete_comment").click(function() {
+		if (!confirm("정말 삭제하시겠습니까?")) {
+			return;
+		}
+		
+		$li = $(this).closest("li");
+		const idx = $li.data("idx");
+		
+		$.ajax({
+			url : "../board/indb",
+			type : "post", 
+			data : { mode : "delete_comment", idx : idx },
+			dataType : "html",
+			success : function (res) {
+				console.log(res);
+			},
+			error : function (err) {
+				console.error(err);
+			}
+		});
+	});
+	
 });
 
 

@@ -489,4 +489,19 @@ class Board
 		
 		return $list;
 	}
+	
+	/**
+	* 댓글 삭제 
+	*
+	* @param Integer $idx 댓글 등록번호
+	* @return Boolean
+	*/
+	public function deleteComment($idx)
+	{
+		$result = db()->table("boardComment")
+						  ->where(["idx" => $idx])
+						  ->delete();
+						  
+		return $result !== false;
+	}
 }

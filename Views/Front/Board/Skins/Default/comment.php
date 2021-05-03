@@ -20,13 +20,13 @@
 	<?php if ($list) : ?>
 	<ul class='comment_list'>
 	<?php foreach ($list as $li) : ?>
-		<li>
+		<li data-idx='<?=$li['idx']?>'>
 			<div class='comment'><?=nl2br($li['comment'])?></div>
 			<div class='post_info'>
 				<?=$li['poster']?><?=$li['memId']?"(".$li['memId'].")":""?>
 				/ <?=date("Y.m.d H:i", strtotime($li['regDt']))?>
 			</div>
-			<div class='btns' data-idx='<?=$li['idx']?>'>
+			<div class='btns'>
 				<span class='update_comment btn1'>수정</span>
 				<span class='delete_comment btn1'>삭제</span>
 			</div>

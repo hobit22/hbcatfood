@@ -82,6 +82,21 @@ class IndbController extends \Controller\Front\Controller
 					//go($url, "parent");
 					reload("parent");
 					break;
+				/** 댓글 삭제 */
+				case "delete_comment" : 
+					if (!$in['idx']) {
+						echo 0;
+						exit;
+					}
+					
+					$result = $board->deleteComment($in['idx']);
+					if ($result) {
+						echo 1;
+						exit;
+					}
+					
+					echo 0;
+					break;
 			}
 		} catch (BoardFrontException $e) {
 			echo $e;
