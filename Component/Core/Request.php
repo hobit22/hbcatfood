@@ -28,24 +28,12 @@ class Request
 		App::log("접속자 IP : " .$_SERVER['REMOTE_ADDR']);
 		
 		// GET 데이터 
-		if ($this->_get) {
-			foreach ($this->_get as $k => $v) {
-				$k = trim($k);
-				$v = trim($v);
-				$this->_get[$k] = $v;
-			}
-			
+		if ($this->_get) {			
 			App::log("REQUEST - GET : " . json_encode($this->_get));
 		}
 		
 		// POST 데이터 
-		if ($this->_post) {
-			foreach ($this->_post as $k => $v) {
-				$k = trim($k);
-				$v = trim($v);
-				$this->_post[$k] = $v;
-			}
-			
+		if ($this->_post) {			
 			App::log("REQUEST - POST : " . json_encode($this->_post));
 		}
 		

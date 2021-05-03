@@ -38,6 +38,7 @@ class ViewController extends \Controller\Front\Controller
 			ob_start();
 			$result = $board->getList($data['id']);
 			$result = array_merge($result, $conf);
+			$result['isViewList'] = true;
 			App::render("Board/list", $result);
 			
 			$listContents = ob_get_clean();
