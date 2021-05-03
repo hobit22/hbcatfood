@@ -336,6 +336,9 @@ class Board
 			'idxBoard' => $this->params['idxBoard'],
 			'comment' => $this->params['comment'],
 		];
+		
+		$result = db()->table("boardComment")->data($inData)->insert();
+		return $result;
 	}
 	
 	/**
@@ -461,5 +464,29 @@ class Board
 			->data(["hit" => $hit])
 			->where(["idx" => $idx])
 			->update();
+	}
+	
+	/**
+	* 게시글별 댓글 목록
+	*
+	* @param Integer $idxBoard 게시글 번호 
+	* @return Array
+	*/
+	public function getComments($idxBoard) 
+	{
+		$config = getConfig();
+		$px = $config['prefix'];
+		
+		$joinTable = [
+			'member' => ["{$px}member.memNo", "{$px}boardComment.memNo", "left"],
+		];
+		
+		$list = db()->table("boardComment", $joinTable)
+						->select("{$px}boardComment.*, {$px}member.memId, {$px}member.memNm")
+						->where(["{$px}boardComment.idxBoard" => $idxBoard])
+						->orderBy([["{$px}boardComment.regDt", "asc"]])
+						->rows();
+		
+		return $list;
 	}
 }

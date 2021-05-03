@@ -72,6 +72,13 @@ class IndbController extends \Controller\Front\Controller
 					$idx = $board->data($in)
 									->validator("comment")
 									->commentRegister();
+									
+					if ($idx === false) { // 댓글 등록 실패 
+						throw new BoardFrontException("댓글 등록 실패!");
+					}
+					
+					// 댓글 등록 성공시는 새고로침하여 추가된 댓글 나열  
+					reload("parent");
 					break;
 			}
 		} catch (BoardFrontException $e) {

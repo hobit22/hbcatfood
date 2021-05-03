@@ -38,6 +38,9 @@ class ViewController extends \Controller\Front\Controller
 		if ($conf['useReply']) {
 			ob_start();
 			$conf['idxBoard'] = $data['idx']; // 게시글 번호 
+			
+			$list = $board->getComments($data['idx']);
+			
 			App::render("Board/comment", $conf); 
 			$data['commentContents'] = ob_get_clean();
 		}
