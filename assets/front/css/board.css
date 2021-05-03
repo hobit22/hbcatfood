@@ -37,3 +37,4 @@
 
 .board_skin_default.comment .post_info input[type='text'] { width: auto; max-width: 120px;  }
 .board_skin_default.comment .post_info { margin-bottom: 5px; }
+.board_skin_default.comment .comment_data { width: 100%; border: 1px solid #d5d5d5; height: 100px; border-radius: 10px; resize: none; padding: 10px; background-color: #f8f8f8; }
