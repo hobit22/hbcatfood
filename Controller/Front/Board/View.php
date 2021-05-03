@@ -36,12 +36,14 @@ class ViewController extends \Controller\Front\Controller
 		
 		// 댓글 사용 처리 S 
 		if ($conf['useReply']) {
-			ob_start();
-			$conf['idxBoard'] = $data['idx']; // 게시글 번호 
-			
-			$list = $board->getComments($data['idx']);
-			
-			App::render("Board/comment", $conf); 
+			ob_start();		
+			$params = [
+				'idxBoard' => $data['idx'], // 게시글 번호
+				'list' => $board->getComments($data['idx']), // 댓글 목록 
+			];
+		
+			$params = array_merge($params, $conf);
+			App::render("Board/comment", $params); 
 			$data['commentContents'] = ob_get_clean();
 		}
 		// 댓글 사용 처리 E
