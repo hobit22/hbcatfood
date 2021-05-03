@@ -327,7 +327,7 @@ class Board
 	*
 	* @return Integer|Boolean 성공시 - 등록번호(idx), 실패 - false
 	*/
-	public function commentRegister()
+	public function registerComment()
 	{
 		$memNo = isLogin()?$_SESSION['memNo']:0;
 		$inData = [
@@ -339,6 +339,25 @@ class Board
 		
 		$result = db()->table("boardComment")->data($inData)->insert();
 		return $result;
+	}
+	
+	
+	/**
+	* 댓글 수정 
+	*
+	* @param Integer $idx 댓글번호 
+	* @param String $comment 수정할 댓글 
+	* 
+	* @return Boolean
+	*/
+	public function updateComment($idx, $comment) 
+	{
+		$result = db()->table("boardComment")
+							->data(["comment" => $comment])
+							->where(["idx" => $idx])
+							->update();
+		
+		return $result !== false;
 	}
 	
 	/**

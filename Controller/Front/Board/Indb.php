@@ -71,7 +71,7 @@ class IndbController extends \Controller\Front\Controller
 				case "register_comment" : 
 					$idx = $board->data($in)
 									->validator("comment")
-									->commentRegister();
+									->registerComment();
 									
 					if ($idx === false) { // 댓글 등록 실패 
 						throw new BoardFrontException("댓글 등록 실패!");
@@ -81,6 +81,21 @@ class IndbController extends \Controller\Front\Controller
 					//$url = "board/view?idx=".$in['idxBoard']."#comment_".$idx;
 					//go($url, "parent");
 					reload("parent");
+					break;
+				/** 댓글 수정 */
+				case "update_comment" : 
+					if (!$in['idx']) {
+						echo 0;
+						exit;
+					}
+					
+					$result = $board->updateComment($in['idx'], $in['comment']);
+					if ($result) { // 수정 성공
+						echo 1;
+						exit;
+					}
+					
+					echo 0;
 					break;
 				/** 댓글 삭제 */
 				case "delete_comment" : 

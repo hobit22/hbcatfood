@@ -75,6 +75,32 @@ $(function() {
 		
 		$obj = $li.find(".comment_data");
 		if ($obj.length > 0) { // 댓글 수정 중 
+			const text = $obj.val(); 
+			if (text == "") {
+				alert("수정할 댓글을 입력해 주세요.");
+				return;
+			}
+			
+			$.ajax({
+				url : "../board/indb",
+				type : "post",
+				data : { mode : "update_comment", idx : idx, comment : text },
+				dataType : "text",
+				success : function (res) {
+					res = res.trim();
+					if (res == '1') { // 수정 성공 
+						// 성공시 -> 새로고침
+						location.reload();
+					} else {
+						alert("댓글 수정 실패!");
+					}
+				},
+				error : function(err) {
+					console.error(err);
+				}
+			});
+			
+			
 			
 		} else { // 댓글 수정 시작
 			
@@ -98,8 +124,8 @@ $(function() {
 					console.error(err);
 				}
 			});
-		});
-	} // endif 
+		} // endif 
+	});
 });
 
 
