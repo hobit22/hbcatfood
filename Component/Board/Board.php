@@ -82,14 +82,17 @@ class Board
 			$dbData[$k] = $v;
 		}
 		
-		$dbData['columns'] = "";
+		
 		if (isset($dbData['columns'])) {
 			$dbData['columns'] = $dbData['columns']?implode(",", $dbData['columns']):"";
+		} else {
+			$dbData['columns'] = "";
 		}
 		
-		$dbData['useViewList'] = 0;
 		if (isset($dbData['useViewList'])) {
 			$dbData['useViewList'] = $dbData['useViewList']?1:0;
+		} else {
+			$dbData['useViewList'] = 0;
 		}
 		
 		return $dbData;
