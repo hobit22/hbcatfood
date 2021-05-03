@@ -74,32 +74,32 @@ $(function() {
 		const idx = $li.data("idx");
 		
 		$obj = $li.find(".comment_data");
-		if ($obj.length > 0) {
-			$obj.remove();
-		}
-		
-		$.ajax({
-			url : "../board/ajax",
-			type : "get",
-			data : { mode : "get_comment", idx : idx },
-			dataType : "json",
-			success : function (res) {
-				if (res) {
-					if (res.error == '1') { // 에러 있는 경우 
-						alert(res.message);
-					} else { // 정상인 경우 
-						const html = `<textarea class='comment_data'>${res.data.comment}</textarea>`;
-						
-						$li.append(html);
+		if ($obj.length > 0) { // 댓글 수정 중 
+			
+		} else { // 댓글 수정 시작
+			
+			$.ajax({
+				url : "../board/ajax",
+				type : "get",
+				data : { mode : "get_comment", idx : idx },
+				dataType : "json",
+				success : function (res) {
+					if (res) {
+						if (res.error == '1') { // 에러 있는 경우 
+							alert(res.message);
+						} else { // 정상인 경우 
+							const html = `<textarea class='comment_data'>${res.data.comment}</textarea>`;
+							
+							$li.append(html);
+						}
 					}
+				},
+				error : function (err) {
+					console.error(err);
 				}
-			},
-			error : function (err) {
-				console.error(err);
-			}
+			});
 		});
-	});
-	
+	} // endif 
 });
 
 
