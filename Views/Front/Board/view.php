@@ -6,6 +6,11 @@ if (file_exists($path)) {
 	include $path;
 }
 
+// 댓글 
+if (isset($commentContents)) {
+	echo $commentContents;
+}
+
 // 하단 게시글 목록 
 if (isset($listContents)) {
 	echo $listContents;

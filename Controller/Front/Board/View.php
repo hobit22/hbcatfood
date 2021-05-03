@@ -33,6 +33,15 @@ class ViewController extends \Controller\Front\Controller
 		
 		// 게시판 설정 
 		$conf = $board->getBoard($data['id']);
+		
+		// 댓글 사용 처리 S 
+		if ($conf['useReply']) {
+			ob_start();
+			App::load("Board/comment", $conf); 
+			$data['commentContents'] = ob_get_clean();
+		}
+		// 댓글 사용 처리 E
+		
 		// 보기 하단에 게시글 목록 S 
 		if ($conf['useViewList']) { 
 			ob_start();
