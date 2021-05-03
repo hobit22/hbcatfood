@@ -28,3 +28,7 @@
 
 .board_skin_default.comment .comment_list .btns { position: absolute; right: 15px; bottom: 15px; }
 .board_skin_default.comment .comment_list .post_info { font-size: 12px; margin-top: 20px; }
+
+.board_skin_default.comment .comment_wrap:after { clear: both; content: ''; display: block; }
+.board_skin_default.comment .comment_wrap textarea { float: left; }
+.board_skin_default.comment .comment_wrap input[type='submit'] { float: right; }
