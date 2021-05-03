@@ -1,6 +1,7 @@
 <!-- Default 스킨 - 댓글 -->
 <div class='board_skin_default comment'>
 	<form method='post' action='<?=siteUrl("board/indb")?>' target='ifrmHidden' autocomplete='off'>
+		<input type='hidden' name='mode' value='register_comment'>
 		<input type='hidden' name='idxBoard' value='<?=$idxBoard?>'>
 		
 		<div class='comment_form'>

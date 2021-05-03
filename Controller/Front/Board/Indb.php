@@ -67,6 +67,12 @@ class IndbController extends \Controller\Front\Controller
 					// 삭제 성공시 -> 게시글 목록
 					go("board/list?id={$data['id']}");
 					break;
+				/** 댓글 등록 */
+				case "register_comment" : 
+					$idx = $board->data($in)
+									->validator("comment")
+									->commentRegister();
+					break;
 			}
 		} catch (BoardFrontException $e) {
 			echo $e;
