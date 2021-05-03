@@ -177,8 +177,13 @@ class Board
 	* @return $this
 	* @throw BoardFrontException
 	*/
-	public function validator()
+	public function validator($mode = null)
 	{
+		// 댓글인 경우는 별도 commentValidator 호출 
+		if ($mode == 'comment') {
+			return $this->commentValidator();
+		}
+		
 		if (!$this->params) {
 			throw new BoardFrontException("유효성 검사할 데이터가 존재하지 않습니다.");
 		}
@@ -205,6 +210,42 @@ class Board
 		}
 		
 		/** 필수 데이터 체크 E */
+		
+		return $this;
+	}
+	
+	/**
+	* 댓글 작성/수정 유효성 검사 
+	*
+	* @return $this
+	* @throw BoardFrontException 
+	*/
+	public function commentValidator()
+	{
+		if (!$this->params) {
+			throw new BoardFrontException("유효성 검사할 데이터가 존재하지 않습니다.");
+		}
+		
+		// 게시글 번호 체크 
+		if (!$this->params['idxBoard']) {
+			throw new BoardFrontException("잘못된 접근입니다.");
+		}
+		
+		$required = [
+			'poster' => '작성자',
+			'comment' => '댓글내용',
+		];
+		
+		$missing = [];
+		foreach ($required as $col => $colNm) {
+			if (!$this->params[$col]) {
+				$missing[] = $colNm;
+			}
+		} // endforeach 
+		
+		if ($missing) {
+			throw new BoardFrontException("필수 입력 항목 누락 - " . implode(",", $missing)); 
+		}
 		
 		return $this;
 	}
@@ -279,6 +320,22 @@ class Board
 		$result = db()->table("boardData")->where(["idx" => $idx])->delete();
 		
 		return $result !== false;
+	}
+	
+	/**
+	* 댓글 등록 처리 
+	*
+	* @return Integer|Boolean 성공시 - 등록번호(idx), 실패 - false
+	*/
+	public function commentRegister()
+	{
+		$memNo = isLogin()?$_SESSION['memNo']:0;
+		$inData = [
+			'poster' => $this->params['poster'],
+			'memNo' => $memNo,
+			'idxBoard' => $this->params['idxBoard'],
+			'comment' => $this->params['comment'],
+		];
 	}
 	
 	/**
