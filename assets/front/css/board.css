@@ -29,6 +29,11 @@
 .board_skin_default.comment .comment_list .btns { position: absolute; right: 15px; bottom: 15px; }
 .board_skin_default.comment .comment_list .post_info { font-size: 12px; margin-top: 20px; }
 
+.board_skin_default.comment .comment_form { margin-bottom: 25px; }
+
 .board_skin_default.comment .comment_wrap:after { clear: both; content: ''; display: block; }
-.board_skin_default.comment .comment_wrap textarea { float: left; }
-.board_skin_default.comment .comment_wrap input[type='submit'] { float: right; }
+.board_skin_default.comment .comment_wrap textarea { float: left; width: calc(100% - 100px); height: 100px; border: 1px solid #d5d5d5; border-right: 0; resize: none; }
+.board_skin_default.comment .comment_wrap input[type='submit'] { float: right; width: 100px; height: 100px; background-color: blue; border: 0; display: block; color: #ffffff; cursor: pointer; }
+
+.board_skin_default.comment .post_info input[type='text'] { width: auto; max-width: 120px;  }
+.board_skin_default.comment .post_info { margin-bottom: 5px; }
