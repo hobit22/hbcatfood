@@ -29,11 +29,23 @@ class Request
 		
 		// GET 데이터 
 		if ($this->_get) {
+			foreach ($this->_get as $k => $v) {
+				$k = trim($k);
+				$v = trim($v);
+				$this->_get[$k] = $v;
+			}
+			
 			App::log("REQUEST - GET : " . json_encode($this->_get));
 		}
 		
 		// POST 데이터 
 		if ($this->_post) {
+			foreach ($this->_post as $k => $v) {
+				$k = trim($k);
+				$v = trim($v);
+				$this->_post[$k] = $v;
+			}
+			
 			App::log("REQUEST - POST : " . json_encode($this->_post));
 		}
 		
