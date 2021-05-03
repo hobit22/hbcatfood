@@ -491,6 +491,29 @@ class Board
 	}
 	
 	/**
+	* 댓글 조회 
+	*
+	* @param Integer $idx 댓글 등록 번호
+	* @return Array
+	*/
+	public function getComment($idx)
+	{
+		$config = getConfig();
+		$px = $config['prefix'];
+		
+		$joinTable = [
+			'member' => ["{$px}member.memNo", "{$px}boardComment.memNo", "left"],
+		];
+		
+		$data = db()->table("boardComment", $joinTable)
+						->select("{$px}boardComment.*, {$px}member.memId, {$px}member.memNm")
+						->where(["{$px}boardComment.idx" => $idx])
+						->row();
+		
+		return $data;
+	}
+	
+	/**
 	* 댓글 삭제 
 	*
 	* @param Integer $idx 댓글 등록번호
