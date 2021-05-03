@@ -30,7 +30,21 @@ class ViewController extends \Controller\Front\Controller
 		if (!$data) {
 			return msg("게시글이 존재하지 않습니다.", -1);
 		}
-	
+		
+		// 게시판 설정 
+		$conf = $board->getBoard($data['id']);
+		// 보기 하단에 게시글 목록 S 
+		if ($conf['useViewList']) { 
+			ob_start();
+			$result = $board->getList($data['id']);
+			$result = array_merge($result, $conf);
+			App::render("Board/list", $result);
+			
+			$listContents = ob_get_clean();
+			$data['listContents'] = $listContents;
+		}
+		// 보기 하단에 게시글 목록 E
+		
 		App::render("Board/view", $data);
 	}
 }
