@@ -61,4 +61,23 @@ class Token
 						
 		return $row;
 	}
+	
+	/**
+	* 토큰 만료 체크(페이지 접근 제한)
+	*
+	*/
+	public function check()
+	{
+		$isExpired = true;
+		if (isset($_SESSION['token'])) {
+			$data = $this->get($_SESSION['token']);
+			if ($data) {
+				$isExpired = false;
+			}
+		}
+		
+		if ($isExpired) { // 접근 만료 페이지 
+			msg("접근가능시간이 만료 되었습니다.", -1);
+		}
+	}
 }
