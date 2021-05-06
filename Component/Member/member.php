@@ -457,5 +457,8 @@ class Member
 	
 		$tokenUrl = $token->create($url);
 		echo $tokenUrl;
+		/* 이메일 전송 */
+		
+		
 	}
 }

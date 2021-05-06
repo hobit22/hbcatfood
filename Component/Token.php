@@ -28,7 +28,11 @@ class Token
 		
 		$result = db()->table("token")->data($inData)->insert();
 		if ($result !== false) {
-			$protocol = (strtolower($_SERVER["HTTPS"]) == 'on')?"https://":"http://";
+			$protocol = "http://";
+			if (isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) == 'on') {
+				$protocol = "https://";
+			}
+			
 			$url = $protocol.$_SERVER['HTTP_HOST'].siteUrl("token")."?token=".$token;
 			
 			return $url;
@@ -39,11 +43,22 @@ class Token
 	}
 	
 	/**
-	* 유효시간 만료 체크 
+	*  토큰 정보
+	*		유효시간 전에 있는 토큰 정보
 	*
+	* @param String $token 토큰 
+	* @return Array
 	*/
-	public function check() 
+	public function get($token) 
 	{
-		
+		$where = [
+			'token' => $token, 
+			'expires' => [date("Y-m-d H:i:s"), ">="],
+		];
+		$row = db()->table("token")
+						->where($where)
+						->row();
+						
+		return $row;
 	}
 }
