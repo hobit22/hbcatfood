@@ -4,6 +4,7 @@ namespace Component\Member;
 
 use App;
 use Component\Exception\Member\MemberRegisterException;
+use Component\Exception\Member\MemberException;
 
 /**
 * 회원관련 
@@ -418,5 +419,38 @@ class Member
 		$memId = isset($row['memId'])?$row['memId']:"";
 		
 		return $memId;
+	}
+	
+	/**
+	* 회원 비밀번호 찾기 
+	*			비밀번호 초기화 URL을 생성 -> 메일로 전송 
+	*
+	* @param String $memId 아이디
+	* @param String $email 이메일 
+	* @param String $cellPhone 휴대전화번호
+	*
+	* @throw MemberException 정보 불일치 
+	*/
+	public function findMemPw($memId, $email, $cellPhone) 
+	{
+		/**
+		1. 회원정보 일치 여부 체크 
+		2. URL 토큰 생성 
+		3. 이메일 정송
+		*/
+		
+		$where = [
+			'memId' => $memId, 
+			'email' => $email,
+			'cellPhone' => $cellPhone,
+		];
+		$cnt = db()->table("member")->where($where)->count();
+	
+		if (!$cnt) {
+			throw new MemberException("일치하는 회원이 없습니다.");
+		}
+		
+		
+		
 	}
 }

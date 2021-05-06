@@ -5,6 +5,7 @@ namespace Controller\Front\Member;
 use App;
 use Component\Exception\Member\MemberRegisterException;
 use Component\Exception\Member\MemberUpdateException;
+use Component\Exception\Member\MemberException;
 
 /**
 * 회원 관련 DB 처리 
@@ -45,11 +46,33 @@ class IndbController extends \Controller\Front\Controller
 				case "update" :
 					
 					break;
+				/** 비밀번호 찾기 */
+				case "find_pw" : 
+					/** 필수 항목 체크 S */
+					if (!$in['memId']) {
+						throw new MemberException("아이디를 입력하세요.");
+					}
+					
+					if (!$in['email']) {
+						throw new MemberException("이메일을 입력하세요.");
+					}
+					
+					if (!$in['cellPhone']) {
+						throw new MemberException("휴대전화번호를 입력하세요.");
+					}
+					/** 필수 항목 체크 E */
+					
+					$member->findMemPw($in['memId'], $in['email'], $in['cellPhone']);
+					
+					
+					break;
 			}
 			
 		} catch (MemberRegisterException $e) {
 			echo $e;
 		} catch (MemberUpdateException $e) {
+			echo $e;
+		} catch (MemberException $e) {
 			echo $e;
 		}
 	}
