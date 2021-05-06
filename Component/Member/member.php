@@ -399,6 +399,12 @@ class Member
 	*/
 	public function findMemId($memNm, $email, $cellPhone) 
 	{
+		// 휴대전호번호 -> DB 형식에 맞게 변경(000-0000-0000)
+		// 숫자만 추출 -> 형식에 맞게 변환 
+		$pattern = "/([0-9]{3})([0-9]{4})([0-9]{4})/";
+		$cellPhone = preg_replace("/[^0-9]/", "", $cellPhone); // 숫자만 추출 
+		$cellPhone = preg_replace($pattern, "$1-$2-$3", $cellPhone); // 형식에 맞게 변환
+		
 		$where = [
 			'memNm' => $memNm,
 			'email' => $email,

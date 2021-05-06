@@ -12,6 +12,7 @@ class FindIdController extends \Controller\Front\Controller
 {
 	public function index()
 	{
+		$memId = "";
 		$isSubmitted = request()->post("isSubmitted");
 		if ($isSubmitted) {
 			$memNm = request()->post("memNm");
@@ -19,9 +20,9 @@ class FindIdController extends \Controller\Front\Controller
 			$cellPhone = request()->post("cellPhone");
 			
 			$member = App::load(\Component\Member\Member::class);
-			$member->findMemId($memNm, $email, $cellPhone);
+			$memId = $member->findMemId($memNm, $email, $cellPhone);
 		}
 		
-		App::render("Member/findId");
+		App::render("Member/findId", ["memId" => $memId]);
 	}
 }
