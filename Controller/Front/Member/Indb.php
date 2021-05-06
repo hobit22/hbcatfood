@@ -63,8 +63,10 @@ class IndbController extends \Controller\Front\Controller
 					/** 필수 항목 체크 E */
 					
 					$member->findMemPw($in['memId'], $in['email'], $in['cellPhone']);
-					
-					
+					break;
+				/** 비밀번호 변경 */
+				case "change_pw" :
+					echo $member->changeMemPw($_SESSION['changePw_memId'], $in['memPw']);
 					break;
 			}
 			

@@ -458,7 +458,24 @@ class Member
 		$tokenUrl = $token->create($url);
 		echo $tokenUrl;
 		/* 이메일 전송 */
+	
+	}
+	
+	/**
+	* 비밀번호 변경 
+	*
+	*/
+	public function changeMemPw($memId, $memPw)
+	{
+		$security = App::load(\Component\Core\Security::class);
 		
+		$hash = $security->createHash($memPw);
 		
+		$result = db()->table("member")
+						  ->data(["memPw" => $hash])
+						  ->where(["memId" => $memId])
+						  ->update();
+						  
+		return $result !== false;
 	}
 }
