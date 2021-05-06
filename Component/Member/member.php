@@ -319,12 +319,13 @@ class Member
 	*/
 	public function login($memId, $memPw)
 	{
-		$info = $this->get($memId);
-		if (!$info) {
+		$info = $this->get($memId); // 회원정보 추출 
+		if (!$info) { // 회원이 존재하는지 여부 
 			$this->errMessage = "존재하지 않는 회원입니다.";
 			return false;
 		}
 		
+		// 회원이 입력한 비밀번호와 DB에 있는 비밀번호 hash가 일치하는가?
 		$security = App::load(\Component\Core\Security::class);
 		$result = $security->compareHash($memPw, $info['memPw']);
 		if (!$result) { 
@@ -332,6 +333,7 @@ class Member
 			return false;
 		}
 		
+		// 회원 정보를 찾을 수 있는 단서를 SESSION에 저장
 		$_SESSION['memNo'] = $info['memNo'];
 		
 		return true;
