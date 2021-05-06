@@ -387,4 +387,30 @@ class Member
 	{
 		session_destroy();
 	}
+	
+	/**
+	* 회원 아이디 검색
+	*
+	* @param String $memNm 회원명
+	* @param String $email 이메일
+	* @parma String $cellPhone 휴대전화번호
+	*
+	* @return String 회원 아이디 
+	*/
+	public function findMemId($memNm, $email, $cellPhone) 
+	{
+		$where = [
+			'memNm' => $memNm,
+			'email' => $email,
+			'cellPhone' => $cellPhone,
+		];
+		$row = db()->table("member")
+						->select("memId")
+						->where($where)
+						->row();
+						
+		$memId = isset($row['memId'])?$row['memId']:"";
+		
+		return $memId;
+	}
 }

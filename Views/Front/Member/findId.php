@@ -18,4 +18,5 @@
 			<input type='text' name='cellPhone'>
 		</dd>
 	</dl>
+	<input type='submit' value='아이디찾기'>
 </form>
