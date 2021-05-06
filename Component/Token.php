@@ -28,7 +28,8 @@ class Token
 		
 		$result = db()->table("token")->data($inData)->insert();
 		if ($result !== false) {
-			$url = siteUrl("token")."?token=".$token;
+			$protocol = (strtolower($_SERVER["HTTPS"]) == 'on')?"https://":"http://";
+			$url = $protocol.$_SERVER['HTTP_HOST'].siteUrl("token")."?token=".$token;
 			
 			return $url;
 		}

@@ -435,7 +435,7 @@ class Member
 	{
 		/**
 		1. 회원정보 일치 여부 체크 
-		2. URL 토큰 생성 
+		2. URL 토큰 생성 (토큰 - 유효시간, 이동할 URL)
 		3. 이메일 정송
 		*/
 		
@@ -450,7 +450,12 @@ class Member
 			throw new MemberException("일치하는 회원이 없습니다.");
 		}
 		
+		$token = App::load(\Component\Token::class);
 		
-		
+		$url = siteUrl("member/changePw");
+		$_SESSION['changePw_memId'] = $memId;
+	
+		$tokenUrl = $token->create($url);
+		echo $tokenUrl;
 	}
 }
