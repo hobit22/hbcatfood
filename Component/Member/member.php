@@ -232,9 +232,10 @@ class Member
 	public function register()
 	{
 		$security = App::load(\Component\Core\Security::class);
+		
 		$inData = [
 			'memId' => $this->params['memId'],
-			'level' => $this->params['level']?$this->params['level']:0,
+			'level' => isset($this->params['level'])?$this->params['level']:0,
 			'memPw' => $security->createHash($this->params['memPw']),
 			'memNm' => $this->params['memNm'],
 			'email' => $this->params['email'],
