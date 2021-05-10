@@ -44,6 +44,10 @@ class Member
 	public function validator($mode = "register")
 	{
 		$exception = "\\Component\\Exception\\Member\\Member".ucfirst($mode)."Exception";
+		if (!class_exists($exception)) { // mode별 예외 클래스가 없으면 MemberException
+			$exception = "\\Component\\Exception\\Member\\MemberException";
+		}
+		
 		$this->exception = $exception;
 		
 		if (!$this->params) {
@@ -93,6 +97,10 @@ class Member
 				/** 휴대전화번호 체크 */
 				$this->validateCellPhone();
 				
+				break;
+			/** 비밀번호 변경 */
+			case "change_pw" : 
+				$this->validatePassword();
 				break;
 		}
 		

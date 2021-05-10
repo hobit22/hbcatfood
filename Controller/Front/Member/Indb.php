@@ -66,7 +66,15 @@ class IndbController extends \Controller\Front\Controller
 					break;
 				/** 비밀번호 변경 */
 				case "change_pw" :
-					echo $member->changeMemPw($_SESSION['changePw_memId'], $in['memPw']);
+					$result = $member
+										->validator("change_pw")
+										->changeMemPw($_SESSION['changePw_memId'], $in['memPw']);
+					if ($result === false) { // 변경 실패 
+						throw new MemberException("비밀번호 변경에 실패하였습니다.");
+					}
+					
+					// 변경 성공 -> 로그인 페이지 이동 
+					go("member/login", "parent");
 					break;
 			}
 			
