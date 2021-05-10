@@ -108,7 +108,7 @@ function msg($msg, $action = 0, $target = 'self')
 		if (is_numeric($action)) { // history.go 
 			echo "<script>{$target}.history.go({$action});</script>";
 		} else { // location.href 
-			echo "<script>{$target}.location.href='{$action}';</script>";
+			go($action, $target);
 		}
 		exit;
 	} // endif 

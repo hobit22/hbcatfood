@@ -65,7 +65,7 @@ class IndbController extends \Controller\Front\Controller
 					}
 					
 					// 수정 성공
-					msg("회원정보가 수정되었습니다.", "/member/update", "parent");
+					msg("회원정보가 수정되었습니다.", "member/update", "parent");
 					
 					break;
 				/** 비밀번호 찾기 */
