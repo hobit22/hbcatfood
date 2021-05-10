@@ -145,6 +145,14 @@ class IndbController extends \Controller\Front\Controller
 					}
 					
 					$result = $board->checkGuestPassword($in['idx'], $in['password']);
+					if ($result === false) {
+						throw new BoardFrontException("비밀번호 불일치!");
+					}
+					
+					// 비밀번호 일치 하면 세션에 일치 여부 체크 완료에 대한 값
+					$key = "guest_board_".$in['idx'];
+					$_SESSION[$key] = true;
+					reload("parent"); // 새로고침
 					
 					break;
 			}

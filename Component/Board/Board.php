@@ -700,4 +700,30 @@ class Board
 		
 		return false;
 	}
+	
+	/**
+	* 비회원 게시글 비밀번호 체크 
+	*
+	* @param Integer $idx - 게시글 번호
+	* @param String $password - 비회원 비밀번호 
+	* 
+	* @return Boolean 
+	*/
+	public function checkGuestPassword($idx, $password)
+	{
+		$row = db()->table("boardData")
+						->select("memNo, password")
+						->where(["idx" => $idx])
+						->row();
+		
+		if ($row && !$row['memNo'] && $row['password']) {
+			$security = App::load(\Component\Core\Security::class);
+			
+			$result = $security->compareHash($password, $row['password']);
+			
+			return $result; // 일치 true, 
+		}
+		
+		return false;
+	}
 }
