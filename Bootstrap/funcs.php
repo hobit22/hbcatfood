@@ -148,3 +148,16 @@ function browserId()
 	
 	return $bid;
 }
+
+/**
+* 관리자 여부 체크 
+*
+* @return Boolean true - 관리자, false - 일반회원 또는 비회원 
+*/
+function isAdmin()
+{
+	$isAdmin = false;
+	if (isLogin() && $_SESSION['member']['level'] == 10) $isAdmin = true;
+	
+	return $isAdmin;
+}
