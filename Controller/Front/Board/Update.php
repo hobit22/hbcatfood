@@ -36,7 +36,8 @@ class UpdateController extends \Controller\Front\Controller
 			return msg("게시글이 존재하지 않습니다.", -1);
 		}
 		
-		if (!$data['memNo']) { // 비회원 - 글 수정 비밀번호 체크 필요 
+		// $_SESSION에 guest_board_게시글번호가 없으면 - 아직 비회원 비밀번호 체크 X 
+		if (!$data['memNo'] && (!isset($_SESSION['guest_board_'.$idx]) || !$_SESSION['guest_board_'.$idx])) { // 비회원 - 글 수정 비밀번호 체크 필요 
 			$skinPath = "Board/password";
 		} else {
 			$skinPath = "Board/form";

@@ -13,7 +13,10 @@ class IndbController extends \Controller\Front\Controller
 {
 	public function __construct()
 	{
-		$this->layoutBlank = true;
+		$in = request()->all();
+		if ($in['mode'] != 'delete') {
+			$this->layoutBlank = true;
+		}		
 	}
 	
 	public function index()
@@ -69,13 +72,18 @@ class IndbController extends \Controller\Front\Controller
 						throw new BoardFrontException("삭제권한이 없습니다.", -1);
 					}
 					
-					$result = $board->delete($in['idx']);
-					if ($result === false) {
-						throw new BoardFrontException("삭제실패!", -1);
-					}
-					
-					// 삭제 성공시 -> 게시글 목록
-					go("board/list?id={$data['id']}");
+					// 비회원이고 삭제 비회원 비밀번호 체크가 안된 경우 
+					if (!$data['memNo'] && (!isset($_SESSION['guest_board_'.$in['idx']]) || !$_SESSION['guest_board_'.$in['idx']])) {
+						App::render("Board/password", $data);
+					} else {  // 비회원 비밀번호가 체크 되었거나 또는 회원인 게시글 인경우 
+						$result = $board->delete($in['idx']);
+						if ($result === false) {
+							throw new BoardFrontException("삭제실패!", -1);
+						}
+						
+						// 삭제 성공시 -> 게시글 목록
+						go("board/list?id={$data['id']}");
+					} // endif 
 					break;
 				/** 댓글 등록 */
 				case "register_comment" : 

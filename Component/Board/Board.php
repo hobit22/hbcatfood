@@ -480,8 +480,8 @@ class Board
 	*/
 	public function checkDeletePossible($idx)
 	{
-		if (isAdmin() || $this->isMine($idx)) 
-			return true; // 관리자 또는 본인 글인 경우 삭제 가능 
+		if (isAdmin() || $this->isMine($idx) || $this->isGuest($idx)) 
+			return true; // 관리자 또는 본인 글 또는 비회원 게시글인 경우 삭제 가능 
 	}
 	
 	/**
