@@ -42,7 +42,7 @@ class ViewController extends \Controller\Front\Controller
 				'idxBoard' => $data['idx'], // 게시글 번호
 				'list' => $board->getComments($data['idx']), // 댓글 목록 
 			];
-		
+			
 			$params = array_merge($params, $conf);
 			App::render("Board/comment", $params); 
 			$data['commentContents'] = ob_get_clean();

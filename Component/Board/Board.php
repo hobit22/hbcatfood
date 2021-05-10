@@ -561,7 +561,7 @@ class Board
 		
 		foreach ($list as $k => $v) {
 			// 수정, 삭제 가능여부 체크 
-			$v['updatePossible'] = $this->checkUpdateCommentPossisble($v['idx']); 
+			$v['updatePossible'] = $this->checkUpdateCommentPossible($v['idx']); 
 			$v['deletePossible'] = $this->checkDeleteCommentPossible($v['idx']);
 			
 			$list[$k] = $v;
@@ -652,6 +652,7 @@ class Board
 						->select("memNo")
 						->where(["idx" => $idx])
 						->row();
+						
 		if (isLogin() && $row && $_SESSION['memNo'] == $row['memNo'])
 			return true; // 본인 댓글
 		

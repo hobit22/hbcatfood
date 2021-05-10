@@ -99,6 +99,12 @@ class IndbController extends \Controller\Front\Controller
 						exit;
 					}
 					
+					// 댓글 수정 권한이 없는 경우 
+					if (!$board->checkUpdateCommentPossible($in['idx'])) {
+						echo 0;
+						exit;
+					}
+					
 					$result = $board->updateComment($in['idx'], $in['comment']);
 					if ($result) { // 수정 성공
 						echo 1;
@@ -110,6 +116,12 @@ class IndbController extends \Controller\Front\Controller
 				/** 댓글 삭제 */
 				case "delete_comment" : 
 					if (!$in['idx']) {
+						echo 0;
+						exit;
+					}
+					
+					// 삭제 권한이 없는 경우 
+					if (!$board->checkDeleteCommentPossible($in['idx'])) {
 						echo 0;
 						exit;
 					}

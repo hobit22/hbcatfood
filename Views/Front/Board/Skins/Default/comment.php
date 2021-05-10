@@ -27,8 +27,12 @@
 				/ <?=date("Y.m.d H:i", strtotime($li['regDt']))?>
 			</div>
 			<div class='btns'>
+				<?php if ($li['updatePossible']) : ?>
 				<span class='update_comment btn1'>수정</span>
+				<?php endif; ?>
+				<?php if ($li['deletePossible']) : ?>
 				<span class='delete_comment btn1'>삭제</span>
+				<?php endif; ?>
 			</div>
 		</li>
 	<?php endforeach; ?>
