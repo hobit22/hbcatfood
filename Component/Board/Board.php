@@ -382,11 +382,64 @@ class Board
 					  ->row();
 		
 		if ($data) {
+			// 수정권한이 있는지 여부 
+			$data['updatePossible'] = $this->checkUpdatePossible($idx);
+			
+			// 삭제권한이 있는지 여부 
+			$data['deletePossible'] = $this->checkDeletePossible($idx);
+			
 			$file = App::load(\Component\File::class);
 			$data['attachFiles'] = $file->getGroupFiles($data['gid']);
 		}
 		
 		return $data;
+	}
+	
+	/**
+	* 본인 게시글인지 체크 
+	*
+	* @param Integer $idx 게시글 번호
+	* @return Boolean true - 본인, false - 타인 
+	*/
+	public function isMine($idx) 
+	{
+		if (isLogin()) {
+			$row = db()->table("boardData")
+							 ->select("memNo")
+							 ->where(["idx" => $idx])
+							 ->row();
+			if ($row && $row['memNo'] == $_SESSION['memNo']) {
+				return true; // 본인이 쓴 글
+			}
+		}
+		
+		return false;
+	}
+	
+	/**
+	* 글 수정권한 체크 
+	*
+	* @param Integer $idx 게시글 번호 
+	* @return Boolean true - 가능, false - 불가 
+	*/
+	public function checkUpdatePossible($idx)
+	{
+		if (isAdmin() || $this->isMine($idx)) 
+			return true; // 관리자또는 본인 글인 경우 true;
+		
+		return false;
+	}
+	
+	/**
+	* 글 삭제권한 체크 
+	*
+	* @param Integer $idx 게시글 번호 
+	* @return Boolean true - 가능, false - 불가 
+	*/
+	public function checkDeletePossible($idx)
+	{
+		if (isAdmin() || $this->isMine($idx)) 
+			return true; // 관리자 또는 본인 글인 경우 삭제 가능 
 	}
 	
 	/**
