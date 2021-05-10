@@ -37,6 +37,11 @@ class IndbController extends \Controller\Front\Controller
 					break;
 				/** 게시글 수정 */
 				case "update" : 
+					// 수정 권한 체크 
+					if (!$board->checkUpdatePossible($in['idx'])) {
+						throw new BoardFrontException("수정 권한이 없습니다.");
+					}
+				
 					$result = $board->data($in)
 											->validator() // 유효성검사 
 											->update(); // 수정 
@@ -57,6 +62,11 @@ class IndbController extends \Controller\Front\Controller
 					$data = $board->get($in['idx']);
 					if (!$data) {
 						throw new BoardFrontException("존재하지 않는 게시글입니다.", -1);
+					}
+					
+					// 삭제 권한이 없는 경우 
+					if (!$data['deletePossible']) {
+						throw new BoardFrontException("삭제권한이 없습니다.", -1);
 					}
 					
 					$result = $board->delete($in['idx']);

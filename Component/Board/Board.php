@@ -559,6 +559,14 @@ class Board
 						->orderBy([["{$px}boardComment.regDt", "asc"]])
 						->rows();
 		
+		foreach ($list as $k => $v) {
+			// 수정, 삭제 가능여부 체크 
+			$v['updatePossible'] = $this->checkUpdateCommentPossisble($v['idx']); 
+			$v['deletePossible'] = $this->checkDeleteCommentPossible($v['idx']);
+			
+			$list[$k] = $v;
+		}
+		
 		return $list;
 	}
 	
@@ -582,6 +590,10 @@ class Board
 						->where(["{$px}boardComment.idx" => $idx])
 						->row();
 		
+		if ($data) {
+			$data['updatePossible'] = $this->checkUpdateCommentPossible($data['idx']);
+			$data['deletePossible'] = $this->checkDeleteCommentPossible($data['idx']);
+		}
 		return $data;
 	}
 	
@@ -598,5 +610,51 @@ class Board
 						  ->delete();
 						  
 		return $result !== false;
+	}
+	
+	/**
+	* 댓글 수정권한 체크 
+	*
+	* @param Integer $idx 댓글 번호 
+	* @return Boolean true - 가능, false - 불가능 
+	*/
+	public function checkUpdateCommentPossible($idx) 
+	{
+		if (isAdmin() || $this->isMyComment($idx)) 
+			return true; // 관리자 또는 본인 댓글인 경우 
+		
+		return false;
+	}
+	
+	/**
+	* 댓글 삭제권한 체크 
+	*
+	* @param Integer $idx 댓글 번호 
+	* @return Boolean true - 가능, false - 불가능 
+	*/
+	public function checkDeleteCommentPossible($idx) 
+	{
+		if (isAdmin() || $this->isMyComment($idx))
+			return true; // 관리자 또는 본인 댓글인 경우 
+		
+		return false;
+	}
+	
+	/**
+	* 본인 작성 댓글 여부 
+	*
+	* @param Integer $idx 댓글 번호
+	* @return Boolean true - 본인, false - 타인 
+	*/
+	public function isMyComment($idx)
+	{
+		$row = db()->table("boardComment")
+						->select("memNo")
+						->where(["idx" => $idx])
+						->row();
+		if (isLogin() && $row && $_SESSION['memNo'] == $row['memNo'])
+			return true; // 본인 댓글
+		
+		return false;
 	}
 }

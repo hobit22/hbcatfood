@@ -25,6 +25,11 @@ class UpdateController extends \Controller\Front\Controller
 		
 		$board = App::load(\Component\Board\Board::class);
 		$data = $board->get($idx);
+		// 게시글 수정 권한이 없는 경우 
+		if (!$data['updatePossible']) {
+			msg("수정 권한이 없습니다.", -1);
+		}
+		
 		$conf = $board->getBoard($data['id']);
 		$data = array_merge($data, $conf);
 		if (!$data) {
