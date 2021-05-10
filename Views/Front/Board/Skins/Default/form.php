@@ -6,6 +6,14 @@
 		<input type='text' name='poster' value='<?php if (isset($poster)) { echo $poster; } elseif (!isset($poster) && isLogin()) { echo $_SESSION['member']['memNm']; }?>'>
 	</dd>
 </dl>
+<?php if (!isLogin()) :  // 비회원인 경우는 비밀번호 입력 항목 추가 ?>
+<dl>
+	<dt>비밀번호</dt>
+	<dd>
+		<input type='password' name='password' placeholder='비회원 글수정, 삭제 비밀번호'>
+	</dd>
+</dl>
+<?php endif; ?>
 <?php if (in_array("link", $columns)) : ?>
 <dl>
 	<dt>링크</dt>

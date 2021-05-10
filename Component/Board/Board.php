@@ -198,6 +198,10 @@ class Board
 		}
 		
 		/** 필수 데이터 체크 S */
+		if (!isLogin()) { // 비회원인 경우는 글수정, 글삭제 비번 체크 필요 
+			$this->requiredColumns['password'] = '비회원 비밀번호';
+		}
+		
 		$missing = [];
 		foreach ($this->requiredColumns as $column => $colStr) {
 			if (!isset($this->params[$column]) || !$this->params[$column]) { // 필수 데이터 누락
@@ -236,6 +240,11 @@ class Board
 			'comment' => '댓글내용',
 		];
 		
+		// 비회원인 경우 글수정, 삭제시 비밀번호 필수 체크 
+		if (!isLogin()) {
+			$required['password'] = '비회원 비밀번호';
+		}
+		
 		$missing = [];
 		foreach ($required as $col => $colNm) {
 			if (!$this->params[$col]) {
@@ -271,6 +280,12 @@ class Board
 			'ip' => $_SERVER['REMOTE_ADDR'],
 		];
 		
+		// 비회원 글수정, 글삭제일때 비밀번호 처리 
+		if (!isLogin()) {
+			$security = App::load(\Component\Core\Security::class);
+			$inData['password'] = $security->createHash($this->params['password']);
+		}
+		
 		$result = db()->table("boardData")->data($inData)->insert();
 		if ($result !== false) { // 게시글 등록이 성공 했을때 
 			// 파일 첨부 처리
@@ -296,6 +311,13 @@ class Board
 			'link' => isset($this->params['link'])?$this->params['link']:"",
 			'modDt' => date("Y-m-d H:i:s"),
 		];
+		
+		// 비회원 비밀번호 처리 
+		if (!isLogin()) {
+			$security = App::load(\Component\Core\Security::class);
+			$upData['password'] = $security->createHash($this->params['password']);
+		}
+		
 		$result = db()->table("boardData")
 							->data($upData)
 							->where(["idx" => $this->params['idx']])
