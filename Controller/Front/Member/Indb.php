@@ -62,7 +62,15 @@ class IndbController extends \Controller\Front\Controller
 					}
 					/** 필수 항목 체크 E */
 					
-					$member->findMemPw($in['memId'], $in['email'], $in['cellPhone']);
+					$result = $member->findMemPw($in['memId'], $in['email'], $in['cellPhone']);
+					if ($result) {
+						$msg = "비밀번호 초기화를 위한 정보를 메일로 전송하였습니다. 메일을 확인해 주세요";
+					} else {
+						$msg = "비밀번호 찾기에 실패하였습니다.";
+					}
+					
+					msg($msg);
+					
 					break;
 				/** 비밀번호 변경 */
 				case "change_pw" :

@@ -464,9 +464,19 @@ class Member
 		$_SESSION['changePw_memId'] = $memId;
 	
 		$tokenUrl = $token->create($url);
-		echo $tokenUrl;
+		
 		/* 이메일 전송 */
-	
+		$subject = "[연희직업전문학교]비밀번호 초기화 안내";
+		$message = "비밀번호 초기화 : <a href='{$tokenUrl}' target='_blank'>{$tokenUrl}</a>";
+		$headers = [
+			'Content-type: text/html; charset=utf-8',
+			'From: [연희직업전문학교] <info@yonggyo.com>',
+		];
+		
+		$headers  = implode(PHP_EOL, $headers);
+		$result = mail($email, $subject, $message, $headers);
+		
+		return $result;
 	}
 	
 	/**
