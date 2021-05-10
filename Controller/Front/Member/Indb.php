@@ -45,6 +45,28 @@ class IndbController extends \Controller\Front\Controller
 				/** 회원 정보 수정 */
 				case "update" :
 					
+					// 로그인이 안되어 있는 경우는 처리 불가 
+					if (!isLogin()) {
+						throw new MemberUpdateException("정보 수정 권한이 없습니다.");
+					}
+					
+					
+					$in['level'] = $_SESSION['member']['level'];
+					$in['memNo'] = $_SESSION['memNo'];
+					
+					$result = $member->data($in)
+											  ->validator("update")
+											  ->update();
+									
+					
+					// 수정 실패 
+					if ($result === false) {
+						throw new MemberUpdateException("회원정보 수정 실패!");
+					}
+					
+					// 수정 성공
+					msg("회원정보가 수정되었습니다.", "/member/update", "parent");
+					
 					break;
 				/** 비밀번호 찾기 */
 				case "find_pw" : 

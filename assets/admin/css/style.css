@@ -30,6 +30,8 @@ input[type='number']:focus, select:focus { border-color: blue; }
 .mt20 { margin-top: 20px !important; }
 .mb20 { margin-bottom: 20px !important; }
 
+.w120 { width: 120px !important; }
+
 /* 테이블 공통 */
 .table_rows { width: 100%; border-spacing: 0; padding: 0; }
 .table_rows th { background-color: #034efc; color: #ffffff; padding: 7px 10px; border-left: 1px solid #ffffff; }

@@ -1,10 +1,14 @@
-<h1>회원가입</h1>
+<h1><?=isset($memNo)?"회원정보수정":"회원가입"?></h1>
 <form method='post' action='<?=siteUrl("member/indb")?>' target='ifrmHidden' autocomplete='off'>
-	<input type='hidden' name='mode' value='register'>
+	<input type='hidden' name='mode' value='<?=isset($memNo)?"update":"register"?>'>
 	<dl>
 		<dt>아이디</dt>
 		<dd>
-			<input type='text' name='memId'>
+			<?php if (isset($memNo)) : ?>
+				<?=$memId?>
+			<?php else : ?>
+				<input type='text' name='memId'>
+			<?php endif; ?>
 		</dd>
 	</dl>
 	<dl>
@@ -22,30 +26,31 @@
 	<dl>
 		<dt>회원명</dt>
 		<dd>
-			<input type='text' name='memNm'>
+			<input type='text' name='memNm' value='<?=isset($memNm)?$memNm:""?>'>
 		</dd>
 	</dl>
 	<dl>
 		<dt>이메일</dt>
 		<dd>
-			<input type='email' name='email'>
+			<input type='email' name='email' value='<?=isset($email)?$email:""?>'>
 		</dd>
 	</dl>
 	<dl>
 		<dt>휴대전화</dt>
 		<dd>
-			<input type='text' name='cellPhone'>
+			<input type='text' name='cellPhone' value='<?=isset($cellPhone)?$cellPhone:""?>'>
 		</dd>
 	</dl>
 	<dl>
 		<dt>주소</dt>
 		<dd>
-			<input type='text' name='zipcode' placeholder='우편번호' readonly class='w120'>
+			<input type='text' name='zipcode' placeholder='우편번호' readonly class='w120' value='<?=isset($zipcode)?$zipcode:""?>'>
 			<span class='btn1 search_address'>주소 검색</span>
-			<input type='text' name='address' readonly>
-			<input type='text' name='addressSub' placeholder='나머지 주소'>
+			<input type='text' name='address' readonly  value='<?=isset($address)?$address:""?>'>
+			<input type='text' name='addressSub' placeholder='나머지 주소' value='<?=isset($addressSub)?$addressSub:""?>'>
 		</dd>
 	</dl>
+	<?php if (!isset($memNo)) : ?>
 	<dl>
 		<dt>약관동의</dt>
 		<dd>
@@ -54,5 +59,6 @@
 			<label for='agree'>약관에 동의합니다.</label>
 		</dd>
 	</dl>
-	<input type='submit' value='회원가입'>
+	<?php endif; ?>
+	<input type='submit' value='<?=isset($memNo)?'정보수정':'회원가입'?>'>
 </form>
