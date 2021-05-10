@@ -134,6 +134,19 @@ class IndbController extends \Controller\Front\Controller
 					
 					echo 0;
 					break;
+				/** 비회원 비밀번호 체크 */
+				case "check_password" : 
+					if (!isset($in['idx']) || !$in['idx']) {
+						throw new BoardFrontException("잘못된 접근입니다.");
+					}
+					
+					if (!$in['password']) {
+						throw new BoardFrontException("비밀번호를 입력하세요.");
+					}
+					
+					$result = $board->checkGuestPassword($in['idx'], $in['password']);
+					
+					break;
 			}
 		} catch (BoardFrontException $e) {
 			echo $e;
