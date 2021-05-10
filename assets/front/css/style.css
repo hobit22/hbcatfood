@@ -32,3 +32,4 @@ input[type='number']:focus, select:focus { border-color: blue; }
 .file_upload_form { text-align: center; margin-top: 50px; }
 
 .mt10 { margin-top: 10px !important; }
+.w120 { width: 120px !important; }

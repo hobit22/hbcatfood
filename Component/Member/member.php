@@ -249,6 +249,9 @@ class Member
 			'memNm' => $this->params['memNm'],
 			'email' => $this->params['email'],
 			'cellPhone' => $this->params['cellPhone'],
+			'zipcode' => $this->params['zipcode'],
+			'address' => $this->params['address'],
+			'addressSub' => $this->params['addressSub'],
 		];
 		$memNo = db()->table("member")
 							  ->data($inData)
@@ -269,6 +272,9 @@ class Member
 			'memNm' => $this->params['memNm'],
 			'email' => $this->params['email'],
 			'cellPhone' => $this->params['cellPhone'],
+			'zipcode' => $this->params['zipcode'],
+			'address' => $this->params['address'],
+			'addressSub' => $this->params['addressSub'],
 		];
 		
 		// 비밀번호 변경시 

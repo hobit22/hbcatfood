@@ -38,6 +38,15 @@
 		</dd>
 	</dl>
 	<dl>
+		<dt>주소</dt>
+		<dd>
+			<input type='text' name='zipcode' placeholder='우편번호' readonly class='w120'>
+			<span class='btn1 search_address'>주소 검색</span>
+			<input type='text' name='address' readonly>
+			<input type='text' name='addressSub' placeholder='나머지 주소'>
+		</dd>
+	</dl>
+	<dl>
 		<dt>약관동의</dt>
 		<dd>
 			<textarea id='terms'>약관 내용 추가...</textarea><br>

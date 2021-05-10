@@ -56,7 +56,15 @@
 			<input type='text' name='cellPhone' value='<?=isset($cellPhone)?$cellPhone:""?>'>
 		</dd>
 	</dl>
-	
+	<dl>
+		<dt>주소</dt>
+		<dd>
+			<input type='text' name='zipcode' placeholder='우편번호' readonly class='w120' value='<?=isset($zipcode)?$zipcode:""?>'>
+			<span class='btn2 search_address'>주소 검색</span>
+			<input type='text' name='address' readonly value='<?=isset($address)?$address:""?>'>
+			<input type='text' name='addressSub' placeholder='나머지 주소' value='<?=isset($addressSub)?$addressSub:""?>'>
+		</dd>
+	</dl>
 	<input type='submit' value='회원<?=isset($memNo)?"수정":"가입"?>처리' onclick="return confirm('정말 <?=isset($memNo)?"수정":"가입"?>처리 하시겠습니까?');" class='btn1 mt20'>
 	</form>
 </div>
