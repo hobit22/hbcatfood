@@ -439,6 +439,26 @@ class Board
 	}
 	
 	/**
+	* 비회원 게시글인지 체크 
+	*
+	* @param Integer $idx 게시글 번호 
+	* @return Boolean true - 비회원 게시글, false - 회원 게시글 
+	*/
+	public function isGuest($idx)
+	{
+		$row = db()->table("boardData")
+						->select("memNo")
+						->where(["idx" => $idx])
+						->row();
+						
+		if ($row && !$row['memNo']) { // 게시글의 memNo가 0인 경우 - 비회원
+			return true;
+		}
+		
+		return false;
+	}
+	
+	/**
 	* 글 수정권한 체크 
 	*
 	* @param Integer $idx 게시글 번호 
@@ -446,8 +466,8 @@ class Board
 	*/
 	public function checkUpdatePossible($idx)
 	{
-		if (isAdmin() || $this->isMine($idx)) 
-			return true; // 관리자또는 본인 글인 경우 true;
+		if (isAdmin() || $this->isMine($idx) || $this->isGuest($idx)) 
+			return true; // 관리자또는 본인 글 또는 비회원 게시글인 경우 true;
 		
 		return false;
 	}
