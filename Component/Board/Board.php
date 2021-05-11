@@ -20,6 +20,8 @@ class Board
 		'contents' => "내용",
 	];
 	
+	private $divisionStr = "||"; // 배열 결합 시 구분값 
+	
 	/**
 	* 게시판 생성 
 	*
@@ -80,6 +82,23 @@ class Board
 				continue;
 			}
 			$dbData[$k] = $v;
+		}
+		
+		// 게시판 분류 
+		if (isset($dbData['category'])) {
+			$category = [];
+			if ($dbData['category']) {
+				// 줄 개행 문자 - PHP_EOL
+				foreach (explode(PHP_EOL, $dbData['category']) as $cate) {
+					$cate = trim($cate); // 앞뒤 공백 제거 
+					if (!$cate) continue; // 빈 줄개행 건너 뜀 
+					
+					array_push($category, $cate);
+				}
+			}
+			
+			// 분류1||분류2||분류3||분류4 
+			$dbData['category'] = $category?implode($this->divisionStr, $category):"";
 		}
 		
 		
@@ -150,9 +169,14 @@ class Board
 	*/
 	public function getBoard($id)
 	{
-		$row = db()->table("board")->where(["id" => $id])->row();
+		$row = db()->table("board")
+						->select("*, category as confCategory")
+						->where(["id" => $id])
+						->row();
 		if ($row) {
 			$row['columns'] = $row['columns']?explode(",", $row['columns']):[];
+			$row['confCategory'] = $row['confCategory']?explode($this->divisionStr, $row['confCategory']):[];
+			unset($row['category']);
 		}
 		
 		return $row;

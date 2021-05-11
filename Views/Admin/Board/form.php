@@ -21,6 +21,12 @@
 				</td>
 			</tr>
 			<tr>
+				<th>게시판분류</th>
+				<td>
+					<textarea name='category' placeholder='분류 여러개 입력은 엔터키로 구분해 주세요.'><?=isset($confCategory)?implode(PHP_EOL, $confCategory):""?></textarea>
+				</td>
+			</tr>
+			<tr>
 				<th>댓글</th>
 				<td>
 					<input type='radio' name='useReply' value='0' id='useReplay0'<?php if (isset($useReply) && !$useReply) echo " checked";?>>
