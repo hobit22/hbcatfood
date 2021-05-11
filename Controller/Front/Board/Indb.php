@@ -14,7 +14,7 @@ class IndbController extends \Controller\Front\Controller
 	public function __construct()
 	{
 		$in = request()->all();
-		if ($in['mode'] != 'delete') {
+		if ($in['mode'] != 'delete' && $in['mode'] != 'delete_comment') {
 			$this->layoutBlank = true;
 		}		
 	}
