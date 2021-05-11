@@ -1,5 +1,10 @@
 <!-- Default 스킨 - 게시글 목록 -->
 <div class='board_skin_default list'>
+	<?php if ($confCategory) : ?>
+	<ul class='category_tab'>
+	
+	</ul>
+	<?php endif; ?>
 	<ul>
 	<?php foreach ($list as $li) : ?>
 		<li class='list_rows'>
