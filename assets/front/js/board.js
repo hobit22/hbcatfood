@@ -67,6 +67,7 @@ $(function() {
 	});
 	
 	/** 댓글 삭제 */
+	/*
 	$(".delete_comment").click(function() {
 		if (!confirm("정말 삭제하시겠습니까?")) {
 			return;
@@ -94,7 +95,7 @@ $(function() {
 			}
 		});
 	});
-	
+	*/
 	/** 댓글 수정 */
 	$(".update_comment").click(function() {
 		$li = $(this).closest("li");

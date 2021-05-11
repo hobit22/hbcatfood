@@ -36,7 +36,7 @@
 				<span class='update_comment btn1'>수정</span>
 				<?php endif; ?>
 				<?php if ($li['deletePossible']) : ?>
-				<span class='delete_comment btn1'>삭제</span>
+				<a href='<?=siteUrl("board/indb")?>?mode=delete_comment&idx=<?=$li['idx']?>' class='delete_comment btn1' onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
 				<?php endif; ?>
 			</div>
 		</li>

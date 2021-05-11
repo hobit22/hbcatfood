@@ -124,20 +124,28 @@ class IndbController extends \Controller\Front\Controller
 				/** 댓글 삭제 */
 				case "delete_comment" : 
 					if (!$in['idx']) {
-						echo 0;
-						exit;
+						throw new BoardFrontException("잘못된 접근입니다.", -1);
 					}
 					
 					// 삭제 권한이 없는 경우 
 					if (!$board->checkDeleteCommentPossible($in['idx'])) {
-						echo 0;
-						exit;
+						throw new BoardFrontException("삭제 권한이 없습니다.");
 					}
 					
-					$result = $board->deleteComment($in['idx']);
-					if ($result) {
-						echo 1;
-						exit;
+					$data = $board->getComment($in['idx']); // 댓글 데이터
+					
+					// 비회원이고 비회원 비밀번호 인증을 받지 않은 경우
+					$key = "comment_guest_".$in['idx'];
+					if ($board->isGuestComment($in['idx']) && (!isset($_SESSION[$key]) || !$_SESSION[$key])) {
+						$data['isComment'] = true;
+						App::render("Board/password", $data);
+					} else {
+					
+						$result = $board->deleteComment($in['idx']);
+						if ($result) {
+							echo 1;
+							exit;
+						}
 					}
 					
 					echo 0;
