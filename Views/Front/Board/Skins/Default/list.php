@@ -15,6 +15,7 @@
 	<?php endif; ?>
 	<!-- 게시판 분류 E -->
 	<ul>
+	<?php if ($list) : ?>
 	<?php foreach ($list as $li) : ?>
 		<li class='list_rows'>
 			<a href='<?=siteUrl("board/view")?>?idx=<?=$li['idx']?>' class='subject'>
@@ -28,6 +29,9 @@
 			</div>
 		</li>
 	<?php endforeach; ?>
+	<?php else : // 게시글이 없는 경우 ?>
+		<li class='no_data'>게시글이 없습니다.</li>
+	<?php endif; ?>
 	</ul>
 	<?=$pagination?>
 </div>

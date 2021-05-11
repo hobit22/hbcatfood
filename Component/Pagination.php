@@ -121,6 +121,10 @@ class Pagination
 	*/
 	public function getPages()
 	{
+		// 레코드가 있는 경우만 페이지 HTML 출력 
+		if (!$this->total)
+			return "";
+		
 		$html = "<ul class='pagination'>";
 		
 		// 처음 페이지
