@@ -6,6 +6,19 @@
 		<input type='text' name='poster' value='<?php if (isset($poster)) { echo $poster; } elseif (!isset($poster) && isLogin()) { echo $_SESSION['member']['memNm']; }?>'>
 	</dd>
 </dl>
+<?php if ($confCategory) :  // 게시글 분류 ?>
+<dl>
+	<dt>분류</dt>
+	<dd>
+		<select name='category'>
+			<option value=''>- 선택 하세요 -</option>
+		<?php foreach ($confCategory as $cate) : ?>
+			<option value='<?=$cate?>'<?php if (isset($category) && $category == $cate) echo " selected";?>><?=$cate?></option>
+		<?php endforeach; ?>
+		</select>
+	</dd>
+</dl>
+<?php endif; ?>
 <?php if (!isLogin()) :  // 비회원인 경우는 비밀번호 입력 항목 추가 ?>
 <dl>
 	<dt>비밀번호</dt>
