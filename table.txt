@@ -1,0 +1,141 @@
+yh_board
+CREATE TABLE `yh_board` (
+	`id` VARCHAR(20) NOT NULL DEFAULT '' COMMENT '게시판 아이디' COLLATE 'utf8mb4_general_ci',
+	`boardNm` VARCHAR(30) NOT NULL COMMENT '게시판이름' COLLATE 'utf8mb4_general_ci',
+	`useReply` TINYINT(1) NULL DEFAULT '1' COMMENT '댓글 사용여부 0 - 미사용, 1 - 사용',
+	`boardSkin` VARCHAR(50) NULL DEFAULT NULL COMMENT '게시판 스킨' COLLATE 'utf8mb4_general_ci',
+	`columns` VARCHAR(100) NULL DEFAULT NULL COMMENT '노출항목' COLLATE 'utf8mb4_general_ci',
+	`useViewList` TINYINT(1) NULL DEFAULT '0',
+	`regDt` DATETIME NULL DEFAULT current_timestamp(),
+	`modDt` DATETIME NULL DEFAULT NULL,
+	PRIMARY KEY (`id`) USING BTREE,
+	INDEX `regDt` (`regDt`) USING BTREE
+)
+COLLATE='utf8mb4_general_ci'
+ENGINE=InnoDB
+;
+
+
+yh_boardComment
+
+CREATE TABLE `yh_boardComment` (
+	`idx` INT(11) NOT NULL AUTO_INCREMENT COMMENT '댓글 고유 번호',
+	`poster` VARCHAR(20) NOT NULL COMMENT '작성자' COLLATE 'utf8mb4_general_ci',
+	`memNo` INT(11) NULL DEFAULT '0' COMMENT '회원번호',
+	`comment` TEXT(65535) NOT NULL COMMENT '댓글 내용' COLLATE 'utf8mb4_general_ci',
+	`idxBoard` INT(11) NOT NULL COMMENT '게시글 번호',
+	`password` VARCHAR(65) NULL DEFAULT NULL COMMENT '비회원 비밃번호' COLLATE 'utf8mb4_general_ci',
+	`regDt` DATETIME NULL DEFAULT current_timestamp(),
+	`modDt` DATETIME NULL DEFAULT NULL,
+	PRIMARY KEY (`idx`) USING BTREE,
+	INDEX `memNo` (`memNo`) USING BTREE,
+	INDEX `idxBoard` (`idxBoard`) USING BTREE,
+	INDEX `regDt` (`regDt`) USING BTREE
+)
+COLLATE='utf8mb4_general_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=18
+;
+
+
+yh_boardData
+
+CREATE TABLE `yh_boardData` (
+	`idx` INT(11) NOT NULL AUTO_INCREMENT COMMENT '게시글번호',
+	`memNo` INT(11) NULL DEFAULT '0' COMMENT '회원번호',
+	`boardId` VARCHAR(20) NOT NULL COMMENT '게시판 아이디' COLLATE 'utf8mb4_general_ci',
+	`gid` VARCHAR(45) NOT NULL COMMENT '그룹 ID' COLLATE 'utf8mb4_general_ci',
+	`poster` VARCHAR(20) NULL DEFAULT NULL COMMENT '작성자명' COLLATE 'utf8mb4_general_ci',
+	`subject` VARCHAR(255) NOT NULL COMMENT '게시글 제목' COLLATE 'utf8mb4_general_ci',
+	`contents` TEXT(65535) NULL DEFAULT NULL COMMENT '게시글 내용' COLLATE 'utf8mb4_general_ci',
+	`link` VARCHAR(100) NULL DEFAULT NULL COMMENT '링크' COLLATE 'utf8mb4_general_ci',
+	`email` VARCHAR(60) NULL DEFAULT NULL COMMENT '이메일' COLLATE 'utf8mb4_general_ci',
+	`hit` INT(11) NULL DEFAULT '0' COMMENT '조회수',
+	`ip` VARCHAR(15) NULL DEFAULT NULL COMMENT '아이피' COLLATE 'utf8mb4_general_ci',
+	`password` VARCHAR(65) NULL DEFAULT NULL COMMENT '비회원 비밀번호' COLLATE 'utf8mb4_general_ci',
+	`regDt` DATETIME NULL DEFAULT current_timestamp() COMMENT '작성일자',
+	`modDt` DATETIME NULL DEFAULT NULL COMMENT '수정일자',
+	PRIMARY KEY (`idx`) USING BTREE,
+	INDEX `memNo` (`memNo`) USING BTREE,
+	INDEX `boardId` (`boardId`) USING BTREE,
+	INDEX `regDt` (`regDt`) USING BTREE,
+	INDEX `gid` (`gid`) USING BTREE
+)
+COLLATE='utf8mb4_general_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=11
+;
+
+
+yh_boardView
+
+CREATE TABLE `yh_boardView` (
+	`idx` INT(11) NOT NULL,
+	`browserId` VARCHAR(45) NOT NULL COLLATE 'utf8mb4_general_ci',
+	PRIMARY KEY (`idx`, `browserId`) USING BTREE
+)
+COLLATE='utf8mb4_general_ci'
+ENGINE=InnoDB
+;
+
+
+yh_fileInfo
+
+CREATE TABLE `yh_fileInfo` (
+	`idx` INT(11) NOT NULL AUTO_INCREMENT COMMENT '서버에 저장되는 파일 번호',
+	`fileName` VARCHAR(100) NOT NULL COMMENT '업로드된 실제 파일명' COLLATE 'utf8mb4_general_ci',
+	`mimeType` VARCHAR(70) NULL DEFAULT NULL COMMENT '파일 형식' COLLATE 'utf8mb4_general_ci',
+	`gid` VARCHAR(45) NOT NULL COMMENT '파일 그룹 ID' COLLATE 'utf8mb4_general_ci',
+	`isAttached` TINYINT(1) NOT NULL DEFAULT '0' COMMENT '1 - 첨부파일',
+	`isDone` TINYINT(1) NOT NULL DEFAULT '0' COMMENT '1 - 파일 업로드 완료',
+	`regDt` DATETIME NULL DEFAULT current_timestamp(),
+	PRIMARY KEY (`idx`) USING BTREE,
+	INDEX `gid` (`gid`) USING BTREE,
+	INDEX `regDt` (`regDt`) USING BTREE,
+	INDEX `isDone` (`isDone`) USING BTREE,
+	INDEX `isAttached` (`isAttached`) USING BTREE
+)
+COLLATE='utf8mb4_general_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=28
+;
+
+
+yh_member
+CREATE TABLE `yh_member` (
+	`memNo` INT(11) NOT NULL AUTO_INCREMENT COMMENT '회원번호',
+	`memId` VARCHAR(30) NOT NULL COMMENT '회원아이디' COLLATE 'utf8mb4_general_ci',
+	`level` TINYINT(4) NULL DEFAULT '0' COMMENT '회원등급',
+	`memPw` VARCHAR(60) NOT NULL COMMENT '비밀번호' COLLATE 'utf8mb4_general_ci',
+	`memNm` VARCHAR(20) NOT NULL COMMENT '회원명' COLLATE 'utf8mb4_general_ci',
+	`email` VARCHAR(60) NULL DEFAULT NULL COMMENT '이메일' COLLATE 'utf8mb4_general_ci',
+	`cellPhone` VARCHAR(13) NULL DEFAULT NULL COMMENT '휴대전화' COLLATE 'utf8mb4_general_ci',
+	`zipcode` VARCHAR(5) NULL DEFAULT NULL COMMENT '우편번호' COLLATE 'utf8mb4_general_ci',
+	`address` VARCHAR(100) NULL DEFAULT NULL COMMENT '주소' COLLATE 'utf8mb4_general_ci',
+	`addressSub` VARCHAR(100) NULL DEFAULT NULL COMMENT '나머지주소' COLLATE 'utf8mb4_general_ci',
+	`regDt` DATETIME NULL DEFAULT current_timestamp() COMMENT '회원가입일',
+	`modDt` DATETIME NULL DEFAULT NULL COMMENT '수정일',
+	`delDt` DATETIME NULL DEFAULT NULL COMMENT '탈퇴일',
+	PRIMARY KEY (`memNo`) USING BTREE,
+	UNIQUE INDEX `memId` (`memId`) USING BTREE,
+	INDEX `regDt` (`regDt`) USING BTREE,
+	INDEX `memNm` (`memNm`) USING BTREE
+)
+COLLATE='utf8mb4_general_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=7
+;
+
+
+yh_token
+
+CREATE TABLE `yh_token` (
+	`token` VARCHAR(50) NOT NULL DEFAULT '' COLLATE 'utf8mb4_general_ci',
+	`expires` DATETIME NOT NULL COMMENT '토큰 만료 시간',
+	`url` VARCHAR(255) NOT NULL COMMENT '이동할 URL' COLLATE 'utf8mb4_general_ci',
+	PRIMARY KEY (`token`) USING BTREE,
+	INDEX `expires` (`expires`) USING BTREE
+)
+COLLATE='utf8mb4_general_ci'
+ENGINE=InnoDB
+;
