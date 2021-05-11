@@ -359,6 +359,12 @@ class Board
 			'comment' => $this->params['comment'],
 		];
 		
+		// 비회원인 경우 댓글 수정, 삭제위한 비밀번호 처리 
+		if (!isLogin()) {
+			$security = App::load(\Component\Core\Security::class);
+			$inData['password'] = $security->createHash($this->params['password']);
+		}
+		
 		$result = db()->table("boardComment")->data($inData)->insert();
 		return $result;
 	}

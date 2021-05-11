@@ -7,6 +7,11 @@
 		<div class='comment_form'>
 			<div class='post_info'>
 				<input type='text' name='poster' value='<?=isLogin()?$_SESSION['member']['memNm']:""?>'>
+				
+				<?php if (!isLogin()) :  // 비회원 ?>
+				<input type='password' name='password' placeholder='비회원 비밀번호' class='w120'>
+				<?php endif; ?>
+				
 			</div>
 			<div class='comment_wrap'>
 				<textarea name='comment' placeholder='댓글을 작성하세요..'></textarea>
