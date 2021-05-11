@@ -1,6 +1,6 @@
 <div class='title1'>회원 가입설정</div>
 <div class='content_box'>
-	<form method='post' action='<?=siteUrl("member/indb")?>' target='ifrmHidden' autocomplete='off'>
+	<form method='post' action='<?=siteUrl("admin/member/indb")?>' target='ifrmHidden' autocomplete='off'>
 		<input type='hidden' name='mode' value='config'>
 		<dl>
 			<dt>회원가입 약관1</dt>

@@ -78,7 +78,7 @@ class IndbController extends \Controller\Admin\Controller
 				/** 회원 가입 설정 저장 */
 				case "config" : 
 					$member->updateConfig($in);
-					
+
 					reload("parent");
 					break;
 			}
