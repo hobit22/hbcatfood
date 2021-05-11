@@ -304,6 +304,11 @@ class Board
 			'ip' => $_SERVER['REMOTE_ADDR'],
 		];
 		
+		// 게시글 분류 
+		if (isset($this->params['category'])) {
+			$inData['category'] = $this->params['category'];
+		}
+		
 		// 비회원 글수정, 글삭제일때 비밀번호 처리 
 		if (!isLogin()) {
 			$security = App::load(\Component\Core\Security::class);
@@ -335,6 +340,11 @@ class Board
 			'link' => isset($this->params['link'])?$this->params['link']:"",
 			'modDt' => date("Y-m-d H:i:s"),
 		];
+		
+		// 게시판 분류 
+		if (isset($this->params['category'])) {
+			$upData['category'] = $this->params['category'];
+		}
 		
 		// 비회원 비밀번호 처리 
 		if (!isLogin()) {
