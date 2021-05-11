@@ -502,4 +502,23 @@ class Member
 						  
 		return $result !== false;
 	}
+	
+	/**
+	* 약관 설정 저장 
+	*
+	* @param Array $data 설정 데이터 
+	* @return Boolean 
+	*/
+	public function updateConfig($data)
+	{
+		$upData = [
+			'term1' => $data['term1'],
+			'term2' => $data['term2'],
+			'term3' => $data['term3'],
+		];
+		
+		$result = db()->table("memberConf")->data($upData)->update();
+							
+		return $result !== false;
+	}
 }

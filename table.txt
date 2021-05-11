@@ -144,3 +144,15 @@ CREATE TABLE `yh_token` (
 COLLATE='utf8mb4_general_ci'
 ENGINE=InnoDB
 ;
+
+
+yh_memberConf
+
+CREATE TABLE `yh_memberConf` (
+	`term1` TEXT(65535) NULL DEFAULT NULL COMMENT '회원가입약관1' COLLATE 'utf8mb4_general_ci',
+	`term2` TEXT(65535) NULL DEFAULT NULL COMMENT '회원가입약관2' COLLATE 'utf8mb4_general_ci',
+	`term3` TEXT(65535) NULL DEFAULT NULL COMMENT '회원가입약관3' COLLATE 'utf8mb4_general_ci'
+)
+COLLATE='utf8mb4_general_ci'
+ENGINE=InnoDB
+;
