@@ -131,18 +131,7 @@ $(function() {
 			
 		} else { // 댓글 수정 시작
 			
-			$.ajax({
-				url : "../board/ajax",
-				type : "get",
-				data : { mode : "get_comment", idx : idx },
-				dataType : "html",
-				success : function (res) {	
-					$li.append(res);
-				},
-				error : function (err) {
-					console.error(err);
-				}
-			});
+			board.loadCommentForm(idx, $li);
 		} // endif 
 	});
 	
@@ -165,9 +154,8 @@ $(function() {
 			dataType : "text",
 			success : function (res) {
 				if (res.trim() == "1") { // 인증 성공 
-					
-					
-					
+					$li.find(".comment_data").remove();
+					board.loadCommentForm(idx, $li);
 				} else { // 인증 실패 
 					alert("비회원 비밀번호가 일치하지 않습니다.");
 				}
