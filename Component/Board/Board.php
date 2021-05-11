@@ -735,9 +735,11 @@ class Board
 	* 
 	* @return Boolean 
 	*/
-	public function checkGuestPassword($idx, $password)
+	public function checkGuestPassword($idx, $password, $mode = "board")
 	{
-		$row = db()->table("boardData")
+		$tableNm = ($mode == 'comment')?"boardComment":"boardData";
+		
+		$row = db()->table($tableNm)
 						->select("memNo, password")
 						->where(["idx" => $idx])
 						->row();

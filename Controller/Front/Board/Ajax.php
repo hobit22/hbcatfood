@@ -43,13 +43,17 @@ class AjaxController extends \Controller\Front\Controller
 					} else { // 회원 또는 비회원 인증 완료 시 
 						echo "<textarea class='comment_data'>{$data['comment']}</textarea>";
 					}
-					/*
-					$data = [
-						'error' => 0,
-						'data' => $board->getComment($in['idx']),
-					];
-					echo json_encode($data);
-					*/
+					break;
+				// 비회원 비밀번호 검증
+				case "check_password" : 
+					$result = $board->checkGuestPassword($in['idx'], $in['password'], 'comment');
+					if ($result) {
+						$key = "comment_guest_".$in['idx'];
+						$_SESSION[$key] = true;
+						
+						echo 1;
+						exit;
+					}
 					break;
 			}
 			

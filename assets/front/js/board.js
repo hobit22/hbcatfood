@@ -130,6 +130,20 @@ $(function() {
 			$password.focus();
 			return;
 		}
+		
+		$.ajax({
+			type : "post",
+			url : "../board/ajax",
+			data : { mode : "check_password", idx : idx, password : password },
+			dataType : "html",
+			success : function (res) {
+				console.log(res);
+			},
+			error : function (err) {
+				console.error(err);
+			}
+		});
+		
 	});
 });
 
