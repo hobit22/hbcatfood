@@ -29,10 +29,19 @@ class ListController extends \Controller\Front\Controller
 		}
 		
 		$page = request()->get("page");
+		$category = request()->get("category");
 		
 		// 게시글 목록 
+		if ($category) { // 분류 있으면 검색 추가 
+			$config = getConfig();
+			$px = $config['prefix'];
+			$board->addWhere(["{$px}boardData.category" => $category]);
+		}
+		
 		$result = $board->getList($id, $page);
 		$data = array_merge($data, $result);
+		
+		$data['category'] = $category; // 선택한 게시판 분류
 		
 		App::render("Board/list", $data);
 	}

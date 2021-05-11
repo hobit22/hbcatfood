@@ -22,6 +22,22 @@ class Board
 	
 	private $divisionStr = "||"; // 배열 결합 시 구분값 
 	
+	private $addWhere = []; // 추가 검색 조건 
+	
+	/**
+	* 검색 조건 추가 
+	*
+	* @param Array $where  - 검색조건 
+	* @return $this
+	*/
+	public function addWhere($where) 
+	{
+		$this->addWhere = $where;
+		
+		return $this;
+	}
+	
+	
 	/**
 	* 게시판 생성 
 	*
@@ -550,13 +566,19 @@ class Board
 			'member' => [$px."boardData.memNo", $px."member.memNo", "left"],
 		];
 		
+		// 검색 조건 
+		$where = ["{$px}boardData.boardId" => $id]; // 기본 검색 - 게시판 아이디 
+		if ($this->addWhere) {
+			$where = array_merge($where, $this->addWhere);
+		}
+		
 		$total = db()->table("boardData", $joinTable)
-						->where(["{$px}boardData.boardId" => $id])
+						->where($where)
 						->count();
 		
 		$columns = "{$px}boardData.*, {$px}member.memNm, {$px}member.memId";
 		$list = db()->table("boardData", $joinTable)
-						->where(["{$px}boardData.boardId" => $id])
+						->where($where)
 						->select($columns)
 						->limit($limit, $offset)
 						->orderBy([["{$px}boardData.regDt", "desc"]])

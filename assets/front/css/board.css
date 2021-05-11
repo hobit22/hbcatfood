@@ -38,3 +38,10 @@
 .board_skin_default.comment .post_info input[type='text'] { width: auto; max-width: 120px;  }
 .board_skin_default.comment .post_info { margin-bottom: 5px; }
 .board_skin_default.comment .comment_data { width: 100%; border: 1px solid #d5d5d5; height: 100px; border-radius: 10px; resize: none; padding: 10px; background-color: #f8f8f8; }
+
+/** 게시판 분류 */
+.board_skin_default .category_tab { text-align: center; margin: 15px 0; }
+.board_skin_default .category_tab .tab { display: inline-block; margin: 0 5px; }
+.board_skin_default .category_tab a { display: inline-block; padding: 10px 20px; border: 1px solid #d5d5d5; border-radius: 15px; }
+.board_skin_default .category_tab a:hover,
+.board_skin_default .category_tab .tab.on a { background-color: #000000; border-color: #000000; color: #ffffff; }
