@@ -108,17 +108,9 @@ $(function() {
 				url : "../board/ajax",
 				type : "get",
 				data : { mode : "get_comment", idx : idx },
-				dataType : "json",
-				success : function (res) {
-					if (res) {
-						if (res.error == '1') { // 에러 있는 경우 
-							alert(res.message);
-						} else { // 정상인 경우 
-							const html = `<textarea class='comment_data'>${res.data.comment}</textarea>`;
-							
-							$li.append(html);
-						}
-					}
+				dataType : "html",
+				success : function (res) {	
+					$li.append(res);
 				},
 				error : function (err) {
 					console.error(err);

@@ -668,8 +668,8 @@ class Board
 	*/
 	public function checkUpdateCommentPossible($idx) 
 	{
-		if (isAdmin() || $this->isMyComment($idx)) 
-			return true; // 관리자 또는 본인 댓글인 경우 
+		if (isAdmin() || $this->isMyComment($idx) || $this->isGuestComment($idx)) 
+			return true; // 관리자 또는 본인 또는 비회원 댓글인 경우 
 		
 		return false;
 	}
@@ -682,8 +682,8 @@ class Board
 	*/
 	public function checkDeleteCommentPossible($idx) 
 	{
-		if (isAdmin() || $this->isMyComment($idx))
-			return true; // 관리자 또는 본인 댓글인 경우 
+		if (isAdmin() || $this->isMyComment($idx) || $this->isGuestComment($idx))
+			return true; // 관리자 또는 본인 또는 비회원 댓글인 경우 
 		
 		return false;
 	}
