@@ -2,6 +2,7 @@ yh_board
 CREATE TABLE `yh_board` (
 	`id` VARCHAR(20) NOT NULL DEFAULT '' COMMENT '게시판 아이디' COLLATE 'utf8mb4_general_ci',
 	`boardNm` VARCHAR(30) NOT NULL COMMENT '게시판이름' COLLATE 'utf8mb4_general_ci',
+	`category` VARCHAR(100) NOT NULL COMMENT '게시판분류' COLLATE 'utf8mb4_general_ci',
 	`useReply` TINYINT(1) NULL DEFAULT '1' COMMENT '댓글 사용여부 0 - 미사용, 1 - 사용',
 	`boardSkin` VARCHAR(50) NULL DEFAULT NULL COMMENT '게시판 스킨' COLLATE 'utf8mb4_general_ci',
 	`columns` VARCHAR(100) NULL DEFAULT NULL COMMENT '노출항목' COLLATE 'utf8mb4_general_ci',
