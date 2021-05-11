@@ -18,6 +18,8 @@ class ConfigController extends \Controller\Admin\Controller
 	
 	public function index()
 	{
-		App::render("Member/config");
+		$member = App::load(\Component\Member\Member::class);
+		$config = $member->getConfig();
+		App::render("Member/config", $config);
 	}
 }

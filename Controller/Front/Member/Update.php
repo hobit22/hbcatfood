@@ -16,6 +16,10 @@ class UpdateController extends \Controller\Front\Controller
 			msg("회원만 접근이 가능합니다.", -1);
 		}
 		
-		App::render("Member/form", $_SESSION['member']);
+		$member = App::load(\Component\Member\Member::class);
+		$config = $member->getConfig();
+		$data = array_merge($_SESSION['member'], $config);
+		
+		App::render("Member/form", $data);
 	}
 }

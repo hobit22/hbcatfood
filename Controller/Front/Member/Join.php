@@ -12,6 +12,8 @@ class JoinController extends \Controller\Front\Controller
 {
 	public function index()
 	{
-		App::render("Member/form");
+		$member = App::load(\Component\Member\Member::class);
+		$config = $member->getConfig();
+		App::render("Member/form", $config);
 	}
 }

@@ -54,7 +54,7 @@
 	<dl>
 		<dt>약관동의</dt>
 		<dd>
-			<textarea id='terms'>약관 내용 추가...</textarea><br>
+			<textarea id='terms'><?=$term1?></textarea><br>
 			<input type='checkbox' name='agree' id='agree' value='1'>
 			<label for='agree'>약관에 동의합니다.</label>
 		</dd>

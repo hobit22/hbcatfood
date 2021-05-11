@@ -521,4 +521,16 @@ class Member
 							
 		return $result !== false;
 	}
+	
+	/**
+	* 회원가입설정 조회 
+	*
+	* @return Array
+	*/
+	public function getConfig()
+	{
+		$conf = db()->table("memberConf")->row();
+		
+		return $conf;
+	}
 }
