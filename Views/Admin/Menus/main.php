@@ -18,6 +18,18 @@
 			게시판관리
 		</a>
 	</li>
+	<li>
+		<a href='<?=siteUrl("admin/goods")?>'<?php if ($menu == 'goods') echo " class='on'";?>>
+			<i class='xi-box'></i>
+			상품관리
+		</a>
+	</li>
+	<li>
+		<a href='<?=siteUrl("admin/order")?>'<?php if ($menu == 'order') echo " class='on'"?>>
+			<i class='xi-list'></i>
+			주문관리 
+		</a>
+	</li>
 	<?php if (isLogin()) : ?>
 	<li>
 		<a href='<?=siteUrl("admin/member/logout")?>'>로그아웃</a>
