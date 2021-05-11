@@ -118,6 +118,19 @@ $(function() {
 			});
 		} // endif 
 	});
+	
+	// 비회원 비밀번호 체크 
+	$("body").on("click", ".password_confirm", function() {
+		$li = $(this).closest("li");
+		const idx = $li.data("idx"); // 댓글 번호 
+		$password = $li.find("input[name='password']");
+		const password = $password.val(); // 비회원 비밀번호 
+		if (password == "") {
+			alert("비회원 비밀번호를 입력해 주세요.");
+			$password.focus();
+			return;
+		}
+	});
 });
 
 

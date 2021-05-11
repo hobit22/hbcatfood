@@ -35,7 +35,8 @@ class AjaxController extends \Controller\Front\Controller
 						echo "
 							<div class='comment_data'>
 								<div>비회원 비밀번호 입력</div>
-								<input type='password' name='password' placeholder='비회원 비밀번호 입력..'>
+								<input type='password' name='password' placeholder='비회원 비밀번호 입력..' class='w120'>
+								<span class='btn1 password_confirm'>확인</span>
 							</div>
 						";
 						
