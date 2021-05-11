@@ -31,7 +31,9 @@ class AjaxController extends \Controller\Front\Controller
 					
 					$data = $board->getComment($in['idx']);
 					
-					if ($board->isGuestComment($in['idx'])) { // 비회원
+					// 비회원 댓글 + 비회원 인증을 받지 않은 경우 
+					$key = "comment_guest_".$in['idx'];
+					if ($board->isGuestComment($in['idx']) && (!isset($_SESSION[$key]) || !$_SESSION[$key])) { // 비회원
 						echo "
 							<div class='comment_data'>
 								<div>비회원 비밀번호 입력</div>
