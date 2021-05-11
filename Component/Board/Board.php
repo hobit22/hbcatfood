@@ -708,6 +708,26 @@ class Board
 	}
 	
 	/**
+	* 비회원 게시글 여부 체크 
+	*
+	* @param Integer $idx 댓글 번호
+	* @return Boolean  // memNo - 0 인 경우 - 비회원 댓글
+	*/
+	public function isGuestComment($idx) 
+	{
+		$row = db()->table("boardComment")
+						->select("memNo")
+						->where(["idx" => $idx])
+						->row();
+		
+		if ($row && !$row['memNo']) { // 댓글의 memNo가 0이면 비회원 댓글 
+			return true;
+		}
+		
+		return false;
+	}
+	
+	/**
 	* 비회원 게시글 비밀번호 체크 
 	*
 	* @param Integer $idx - 게시글 번호
