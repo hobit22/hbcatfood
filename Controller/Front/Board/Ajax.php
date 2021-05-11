@@ -53,7 +53,7 @@ class AjaxController extends \Controller\Front\Controller
 						$key = "comment_guest_".$in['idx'];
 						$_SESSION[$key] = true;
 						
-						echo 1;
+						echo 1; // 비밀번호 인증 성공
 						exit;
 					}
 					break;

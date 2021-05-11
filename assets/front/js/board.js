@@ -1,3 +1,30 @@
+/**
+* 게시글 관련 
+*
+*/
+const board = {
+	/**
+	* 댓글 수정 양식 가져오기 
+	*
+	* @param Integer idx - 댓글번호 
+	* @param Oject selector 
+	*/
+	loadCommentForm : function(idx, selector) {
+		$.ajax({
+			url : "../board/ajax",
+			type : "get",
+			data : { mode : "get_comment", idx : idx },
+			dataType : "html",
+			success : function (res) {	
+				selector.append(res);
+			},
+			error : function (err) {
+				console.error(err);
+			}
+		});
+	}
+}
+
 $(function() {
 	if ($("#contents").length > 0) {
 		CKEDITOR.replace("contents");	
@@ -135,9 +162,15 @@ $(function() {
 			type : "post",
 			url : "../board/ajax",
 			data : { mode : "check_password", idx : idx, password : password },
-			dataType : "html",
+			dataType : "text",
 			success : function (res) {
-				console.log(res);
+				if (res.trim() == "1") { // 인증 성공 
+					
+					
+					
+				} else { // 인증 실패 
+					alert("비회원 비밀번호가 일치하지 않습니다.");
+				}
 			},
 			error : function (err) {
 				console.error(err);
