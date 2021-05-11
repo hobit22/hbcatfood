@@ -142,13 +142,15 @@ class IndbController extends \Controller\Front\Controller
 					} else {
 					
 						$result = $board->deleteComment($in['idx']);
-						if ($result) {
-							echo 1;
-							exit;
+						if ($result) { // 삭제 완료 -> 원 게시글로 이동
+							$url = "board/view?idx=".$data['idxBoard'];
+							go($url);
+						} else { // 삭제 실패 
+							msg("댓글 삭제 실패!", -1);
 						}
 					}
 					
-					echo 0;
+			
 					break;
 				/** 비회원 비밀번호 체크 */
 				case "check_password" : 
@@ -160,13 +162,14 @@ class IndbController extends \Controller\Front\Controller
 						throw new BoardFrontException("비밀번호를 입력하세요.");
 					}
 					
-					$result = $board->checkGuestPassword($in['idx'], $in['password']);
+					$mode = isset($in['isComment'])?"comment":"board";
+					$result = $board->checkGuestPassword($in['idx'], $in['password'], $mode);
 					if ($result === false) {
 						throw new BoardFrontException("비밀번호 불일치!");
 					}
 					
 					// 비밀번호 일치 하면 세션에 일치 여부 체크 완료에 대한 값
-					$key = "guest_board_".$in['idx'];
+					$key = isset($in['isComment'])?"comment_guest_".$in['idx']:"guest_board_".$in['idx'];
 					$_SESSION[$key] = true;
 					reload("parent"); // 새로고침
 					
