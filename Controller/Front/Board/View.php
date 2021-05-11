@@ -52,9 +52,20 @@ class ViewController extends \Controller\Front\Controller
 		// 보기 하단에 게시글 목록 S 
 		if ($conf['useViewList']) { 
 			ob_start();
+			
+			if ($data['category']) {
+				$config = getConfig();
+				$px = $config['prefix'];
+				$board->addWhere(["{$px}boardData.category" => $data['category']]);
+			}
+			
 			$result = $board->getList($data['id']);
+			$result['category'] = $data['category'];
 			$result = array_merge($result, $conf);
 			$result['isViewList'] = true;
+			
+			
+			
 			App::render("Board/list", $result);
 			
 			$listContents = ob_get_clean();
