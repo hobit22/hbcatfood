@@ -14,7 +14,7 @@
 				
 			</div>
 			<div class='comment_wrap'>
-				<textarea name='comment' placeholder='댓글을 작성하세요..'></textarea>
+				<textarea name='comment' class='comment' placeholder='댓글을 작성하세요..'></textarea>
 				<input type='submit' value='댓글등록'>
 			</div>
 		</div>
