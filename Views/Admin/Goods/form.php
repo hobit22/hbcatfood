@@ -21,6 +21,7 @@
 <div class='content_box'>
 	<form method='post' action='<?=siteUrl("admin/goods/indb")?>' target='ifrmHidden' autocomplete='off'>
 		<input type='hidden' name='mode' value='register'>
+		<input type='hidden' name='gid' value='<?=$gid?>'>
 		<dl>
 			<dt>상품명</dt>
 			<dd>
@@ -63,6 +64,8 @@
 			<dt>상세설명</dt>
 			<dd>
 				<textarea name='description' id='description'></textarea>
+				<span class='btn2' onclick="layer.popup('<?=siteUrl("file/upload")?>?gid=<?=$gid?>&type=image', 280, 130);">이미지 추가</span>
+				<span class='uploaded_images'></span>
 			</dd>
 		</dl>
 		<input type='submit' value='상품등록' class='btn1'>

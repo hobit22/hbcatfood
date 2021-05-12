@@ -85,6 +85,7 @@ class Goods
 	public function getCommonColumns($params)
 	{
 		$columns = [
+			'gid' => isset($params['gid'])?$params['gid']:gid(),
 			'goodsNm' => isset($params['goodsNm'])?$params['goodsNm']:"",
 			'shortDescription' => isset($params['shortDescription'])?$params['shortDescription']:"",
 			'salePrice' => isset($params['salePrice'])?$params['salePrice']:0,

@@ -26,6 +26,10 @@ class RegisterController extends \Controller\Admin\Controller
 	
 	public function index()
 	{
-		App::render("Goods/form");
+		$gid = gid();
+		$data = [
+			'gid' => $gid,
+		];
+		App::render("Goods/form", $data);
 	}
 }
