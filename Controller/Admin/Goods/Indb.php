@@ -42,6 +42,13 @@ class IndbController extends \Controller\Admin\Controller
 					$result = $goods->data($in)
 										  ->validator("update")
 										  ->update();
+										  
+					if ($result === false) { // 수정 실패 
+						throw new GoodsAdminException("수정 실패!");
+					}
+					
+					// 수정 성공 -> 상품 목록 
+					go("admin/goods/list", "parent");
 					break;
 			}
 			

@@ -83,7 +83,7 @@
 				</div>
 			</dd>
 		</dl>
-		<input type='submit' value='상품등록' class='btn1'>
+		<input type='submit' value='상품<?=isset($goodsNo)?"수정":"등록"?>' class='btn1'>
 	</form>
 </div>
 <!--// content_box -->
