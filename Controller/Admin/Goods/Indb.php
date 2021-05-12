@@ -50,6 +50,16 @@ class IndbController extends \Controller\Admin\Controller
 					// 수정 성공 -> 상품 목록 
 					go("admin/goods/list", "parent");
 					break;
+				/** 상품 삭제(목록) */
+				case "delete_list" : 
+					if (!isset($in['goodsNo'])) {
+						throw new GoodsAdminException("삭제할 상품을 선택해 주세요.");
+					}
+					
+					foreach ($in['goodsNo'] as $goodsNo) {
+						$goods->delete($goodsNo);
+					}
+					break;
 			}
 			
 		} catch (GoodsAdminException $e) {

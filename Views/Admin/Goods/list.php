@@ -32,6 +32,14 @@
 		<?php endforeach; ?>
 			</tbody>
 		</table>
+		<div class='action_box'>
+			<select name='mode'>
+				<option value='update_list'>수정</option>
+				<option value='delete_list'>삭제</option>
+				<input type='submit' value='처리하기' class='btn1' onclick="return confirm('정말 처리 하시겠습니까?');">
+			</select>
+		</div>
+		<!--// action_box -->
 	</form>
 </div>
 <!--// content_box -->

@@ -193,6 +193,23 @@ class File
 	}
 	
 	/**
+	* 그룹 ID로 파일 삭제 
+	*
+	* @param String $gid 그룹 ID
+	*/
+	public function deleteByGid($gid)
+	{
+		/**
+		1. gid로 파일 목록 가져오기 - O
+		2. 각 파일 정보를 순회 -> 삭제 
+		*/
+		$list = $this->getGroupFiles($gid);
+		foreach ($list as $li) {
+			$this->delete($li['idx']);
+		}
+	}
+	
+	/**
 	* 그룹 ID별 파일 목록 
 	*
 	* @param String $gid - 그룹 ID 

@@ -177,4 +177,26 @@ class Goods
 		
 		return $data;
 	}
+	
+	/**
+	* 상품 삭제 
+	*
+	* @param Integer $goodsNo 상품 번호 
+	* @return Boolean 
+	*/
+	public function delete($goodsNo)
+	{
+		/**
+			1. 상품 데이터 가져온 후 - O 
+			2. 업로드된 이미지 파일 삭제(gid)
+			3. 상품 데이터를 데이터베이스에서 삭제 
+		*/
+		
+		$data = $this->get($goodsNo);
+		if (!$data) return false; // 상품이 존재 X -> false
+		
+		// 파일 삭제 gid 
+		$file = App::load(\Component\File::class);
+		$file->deleteByGid($data['gid']);
+	}
 }
