@@ -7,6 +7,41 @@ $(function() {
 	// 에디터 로드
 	CKEDITOR.replace("description");
 	CKEDITOR.config.height=300;
+	
+	/** 본문 이미지 추가 */
+	$("body").on("click", ".file_box .addContents", function() {
+		$fileBox = $(this).closest(".file_box");
+		const url = $fileBox.data("url");
+		const tag = `<img src='${url}'>`;
+		CKEDITOR.instances.description.insertHtml(tag);
+	});
+	
+	/** 이미지 파일 삭제 */
+	$("body").on("click", ".file_box .remove", function() {
+		if (!confirm("정말 삭제하시겠습니까")) {
+			return;
+		}
+		
+		$fileBox = $(this).closest(".file_box");
+		const idx = $fileBox.data('idx');
+		
+		$.ajax({
+			url : "../../file/delete",
+			type : "post",
+			data : { idx : idx },
+			dataType : "text",
+			success : function(res) {
+				if (res == "1") {
+					$fileBox.remove(); 
+				} else {
+					alert("파일 삭제 실패!");
+				}
+			},
+			error : function(err) {
+				console.error(err);
+			}
+		});
+	});
 });
 
 

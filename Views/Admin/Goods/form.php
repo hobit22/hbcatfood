@@ -64,8 +64,10 @@
 			<dt>상세설명</dt>
 			<dd>
 				<textarea name='description' id='description'></textarea>
-				<span class='btn2' onclick="layer.popup('<?=siteUrl("file/upload")?>?gid=<?=$gid?>&type=image', 280, 130);">이미지 추가</span>
-				<span class='uploaded_images'></span>
+				<div class='mt10'>
+					<span class='btn2' onclick="layer.popup('<?=siteUrl("file/upload")?>?gid=<?=$gid?>&type=image', 280, 130);">이미지 추가</span>
+					<span class='uploaded_images'></span>
+				</div>
 			</dd>
 		</dl>
 		<input type='submit' value='상품등록' class='btn1'>

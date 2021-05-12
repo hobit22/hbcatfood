@@ -29,6 +29,7 @@ textarea { border: 1px solid #d5d5d5; padding: 10px; width: 100%; min-height: 15
 
 .btn2 { background-color: orange; border: 0; color: #ffffff; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 11px; display: inline-block; }
 
+.mt10 { margin-top: 10px !important; }
 .mt20 { margin-top: 20px !important; }
 .mb20 { margin-bottom: 20px !important; }
 
