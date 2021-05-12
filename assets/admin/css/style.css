@@ -52,6 +52,17 @@ textarea { border: 1px solid #d5d5d5; padding: 10px; width: 100%; min-height: 15
 
 .action_box { background-color: #f8f8f8; padding: 5px 10px; border: 1px solid #d5d5d5; }
 .action_box select { max-width: 150px; margin-right: 5px; }
+
+/** 레이어 팝업 */
+.dn { display: none !important; }
+#layer_dim { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 100; background:rgba(0, 0, 0, 0.7); cursor: pointer; }
+#layer_popup { position: fixed; top: 0; left: 0; background-color: #ffffff; overflow: hidden; border-radius: 20px; z-index: 101; }
+
+/** 파일 box */
+.file_box { border: 1px solid #d5d5d5; padding: 7px 10px; border-radius: 5px; cursor: pointer; margin-right: 2px; }
+.file_box i { font-size: 15px; vertical-align: middle; }
+.file_box a:hover { text-decoration: underline; }
+
 /* 공통 E */
 
 
