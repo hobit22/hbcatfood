@@ -34,6 +34,10 @@ class UpdateController extends \Controller\Admin\Controller
 		$goods = App::load(\Component\Goods\Goods::class);
 		$data = $goods->get($goodsNo);
 		
-		App::render("Goods/form");
+		if (!$data) {
+			msg("존재하지 않는 상품입니다.", -1);
+		}
+		debug($data);
+		App::render("Goods/form", $data);
 	}
 }
