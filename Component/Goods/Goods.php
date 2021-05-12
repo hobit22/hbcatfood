@@ -95,4 +95,19 @@ class Goods
 		
 		return $columns;
 	}
+	
+	/**
+	* 상품 정보 조회 
+	*
+	* @param Integer $goodsNo 상품 등록번호 '
+	* @return Array
+	*/
+	public function get($goodsNo)
+	{
+		$data = db()->table("goods")
+						->where(["goodsNo" => $goodsNo])
+						->row();
+						
+		return $data;
+	}
 }

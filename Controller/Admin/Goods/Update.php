@@ -23,4 +23,17 @@ class UpdateController extends \Controller\Admin\Controller
 		$this->addScript(["goods_register"])
 			   ->addCss(["goods"]);
 	}
+	
+	public function index()
+	{
+		$goodsNo = request()->get("goodsNo");
+		if (!$goodsNo) {
+			msg("잘못된 접근입니다.", -1);
+		}
+		
+		$goods = App::load(\Component\Goods\Goods::class);
+		$data = $goods->get($goodsNo);
+		
+		App::render("Goods/form");
+	}
 }
