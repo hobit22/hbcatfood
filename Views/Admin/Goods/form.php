@@ -92,8 +92,8 @@
 				<div class='mt10'>
 					<span class='btn2' onclick="layer.popup('<?=siteUrl("file/upload")?>?gid=<?=$gid?>&type=image&location=description', 280, 130);">이미지 추가</span>
 					<span class='uploaded_images'>
-					<?php if (isset($attachFiles) && isset($attachFiles['images'])) : ?>
-					<?php foreach ($attachFiles['images'] as $file) : ?>
+					<?php if ($images['description']) : ?>
+					<?php foreach ($images['description'] as $file) : ?>
 					<span class='file_box' data-idx='<?=$file['idx']?>' data-url='<?=$file['url']?>'>
 						<a href='<?=siteUrl("file/download")?>?idx=<?=$file['idx']?>' target='ifrmHidden'><?=$file['fileName']?></a>
 						<i class='remove xi-file-remove'></i>
