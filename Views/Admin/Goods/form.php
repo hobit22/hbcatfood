@@ -60,11 +60,12 @@
 			<dd></dd>
 		</dl>
 		<dl>
-			<td>상세설명</td>
-			<td>
+			<dt>상세설명</dt>
+			<dd>
 				<textarea name='description' id='description'></textarea>
-			</td>
+			</dd>
 		</dl>
+		<input type='submit' value='상품등록' class='btn1'>
 	</form>
 </div>
 <!--// content_box -->
