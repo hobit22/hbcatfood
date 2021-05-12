@@ -188,8 +188,8 @@ class Goods
 	{
 		/**
 			1. 상품 데이터 가져온 후 - O 
-			2. 업로드된 이미지 파일 삭제(gid)
-			3. 상품 데이터를 데이터베이스에서 삭제 
+			2. 업로드된 이미지 파일 삭제(gid) - O 
+			3. 상품 데이터를 데이터베이스에서 삭제 - O
 		*/
 		
 		$data = $this->get($goodsNo);
@@ -198,5 +198,9 @@ class Goods
 		// 파일 삭제 gid 
 		$file = App::load(\Component\File::class);
 		$file->deleteByGid($data['gid']);
+		
+		$result = db()->table("goods")->where(["goodsNo" => $goodsNo])->delete();
+		
+		return $result;
 	}
 }
