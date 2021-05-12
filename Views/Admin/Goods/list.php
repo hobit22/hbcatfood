@@ -28,9 +28,21 @@
 					<td width='300'><?=$li['goodsNm']?></td>
 					<td align='center'><?=number_format($li['salePrice'])?>원</td>
 					<td align='center'><?=number_format($li['consumerPrice'])?>원</td>
-					<td></td>
-					<td></td>
-					<td></td>
+					<td>
+						<input type='text' name='totalStock[<?=$li['goodsNo']?>]' value='<?=$li['totalStock']?>'>
+					</td>
+					<td>
+						<select name='stockOut[<?=$li['goodsNo']?>]'>
+							<option value='0'<?=$li['stockOut']?"":" selected"?>>판매중</option>
+							<option value='1'<?=$li['stockOut']?" selected":""?>>품절</option>
+						</select>
+					</td>
+					<td>
+						<select name='isDisplay[<?=$li['goodsNo']?>]'>
+							<option value='0'<?=$li['isDisplay']?"":" selected"?>>미진열</option>
+							<option value='1'>진열</option>
+						</select>
+					</td>
 					<td>
 						<a href='<?=siteUrl("admin/goods/update")?>?goodsNo=<?=$li['goodsNo']?>' class='btn2'>상품수정</a>
 					</td>
