@@ -136,4 +136,22 @@ class Goods
 		
 		return $data;
 	}
+	
+	/**
+	* 상품 목록 
+	*
+	* @param Integer $page 페이지번호
+	* @param Integer $limit - 1페이지당 출력 레코드 수 
+	* @parma String $qs 페이지 링크 추가용 검색 쿼리 스트링
+	*
+	* @return Array
+	*					list - 상품목록
+	*					pagination - 페이지번호
+	*					total - 전체 레코드 수 
+	*					offset - 현재 레코드 시작점 
+	*/
+	public function getList($page = 1, $limit = 20, $qs = "")
+	{
+		
+	}
 }

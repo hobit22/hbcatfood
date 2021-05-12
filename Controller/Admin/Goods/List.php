@@ -18,6 +18,10 @@ class ListController extends \Controller\Admin\Controller
 	
 	public function index()
 	{
+		$goods = App::load(\Component\Goods\Goods::class);
 		
+		$page = request()->get("page");
+		
+		$data = $goods->getList($page);
 	}
 }
