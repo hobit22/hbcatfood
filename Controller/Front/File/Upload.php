@@ -21,10 +21,11 @@ class UploadController extends \Controller\Front\Controller
 	{
 		$gid = request()->get("gid");
 		$type = request()->get("type");
+		$location = request()->get("location");
 		if (!$gid) {
 			return msg("잘못된 접근입니다.");
 		}
 		
-		App::render("File/upload", ["gid" => $gid, 'type' => $type]);
+		App::render("File/upload", ["gid" => $gid, 'type' => $type, 'location' => $location]);
 	}
 }

@@ -90,7 +90,7 @@
 			<dd>
 				<textarea name='description' id='description'><?=isset($description)?$description:""?></textarea>
 				<div class='mt10'>
-					<span class='btn2' onclick="layer.popup('<?=siteUrl("file/upload")?>?gid=<?=$gid?>&type=image', 280, 130);">이미지 추가</span>
+					<span class='btn2' onclick="layer.popup('<?=siteUrl("file/upload")?>?gid=<?=$gid?>&type=image&location=description', 280, 130);">이미지 추가</span>
 					<span class='uploaded_images'>
 					<?php if (isset($attachFiles) && isset($attachFiles['images'])) : ?>
 					<?php foreach ($attachFiles['images'] as $file) : ?>
