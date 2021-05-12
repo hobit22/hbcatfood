@@ -14,6 +14,18 @@ class File
 	// 파일 업로드 경로 
 	private $uploadPath = __DIR__ . "/../assets/upload/";
 	
+	private $location = null; // 파일 위치 
+	
+	/**
+	* 파일 위치 설정 
+	*
+	*/
+	public function setLocation($location = null)
+	{
+		$this->location = $location;
+		
+		return $this;
+	}
 	
 	/**
 	* 파일 업로드 처리 
@@ -91,7 +103,8 @@ class File
 				'fileName' => $file['name'],
 				'mimeType' => $file['type'],
 				'gid' => $gid,
-				'isAttached' => $isAttached?1:0, // 첨부파일인지 아닌지 
+				'isAttached' => $isAttached?1:0, // 첨부파일인지 아닌지,
+				'location' => $this->location, // 파일 위치 
 			];
 			
 			$idx = db()->table("fileInfo")->data($inData)->insert();

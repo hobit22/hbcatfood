@@ -21,6 +21,7 @@ class UploadOkController extends \Controller\Front\Controller
 		try {
 			$gid = request()->post("gid");
 			$type = request()->post("type");
+			$location = request()->post("location");
 			$files = request()->files();
 			if (!$gid) {
 				throw new FileUploadException("잘못된 접근입니다.");
