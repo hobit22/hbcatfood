@@ -88,6 +88,7 @@ class Goods
 	public function update()
 	{
 		$upData = $this->getCommonColumns($this->params);
+		$upData['modDt'] = date("Y-m-d H:i:s");
 		
 		$result = db()->table("goods")
 						  ->data($upData)

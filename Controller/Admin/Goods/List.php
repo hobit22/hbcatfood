@@ -23,5 +23,6 @@ class ListController extends \Controller\Admin\Controller
 		$page = request()->get("page");
 		
 		$data = $goods->getList($page);
+		App::render("Goods/list", $data);
 	}
 }
