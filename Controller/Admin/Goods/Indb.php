@@ -59,6 +59,8 @@ class IndbController extends \Controller\Admin\Controller
 					foreach ($in['goodsNo'] as $goodsNo) {
 						$goods->delete($goodsNo);
 					}
+					
+					reload("parent");
 					break;
 			}
 			

@@ -203,9 +203,12 @@ class File
 		1. gid로 파일 목록 가져오기 - O
 		2. 각 파일 정보를 순회 -> 삭제 
 		*/
-		$list = $this->getGroupFiles($gid);
-		foreach ($list as $li) {
-			$this->delete($li['idx']);
+		$lists = $this->getGroupFiles($gid);
+
+		foreach ($lists as $list) {
+			foreach ($list as $li) {
+				$this->delete($li['idx']);
+			}
 		}
 	}
 	
