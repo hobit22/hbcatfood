@@ -11,9 +11,9 @@
 					<th colspan='2'>상품</th>
 					<th width='100'>판매가</th>
 					<th width='100'>소비자가</th>
-					<th width='80'>재고</th>
-					<th width='80'>품절</th>
-					<th width='80'>진열</th>
+					<th width='100'>재고</th>
+					<th width='100'>품절</th>
+					<th width='100'>진열</th>
 					<th>관리</th>
 				</tr>
 			</thead>
@@ -40,7 +40,7 @@
 					<td>
 						<select name='isDisplay[<?=$li['goodsNo']?>]'>
 							<option value='0'<?=$li['isDisplay']?"":" selected"?>>미진열</option>
-							<option value='1'>진열</option>
+							<option value='1'<?=$li['isDisplay']?" selected":""?>>진열</option>
 						</select>
 					</td>
 					<td>
