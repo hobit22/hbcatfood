@@ -37,8 +37,11 @@ class IndbController extends \Controller\Admin\Controller
 					// 등록 성공 - 상품 목록 
 					go("admin/goods/list", "parent");
 					break;
+				/** 상품 수정 */
 				case "update" : 
-					
+					$result = $goods->data($in)
+										  ->validator("update")
+										  ->update();
 					break;
 			}
 			

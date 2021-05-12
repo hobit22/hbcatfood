@@ -40,6 +40,10 @@ class Goods
 	public function validator($mode = "register")
 	{
 		
+		if ($mode == 'update') { // 상품 정보 수정 
+			$this->requiredColumns['goodsNo'] = '상품번호';
+		}
+		
 		/** 필수 데이터 체크 */
 		$missing = [];
 		foreach($this->requiredColumns as $column => $colNm) {
@@ -74,6 +78,23 @@ class Goods
 		$goodsNo = db()->table("goods")->data($inData)->insert();
 		
 		return $goodsNo;
+	}
+	
+	/**
+	* 상품 수정 
+	*
+	* @return Boolean 
+	*/
+	public function update()
+	{
+		$upData = $this->getCommonColumns($this->params);
+		
+		$result = db()->table("goods")
+						  ->data($upData)
+						  ->where(["goodsNo" => $this->params['goodsNo']])
+						  ->update();
+						  
+		return $result !== false;
 	}
 	
 	/**
