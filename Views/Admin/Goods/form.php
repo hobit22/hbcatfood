@@ -20,19 +20,27 @@
 <div class='title1'>상품등록</div>
 <div class='content_box'>
 	<form method='post' action='<?=siteUrl("admin/goods/indb")?>' target='ifrmHidden' autocomplete='off'>
+		<input type='hidden' name='mode' value='register'>
 		<dl>
 			<dt>상품명</dt>
-			<dd></dd>
+			<dd>
+				<input type='text' name='goodsNm'>
+			</dd>
 		</dl>
 		<dl>
 			<dt>짧은 설명</dt>
-			<dd></dd>
+			<dd>
+				<input type='text' name='shortDescription'>
+			</dd>
 		</dl>
 		<dl>
 			<dt>상품가격</dt>
 			<dd>
-				판매가 :  <br>
+				판매가 :  
+				<input type='text' name='salePrice' class='w120'>원
+				/ 
 				소비자가 : 
+				<input type='text' name='consumerPrice' class='w120'>원
 			</dd>
 		</dl>
 		<dl>
@@ -53,7 +61,9 @@
 		</dl>
 		<dl>
 			<td>상세설명</td>
-			<td></td>
+			<td>
+				<textarea name='description' id='description'></textarea>
+			</td>
 		</dl>
 	</form>
 </div>
