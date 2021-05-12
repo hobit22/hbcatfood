@@ -113,6 +113,9 @@ class Goods
 			'salePrice' => isset($params['salePrice'])?$params['salePrice']:0,
 			'consumerPrice' => isset($params['consumerPrice'])?$params['consumerPrice']:0,
 			'description' => isset($params['description'])?$params['description']:"",
+			'totalStock' => isset($params['totalStock'])?$params['totalStock']:0,
+			'stockOut' => isset($params['stockOut'])?$params['stockOut']:0,
+			'isDisplay' => isset($params['isDisplay'])?$params['isDisplay']:0,
 		];
 		
 		return $columns;
