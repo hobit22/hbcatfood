@@ -33,7 +33,8 @@ class UploadOkController extends \Controller\Front\Controller
 				2. 파일 형식제한(이미지, 이미지외 파일)
 			*/
 			$file = App::load(\Component\File::class);
-			$idx = $file->upload($gid, "file", $type, true);
+			$idx = $file->setLocation($location)
+							->upload($gid, "file", $type, true);
 			if ($idx === false) {
 				throw new FileUploadException("파일 업로드 실패!");
 			}

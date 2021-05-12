@@ -138,6 +138,7 @@ class Goods
 			$description = $file->getGroupFiles($data['gid'], 'description');
 			$main = $file->getGroupFiles($data['gid'], 'main');
 			$list = $file->getGroupFiles($data['gid'], 'list');
+			
 			$data['images'] = [
 				'description' => isset($descritpion['images'])?$description['images']:[],
 				'main' => isset($main['images'])?$main['images']:[],
