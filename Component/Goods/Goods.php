@@ -152,6 +152,28 @@ class Goods
 	*/
 	public function getList($page = 1, $limit = 20, $qs = "")
 	{
+		$page = $page?$page:1;
+		$offset = ($page - 1) * $limit;
 		
+		// 총 레코드 갯수 
+		$total = db()->table("goods")->count();
+		
+		$list = db()->table("goods")
+					  ->orderBy([["regDt", "desc"]])
+					  ->limit($limit, $offset)
+					  ->rows();
+					  
+		$paginator = App::load(\Component\Pagination::class, $page, $limit, $total, $qs);
+		
+		$pagination = $paginator->getPages();
+		
+		$data = [
+			'list' => $list,
+			'pagination' => $pagination,
+			'total' => $total,
+			'offset' => $offset,
+		];
+		
+		return $data;
 	}
 }
