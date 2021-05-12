@@ -107,7 +107,12 @@ class Goods
 		$data = db()->table("goods")
 						->where(["goodsNo" => $goodsNo])
 						->row();
-						
+		
+		if ($data) {
+			$file = App::load(\Component\File::class);
+			$data['attachFiles'] = $file->getGroupFiles($data['gid']);
+		}
+		
 		return $data;
 	}
 }

@@ -34,7 +34,7 @@
 		<dl>
 			<dt>짧은 설명</dt>
 			<dd>
-				<input type='text' name='shortDescription' value='<?=isset($shortDescription)?$shortDescripton:""?>'>
+				<input type='text' name='shortDescription' value='<?=isset($shortDescription)?$shortDescription:""?>'>
 			</dd>
 		</dl>
 		<dl>
@@ -66,10 +66,20 @@
 		<dl>
 			<dt>상세설명</dt>
 			<dd>
-				<textarea name='description' id='description'></textarea>
+				<textarea name='description' id='description'><?=isset($description)?$description:""?></textarea>
 				<div class='mt10'>
 					<span class='btn2' onclick="layer.popup('<?=siteUrl("file/upload")?>?gid=<?=$gid?>&type=image', 280, 130);">이미지 추가</span>
-					<span class='uploaded_images'></span>
+					<span class='uploaded_images'>
+					<?php if (isset($attachFiles) && isset($attachFiles['images'])) : ?>
+					<?php foreach ($attachFiles['images'] as $file) : ?>
+					<span class='file_box' data-idx='<?=$file['idx']?>' data-url='<?=$file['url']?>'>
+						<a href='<?=siteUrl("file/download")?>?idx=<?=$file['idx']?>' target='ifrmHidden'><?=$file['fileName']?></a>
+						<i class='remove xi-file-remove'></i>
+						<i class='addContents xi-upload'></i>
+					</span>
+					<?php endforeach;?>
+					<?php endif; ?>
+					</span>
 				</div>
 			</dd>
 		</dl>

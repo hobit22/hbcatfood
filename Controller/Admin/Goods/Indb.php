@@ -37,6 +37,9 @@ class IndbController extends \Controller\Admin\Controller
 					// 등록 성공 - 상품 목록 
 					go("admin/goods/list", "parent");
 					break;
+				case "update" : 
+					
+					break;
 			}
 			
 		} catch (GoodsAdminException $e) {
