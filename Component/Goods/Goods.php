@@ -70,6 +70,10 @@ class Goods
 	public function register()
 	{
 		$inData = $this->getCommonColumns($this->params);
+		
+		$goodsNo = db()->table("goods")->data($inData)->insert();
+		
+		return $goodsNo;
 	}
 	
 	/**
@@ -87,5 +91,7 @@ class Goods
 			'consumerPrice' => isset($params['consumerPrice'])?$params['consumerPrice']:0,
 			'description' => isset($params['description'])?$params['description']:"",
 		];
+		
+		return $columns;
 	}
 }

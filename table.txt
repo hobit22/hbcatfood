@@ -164,7 +164,7 @@ CREATE TABLE `yh_goods` (
 	`goodsNm` VARCHAR(100) NOT NULL COMMENT '상품명' COLLATE 'utf8mb4_general_ci',
 	`shortDescription` VARCHAR(255) NULL DEFAULT NULL COMMENT '짧은 상품설명' COLLATE 'utf8mb4_general_ci',
 	`salePrice` INT(11) NULL DEFAULT '0' COMMENT '판매가',
-	`cosumerPrice` INT(11) NULL DEFAULT '0' COMMENT '소비자가',
+	`consumerPrice` INT(11) NULL DEFAULT '0' COMMENT '소비자가',
 	`description` TEXT(65535) NULL DEFAULT NULL COMMENT '상세설명' COLLATE 'utf8mb4_general_ci',
 	`regDt` DATETIME NULL DEFAULT current_timestamp() COMMENT '상품등록일',
 	`modDt` DATETIME NULL DEFAULT NULL COMMENT '상품수정일',
