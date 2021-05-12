@@ -48,6 +48,18 @@
 			</dd>
 		</dl>
 		<dl>
+			<dt>총재고</dt>
+			<dd>
+				<input type='text' name='totalStock' value='<?=isset($totalStock)?$totalStock:0?>' class='w120'>
+				 / 
+				 품절 여부 
+				 <input type='radio' name='stockOut' value='1' id='stockOut1'<?php if (isset($stockOut) && $stockOut) echo " checked";?>>
+				 <label for='stockOut1'>품절</label> 
+				 <input type='radio' name='stockOut' value='0' id='stockOut0'<?php if (!isset($stockOut) || !$stockOut) echo " checked";?>>
+				 <label for='stockOut0'>판매중</label>
+			</dd>
+		</dl>
+		<dl>
 			<dt>옵션</dt>
 			<dd></dd>
 		</dl>
