@@ -37,7 +37,7 @@ class UpdateController extends \Controller\Admin\Controller
 		if (!$data) {
 			msg("존재하지 않는 상품입니다.", -1);
 		}
-		debug($data);
+	
 		App::render("Goods/form", $data);
 	}
 }
