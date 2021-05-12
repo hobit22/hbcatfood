@@ -209,14 +209,15 @@ class File
 	* 그룹 ID로 파일 삭제 
 	*
 	* @param String $gid 그룹 ID
+	* @param String $location 파일 위치 
 	*/
-	public function deleteByGid($gid)
+	public function deleteByGid($gid, $location = null)
 	{
 		/**
 		1. gid로 파일 목록 가져오기 - O
 		2. 각 파일 정보를 순회 -> 삭제 
 		*/
-		$lists = $this->getGroupFiles($gid);
+		$lists = $this->getGroupFiles($gid, $location);
 
 		foreach ($lists as $list) {
 			foreach ($list as $li) {

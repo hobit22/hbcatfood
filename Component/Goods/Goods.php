@@ -135,7 +135,11 @@ class Goods
 		
 		if ($data) {
 			$file = App::load(\Component\File::class);
-			$data['attachFiles'] = $file->getGroupFiles($data['gid']);
+			$data['images'] = [
+				'description' => $file->getGroupFiles($data['gid'], 'location'),
+				'main' => $file->getGroupFiles($data['gid'], 'main'),
+				'list' => $file->getGroupFiles($data['gid'], 'list'),
+			];
 		}
 		
 		return $data;
