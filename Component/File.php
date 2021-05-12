@@ -229,15 +229,23 @@ class File
 	* 그룹 ID별 파일 목록 
 	*
 	* @param String $gid - 그룹 ID 
+	* @param String $location - 파일 위치
 	* @return Array
 	*					- 이미지파일 images 
 						- 일반파일  - files
 	*/
-	public function getGroupFiles($gid)
+	public function getGroupFiles($gid, $location = null)
 	{
 		$images = $files = [];
+		$where = ["gid" => $gid, "isDone" => 1];
+		
+		// 특정 파일 위치인 경우 특정 파일 위치의 파일만 조회 
+		if ($location) {
+			$where['location'] = $location;
+		}
+		
 		$list = db()->table("fileInfo")
-					   ->where(["gid" => $gid, "isDone" => 1])
+					   ->where($where)
 					   ->orderby([["regDt", "asc"]])
 					   ->rows();
 		
