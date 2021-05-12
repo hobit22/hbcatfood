@@ -135,13 +135,16 @@ class Goods
 		
 		if ($data) {
 			$file = App::load(\Component\File::class);
+			$description = $file->getGroupFiles($data['gid'], 'description');
+			$main = $file->getGroupFiles($data['gid'], 'main');
+			$list = $file->getGroupFiles($data['gid'], 'list');
 			$data['images'] = [
-				'description' => $file->getGroupFiles($data['gid'], 'location'),
-				'main' => $file->getGroupFiles($data['gid'], 'main'),
-				'list' => $file->getGroupFiles($data['gid'], 'list'),
+				'description' => isset($descritpion['images'])?$description['images']:[],
+				'main' => isset($main['images'])?$main['images']:[],
+				'list' => isset($list['images'])?$list['images']:[],
 			];
 		}
-		
+	
 		return $data;
 	}
 	
