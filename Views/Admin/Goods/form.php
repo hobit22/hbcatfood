@@ -26,6 +26,16 @@
 		<input type='hidden' name='goodsNo' value='<?=$goodsNo?>'>
 		<?php endif; ?>
 		<dl>
+			<dt>진열상태</dt>
+			<dd>
+				<input type='radio' name='isDisplay' value='1' id='isDisplay1'<?php if (!isset($isDisplay) || $isDisplay) echo " checked";?>>
+				<label for='isDisplay1'>진열</label>
+				
+				<input type='radio' name='isDisplay' value='0' id='isDisplay0'<?php if (isset($isDisplay) && !$isDisplay) echo " checked";?>>
+				<label for='isDisplay0'>미진열</label>
+			</dd>
+		</dl>
+		<dl>
 			<dt>상품명</dt>
 			<dd>
 				<input type='text' name='goodsNm' value='<?=isset($goodsNm)?$goodsNm:""?>'>
