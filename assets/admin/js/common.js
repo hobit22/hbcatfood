@@ -30,5 +30,24 @@ $(function() {
 		});
 	});
 
+	// 이미지 공통 업로드 처리 
+	$(".addImage").click(function() {
+		const gid = $(this).data("gid"); // 그룹 ID 
+		const loc = $(this).data("location"); // 파일 위치 
+	
+		$frm = $("#frmUpload");
+		if ($frm.length == 0) return;
+		
+		$frm.find("input[name='gid']").val(gid);
+		$frm.find("input[name='location']").val(loc);
+		
+		$frm.find("input[type='file']").click(); // 파일 창 
+	});
+	
+	// 파일을 선택하면 change 이벤트가 발생 
+	$("#frmUpload input[type='file']").change(function() {
+		$(this).closest("#frmUpload").submit();
+	});
+	
 /** 공통 이벤트 처리 E */
 });

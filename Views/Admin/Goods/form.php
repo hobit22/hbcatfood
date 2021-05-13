@@ -120,9 +120,9 @@
 </div>
 <!--// content_box -->
 
-<form method='post' action='<?=siteUrl("file/uploadOk")?>' enctype='multipart/form-data'>
+<form name='frmUpload' id='frmUpload' method='post' action='<?=siteUrl("file/uploadOk")?>' enctype='multipart/form-data' target='ifrmHidden'>
 	<input type='hidden' name='gid' value='<?=$gid?>'>
 	<input type='hidden' name='type' value='image'>
 	<input type='hidden' name='location' value=''>
-	<input type='file' name='file'>
+	<input type='file' name='file' class='dn'>
 </form>
