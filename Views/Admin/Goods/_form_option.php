@@ -7,13 +7,12 @@
 	</div>
 	
 	<div class='inner'></div>
+	<span class='btn1 create_opt_items dn'>옵션 항목생성하기</span>
 </div>
 <!--// opt_names -->
 
 <script type='text/html' id='opt_name_template'>
-	<div class='opt_name'>
+	<span class='opt_name'>
 		<input type='text' name='optNames[]' value='' class='w120'>
-		<i class='xi-plus-square-o add'></i>
-		<i class='xi-minus-square-o remove'></i>
-	</div>
+	</span>
 </script> 
