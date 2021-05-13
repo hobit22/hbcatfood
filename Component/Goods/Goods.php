@@ -224,7 +224,7 @@ class Goods
 	public function getImages($goodsNo)
 	{
 		if (is_numeric($goodsNo)) { // 숫자이면 상품번호
-			// gid -> 
+			// goodsNo -> gid 
 			$row = db()->table("goods")
 						   ->select("gid")
 						   ->where(['goodsNo' => $goodsNo])
