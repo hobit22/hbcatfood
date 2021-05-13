@@ -31,7 +31,29 @@ const goodsOption = {
 	* 
 	*/
 	createOptItems : function() {
-		
+		$list = $(".opt_names .opt_name input[type='text']");
+		if ($list.length > 0) {
+			const optNames = [];
+			$.each($list, function() {
+				const optName = $(this).val().trim();
+				// 이미 추가된 옵션명이면 추가 X
+				if (optNames.indexOf(optName) == -1) { // -1은 optNames에 없는 경우 
+					optNames.push(optName);
+				}
+			});
+			
+			// 옵션 항목 양식 템플릿 
+			const template = $("#opt_item_template").html();
+			let html = "";
+			optNames.forEach(function(optNm) {
+				
+				/// <%optName%>
+				html += template.replace(/<%optName%>/g, optNm); 
+				
+			});
+			
+			$(".opt_items").html(html);
+		} // endif 
 	}
 }
 

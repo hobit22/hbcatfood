@@ -13,8 +13,7 @@
 </div>
 <!--// opt_names -->
 
-<div class='opt_items'>
-	
+<div class='opt_items mt20'>
 </div>
 
 
@@ -25,8 +24,8 @@
 </script> 
 
 <script type='text/html' id='opt_item_template'>
-	<div class='opt_item'>
-		<div class='opt_name_tit'>[[optName]]</div>
+	<div class='opt_item mt20'>
+		<div class='opt_name_tit'><%optName%></div>
 		<div class='btns'>
 			<i class='xi-plus-square-o add'></i>
 			<i class='xi-minus-square-o remove'></i>
