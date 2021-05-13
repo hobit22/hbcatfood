@@ -175,7 +175,14 @@ class Goods
 					  ->orderBy([["regDt", "desc"]])
 					  ->limit($limit, $offset)
 					  ->rows();
-					  
+		
+		foreach ($list as $k => $li) {
+			// 상품 이미지 
+			$li['images'] = $this->getImages($li['goodsNo']);
+			
+			$list[$k] = $li;
+		}
+		
 		$paginator = App::load(\Component\Pagination::class, $page, $limit, $total, $qs);
 		
 		$pagination = $paginator->getPages();
@@ -214,5 +221,32 @@ class Goods
 		$result = db()->table("goods")->where(["goodsNo" => $goodsNo])->delete();
 		
 		return $result;
+	}
+	
+	/**
+	* 상품 이미지 추출 
+	* 
+	* @param Integer|String $goodsNo
+	*					숫자 -> 상품번호(goodsNo)
+	*					문자 -> 그룹 ID(gid)
+	* @return Array
+	*/
+	public function getImages($goodsNo)
+	{
+		if (is_numeric($goodsNo)) { // 숫자이면 상품번호
+			// gid -> 
+			$row = db()->table("goods")
+						   ->select("gid")
+						   ->where(['goodsNo' => $goodsNo])
+						   ->row();
+			
+			if (!$row) return [];
+			$gid = $row['gid'];
+			
+		} else { // goodsNo가 gid인 경우 
+			$gid = $goodsNo;
+		}
+		
+		
 	}
 }
