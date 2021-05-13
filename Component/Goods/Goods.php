@@ -247,6 +247,18 @@ class Goods
 			$gid = $goodsNo;
 		}
 		
+		$file = App::load(\Component\File::class);
+		$description = $file->getGroupFiles($gid, 'description');
+		$main = $file->getGroupFiles($gid, 'main');
+		$list = $file->getGroupFiles($gid, 'list');
 		
+			
+		$images = [
+			'description' => isset($description['images'])?$description['images']:[],
+			'main' => isset($main['images'])?$main['images']:[],
+			'list' => isset($list['images'])?$list['images']:[],
+		];
+		
+		return $images;
 	}
 }
