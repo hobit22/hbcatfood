@@ -24,7 +24,11 @@
 						<input type='checkbox' name='goodsNo[]' value='<?=$li['goodsNo']?>'>
 					</td>
 					<td align='center'><?=$li['goodsNo']?></td>
-					<td width='50'>이미지</td>
+					<td width='50'>
+						<?php if (isset($li['images']['list']) && isset($li['images']['list'][0])) : ?>
+						<img src='<?=$li['images']['list'][0]['url']?>' width='50' height='50'>
+						<?php endif; ?>
+					</td>
 					<td width='300'><?=$li['goodsNm']?></td>
 					<td align='center'><?=number_format($li['salePrice'])?>원</td>
 					<td align='center'><?=number_format($li['consumerPrice'])?>원</td>
