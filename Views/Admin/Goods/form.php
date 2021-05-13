@@ -79,7 +79,15 @@
 				<span class='addImage' data-location='main' data-gid='<?=$gid?>'>
 					<i class='xi-plus'></i>
 				</span>
-				<span class='uploaded_main_images add_uploaded_image'></span>
+				<span class='uploaded_main_images add_uploaded_image'>
+				<?php if ($images['main']) : ?>
+				<?php foreach ($images['main'] as $im) : ?>
+					<span class='images' style="background:url('<?=$im['url']?>') no-repeat center center; background-size: cover;">
+						<i class='xi-close-min remove'></i>
+					</span>
+				<?php endforeach;?>
+				<?php endif; ?>
+				</span>
 			</dd>
 		</dl>
 		<dl>
@@ -88,7 +96,15 @@
 				<span class='addImage' data-location='list' data-gid='<?=$gid?>'>
 					<i class='xi-plus'></i>
 				</span>
-				<span class='uploaded_list_images add_uploaded_image'></span>
+				<span class='uploaded_list_images add_uploaded_image'>
+				<?php if ($images['list']) : ?>
+				<?php foreach ($images['list'] as $im) : ?>
+					<span class='images' style="background:url('<?=$im['url']?>') no-repeat center center; background-size: cover;">
+						<i class='xi-close-min remove'></i>
+					</span>
+				<?php endforeach;?>
+				<?php endif; ?>
+				</span>
 			</dd>
 		</dl>
 		<dl>

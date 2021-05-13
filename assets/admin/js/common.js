@@ -51,6 +51,10 @@ $(function() {
 	
 	/** 이미지 공통 업로드 삭제 */
 	$("body").on("click", ".add_uploaded_image .remove", function() {
+		if (!confirm('정말 삭제하시겠습니까?')) {
+			return;
+		}
+		
 		$image = $(this).closest(".images");
 		const idx = $image.data("idx");
 		

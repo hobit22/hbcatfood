@@ -146,7 +146,7 @@ class Goods
 				'list' => isset($list['images'])?$list['images']:[],
 			];
 		}
-	
+
 		return $data;
 	}
 	
