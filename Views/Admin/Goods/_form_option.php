@@ -7,7 +7,9 @@
 	</div>
 	
 	<div class='inner'></div>
-	<span class='btn1 mt20 create_opt_items dn'>옵션 항목생성하기</span>
+	<div class='mt20'>
+		<span class='btn1 create_opt_items dn'>옵션 항목생성하기</span>
+	</div>
 </div>
 <!--// opt_names -->
 

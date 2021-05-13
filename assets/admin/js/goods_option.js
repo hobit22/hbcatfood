@@ -24,6 +24,14 @@ const goodsOption = {
 		if ($list.length == 0) {
 			$(".create_opt_items").removeClass('dn').addClass('dn');
 		}
+	},
+	
+	/**
+	* 옵션 항목 입력 양식 생성 
+	* 
+	*/
+	createOptItems : function() {
+		
 	}
 }
 
@@ -37,5 +45,10 @@ $(function() {
 	/** 옵션명 삭제 */
 	$(".opt_names .remove").click(function() {
 		goodsOption.removeOptName();
+	});
+	
+	/** 옵션 항목 생성하기 */
+	$(".create_opt_items").click(function() {
+		goodsOption.createOptItems();
 	});
 });
