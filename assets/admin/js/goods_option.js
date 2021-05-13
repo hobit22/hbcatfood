@@ -73,4 +73,15 @@ $(function() {
 	$(".create_opt_items").click(function() {
 		goodsOption.createOptItems();
 	});
+	
+	
+	/** 옵션 항목 추가 */
+	$("body").on("click", ".opt_items .add", function() {
+		goodsOption.addOptItem($(this));
+	});
+	
+	/** 옵션 항목 삭제 */
+	$("body").on("click", ".opt_items .remove", function() {
+		goodsOption.removeOptItem($(this));
+	});
 });
