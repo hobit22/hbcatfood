@@ -82,6 +82,7 @@ function fileUploadCallback(data) {
 		case "list" : 
 			const tag2 = `<span class='images' style="background:url('${data.url}') no-repeat center center; background-size: cover;" data-idx='${data.idx}'>
 									<i class='xi-close-min remove'></i>
+									<i class='xi-zoom in zoom' onclick="layer.popup('../../file/view?idx=${data.idx}', 600, 600);"></i>
 								</span>`;
 			
 			$target = $(`.uploaded_${data.location}_images`);
