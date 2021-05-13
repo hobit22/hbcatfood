@@ -82,7 +82,7 @@
 				<span class='uploaded_main_images add_uploaded_image'>
 				<?php if ($images['main']) : ?>
 				<?php foreach ($images['main'] as $im) : ?>
-					<span class='images' style="background:url('<?=$im['url']?>') no-repeat center center; background-size: cover;">
+					<span class='images' style="background:url('<?=$im['url']?>') no-repeat center center; background-size: cover;" data-idx='<?=$im['idx']?>'>
 						<i class='xi-close-min remove'></i>
 					</span>
 				<?php endforeach;?>
@@ -99,7 +99,7 @@
 				<span class='uploaded_list_images add_uploaded_image'>
 				<?php if ($images['list']) : ?>
 				<?php foreach ($images['list'] as $im) : ?>
-					<span class='images' style="background:url('<?=$im['url']?>') no-repeat center center; background-size: cover;">
+					<span class='images' style="background:url('<?=$im['url']?>') no-repeat center center; background-size: cover;" data-idx='<?=$im['idx']?>'>
 						<i class='xi-close-min remove'></i>
 					</span>
 				<?php endforeach;?>
