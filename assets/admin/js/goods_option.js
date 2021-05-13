@@ -54,6 +54,28 @@ const goodsOption = {
 			
 			$(".opt_items").html(html);
 		} // endif 
+	},
+	/**
+	* 옵션 항목 추가 
+	*
+	*/
+	addOptItem : function(obj) {
+		let html = $("#opt_item_rows_template").html();
+		$optItem = obj.closest(".opt_item");
+		const no = $optItem.index();
+		
+		html = html.replace(/<%no%>/g, no);
+		
+		$target = $optItem.find("tbody");
+		$target.append(html);
+	},
+	/**
+	* 옵션 항목 제거 
+	*
+	*/
+	removeOptItem : function(obj) {
+		$target = obj.closest(".opt_item").find("tbody").find("tr").last();
+		$target.remove();
 	}
 }
 
