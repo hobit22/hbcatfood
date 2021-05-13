@@ -32,6 +32,7 @@ class ViewController extends \Controller\Front\Controller
 				throw new AlertException("이미지가 없습니다.");
 			}
 			
+			App::render("File/view", $data);
 			
 		} catch (AlertException $e) {
 			echo $e;
