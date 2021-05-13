@@ -25,11 +25,13 @@
 
 <script type='text/html' id='opt_item_template'>
 	<div class='opt_item mt20'>
-		<div class='opt_name_tit'><%optName%></div>
-		<div class='btns'>
+		<div class='opt_name_tit'>
+			<%optName%>
+			
 			<i class='xi-plus-square-o add'></i>
 			<i class='xi-minus-square-o remove'></i>
 		</div>
+	
 		<table class='table_rows'>
 			<thead>
 				<tr>
@@ -43,4 +45,30 @@
 			<tbody></tbody>
 		</table>
 	</div>
+</script>
+
+<script type='text/html' id='opt_item_rows_template'>
+	<tr>
+		<td>
+			<input type='text' name='optItem[<%no%>][]' value=''>
+		</td>
+		<td>
+			<input type='text' name='addPrice[<%no%>][]' value=''>
+		</td>
+		<td>
+			<input type='text' name='stock[<%no%>][]' value=''>
+		</td>
+		<td>
+			<select name='stockOut[<%no%>][]'>
+				<option value='0'>판매중</option>
+				<option value='1'>품절</option>
+			</select>
+		</td>
+		<td>
+			<select name='isDisplay[<%no%>][]'>
+				<option value='1'>진열</option>
+				<option value='0'>미진열</option>
+			</select>
+		</td>
+	</tr>
 </script>
