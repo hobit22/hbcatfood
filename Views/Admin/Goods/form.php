@@ -75,11 +75,21 @@
 		</dl>
 		<dl>
 			<dt>메인이미지</dt>
-			<dd></dd>
+			<dd>
+				<span class='addImage' data-location='main' data-gid='<?=$gid?>'>
+					<i class='xi-plus'></i>
+				</span>
+				<span class='uploaded_main_images'></span>
+			</dd>
 		</dl>
 		<dl>
 			<dt>리스트이미지</dt>
-			<dd></dd>
+			<dd>
+				<span class='addImage' data-location='list' data-gid='<?=$gid?>'>
+					<i class='xi-plus'></i>
+				</span>
+				<span class='uploaded_list_images'></span>
+			</dd>
 		</dl>
 		<dl>
 			<dt>배송설정</dt>
@@ -109,3 +119,10 @@
 	</form>
 </div>
 <!--// content_box -->
+
+<form method='post' action='<?=siteUrl("file/uploadOk")?>' enctype='multipart/form-data'>
+	<input type='hidden' name='gid' value='<?=$gid?>'>
+	<input type='hidden' name='type' value='image'>
+	<input type='hidden' name='location' value=''>
+	<input type='file' name='file'>
+</form>
