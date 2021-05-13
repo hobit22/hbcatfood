@@ -84,6 +84,7 @@
 				<?php foreach ($images['main'] as $im) : ?>
 					<span class='images' style="background:url('<?=$im['url']?>') no-repeat center center; background-size: cover;" data-idx='<?=$im['idx']?>'>
 						<i class='xi-close-min remove'></i>
+						<i class='xi-zoom-in zoom' onclick="layer.popup('<?=siteUrl("file/view")?>?idx=<?=$im['idx']?>',600, 600);"></i>
 					</span>
 				<?php endforeach;?>
 				<?php endif; ?>
@@ -101,6 +102,7 @@
 				<?php foreach ($images['list'] as $im) : ?>
 					<span class='images' style="background:url('<?=$im['url']?>') no-repeat center center; background-size: cover;" data-idx='<?=$im['idx']?>'>
 						<i class='xi-close-min remove'></i>
+						<i class='xi-zoom-in zoom' onclick="layer.popup('<?=siteUrl("file/view")?>?idx=<?=$im['idx']?>',600, 600);"></i>
 					</span>
 				<?php endforeach;?>
 				<?php endif; ?>
