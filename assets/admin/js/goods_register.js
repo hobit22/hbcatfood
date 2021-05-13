@@ -80,7 +80,9 @@ function fileUploadCallback(data) {
 			break;
 		case "main":
 		case "list" : 
-			const tag2 = `<img src='${data.url}' width='45' height='45'>`;
+			const tag2 = `<span class='images' style="background:url('${data.url}') no-repeat center center; background-size: cover;" data-idx='${data.idx}'>
+									<i class='xi-close-min remove'></i>
+								</span>`;
 			
 			$target = $(`.uploaded_${data.location}_images`);
 			if ($target.length > 0) {
