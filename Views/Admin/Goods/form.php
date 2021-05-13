@@ -71,7 +71,11 @@
 		</dl>
 		<dl>
 			<dt>옵션</dt>
-			<dd></dd>
+			<dd>
+				<?php 
+					include "_form_option.php";
+				?>
+			</dd>
 		</dl>
 		<dl>
 			<dt>메인이미지</dt>

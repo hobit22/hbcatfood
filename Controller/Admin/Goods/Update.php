@@ -20,7 +20,7 @@ class UpdateController extends \Controller\Admin\Controller
 	{
 		parent::__construct();
 		
-		$this->addScript(["goods_register"])
+		$this->addScript(["goods_register", 'goods_option'])
 			   ->addCss(["goods"]);
 	}
 	
