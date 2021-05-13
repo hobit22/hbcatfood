@@ -1,1 +1,1 @@
-<img src='<?=$url?>'  style='display: block; margin: 15px; width:calc(100% - 30px);'>
+<img src='<?=$url?>'  style='display: block; margin: 15px auto; max-width: 570px;'>
