@@ -79,7 +79,7 @@
 				<span class='addImage' data-location='main' data-gid='<?=$gid?>'>
 					<i class='xi-plus'></i>
 				</span>
-				<span class='uploaded_main_images'></span>
+				<span class='uploaded_main_images add_uploaded_image'></span>
 			</dd>
 		</dl>
 		<dl>
@@ -88,7 +88,7 @@
 				<span class='addImage' data-location='list' data-gid='<?=$gid?>'>
 					<i class='xi-plus'></i>
 				</span>
-				<span class='uploaded_list_images'></span>
+				<span class='uploaded_list_images add_uploaded_image'></span>
 			</dd>
 		</dl>
 		<dl>
