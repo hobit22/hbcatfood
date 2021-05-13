@@ -68,7 +68,7 @@ textarea { border: 1px solid #d5d5d5; padding: 10px; width: 100%; min-height: 15
 .addImage i { font-size: 20px; }
 .add_uploaded_image .images { display: inline-block; width: 45px; height: 45px; border: 1px solid #212121; position: relative; vertical-align: middle; }
 .add_uploaded_image .images .remove { position: absolute; top: 0; right: 0; display: block; width: 10px; height: 10px; font-size: 9px; background-color: #212121; color: #ffffff; cursor: pointer; }
-
+.add_uploaded_image .images .zoom { position: absolute; bottom:0; left: 0; cursor: pointer; }
 /* 공통 E */
 
 
