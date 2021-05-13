@@ -80,7 +80,12 @@ function fileUploadCallback(data) {
 			break;
 		case "main":
 		case "list" : 
+			const tag2 = `<img src='${data.url}' width='45' height='45'>`;
 			
+			$target = $(`.uploaded_${data.location}_images`);
+			if ($target.length > 0) {
+				$target.append(tag2);
+			}
 			break;
 	}
 }
