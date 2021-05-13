@@ -49,5 +49,28 @@ $(function() {
 		$(this).closest("#frmUpload").submit();
 	});
 	
+	/** 이미지 공통 업로드 삭제 */
+	$("body").on("click", ".add_uploaded_image .remove", function() {
+		$image = $(this).closest(".images");
+		const idx = $image.data("idx");
+		
+		$.ajax({
+			url : "../../file/delete",
+			type : "post",
+			data : { idx : idx },
+			dataType : "text", 
+			success : function (res) {
+				if (res.trim() == "1") { // 삭제 성공 
+					$image.remove();
+				} else { // 삭제 실패 
+					alert("이미지 삭제 실패!");
+				}
+			},
+			error: function (err) {
+				console.error(err);
+			}
+		});
+	});
+	
 /** 공통 이벤트 처리 E */
 });

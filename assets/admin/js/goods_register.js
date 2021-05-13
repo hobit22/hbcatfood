@@ -88,6 +88,10 @@ function fileUploadCallback(data) {
 			if ($target.length > 0) {
 				$target.append(tag2);
 			}
+			
+			// 파일 선택 초기화 
+			$("#frmUpload input[type='file']").val('');
 			break;
 	}
+
 }
