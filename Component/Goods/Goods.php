@@ -77,6 +77,11 @@ class Goods
 		
 		$goodsNo = db()->table("goods")->data($inData)->insert();
 		
+		if ($goodsNo) {
+			// 옵션 처리
+			$this->updateOption($goodsNo);
+		}
+		
 		return $goodsNo;
 	}
 	
@@ -94,7 +99,11 @@ class Goods
 						  ->data($upData)
 						  ->where(["goodsNo" => $this->params['goodsNo']])
 						  ->update();
-						  
+		
+		if ($result !== false) {
+			$this->updateOption($this->params['goodsNo']);
+		}
+		
 		return $result !== false;
 	}
 	
@@ -250,5 +259,30 @@ class Goods
 		];
 		
 		return $images;
+	}
+	
+	/**
+	* 옵션 저장, 수정 처리 
+	*
+	* @param Integer $goodsNo 상품번호
+	*/
+	public function updateOption($goodsNo)
+	{
+		/**
+			1. yh_goods - optNames - 옵션명 update 
+			2. yh_goodsOption
+				- 데이터를 테이블에 맞게 가공
+				
+				옵션 항목의 추가/수정/삭제
+				  기존에 등록된 옵션을 조회
+				  -> 비교 -> 동일 -> 데이터 수정 
+				  -> 비교 -> 없으면 -> 데이터 추가
+				  -> form에서 넘어온 옵션명명과 DB를 비교 해서 form에 없는 
+				      DB 데이터는 삭제 
+		*/
+		
+		$data = $this->params;
+		debug($data);
+		exit;
 	}
 }

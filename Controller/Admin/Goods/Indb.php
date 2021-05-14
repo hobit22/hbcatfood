@@ -23,6 +23,9 @@ class IndbController extends \Controller\Admin\Controller
 		try {
 			$in = request()->all(); 
 			$goods = App::load(\Component\Goods\Goods::class);
+			
+			debug($in);
+			exit;
 			switch($in['mode']) {
 				/** 상품 등록 */
 				case "register" : 
