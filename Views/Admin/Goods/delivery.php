@@ -21,6 +21,7 @@
 				</td>
 			</tr>
 		</table>
+		<input type='submit' value='설정 등록하기' class='btn1 mt20'>
 	</form>
 </div>
 <!--// content_box -->
