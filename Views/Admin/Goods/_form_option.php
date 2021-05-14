@@ -1,7 +1,7 @@
 <!-- 상품 옵션 -->
 <div class='opt_names'>
 	<div>
-		<?php if (!isset($options) || !$options['optNames']) : // 상품등록, 옵션이 없는 경우만 ?>
+		<?php if (!isset($options) || !$options || !$options['optNames']) : // 상품등록, 옵션이 없는 경우만 ?>
 		옵션명 등록
 		<i class='xi-plus-square-o add'></i>
 		<i class='xi-minus-square-o remove'></i>
@@ -11,7 +11,7 @@
 	</div>
 	
 	<div class='inner'>
-	<?php if (isset($options) && $options['optNames']) : ?>
+	<?php if (isset($options) && $options && $options['optNames']) : ?>
 	<?php foreach ($options['optNames'] as $optName) : ?>
 		<input type='hidden' name='optNames[]' value='<?=$optName?>'>
 		<span class='opt_name_str'><?=$optName?></span> 
@@ -19,7 +19,7 @@
 	<?php endif; ?>
 	</div>
 	<div class='mt20'>
-		<?php if (isset($options) && $options['optNames']) : ?>
+		<?php if (isset($options) && $options && $options['optNames']) : ?>
 			<span class='btn1 initialize_opt_items'>옵션 초기화 하기</span>
 		<?php else : ?>
 			<span class='btn1 create_opt_items dn'>옵션 항목생성하기</span>
@@ -29,7 +29,7 @@
 <!--// opt_names -->
 
 <div class='opt_items mt20'>
-<?php if (isset($options) && $options['opts']) : ?>
+<?php if (isset($options) && $options && $options['opts']) : ?>
 <?php foreach ($options['opts'] as $k => $list) : ?>
 	<div class='opt_item mt20'>
 		<div class='opt_name_tit'>
@@ -74,7 +74,9 @@
 							<option value='0'<?=$li['isDisplay']?"":" selected"?>>미진열</option>
 						</select>
 					</td>
-					<td></td>
+					<td>
+						<i class='xi-trash remove_rows'></i>
+					</td>
 				</tr>
 			<?php endforeach; ?>
 			</tbody>
@@ -108,6 +110,7 @@
 					<th>재고</th>
 					<th>품절여부</th>
 					<th>진열</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody></tbody>
@@ -137,6 +140,9 @@
 				<option value='1'>진열</option>
 				<option value='0'>미진열</option>
 			</select>
+		</td>
+		<td>
+			<i class='xi-trash remove_rows'></i>
 		</td>
 	</tr>
 </script>

@@ -84,7 +84,7 @@
 					<i class='xi-plus'></i>
 				</span>
 				<span class='uploaded_main_images add_uploaded_image'>
-				<?php if (isset($images) && $images['main']) : ?>
+				<?php if (isset($images) && $images && $images['main']) : ?>
 				<?php foreach ($images['main'] as $im) : ?>
 					<span class='images' style="background:url('<?=$im['url']?>') no-repeat center center; background-size: cover;" data-idx='<?=$im['idx']?>'>
 						<i class='xi-close-min remove'></i>
@@ -102,7 +102,7 @@
 					<i class='xi-plus'></i>
 				</span>
 				<span class='uploaded_list_images add_uploaded_image'>
-				<?php if (isset($images) && $images['list']) : ?>
+				<?php if (isset($images) && $images && $images['list']) : ?>
 				<?php foreach ($images['list'] as $im) : ?>
 					<span class='images' style="background:url('<?=$im['url']?>') no-repeat center center; background-size: cover;" data-idx='<?=$im['idx']?>'>
 						<i class='xi-close-min remove'></i>
@@ -124,7 +124,7 @@
 				<div class='mt10'>
 					<span class='btn2' onclick="layer.popup('<?=siteUrl("file/upload")?>?gid=<?=$gid?>&type=image&location=description', 280, 130);">이미지 추가</span>
 					<span class='uploaded_images'>
-					<?php if (isset($images) && $images['description']) : ?>
+					<?php if (isset($images) && $images && $images['description']) : ?>
 					<?php foreach ($images['description'] as $file) : ?>
 					<span class='file_box' data-idx='<?=$file['idx']?>' data-url='<?=$file['url']?>'>
 						<a href='<?=siteUrl("file/download")?>?idx=<?=$file['idx']?>' target='ifrmHidden'><?=$file['fileName']?></a>
