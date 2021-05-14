@@ -442,7 +442,7 @@ class Goods
 			트랜잭션
 		*/
 		try {
-			db()->beginTransation();
+			db()->beginTransaction();
 			
 			db()->table("goods")
 				->data(["optNames" => ""])

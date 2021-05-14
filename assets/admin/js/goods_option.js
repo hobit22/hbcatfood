@@ -87,7 +87,7 @@ const goodsOption = {
 			url : "../goods/indb",
 			type : "post",
 			data : { mode : "delete_options", goodsNo : goodsNo },
-			dataType : "text",
+			dataType : "html",
 			success : function (res) {
 				if (res.trim() == "1") { // 성공 
 					location.reload();
@@ -137,7 +137,7 @@ $(function() {
 	
 	/** 옵션 항목 초기화 */
 	$(".initialize_opt_items").click(function() {
-		if (confirm('정말 삭제하시겠습니까?')) {
+		if (confirm('정말 초기화하시겠습니까?')) {
 			goodsOption.removeOptions();
 		}
 	});
