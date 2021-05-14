@@ -146,6 +146,7 @@ class Goods
 		
 		if ($data) {
 			$data['images'] = $this->getImages($data['gid']);
+			$data['options'] = $this->getOptions($goodsNo);
 		}
 
 		return $data;
@@ -332,10 +333,42 @@ class Goods
 		$opts = db()->table("goodsOption")
 						->select("optNo, optName, optItem")
 						->where(["goodsNo" => $goodsNo])
-						->get();
-		
+						->rows();
 		/** 기존에 등록된 옵션을 조회 E */
+		/** 기존 등록 옵션 비교 -> 추가, 수정 S */
+		foreach ($list as $li) {
+			$optNo = 0; // 0 이면 추가, 번호가 있으면 수정 
+			foreach ($opts as $o) {
+				if ($li['optName'] == $o['optName'] && $li['optItem'] == $o['optItem']) { // 이미 존재하는 옵션 
+					$optNo = $o['optNo']; // 수정을 위한 optNo를 대입
+					break;
+				}
+			}
+			
+			$proc = db()->table("goodsOption")->data($li);
+			if ($optNo) { // 수정 
+				$proc->where(["optNo" => $optNo])->update(); 
+			} else { // 추가 
+				$proc->insert();
+			}
+		} // endforeach 
+		/** 기존 등록 옵션 비교 -> 추가, 수정 E */
 		
-		exit;
+		/** 기존 등록 옵션 비교 -> 삭제 S */
+		foreach ($opts as $o) {
+			$isExists = false;
+			foreach ($list as $li) {
+				if ($o['optName'] == $li['optName'] && $o['optItem'] == $li['optItem']) {
+					$isExists = true; 
+					break;
+				}
+			}
+			
+			if (!$isExists) { // DB에는 있으나 Form는 없는 데이터 -> 삭제 
+				db()->table("goodsOption")->where(["optNo" => $o['optNo']])->delete();
+			}
+		} // endforeach 
+		
+		/** 기존 등록 옵션 비교 -> 삭제 E */
 	}
 }
