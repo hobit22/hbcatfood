@@ -61,6 +61,7 @@ class Delivery
 	*/
 	public function register()
 	{
+		$this->params['isDefault'] = isset($this->params['isDefault'])?$this->params['isDefault']:0;
 		$inData = [
 			'deliveryName' => $this->params['deliveryName'],
 			'deliveryPrice' => $this->params['deliveryPrice']?$this->params['deliveryPrice']:0,
@@ -71,5 +72,17 @@ class Delivery
 		$result = db()->table("delivery")->data($inData)->insert();
 		
 		return $result;
+	}
+	
+	/**
+	* 배송비 설정 목록 
+	*
+	* @return Array
+	*/
+	public function getList()
+	{
+		$list = db()->table("delivery")->orderBy([["regDt", "desc"]])->rows();
+		
+		return $list;
 	}
 }

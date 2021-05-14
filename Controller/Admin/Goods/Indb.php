@@ -81,6 +81,12 @@ class IndbController extends \Controller\Admin\Controller
 					$result = $delivery->data($in)
 											 ->validator("register")
 											 ->register();
+					if ($result === false) {
+						throw new GoodsAdminException("등록 실패!");
+					}
+					
+					// 등록 성공시 새로고침 
+					reload("parent");
 					break;
 			}
 			

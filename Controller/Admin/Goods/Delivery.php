@@ -18,6 +18,8 @@ class DeliveryController extends \Controller\Admin\Controller
 	
 	public function index()
 	{
-		App::render("Goods/delivery");
+		$delivery = App::load(\Component\Goods\Delivery::class);
+		$list = $delivery->getList(); // 배송비 설정 
+		App::render("Goods/delivery", ["list" => $list]);
 	}
 }
