@@ -449,12 +449,17 @@ class Goods
 				 ->where(["goodsNo" => $goodsNo])
 				 ->update();
 			
+			db()->table("goodsOption")
+				->where(["goodsNo" => $goodsNo])
+				->delete();
 			
-			//
-			db()->commit();
+			db()->commit(); // SQL 실행 
+			
+			return true;
 		} catch (\PDOException $e) { // SQL 연속 실행이 실패 
 			db()->rollBack(); // 원래 상태로 되돌리기
 		}
+		
 		return false;
 	}
 }
