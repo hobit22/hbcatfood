@@ -49,7 +49,33 @@
 					<th>진열</th>
 				</tr>
 			</thead>
-			<tbody></tbody>
+			<tbody>
+			<?php foreach ($list as $li) : ?>
+				<tr>
+					<td>
+						<input type='text' name='opt_optItem[<?=$k?>][]' value='<?=$li['optItem']?>'>
+					</td>
+					<td>
+						<input type='text' name='opt_addPrice[<?=$k?>][]' value='<?=$li['addPrice']?>'>
+					</td>
+					<td>
+						<input type='text' name='opt_stock[<?=$k?>][]' value='<?=$li['stock']?>'>
+					</td>
+					<td>
+						<select name='opt_stockOut[<?=$k?>][]'>
+							<option value='0'<?=$li['stockOut']?"":" selected"?>>판매중</option>
+							<option value='1'<?=$li['stockOut']?" selected":""?>>품절</option>
+						</select>
+					</td>
+					<td>
+						<select name='opt_isDisplay[<?=$k?>][]'>
+							<option value='1'<?=$li['isDisplay']?" selected":""?>>진열</option>
+							<option value='0'<?=$li['isDisplay']?"":" selected"?>>미진열</option>
+						</select>
+					</td>
+				</tr>
+			<?php endforeach; ?>
+			</tbody>
 		</table>
 	</div>
 <?php endforeach; ?>
