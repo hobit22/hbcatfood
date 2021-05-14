@@ -17,6 +17,8 @@ class Goods
 		'goodsNm' => '상품명',
 	];
 	
+	private $divisionStr = "||";
+	
 	/**
 	* 처리데이터 설정 
 	* 
@@ -282,7 +284,27 @@ class Goods
 		*/
 		
 		$data = $this->params;
-		debug($data);
+		
+		// 옵션명이 있는 경우만 처리 
+		
+		/** 옵션명 yh_goods에 업데이트 S */
+		if (!isset($data['optNames']) || !$data['optNames'])
+			return false;
+		
+		$optNames = [];
+		foreach ($data['optNames'] as $v) {
+			$v = trim($v);
+			$optNames[] = $v;
+		}
+		
+		$optNames = array_unique($optNames);
+		
+		$result = db()->table("goods")
+							->data(["optNames" => $optNames])
+							->where(["goodsNo" => $goodsNo])
+							->update();
+		/** 옵션명 yh_goods에 업데이트 E */
+		
 		exit;
 	}
 }
