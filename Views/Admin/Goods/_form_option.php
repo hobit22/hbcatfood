@@ -50,22 +50,22 @@
 <script type='text/html' id='opt_item_rows_template'>
 	<tr>
 		<td>
-			<input type='text' name='optItem[<%no%>][]' value=''>
+			<input type='text' name='opt_optItem[<%no%>][]' value=''>
 		</td>
 		<td>
-			<input type='text' name='addPrice[<%no%>][]' value=''>
+			<input type='text' name='opt_addPrice[<%no%>][]' value=''>
 		</td>
 		<td>
-			<input type='text' name='stock[<%no%>][]' value=''>
+			<input type='text' name='opt_stock[<%no%>][]' value=''>
 		</td>
 		<td>
-			<select name='stockOut[<%no%>][]'>
+			<select name='opt_stockOut[<%no%>][]'>
 				<option value='0'>판매중</option>
 				<option value='1'>품절</option>
 			</select>
 		</td>
 		<td>
-			<select name='isDisplay[<%no%>][]'>
+			<select name='opt_isDisplay[<%no%>][]'>
 				<option value='1'>진열</option>
 				<option value='0'>미진열</option>
 			</select>
