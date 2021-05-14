@@ -26,6 +26,10 @@
 		<input type='hidden' name='goodsNo' value='<?=$goodsNo?>'>
 		<?php endif; ?>
 		<dl>
+			<dt>상품분류</dt>
+			<dd></dd>
+		</dl>
+		<dl>
 			<dt>진열상태</dt>
 			<dd>
 				<input type='radio' name='isDisplay' value='1' id='isDisplay1'<?php if (!isset($isDisplay) || $isDisplay) echo " checked";?>>
@@ -115,7 +119,11 @@
 		</dl>
 		<dl>
 			<dt>배송설정</dt>
-			<dd></dd>
+			<dd>
+				<select name='deliveryNo'>
+					<option value=''>- 설정을 선택하세요 -</option>
+				</select>
+			</dd>
 		</dl>
 		<dl>
 			<dt>상세설명</dt>
