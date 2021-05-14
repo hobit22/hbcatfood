@@ -422,4 +422,39 @@ class Goods
 		
 		return $result;
 	}
+	
+	/**
+	* 옵션 전체 삭제 
+	*
+	* @param Integer $goodsNo 상품번호 
+	* @return Boolean 성공 true, 실패 false
+	*/
+	public function deleteOptions($goodsNo)
+	{
+		/** 
+			1. yh_goods - optNames -> 빈값으로 update 
+			2. yh_goodsOptions - goodsNo를 가지고 있는 옵션 삭제 
+			
+			2번이 실패 -> 1번 이미 실행
+			
+			SQL 실행 쌓아놓고 
+			1, 2  -> 실행 -> 실패 -> 원상태로 rollback
+			트랜잭션
+		*/
+		try {
+			db()->beginTransation();
+			
+			db()->table("goods")
+				->data(["optNames" => ""])
+				 ->where(["goodsNo" => $goodsNo])
+				 ->update();
+			
+			
+			//
+			db()->commit();
+		} catch (\PDOException $e) { // SQL 연속 실행이 실패 
+			db()->rollBack(); // 원래 상태로 되돌리기
+		}
+		return false;
+	}
 }

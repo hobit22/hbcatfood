@@ -63,6 +63,18 @@ class IndbController extends \Controller\Admin\Controller
 					
 					reload("parent");
 					break;
+				/** 옵션 전체 삭제 */
+				case "delete_options" : 
+					$goodsNo = request()->post("goodsNo");
+					if ($goodsNo) {
+						$result = $goods->deleteOptions($goodsNo);
+						if ($result) {
+							echo 1; // 성공 
+							exit;
+						}
+					}
+					echo 0; // 실패 
+					break;
 			}
 			
 		} catch (GoodsAdminException $e) {
