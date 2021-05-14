@@ -273,7 +273,7 @@ class Goods
 		/**
 			1. yh_goods - optNames - 옵션명 update - O 
 			2. yh_goodsOption
-				- 데이터를 테이블에 맞게 가공
+				- 데이터를 테이블에 맞게 가공 - O 
 				
 				옵션 항목의 추가/수정/삭제
 				  기존에 등록된 옵션을 조회
@@ -300,7 +300,7 @@ class Goods
 		$optNames = array_unique($optNames);
 		
 		$result = db()->table("goods")
-							->data(["optNames" => $optNames])
+							->data(["optNames" => implode($this->divisionStr, $optNames)])
 							->where(["goodsNo" => $goodsNo])
 							->update();
 		/** 옵션명 yh_goods에 업데이트 E */
@@ -323,8 +323,18 @@ class Goods
 					'stockOut' => $stockOut?1:0,
 					'isDisplay' => $isDisplay?1:0,
 				];
+				
+				$list[] = $d;
 			}
 		}
+		
+		/** 기존에 등록된 옵션을 조회 S */
+		$opts = db()->table("goodsOption")
+						->select("optNo, optName, optItem")
+						->where(["goodsNo" => $goodsNo])
+						->get();
+		
+		/** 기존에 등록된 옵션을 조회 E */
 		
 		exit;
 	}
