@@ -87,9 +87,13 @@ const goodsOption = {
 			url : "../goods/indb",
 			type : "post",
 			data : { mode : "delete_options", goodsNo : goodsNo },
-			dataType : "html",
+			dataType : "text",
 			success : function (res) {
-				console.log(res);
+				if (res.trim() == "1") { // 성공 
+					location.reload();
+				} else { // 실패 
+					alert("옵션 초기화 실패!");
+				}
 			},
 			error : function (err) {
 				console.error(err);
