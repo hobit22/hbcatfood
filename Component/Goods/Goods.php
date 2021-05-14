@@ -371,4 +371,55 @@ class Goods
 		
 		/** 기존 등록 옵션 비교 -> 삭제 E */
 	}
+	
+	/**
+	* 상품별 옵션 목록 
+	*
+	* @param Integer $goodsNo 상품번호
+	* @return Array
+	*/
+	public function getOptions($goodsNo)
+	{
+		/**
+		1. yh_goods -> optNames -> 옵션명 추출  - O 
+		
+		2. yh_goodsOption - 상품번호로 옵션항목 추출 - O 
+		
+		3. optName 인덱스로 묶어서 옵션을 배열에 담아서 정리 
+		*/
+		
+		/** 옵션명 추출 S */
+		$row = db()->table("goods")
+						->select("optNames")
+						->where(["goodsNo" => $goodsNo])
+						->row();
+		// 상품이 없거나, 옵션이 지정되지 않은 단품 상품인 경우는 처리 X 
+		if (!$row || !$row['optNames']) return [];
+		
+		$optNames = explode($this->divisionStr, $row['optNames']);
+		/** 옵션명 추출 E */
+		
+		/** 옵션 항목 추출 S */
+		$list = db()->table("goodsOption")
+					 ->where(["goodsNo" => $goodsNo])
+					 ->orderBy([["regDt", "asc"]])
+					 ->rows();		
+		/** 옵션 항목 추출 E */
+		
+		$opts = [];
+		foreach ($optNames as $k => $optName) {
+			foreach ($list as $li) {
+				if ($optName == $li['optName']) { // 같은 옵션명으로 묶어서 담기 
+					$opts[$k][] = $li;
+				}
+			}
+		} // endforeach 
+		
+		$result =  [
+			'optNames' => $optNames,
+			'opts' => $opts,
+		];
+		
+		return $result;
+	}
 }
