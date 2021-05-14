@@ -47,6 +47,7 @@
 					<th>재고</th>
 					<th>품절여부</th>
 					<th>진열</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -73,6 +74,7 @@
 							<option value='0'<?=$li['isDisplay']?"":" selected"?>>미진열</option>
 						</select>
 					</td>
+					<td></td>
 				</tr>
 			<?php endforeach; ?>
 			</tbody>

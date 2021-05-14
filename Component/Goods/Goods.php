@@ -149,7 +149,6 @@ class Goods
 			$data['options'] = $this->getOptions($goodsNo);
 		}
 		
-		debug($data);
 		return $data;
 	}
 	
