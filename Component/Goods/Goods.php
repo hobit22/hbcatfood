@@ -271,7 +271,7 @@ class Goods
 	public function updateOption($goodsNo)
 	{
 		/**
-			1. yh_goods - optNames - 옵션명 update 
+			1. yh_goods - optNames - 옵션명 update - O 
 			2. yh_goodsOption
 				- 데이터를 테이블에 맞게 가공
 				
@@ -304,6 +304,27 @@ class Goods
 							->where(["goodsNo" => $goodsNo])
 							->update();
 		/** 옵션명 yh_goods에 업데이트 E */
+		
+		/** yh_goodsOption의 테이블에 맞게 데이터 가공 */
+		$list = [];
+		foreach ($optNames as $index => $optName) {
+			foreach ($data['opt_optItem'][$index] as $k => $optItem) {
+				$addPrice = $data['opt_addPrice'][$index][$k];
+				$stock = $data['opt_stock'][$index][$k];
+				$stockOut = $data['opt_stockOut'][$index][$k];
+				$isDisplay = $data['opt_isDisplay'][$index][$k];
+				
+				$d = [
+					'goodsNo' => $goodsNo,
+					'optName' => $optName,
+					'optItem' => $optItem,
+					'addPrice' => $addPrice?$addPrice:0,
+					'stock' => $stock?$stock:0,
+					'stockOut' => $stockOut?1:0,
+					'isDisplay' => $isDisplay?1:0,
+				];
+			}
+		}
 		
 		exit;
 	}
