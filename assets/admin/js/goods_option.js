@@ -76,6 +76,13 @@ const goodsOption = {
 	removeOptItem : function(obj) {
 		$target = obj.closest(".opt_item").find("tbody").find("tr").last();
 		$target.remove();
+	}, 
+	/**
+	* 옵션 전체 삭제(초기화)
+	*
+	*/
+	removeOptions : function() {
+		
 	}
 }
 
@@ -106,4 +113,17 @@ $(function() {
 	$("body").on("click", ".opt_items .remove", function() {
 		goodsOption.removeOptItem($(this));
 	});
+	
+	/** 옵션 항목 클릭한 행 삭제 */
+	$("body").on("click", ".opt_item .remove_rows", function() {
+		$(this).closest("tr").remove();
+	});
+	
+	/** 옵션 항목 초기화 */
+	$(".initialize_opt_items").click(function() {
+		if (confirm('정말 삭제하시겠습니까?')) {
+			goodsOption.removeOptions();
+		}
+	});
+	
 });

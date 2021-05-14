@@ -1,6 +1,6 @@
 <!-- 상품 옵션 -->
 <div class='opt_names'>
-	<div>
+	<div class='tit'>
 		<?php if (!isset($options) || !$options || !$options['optNames']) : // 상품등록, 옵션이 없는 경우만 ?>
 		옵션명 등록
 		<i class='xi-plus-square-o add'></i>

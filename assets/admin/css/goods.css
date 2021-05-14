@@ -1,0 +1,9 @@
+/** 옵션 등록/수정 */
+.opt_names .tit { font-size: 14px; font-weight: bold; padding: 10px 0; }
+.opt_names i { cursor: pointer; font-size: 20px; vertical-align: middle; }
+.opt_names .opt_name_str { border: 1px solid #212121; padding: 7px 15px; border-radius: 5px; margin-right: 5px; }
+.opt_names .inner { padding: 15px 0; }
+
+.opt_item .opt_name_tit { font-size: 13px; font-weight: bold; padding: 10px 0; }
+.opt_item .opt_name_tit i { cursor: pointer; font-size: 20px; vertical-align: middle; }
+.opt_item .remove_rows { cursor: pointer; font-size: 20px; }
