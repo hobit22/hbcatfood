@@ -82,7 +82,19 @@ const goodsOption = {
 	*
 	*/
 	removeOptions : function() {
-		
+		const goodsNo = $("input[name='goodsNo']").val();
+		$.ajax({
+			url : "../goods/indb",
+			type : "post",
+			data : { mode : "delete_options", goodsNo : goodsNo },
+			dataType : "html",
+			success : function (res) {
+				console.log(res);
+			},
+			error : function (err) {
+				console.error(err);
+			}
+		});
 	}
 }
 
