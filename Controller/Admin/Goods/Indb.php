@@ -23,6 +23,7 @@ class IndbController extends \Controller\Admin\Controller
 		try {
 			$in = request()->all(); 
 			$goods = App::load(\Component\Goods\Goods::class);
+			$delivery = App::load(\Component\Goods\Delivery::class);
 			
 			switch($in['mode']) {
 				/** 상품 등록 */
@@ -74,6 +75,10 @@ class IndbController extends \Controller\Admin\Controller
 						}
 					}
 					echo 0; // 실패 
+					break;
+				/** 배송 설정 등록 */
+				case "register_delivery" : 
+				
 					break;
 			}
 			
