@@ -78,7 +78,9 @@ class IndbController extends \Controller\Admin\Controller
 					break;
 				/** 배송 설정 등록 */
 				case "register_delivery" : 
-				
+					$result = $delivery->data($in)
+											 ->validator("register")
+											 ->register();
 					break;
 			}
 			
