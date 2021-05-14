@@ -30,7 +30,29 @@
 
 <div class='opt_items mt20'>
 <?php if (isset($options) && $options['opts']) : ?>
-
+<?php foreach ($options['opts'] as $k => $list) : ?>
+	<div class='opt_item mt20'>
+		<div class='opt_name_tit'>
+			<?=$options['optNames'][$k]?>
+			
+			<i class='xi-plus-square-o add'></i>
+			<i class='xi-minus-square-o remove'></i>
+		</div>
+	
+		<table class='table_rows'>
+			<thead>
+				<tr>
+					<th>옵션항목</th>
+					<th>옵션가</th>
+					<th>재고</th>
+					<th>품절여부</th>
+					<th>진열</th>
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+	</div>
+<?php endforeach; ?>
 <?php endif; ?>
 </div>
 
