@@ -1,19 +1,37 @@
 <!-- 상품 옵션 -->
 <div class='opt_names'>
 	<div>
+		<?php if (!isset($options) || !$options['optNames']) : // 상품등록, 옵션이 없는 경우만 ?>
 		옵션명 등록
 		<i class='xi-plus-square-o add'></i>
 		<i class='xi-minus-square-o remove'></i>
+		<?php else : ?>
+		옵션설정 
+		<?php endif; ?>
 	</div>
 	
-	<div class='inner'></div>
+	<div class='inner'>
+	<?php if (isset($options) && $options['optNames']) : ?>
+	<?php foreach ($options['optNames'] as $optName) : ?>
+		<input type='hidden' name='optNames[]' value='<?=$optName?>'>
+		<span class='opt_name_str'><?=$optName?></span> 
+	<?php endforeach; ?>
+	<?php endif; ?>
+	</div>
 	<div class='mt20'>
-		<span class='btn1 create_opt_items dn'>옵션 항목생성하기</span>
+		<?php if (isset($options) && $options['optNames']) : ?>
+			<span class='btn1 initialize_opt_items'>옵션 초기화 하기</span>
+		<?php else : ?>
+			<span class='btn1 create_opt_items dn'>옵션 항목생성하기</span>
+		<?php endif; ?>
 	</div>
 </div>
 <!--// opt_names -->
 
 <div class='opt_items mt20'>
+<?php if (isset($options) && $options['opts']) : ?>
+
+<?php endif; ?>
 </div>
 
 

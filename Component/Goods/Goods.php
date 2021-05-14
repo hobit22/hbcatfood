@@ -148,7 +148,8 @@ class Goods
 			$data['images'] = $this->getImages($data['gid']);
 			$data['options'] = $this->getOptions($goodsNo);
 		}
-
+		
+		debug($data);
 		return $data;
 	}
 	
