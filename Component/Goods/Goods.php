@@ -19,6 +19,21 @@ class Goods
 	
 	private $divisionStr = "||";
 	
+	private $addWhere = []; // 추가 검색조건 
+	
+	
+	/** 
+	* 추가 검색조건 설정 
+	*
+	* @param Array $where 검색 조건 
+	* @return $this
+	*/
+	public function addWhere($where = []) 
+	{
+		$this->addWhere = $where;
+		
+		return $this;
+	}
 	/**
 	* 처리데이터 설정 
 	* 
@@ -173,9 +188,12 @@ class Goods
 		$offset = ($page - 1) * $limit;
 		
 		// 총 레코드 갯수 
-		$total = db()->table("goods")->count();
+		$total = db()->table("goods")
+						->where($this->addWhere)
+						->count();
 		
 		$list = db()->table("goods")
+					  ->where($this->addWhere)
 					  ->orderBy([["regDt", "desc"]])
 					  ->limit($limit, $offset)
 					  ->rows();
