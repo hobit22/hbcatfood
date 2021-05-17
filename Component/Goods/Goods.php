@@ -483,7 +483,7 @@ class Goods
 			 - 소문자 알파벳 양식 -> 소문자 알파벳 이외의 문자가 들어오면 안되는 패턴 
 			
 			 
-		3. 분류 등록 
+		3. 분류 등록 - O
 		*/
 		if (!$cateCd) {
 			throw new GoodsAdminException("분류코드를 입력하세요.");
@@ -512,5 +512,15 @@ class Goods
 		$result = db()->table("category")->data($inData)->insert();
 		
 		return $result !== false;
+	}
+	
+	/**
+	* 분류 목록 
+	*
+	* @return Array
+	*/
+	public function getCategories()
+	{
+		
 	}
 }

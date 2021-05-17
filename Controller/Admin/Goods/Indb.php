@@ -141,6 +141,12 @@ class IndbController extends \Controller\Admin\Controller
 					
 					
 					$result = $goods->registerCategory($in['cateCd'], $in['cateNm']);
+					if ($result === false) {
+						throw new GoodsAdminException("분류등록 실패!");
+					}
+					
+					// 등록 성공 -> 새로고침
+					reload("parent");
 					break;
 			}
 			
