@@ -21,7 +21,7 @@
 				</td>
 			</tr>
 		</table>
-		<input type='submit' value='설정 등록하기' class='btn1 mt20'>
+		<input type='submit' value='설정 등록하기' class='btn1 mt20 mb20'>
 	</form>
 	
 	<form method='post' action='<?=siteUrl("admin/goods/indb")?>' target='ifrmHidden' autocomplete='off'>
@@ -55,11 +55,21 @@
 							<option value='0'<?=$li['isTogether']?"":" selected"?>>개별배송비 부과</option>
 						</select>
 					</td>
-					<td></td>
+					<td>
+						<input type='radio' name='isDefault' value='<?=$li['deliveryNo']?>' id='isDefault_<?=$li['deliveryNo']?>'<?=$li['isDefault']?" checked":""?>>
+						<label for='isDefault_<?=$li['deliveryNo']?>'>기본배송</label>
+					</td>
 				</tr>
 			<?php endforeach; ?>
 			</tbody>
 		</table>
+		<div class='action_box'>
+			<select name='mode'>
+				<option value='update_delivery'>수정</option>
+				<option value='delete_delivery'>삭제</option>
+			</select>
+			<input type='submit' value='처리하기' class='btn1' onclick="return confirm('정말 처리하시겠습니까?');">
+		</div>
 	</form>
 </div>
 <!--// content_box -->

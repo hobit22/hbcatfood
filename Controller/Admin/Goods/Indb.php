@@ -88,6 +88,47 @@ class IndbController extends \Controller\Admin\Controller
 					// 등록 성공시 새로고침 
 					reload("parent");
 					break;
+				/** 배송설정 수정 */
+				case "update_delivery" : 
+					if (!isset($in['deliveryNo'])) {
+						throw new GoodsAdminException("수정할 설정을 선택해 주세요.");
+					}
+					
+					// 설정 정보 수정 
+					foreach ($in['deliveryNo'] as $deliveryNo) {
+						$upData = [
+							'deliveryNo' => $deliveryNo,
+							'deliveryName' => $in['deliveryName'][$deliveryNo],
+							'deliveryPrice' => $in['deliveryPrice'][$deliveryNo],
+							'isTogether' => $in['isTogether'][$deliveryNo],
+						];
+						
+						$delivery->data($upData)
+									->validator("update")
+									->update();
+					}
+					
+					// 기본 배송 설정 
+					if (isset($in['isDefault'])) {
+						$delivery->setDefault($in['isDefault']);
+					}
+					
+					// 설정 완료 -> 새로고침
+					reload("parent");
+					break;
+				/** 배송설정 삭제 */
+				case "delete_delivery" : 
+					if (!isset($in['deliveryNo'])) {
+						throw new GoodsAdminException("삭제할 설정을 선택하세요.");
+					}
+					
+					foreach ($in['deliveryNo'] as $deliveryNo) {
+						$delivery->delete($deliveryNo);
+					}
+					
+					// 삭제완료 -> 새로고침
+					reload("parent");
+					break;
 			}
 			
 		} catch (GoodsAdminException $e) {

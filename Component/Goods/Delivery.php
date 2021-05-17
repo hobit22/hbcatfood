@@ -47,7 +47,13 @@ class Delivery
 				break;
 			/** 설정 수정 */
 			case "update" : 
-			
+				if (!$this->params['deliveryNo']) {
+					throw new GoodsAdminException("잘못된 접근입니다.");
+				}
+				
+				if (!$this->params['deliveryName']) {
+					throw new GoodsAdminException("설정이름을 입력해 주세요.");
+				}
 				break;
 		}
 		
@@ -75,6 +81,27 @@ class Delivery
 	}
 	
 	/**
+	* 배송비 설정 수정 
+	*
+	* @return Boolean 
+	*/
+	public function update()
+	{
+		$upData = [
+			'deliveryName' => $this->params['deliveryName'],
+			'deliveryPrice' => $this->params['deliveryPrice']?$this->params['deliveryPrice']:0,
+			'isTogether' => $this->params['isTogether']?1:0,
+		];
+		
+		$result = db()->table("delivery")
+						  ->data($upData)
+						  ->where(["deliveryNo" => $this->params['deliveryNo']])
+						  ->update();
+		
+		return $result !== false;
+	}
+	
+	/**
 	* 배송비 설정 목록 
 	*
 	* @return Array
@@ -84,5 +111,40 @@ class Delivery
 		$list = db()->table("delivery")->orderBy([["regDt", "desc"]])->rows();
 		
 		return $list;
+	}
+	
+	/**
+	* 기본 배송 설정 
+	*
+	* @param Integer $deliveryNo 배송비 설정 번호
+	* @return Boolean
+	*/
+	public function setDefault($deliveryNo)
+	{
+		/**
+		1. 모든 설정 레코드의 기본 설정 부분을 0으로 변경(O)
+		2. $deliveryNo로 설정된 레코드의 기본 설정 부분을 1로 변경
+		*/
+		db()->table("delivery")->data(["isDefault" => 0])->update();
+		
+		$result = db()->table("delivery")
+						->data(["isDefault" => 1])
+						->where(["deliveryNo" => $deliveryNo])
+						->update();
+						
+		return $result !== false;
+	}
+	
+	/**
+	* 배송 설정 삭제 
+	*
+	* @param Integer $deliveryNo 설정번호
+	* @return Boolean
+	*/
+	public function delete($deliveryNo) 
+	{
+		$result = db()->table("delivery")->where(["deliveryNo" => $deliveryNo])->delete();
+		
+		return $result !== false;
 	}
 }
