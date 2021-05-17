@@ -524,7 +524,7 @@ class Goods
 	{
 		/**
 		1. 필수 데이터(분류코드, 분류명) - O 
-		2. DB 업데이트 
+		2. DB 업데이트  - O
 		*/
 		if (!isset($this->params['cateCd']) || !$this->params['cateCd']) {
 			throw new GoodsAdminException("잘못된 접근입니다.");
@@ -545,6 +545,19 @@ class Goods
 						->data($upData)
 						->where(["cateCd" => $this->params['cateCd']])
 						->update();
+		
+		return $result !== false;
+	}
+	
+	/**
+	* 분류 삭제 
+	*
+	* @param String $cateCd 분류 코드 
+	* @return Boolean
+	*/
+	public function deleteCategory($cateCd)
+	{
+		$result = db()->table("category")->where(["cateCd" => $cateCd])->delete();
 		
 		return $result !== false;
 	}

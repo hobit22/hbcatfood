@@ -171,7 +171,16 @@ class IndbController extends \Controller\Admin\Controller
 					break;
 				/** 분류 삭제 */
 				case "delete_category" : 
-				
+					if (!isset($this->params['cateCd'])) {
+						throw new GoodsAdminException("삭제할 분류를 선택해 주세요.");
+					}
+					
+					foreach ($this->params['cateCd'] as $cateCd) {
+						$goods->deleteCategory($cateCd);
+					}
+					
+					// 삭제 완료 -> 새로고침
+					reload("parent");
 					break;
 			}
 			
