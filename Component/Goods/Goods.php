@@ -188,12 +188,17 @@ class Goods
 		$offset = ($page - 1) * $limit;
 		
 		// 총 레코드 갯수 
-		$total = db()->table("goods")
-						->where($this->addWhere)
-						->count();
-		
-		$list = db()->table("goods")
-					  ->where($this->addWhere)
+		$table = db()->table("goods");
+		if ($this->addWhere) {
+			$table->where($this->addWhere);
+		}
+		$total = $table->count();
+				
+		$table = db()->table("goods");
+		if ($this->addWhere) {
+			$table->where($this->addWhere);
+		}
+		$list = $table 
 					  ->orderBy([["regDt", "desc"]])
 					  ->limit($limit, $offset)
 					  ->rows();
