@@ -51,3 +51,18 @@ textarea { border: 1px solid #d5d5d5; padding: 10px; width: 100%; min-height:200
 .main_menu:after { clear: left; content: ''; display: block; }
 .main_menu li { float: left; }
 .main_menu li a { display: block; padding: 15px 20px; color: #ffffff; }
+
+/** 상품 목록 */
+.goods_list { margin-bottom: 25px; }
+.goods_list:after { clear: left; content: ''; display: block; }
+.goods_list li { float: left; width: calc(100% / 4 - 8px); margin-left: 10px; }
+.goods_list li:nth-child(4n+1) { margin-left: 0; }
+
+.goods_list .images img { width: 100%; display: block; }
+.goods_list .images { margin-bottom: 10px; }
+
+.goods_list .goods_nm { font-weight: bold; }
+.goods_list .short_desc { color: #666666; margin: 3px 0 10px; }
+
+.goods_list .consumer { margin-right: 10px; }
+.goods_list .sale { font-weight: bold; }
