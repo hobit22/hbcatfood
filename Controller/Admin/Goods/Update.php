@@ -40,6 +40,7 @@ class UpdateController extends \Controller\Admin\Controller
 		}
 	
 		$data['deliveryConf'] = $delivery->getList(); // 배송 설정 
+		$data['categories'] = $goods->getCategories(); // 상품분류
 		
 		App::render("Goods/form", $data);
 	}

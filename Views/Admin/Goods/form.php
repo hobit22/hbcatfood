@@ -27,7 +27,13 @@
 		<?php endif; ?>
 		<dl>
 			<dt>상품분류</dt>
-			<dd></dd>
+			<dd>
+				<select name='cateCd'>
+				<?php foreach ($categories as $c) : ?>
+					<option value='<?=$c['cateCd']?>'<?php if (isset($cateCd) && $cateCd == $c['cateCd']) echo " selected";?>><?=$c['cateNm']?></option>
+				<?php endforeach; ?>
+				</select>
+			</dd>
 		</dl>
 		<dl>
 			<dt>진열상태</dt>
