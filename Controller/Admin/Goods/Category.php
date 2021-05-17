@@ -18,6 +18,8 @@ class CategoryController extends \Controller\Admin\Controller
 	
 	public function index()
 	{
-		App::render("Goods/category");
+		$goods = App::load(\Component\Goods\Goods::class);
+		$list = $goods->getCategories();
+		App::render("Goods/category", ['list' => $list]);
 	}
 }

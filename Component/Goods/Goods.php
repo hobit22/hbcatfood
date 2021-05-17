@@ -521,6 +521,10 @@ class Goods
 	*/
 	public function getCategories()
 	{
-		
+		$list = db()->table("category")
+						->orderBy([["listOrder", "desc"], ["regdt", "desc"]])
+						->rows();
+						
+		return $list;
 	}
 }
