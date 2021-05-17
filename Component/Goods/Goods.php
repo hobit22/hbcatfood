@@ -515,6 +515,41 @@ class Goods
 	}
 	
 	/**
+	* 분류 설정 수정 
+	*
+	* @return Boolean
+	* @throw GoodsAdminException
+	*/
+	public function updateCategory()
+	{
+		/**
+		1. 필수 데이터(분류코드, 분류명) - O 
+		2. DB 업데이트 
+		*/
+		if (!isset($this->params['cateCd']) || !$this->params['cateCd']) {
+			throw new GoodsAdminException("잘못된 접근입니다.");
+		}
+		
+		if (!isset($this->params['cateNm']) || !$this->params['cateNm']) {
+			throw new GoodsAdminException("분류명을 입력해 주세요.");
+		}
+		
+		$upData = [
+			'cateNm' => $this->params['cateNm'],
+			'isDisplay' => isset($this->params['isDisplay'])?$this->params['isDisplay']:1,
+			'listOrder' => isset($this->params['listOrder'])?$this->params['listOrder']:0,
+			'modDt' =>date("Y-m-d H:i:s"),
+		];
+		
+		$result = db()->table("category")
+						->data($upData)
+						->where(["cateCd" => $this->params['cateCd']])
+						->update();
+		
+		return $result !== false;
+	}
+	
+	/**
 	* 분류 목록 
 	*
 	* @return Array
