@@ -22,7 +22,7 @@ class ListController extends \Controller\Front\Controller
 		$page = request()->get("page");
 		$qs = "cateCd=".$cateCd; // 페이지 링크에 추가
 		$data = $goods
-						->addWhere(["cateCd" => $cateCd])
+						->addWhere(["cateCd" => $cateCd, 'isDisplay' => 1])
 						->getList($page,20,$qs);
 		
 		App::render("Goods/list", $data);

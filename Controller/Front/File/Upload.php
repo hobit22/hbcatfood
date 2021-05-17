@@ -28,4 +28,6 @@ class UploadController extends \Controller\Front\Controller
 		
 		App::render("File/upload", ["gid" => $gid, 'type' => $type, 'location' => $location]);
 	}
+	
+	public function mainMenu() {} 
 }
