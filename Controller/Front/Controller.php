@@ -77,4 +77,21 @@ class Controller extends \Controller
 		$content = ob_get_clean();
 		echo $content;
 	}
+	
+	/**
+	* 프론트 메인메뉴
+	*
+	*/
+	public function mainMenu()
+	{
+		if ($this->layoutBlank) return;
+		
+		// 기본 메뉴  - 상품분류 
+		$goods = App::load(\Component\Goods\Goods::class);
+		$data = [
+			'categories' => $goods->getCategories(),
+		];
+		
+		App::render("Menus/main", $data);
+	}
 }
