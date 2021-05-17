@@ -38,3 +38,16 @@ textarea { border: 1px solid #d5d5d5; padding: 10px; width: 100%; min-height:200
 
 /** 기본 레이아웃 */
 #wrap { max-width: 1100px; margin: 0 auto; }
+
+/** 메인 상단 메뉴 */
+.main_top { background-color: #f8f8f8; border-bottom: 1px solid #d5d5d5; text-align: right; padding: 5px 10px; }
+.main_top a { margin-left: 10px; }
+
+/** 로고 영역 */
+.main_logo { padding: 30px 0; text-align: center; }
+
+/** 메인 메뉴 */
+.main_menu { background: blue; margin-bottom: 20px; }
+.main_menu:after { clear: left; content: ''; display: block; }
+.main_menu li { float: left; }
+.main_menu li a { display: block; padding: 15px 20px; color: #ffffff; }
