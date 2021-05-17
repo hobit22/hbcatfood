@@ -477,10 +477,11 @@ class Goods
 	{
 		/**
 		0. 필수 컬럼 체크(빈값이 들어오지 못하도록) - O
-		1. 분류코드의 중복 여부 체크 
-		2. 분류 코드 양식 
-			 - 소문자 알파벳 양식
-			 - 최대 20자 까지만 가능 
+		1. 분류코드의 중복 여부 체크  - O 
+		2. 분류 코드 양식  - O 
+			- 최대 20자 까지만 가능 
+			 - 소문자 알파벳 양식 -> 소문자 알파벳 이외의 문자가 들어오면 안되는 패턴 
+			
 			 
 		3. 분류 등록 
 		*/
@@ -498,5 +499,18 @@ class Goods
 			throw new GoodsAdminException("이미 등록된 분류코드 입니다 - ".$cateCd);
 		}
 		
+		// 20자 초과 또는 소문자 알파벳이 아닌 문자가 섞여 있는 경우 
+		if (strlen($cateCd) > 20 || preg_match("/[^a-z]/", $cateCd)) {
+			throw new GoodsAdminException("분류코드는 20자 이하의 소문자 알파벳으로 입력해 주세요.");
+		}
+		
+		// 분류 등록
+		$inData = [
+			'cateCd' => $cateCd,
+			'cateNm' => $cateNm,
+		];
+		$result = db()->table("category")->data($inData)->insert();
+		
+		return $result !== false;
 	}
 }
