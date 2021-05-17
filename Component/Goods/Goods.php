@@ -492,5 +492,11 @@ class Goods
 			throw new GoodsAdminException("분류명을 입력해 주세요.");
 		}
 		
+		// 중복체크 
+		$cnt = db()->table("category")->where(["cateCd" => $cateCd])->count();
+		if ($cnt > 0) {
+			throw new GoodsAdminException("이미 등록된 분류코드 입니다 - ".$cateCd);
+		}
+		
 	}
 }
