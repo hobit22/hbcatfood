@@ -123,7 +123,7 @@
 				<select name='deliveryNo'>
 				<?php if ($deliveryConf) : ?>
 				<?php foreach ($deliveryConf as $conf) : ?>
-					<option value='<?=$conf['deliveryNo']?>'<?php if (isset($deliveryNo) && $deliveryNo == $conf['deliveryNo']) echo " selected";?>><?=$conf['deliveryName']?>(<?=$conf['deliveryPrice']?number_format($conf['deliveryPrice']):"무료배송"?>)</option>
+					<option value='<?=$conf['deliveryNo']?>'<?php if (isset($deliveryNo) && $deliveryNo == $conf['deliveryNo']) echo " selected";?>><?=$conf['deliveryName']?>(<?=$conf['deliveryPrice']?number_format($conf['deliveryPrice'])."원":"무료배송"?>)</option>
 				<?php endforeach; ?>
 				<?php endif; ?>
 				</select>
