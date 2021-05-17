@@ -35,3 +35,6 @@ textarea { border: 1px solid #d5d5d5; padding: 10px; width: 100%; min-height:200
 
 .mt10 { margin-top: 10px !important; }
 .w120 { width: 120px !important; }
+
+/** 기본 레이아웃 */
+#wrap { max-width: 1100px; margin: 0 auto; }

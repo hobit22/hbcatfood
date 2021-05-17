@@ -14,3 +14,4 @@
 		[[addScript]]
 	</head>
 	<body>
+	<div id='wrap'>

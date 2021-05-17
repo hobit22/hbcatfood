@@ -2,6 +2,8 @@
 
 namespace Controller\Front;
 
+use App;
+
 /**
 * Front 페이지 메인 Controller 
 *

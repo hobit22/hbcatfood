@@ -1,3 +1,9 @@
+<!-- 프론트 로고 영역 -->
+<div class='logo'>
+	<a href='<?=siteUrl("main/index")?>'>
+		<img src='<?=siteUrl("assets/front/images/logo.png")?>'>
+	</a>
+</div>
 <!-- 프론트 메인 메뉴 -->
 <?php if ($categories) : ?>
 <ul class='main_menu'>
