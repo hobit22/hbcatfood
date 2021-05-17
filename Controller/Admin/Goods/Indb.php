@@ -148,6 +148,31 @@ class IndbController extends \Controller\Admin\Controller
 					// 등록 성공 -> 새로고침
 					reload("parent");
 					break;
+				/** 분류 수정 */
+				case "update_category" :
+					if (!isset($in['cateCd'])) {
+						throw new GoodsAdminException("수정할 분류를 선택하세요.");
+					}
+					
+					foreach ($in['cateCd'] as $cateCd) {
+						$upData = [
+							'cateCd' => $cateCd,
+							'cateNm' => $in['cateNm'][$cateCd],
+							'isDisplay' => $in['isDisplay'][$cateCd],
+							'listOrder' => $in['listOrder'][$cateCd],
+						];
+						
+						$goods->data($upData)->updateCategory();		
+					}
+					
+					// 수정이 완료되면 -> 새로고침
+					reload("parent");
+					
+					break;
+				/** 분류 삭제 */
+				case "delete_category" : 
+				
+					break;
 			}
 			
 		} catch (GoodsAdminException $e) {
