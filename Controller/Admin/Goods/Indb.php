@@ -129,6 +129,19 @@ class IndbController extends \Controller\Admin\Controller
 					// 삭제완료 -> 새로고침
 					reload("parent");
 					break;
+				/** 분류 등록 */
+				case "register_category" : 
+					if (!$in['cateCd']) {
+						throw new GoodsAdminException("분류코드를 입력해 주세요.");
+					}
+					
+					if (!$in['cateNm']) {
+						throw new GoodsAdminException("분류명을 입력해 주세요.");
+					}
+					
+					
+					$result = $goods->registerCategory($in['cateCd'], $in['cateNm']);
+					break;
 			}
 			
 		} catch (GoodsAdminException $e) {

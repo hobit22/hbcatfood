@@ -463,4 +463,34 @@ class Goods
 		
 		return false;
 	}
+	
+	/**
+	* 분류등록 
+	* 
+	* @param String $cateCd 분류코드
+	* @param String $cateNm 분류명
+	*
+	* @return Boolean 
+	* @throw GoodsAdminException 
+	*/
+	public function registerCategory($cateCd, $cateNm) 
+	{
+		/**
+		0. 필수 컬럼 체크(빈값이 들어오지 못하도록) - O
+		1. 분류코드의 중복 여부 체크 
+		2. 분류 코드 양식 
+			 - 소문자 알파벳 양식
+			 - 최대 20자 까지만 가능 
+			 
+		3. 분류 등록 
+		*/
+		if (!$cateCd) {
+			throw new GoodsAdminException("분류코드를 입력하세요.");
+		}
+		
+		if (!$cateNm) {
+			throw new GoodsAdminException("분류명을 입력해 주세요.");
+		}
+		
+	}
 }
