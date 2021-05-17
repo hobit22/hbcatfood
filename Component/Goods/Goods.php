@@ -127,6 +127,7 @@ class Goods
 			'totalStock' => isset($params['totalStock'])?$params['totalStock']:0,
 			'stockOut' => isset($params['stockOut'])?$params['stockOut']:0,
 			'isDisplay' => isset($params['isDisplay'])?$params['isDisplay']:1,
+			'deliveryNo' => isset($params['deliveryNo'])?$params['deliveryNo']:0,
 		];
 		
 		return $columns;
