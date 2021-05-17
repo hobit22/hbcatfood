@@ -32,12 +32,15 @@ class UpdateController extends \Controller\Admin\Controller
 		}
 		
 		$goods = App::load(\Component\Goods\Goods::class);
+		$delivery = App::load(\Component\Goods\Delivery::class);
 		$data = $goods->get($goodsNo);
 		
 		if (!$data) {
 			msg("존재하지 않는 상품입니다.", -1);
 		}
 	
+		$data['deliveryConf'] = $delivery->getList(); // 배송 설정 
+		
 		App::render("Goods/form", $data);
 	}
 }

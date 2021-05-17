@@ -108,7 +108,9 @@ class Delivery
 	*/
 	public function getList()
 	{
-		$list = db()->table("delivery")->orderBy([["regDt", "desc"]])->rows();
+		$list = db()->table("delivery")
+						->orderBy([['isDefault', 'desc'], ["regDt", "desc"]])
+						->rows();
 		
 		return $list;
 	}

@@ -226,8 +226,10 @@ CREATE TABLE `yh_delivery` (
 	`regDt` DATETIME NULL DEFAULT current_timestamp() COMMENT '등록일시',
 	`modDt` DATETIME NULL DEFAULT NULL COMMENT '수정일시',
 	PRIMARY KEY (`deliveryNo`) USING BTREE,
-	INDEX `regDt` (`regDt`) USING BTREE
+	INDEX `regDt` (`regDt`) USING BTREE,
+	INDEX `isDefault` (`isDefault`) USING BTREE
 )
 COLLATE='utf8mb4_general_ci'
 ENGINE=InnoDB
+AUTO_INCREMENT=3
 ;

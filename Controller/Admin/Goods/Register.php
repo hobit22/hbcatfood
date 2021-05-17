@@ -26,9 +26,11 @@ class RegisterController extends \Controller\Admin\Controller
 	
 	public function index()
 	{
+		$delivery = App::load(\Component\Goods\Delivery::class);
 		$gid = gid();
 		$data = [
 			'gid' => $gid,
+			'deliveryConf' => $delivery->getList(),
 		];
 		App::render("Goods/form", $data);
 	}

@@ -121,7 +121,11 @@
 			<dt>배송설정</dt>
 			<dd>
 				<select name='deliveryNo'>
-					<option value=''>- 설정을 선택하세요 -</option>
+				<?php if ($deliveryConf) : ?>
+				<?php foreach ($deliveryConf as $conf) : ?>
+					<option value='<?=$conf['deliveryNo']?>'<?php if (isset($deliveryNo) && $deliveryNo == $conf['deliveryNo']) echo " selected";?>><?=$conf['deliveryName']?>(<?=$conf['deliveryPrice']?number_format($conf['deliveryPrice']):"무료배송"?>)</option>
+				<?php endforeach; ?>
+				<?php endif; ?>
 				</select>
 			</dd>
 		</dl>
