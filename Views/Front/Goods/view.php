@@ -54,7 +54,11 @@
 			<?php else : // 옵션 X, 단품 판매 ?>
 			<dl>
 				<dt>구매수량</dt>
-				<dd></dd>
+				<dd>
+					<input type='number' name='goodsCnt' value='1' class='goodsCnt'>
+					<i class='xi-caret-up-square-o goodsCnt_up'></i>
+					<i class='xi-caret-down-square-o goodsCnt_dn'></i>
+				</dd>
 			</dl>
 			<?php endif; ?>
 		</div>
