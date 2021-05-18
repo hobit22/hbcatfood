@@ -37,7 +37,17 @@
 			<dl>
 				<dt><?=$optName?></dt>
 				<dd>
-					
+					<select name='options[<?=$no?>]' class='options'>
+						<option value=''>- <?=$optName?> 선택 -</option>
+					<?php foreach ($options['opts'][$no] as $opt) : 
+								if (!$opt['isDisplay']) continue;
+					?>
+						<option value='<?=$opt['optNo']?>'>
+							<?=$opt['optName']?>
+							<?=$opt['addPrice']?"(".number_format($opt['addPrice'])."원)":""?>
+						</option>
+					<?php endforeach; ?>
+					</select>
 				</dd>
 			</dl>
 			<?php endforeach; ?>
