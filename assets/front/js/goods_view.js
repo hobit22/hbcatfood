@@ -70,7 +70,7 @@ const goodsView = {
 		} else { // 옵션이 없는 단품 
 			
 		}
-		
+		totalPrice *= 100000;
 		$(".total_price").text(totalPrice.format());
 	}
 };
