@@ -68,7 +68,10 @@ const goodsView = {
 			});
 			
 		} else { // 옵션이 없는 단품 
+			const salePrice = Number($(".salePrice").val());
+			const goodsCnt = Number($(".goods_top .goodsCnt").val());
 			
+			totalPrice = salePrice * goodsCnt;
 		}
 
 		$(".total_price").text(totalPrice.format());
@@ -83,6 +86,8 @@ const swiperMain = new Swiper(".goods_top .swiper-container", {
 });
 
 $(function() {
+	goodsView.updateTotalPrice();
+	
 	/** 옵션 선택 처리 */
 	$(".goods_top .options").change(function() {
 		const optNo = $(this).val();
@@ -122,4 +127,18 @@ $(function() {
 		}
 		goodsView.updateTotalPrice();
 	});
+	
+	/** 장바구니, 바로구매 클릭 처리 */
+	$(".buy_btns .btns").click(function() {
+		let mode = "cart";
+		if ($(this).hasClass("order")) { // 바로구매 버튼 
+			mode = "order";
+		}
+		
+		//goodsFrm.mode.value= mode;
+		$("#goodsFrm input[name='mode']").val(mode);
+		
+		$("#goodsFrm").submit();	
+	});
+	
 });
