@@ -99,6 +99,7 @@
 <script type='text/html' id='opt_template'>
 	<li class='opt_rows' id='opt_rows_<%optNo%>'>
 		<input type='hidden' name='optNo[]' value='<%optNo%>'>
+		<input type='hidden' class='optPrice' value='<%optPrice%>'>
 		<div class='box opt_nm'>
 			<%optItem%>
 		</div>
