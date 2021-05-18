@@ -50,22 +50,40 @@ class Cart
 	*/
 	public function add()
 	{
+		$isDirect = isset($this->params['isDirect'])?$this->params['isDirect']:0;
 		if (isset($this->params['optNo'])) { // 옵션 상품 
 			$cartNos = [];
 			foreach ($this->params['optNo'] as $k => $optNo) {
 				$goodsCnt = $this->params['goodsCnt'][$optNo]?$this->params['goodsCnt'][$optNo]:1;
-				$isDirect = isset($this->params['isDirect'])?$this->params['isDirect']:0;
 				$inData = [
-					'memNo' => isset($_SESSION['memNo'])?$_SESSION['memNo']:0,
+					'memNo' => isLogin()?$_SESSION['memNo']:0,
 					'goodsNo' => $this->params['goodsNo'],
 					'optNo' => $optNo,
 					'goodsCnt' => $goodsCnt,
 					'isDirect' => $isDirect,
 				];
+				
+				$cartNo = db()->table("cart")->data($inData)->insert();
+				if ($cartNo !== false) {
+					$cartNos[] = $cartNo;
+				}
 			}
 			
-		} else { // 단품 
+			return $cartNos;
 			
+		} else { // 단품 
+			$inData = [
+				'memNo' => isLogin()?$_SESSION['memNo']:0,
+				'goodsNo' => $this->params['goodsNo'],
+				'goodsCnt' => $this->params['goodsCnt']?$this->params['goodsCnt']:1,
+				'isDirect' => $isDirect,
+			];
+			
+			$cartNo = db()->table("cart")->data($inData)->insert();
+			
+			return $cartNo;
 		}
+		
+		return false;
 	}
 }
