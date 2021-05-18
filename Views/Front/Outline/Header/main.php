@@ -3,7 +3,7 @@
 	<head>
 		<meta charset='utf-8'>
 		<link rel="stylesheet" type='text/css' href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
-		<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+		<link rel="stylesheet" type='text/css' href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 		<link rel="stylesheet" type='text/css' href='<?=siteUrl("assets/front/css/style.css")?>?t=<?=time()?>'>
 		[[addCss]]
 		<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>

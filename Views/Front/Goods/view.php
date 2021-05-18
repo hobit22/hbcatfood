@@ -16,10 +16,41 @@
 		</div>
 		<!--// images -->
 		<div class='info'>
-		
+			<div class='goods_nm'><?=$goodsNm?></div>
+			<div class='short_desc'><?=$shortDescription?></div>
+			
+			<dl>
+				<dt>판매가격</dt>
+				<dd>
+					<?php if ($consumerPrice) : ?>
+					<strike class='consumer'><?=number_format($consumerPrice)?>원</strike>
+					<?php endif; ?>
+					<span class='price'><?=number_format($salePrice)?></span>원
+				</dd>
+			</dl>
+			<dl>
+				<dt>배송비</dt>
+				<dd></dd>
+			</dl>
+			<?php if ($options) : // 옵션이 있는 경우 ?>
+			<?php foreach ($options['optNames'] as $no => $optName) : ?>
+			<dl>
+				<dt><?=$optName?></dt>
+				<dd>
+					
+				</dd>
+			</dl>
+			<?php endforeach; ?>
+			<?php else : // 옵션 X, 단품 판매 ?>
+			<dl>
+				<dt>구매수량</dt>
+				<dd></dd>
+			</dl>
+			<?php endif; ?>
 		</div>
 		<!--// info -->
 	</div>
+	
 	<!--// goods_top -->
 	<div class='description'>
 		<?=$description?>

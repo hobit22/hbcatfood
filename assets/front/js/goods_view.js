@@ -1,5 +1,4 @@
 
-
 /** swiper 추가 */
 const swiperMain = new Swiper(".goods_top .swiper-container", {
 	pagination : {

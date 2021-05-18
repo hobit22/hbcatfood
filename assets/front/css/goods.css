@@ -1,0 +1,5 @@
+/** 상품 상세 상단 */
+.goods_top .images { float: left; width: calc(50% - 10px); }
+.goods_top .info { float: right; width: calc(50% - 10px); }
+
+.goods_top .images img { display: block; width: 100%; }
