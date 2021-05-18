@@ -46,7 +46,7 @@ class Cart
 	*	 optNo 있는 경우 -> 옵션 상품 
 	* 	           없는 경우 -> 단품 상품
 	* 
-	* @return Integer|Boolean 추가 되면 장바구니 추가 번호, 실패 false
+	* @return Array|Integer|Boolean 추가 되면 장바구니 추가 번호, 실패 false
 	*/
 	public function add()
 	{
