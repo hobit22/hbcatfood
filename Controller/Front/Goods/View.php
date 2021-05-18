@@ -10,6 +10,12 @@ use App;
 */ 
 class ViewController extends \Controller\Front\Controller
 {
+	public function __construct() 
+	{
+		$this->addCss(["goods"])
+			  ->addScript(["goods_view"]);
+	}
+	
 	public function index()
 	{
 		$goodsNo = request()->get("goodsNo");
