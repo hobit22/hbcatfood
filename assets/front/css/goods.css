@@ -12,3 +12,7 @@
 
 .goods_top .consumer { color: #666666; margin-right: 10px; }
 .goods_top .price { font-weight: bold; font-size: 15px; }
+
+.goods_top .buy_btns { margin: 25px 0; }
+.goods_top .buy_btns .btns { display: inline-block; padding: 10px 30px; border: 1px solid #212121; cursor: pointer; border-radius: 5px; margin-right: 5px; font-weight: bold; font-size: 15px; }
+.goods_top .buy_btns .btns.order { background-color: #212121; color: #ffffff; }
