@@ -30,7 +30,13 @@
 			</dl>
 			<dl>
 				<dt>배송비</dt>
-				<dd></dd>
+				<dd>
+					<?php if ($delivery['deliveryPrice'] > 0) : // 배송비가 있는 경우 ?>
+						<?=number_format($delivery['deliveryPrice'])?>원(<?=$delivery['deliveryName']?>)
+					<?php else : // 배송비가 0인 경우 ?>
+						무료배송
+					<?php endif; ?>
+				</dd>
 			</dl>
 			<?php if ($options) : // 옵션이 있는 경우 ?>
 			<?php foreach ($options['optNames'] as $no => $optName) : ?>

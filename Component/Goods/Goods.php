@@ -162,8 +162,10 @@ class Goods
 						->row();
 		
 		if ($data) {
-			$data['images'] = $this->getImages($data['gid']);
-			$data['options'] = $this->getOptions($goodsNo);
+			$delivery = App::load(\Component\Goods\Delivery::class);
+			$data['delivery'] = $delivery->get($data['deliveryNo']); // 배송비 정책
+			$data['images'] = $this->getImages($data['gid']); //  이미지 
+			$data['options'] = $this->getOptions($goodsNo); // 옵션 
 		}
 		
 		return $data;

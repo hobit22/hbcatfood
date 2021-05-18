@@ -149,4 +149,24 @@ class Delivery
 		
 		return $result !== false;
 	}
+	
+	/**
+	* 배송 설정 
+	*
+	* @param Integer $deliveryNo - 배송 설정 번호 
+	* @return Array
+	*/
+	public function get($deliveryNo) 
+	{
+		/** 만약 deliveryNo - 0 인 경우는 기본 배송 설정 대체 */
+		if (!$deliveryNo) {
+			$data = db()->table("delivery")->where(["isDefault" => 1])->row();
+			return $data;
+		}
+		
+		// deliveryNo가 있는 경우 
+		$data = db()->table("delivery")->where(["deliveryNo" => $deliveryNo])->row();
+		
+		return $data;
+	}
 }
