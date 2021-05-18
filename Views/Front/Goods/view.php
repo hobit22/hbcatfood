@@ -43,7 +43,7 @@
 								if (!$opt['isDisplay']) continue;
 					?>
 						<option value='<?=$opt['optNo']?>'>
-							<?=$opt['optName']?>
+							<?=$opt['optItem']?>
 							<?=$opt['addPrice']?"(".number_format($opt['addPrice'])."원)":""?>
 						</option>
 					<?php endforeach; ?>
