@@ -152,13 +152,15 @@ class Cart
 		
 		try {
 			db()->beginTransaction();
-			$table = db()->table("cart");
+			
+			$where = ["isDirect" => $isDirect];
 			if (isLogin()) { // 회원 
-				$table->where(["memNo" => $_SESSION['memNo']]);
+				$where['memNo'] = $_SESSION['memNo'];
 			} else { // 비회원 
 				
 			}
-			$table->delete();
+			
+			db()->table("cart")->where($where)->delete();
 			
 			foreach ($list as $li) {
 				db()->table("cart")->data($li)->insert();

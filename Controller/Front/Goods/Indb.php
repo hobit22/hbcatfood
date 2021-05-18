@@ -44,6 +44,13 @@ class IndbController extends \Controller\Front\Controller
 										->validator()
 										->add();
 					
+					
+					if (!$result) {
+						throw new CartException("장바구니 추가 실패!");
+					}
+					
+					// 추가 성공 한 경우 -> 주문하기 페이지로 이동 
+					go("order/order", "parent");
 					break;
 			}
 		} catch (GoodsFrontException $e) {
