@@ -99,6 +99,27 @@ $(function() {
 	
 	/** 수량 증감 처리 */
 	$("body").on("click", ".goodsCnt_up, .goodsCnt_dn", function() {
+		$goodsCnt = $(this).closest(".goodsCnt_wrap").find(".goodsCnt");
+		let cnt = Number($goodsCnt.val());
 		
+		if ($(this).hasClass("goodsCnt_up")) { // 증가 처리 
+			cnt++;
+		} else { // 감소 처리 
+			cnt--;
+		}
+		
+		if (cnt < 1) cnt = 1;
+		
+		$goodsCnt.val(cnt);
+		
+		goodsView.updateTotalPrice(); // 총 합계 갱신 
+	});
+	
+	$("body").on("keyup change", ".goodsCnt", function() {
+		let cnt = Number($(this).val());
+		if (cnt < 1) {
+			$(this).val(1);
+		}
+		goodsView.updateTotalPrice();
 	});
 });
