@@ -91,7 +91,7 @@
 <!-- goods_view -->
 
 <script type='text/html' id='opt_template'>
-	<li class='opt_rows'>
+	<li class='opt_rows' id='opt_rows_<%optNo%>'>
 		<input type='hidden' name='optNo[]' value='<%optNo%>'>
 		<div class='box opt_nm'>
 			<%optItem%>

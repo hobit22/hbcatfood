@@ -11,6 +11,13 @@ const goodsView = {
 	selectOption : function(optNo) {
 		if (!optNo) return;
 		
+		// 이미 추가된 옵션인지 체크 
+		$opt = $("#opt_rows_" + optNo);
+		if ($opt.length > 0) { // 이미 추가된 옵션인 경우 
+			alert("이미 추가된 옵션입니다.");
+			return;
+		}
+		
 		$.ajax({
 			url : "../goods/ajax", 
 			type : "post", 
