@@ -15,7 +15,7 @@ const goodsView = {
 			url : "../goods/ajax", 
 			type : "post", 
 			data : { mode : "get_options", optNo : optNo },
-			dataType : "html", 
+			dataType : "json", 
 			success : function (res) {
 				console.log(res);
 			},

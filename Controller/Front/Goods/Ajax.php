@@ -25,7 +25,16 @@ class AjaxController extends \Controller\Front\Controller
 			switch ($in['mode']) {
 				/** 옵션 정보 추출 */
 				case "get_options" : 
-				
+					if (!isset($in['optNo']) || !$in['optNo']) {
+						throw new GoodsFrontException("잘못된 접근입니다.");
+					}
+					
+					$opt = $goods->getOption($in['optNo']);
+					$data = [
+						'error' => 0,
+						'data' => $opt,
+					];
+					echo json_encode($data);
 					break;
 			}
 		

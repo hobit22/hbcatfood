@@ -451,6 +451,33 @@ class Goods
 	}
 	
 	/**
+	* 개별 옵션 정보 추출 
+	*
+	* @param Integer $optNo 옵션번호
+	* @return Array
+	*/
+	public function getOption($optNo)
+	{
+		/**
+			옵션 테이블 정보
+			상품 테이블 판매가
+			yh_goodsOption, yh_goods 
+		*/
+		$config = getConfig();
+		$px = $config['prefix'];
+		
+		$joinTable = [
+			'goods' => ["{$px}goodsOption.goodsNo", "{$px}goods.goodsNo", "inner"],
+		];
+		
+		$data = db()->table("goodsOption", $joinTable)
+						->select("{$px}goodsOption.*, {$px}goods.salePrice")
+						 ->where(["{$px}goodsOption.optNo" => $optNo])
+						 ->row();
+		return $data;
+	}
+	
+	/**
 	* 옵션 전체 삭제 
 	*
 	* @param Integer $goodsNo 상품번호 
