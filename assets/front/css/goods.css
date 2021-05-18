@@ -13,9 +13,13 @@
 .goods_top .consumer { color: #666666; margin-right: 10px; }
 .goods_top .price { font-weight: bold; font-size: 15px; }
 
-.goods_top .buy_btns { margin: 25px 0; }
+.goods_top .bottom_wrap:after { clear: both; content: ''; display: block; margin: 25px 0; }
+.goods_top .buy_btns { float: left; }
 .goods_top .buy_btns .btns { display: inline-block; padding: 10px 30px; border: 1px solid #212121; cursor: pointer; border-radius: 5px; margin-right: 5px; font-weight: bold; font-size: 15px; }
 .goods_top .buy_btns .btns.order { background-color: #212121; color: #ffffff; }
+
+.goods_top .total_price_wrap { float: right; padding-right: 25px; }
+.goods_top .total_price { font-size: 20px; font-weight: bold; color: red; }
 
 .goods_top .selected_opts { margin-top: 20px; }
 .goods_top .opt_rows { border: 1px solid #d5d5d5; margin-bottom: 2px; display: table; width: 100%; padding: 10px; position: relative; }

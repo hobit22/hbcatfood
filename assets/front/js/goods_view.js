@@ -44,6 +44,20 @@ const goodsView = {
 				console.error(err);
 			}
 		});
+	}, 
+	/**
+	* 상품 총합 합계 
+	*
+	*  select.options -> 옵션 있는 경우
+	*	없으면 -> 단품 
+	*/
+	updateTotalPrice : function() {
+		let totalPrice = 0;
+		if ($(".goods_top .options").length > 0) { // 옵션 있는 상품 
+			
+		} else { // 옵션이 없는 단품 
+			
+		}
 	}
 };
 
