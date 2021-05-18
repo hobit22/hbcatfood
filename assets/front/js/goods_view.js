@@ -17,7 +17,21 @@ const goodsView = {
 			data : { mode : "get_options", optNo : optNo },
 			dataType : "json", 
 			success : function (res) {
-				console.log(res);
+				if (res.error == '1' ) { // 에러가 있는 경우 
+					alert(res.message);
+				} else if (!res.data) { // 옵션이 존재하지 않는 경우 
+					alert("존재하지않는 옵션을 선택하였습니다.");
+				} else { // 에러가 없는 경우 
+					let html = $("#opt_template").html();
+					const data = res.data;
+					
+					const optPrice = Number(data.salePrice) + Number(data.addPrice);
+					html = html.replace(/<%optNo%>/g, data.optNo);
+					html = html.replace(/<%optItem%>/g, data.optItem);
+					html = html.replace(/<%optPrice%>/g, optPrice);
+					
+					$(".selected_opts").append(html);
+				}
 			},
 			error : function (err) {
 				console.error(err);

@@ -60,20 +60,6 @@
 			<?php endforeach; ?>
 			<ul class='selected_opts'>	
 				<!-- 선택된 옵션이 박스 형태로 붙여지는 부분 -->
-				<li class='opt_rows'>
-					<div class='box opt_nm'>
-						옵션명
-					</div>
-					<div class='box goodsCnt_wrap'>
-						<input type='number' name='goodsCnt[<%optNo%>]' value='1' class='goodsCnt'>
-						<i class='xi-caret-up-square-o goodsCnt_up'></i>
-						<i class='xi-caret-down-square-o goodsCnt_dn'></i>
-					</div>
-					<div class='box opt_price'>
-						<span class='price'>10,000</span>원
-					</div>
-					<i class='xi-close remove'></i>
-				</li>	
 			</ul>
 			
 			<?php else : // 옵션 X, 단품 판매 ?>
