@@ -1,4 +1,5 @@
 <div class='goods_view'>
+	<form name='goodsFrm' id='goodsFrm' method='post' action='<?=siteUrl("goods/indb")?>' target='ifrmHidden' autocomplete='off'>
 	<div class='goods_top'>
 		<div class='images'>
 			<div class='swiper-container'>
@@ -70,8 +71,9 @@
 		</div>
 		<!--// info -->
 	</div>
-	
 	<!--// goods_top -->
+	</form>
+	
 	<div class='description'>
 		<?=$description?>
 	</div>
