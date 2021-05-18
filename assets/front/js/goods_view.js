@@ -38,6 +38,8 @@ const goodsView = {
 					html = html.replace(/<%optPrice%>/g, optPrice);
 					
 					$(".selected_opts").append(html);
+					
+					goodsView.updateTotalPrice(); // 총 합계 갱신 
 				}
 			},
 			error : function (err) {
@@ -54,10 +56,21 @@ const goodsView = {
 	updateTotalPrice : function() {
 		let totalPrice = 0;
 		if ($(".goods_top .options").length > 0) { // 옵션 있는 상품 
+			$list = $(".optPrice");
+			$.each($list, function() {
+				const optPrice = Number($(this).val()); // 수량 1개일때 판매가 + 옵션 추가금액
+				
+				$goodsCnt = $(this).closest(".opt_rows").find(".goodsCnt");
+				const cnt = Number($goodsCnt.val());
+				
+				totalPrice += optPrice * cnt;
+			});
 			
 		} else { // 옵션이 없는 단품 
 			
 		}
+		
+		$(".total_price").text(totalPrice);
 	}
 };
 

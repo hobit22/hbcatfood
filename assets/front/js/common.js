@@ -1,3 +1,13 @@
+/** number format 기능 */
+Number.numberFormat = function(num) {
+	let numStr = String(num);
+	if (numStr.length > 3) {
+		//const match = /([\d]{3})/g.exec(numStr.substring(1));
+		//console.log(match);
+	}
+	return numStr;
+};
+
 $(function() {
 	/** 주소 검색 버튼 클릭 */
 	$(".search_address").click(function() {
