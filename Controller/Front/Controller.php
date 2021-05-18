@@ -88,6 +88,9 @@ class Controller extends \Controller
 	{
 		if ($this->layoutBlank) return;
 		
+		// 팝업인 경우는 메인메뉴 미출력 
+		if (strpos($this->headerPath, "popup") !== false) return;
+		
 		// 기본 메뉴  - 상품분류 
 		$goods = App::load(\Component\Goods\Goods::class);
 		$data = [

@@ -93,6 +93,9 @@ class Controller extends \Controller
 	{
 		if ($this->layoutBlank) return;
 		
+		// 팝업인 경우는 미출력
+		if (strpos($this->headerPath, "popup") !== false) return;
+		
 		$menu = $this->mainCode?$this->mainCode:"";
 		App::render("Menus/main", ["menu" => $menu]);
 	}

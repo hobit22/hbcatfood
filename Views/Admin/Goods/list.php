@@ -26,7 +26,9 @@
 					<td align='center'><?=$li['goodsNo']?></td>
 					<td width='50'>
 						<?php if (isset($li['images']['list']) && isset($li['images']['list'][0])) : ?>
-						<img src='<?=$li['images']['list'][0]['url']?>' width='50' height='50'>
+						<a href='<?=siteUrl("goods/view")?>?goodsNo=<?=$li['goodsNo']?>' target='_blank'>
+							<img src='<?=$li['images']['list'][0]['url']?>' width='50' height='50'>
+						</a>
 						<?php endif; ?>
 					</td>
 					<td width='300'><?=$li['goodsNm']?></td>
@@ -49,6 +51,7 @@
 					</td>
 					<td>
 						<a href='<?=siteUrl("admin/goods/update")?>?goodsNo=<?=$li['goodsNo']?>' class='btn2'>상품수정</a>
+						<a href='<?=siteUrl("goods/view")?>?goodsNo=<?=$li['goodsNo']?>' target='_blank' class='btn2'>미리보기</a>
 					</td>
 				</tr>
 		<?php endforeach; ?>
