@@ -72,12 +72,18 @@
 				</dd>
 			</dl>
 			<?php endif; ?>
-			
-			<div class='buy_btns'>
-				<span class='btns cart'>장바구니</span>
-				<span class='btns order'>바로구매</span>
+			<div class='bottom_wrap'>
+				<div class='buy_btns'>
+					<span class='btns cart'>장바구니</span>
+					<span class='btns order'>바로구매</span>
+				</div>
+				<!--// buy_btns -->
+				<div class='total_price_wrap'>
+					총 합계 : <span class='total_price'>0</span>원
+				</div>
 			</div>
-			<!--// buy_btns -->
+			<!--// bottom_wrap -->
+			
 		</div>
 		<!--// info -->
 	</div>
