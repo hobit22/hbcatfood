@@ -51,6 +51,21 @@ class Cart
 	public function add()
 	{
 		$isDirect = isset($this->params['isDirect'])?$this->params['isDirect']:0;
+		// 바로 구매인 경우는 기존 바로구매 데이터 삭제 후 새로 추가 
+		if ($isDirect) {
+			$where = [
+				'isDirect' => 1,
+			];
+			if (isLogin()) { // 회원 
+				$where['memNo'] = $_SESSION['memNo'];
+			} else {
+				
+			}
+			
+			db()->table("cart")->where($where)->delete();
+		}
+		
+		
 		if (isset($this->params['optNo'])) { // 옵션 상품 
 			$cartNos = [];
 			foreach ($this->params['optNo'] as $k => $optNo) {
@@ -69,6 +84,9 @@ class Cart
 				}
 			}
 			
+			// 장바구니 중복 상품 처리 
+			$this->adjustCart(); 
+			
 			return $cartNos;
 			
 		} else { // 단품 
@@ -81,9 +99,75 @@ class Cart
 			
 			$cartNo = db()->table("cart")->data($inData)->insert();
 			
+			// 장바구니 중복 상품 처리 
+			$this->adjustCart();
+			
 			return $cartNo;
 		}
 		
 		return false;
+	}
+	
+	/**
+	* 장바구니 중복상품 처리 
+	*
+	* @return $this
+	*/
+	public function adjustCart() 
+	{
+		
+		/**
+		1. 중복 상품을 묶어서 수량을 재 계산  - O 
+		2. 장바구니를 모두 비운 후 
+		3. 재계산한 상품을 다시 장바구니 추가
+		*/
+		
+		$table = db()->table("cart");
+		if (isLogin()) { // 회원
+			$table->where(["memNo" => $_SESSION['memNo']]);
+		} else { // 비회원 
+			
+		}
+		
+		$rows = $table->rows();
+		$goodsCnts = [];
+		foreach ($rows as $row) {
+			$key = $row['goodsNo']."_".$row['optNo'];
+			if (!isset($goodsCnts[$key])) $goodsCnts[$key] = 0;
+			
+			$goodsCnts[$key] += $row['goodsCnt'];
+		}
+				
+		$list = [];
+		foreach ($rows as $row) {
+			$key = $row['goodsNo']."_".$row['optNo'];
+			
+			$row['goodsCnt'] = $goodsCnts[$key];
+			$list[$key] = $row;
+		}
+		
+		$list = array_values($list);
+		
+		try {
+			db()->beginTransaction();
+			$table = db()->table("cart");
+			if (isLogin()) { // 회원 
+				$table->where(["memNo" => $_SESSION['memNo']]);
+			} else { // 비회원 
+				
+			}
+			$table->delete();
+			
+			foreach ($list as $li) {
+				db()->table("cart")->data($li)->insert();
+			}
+			
+			db()->commit();
+		} catch (\PDOException $e) {
+			db()->rollBack();
+		}
+		
+		
+		return $this;
 	}
 }
