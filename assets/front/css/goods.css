@@ -16,3 +16,10 @@
 .goods_top .buy_btns { margin: 25px 0; }
 .goods_top .buy_btns .btns { display: inline-block; padding: 10px 30px; border: 1px solid #212121; cursor: pointer; border-radius: 5px; margin-right: 5px; font-weight: bold; font-size: 15px; }
 .goods_top .buy_btns .btns.order { background-color: #212121; color: #ffffff; }
+
+.goods_top .selected_opts { margin-top: 20px; }
+.goods_top .opt_rows { border: 1px solid #d5d5d5; margin-bottom: 2px; display: table; width: 100%; padding: 10px; position: relative; }
+.goods_top .opt_rows > .box { display: table-cell; vertical-align: middle; }
+.goods_top .opt_rows .opt_price { width: 120px; text-align: center; }
+.goods_top .opt_rows .goodsCnt_wrap { width: 150px; text-align: right; }
+.goods_top .opt_rows .remove { position: absolute; top: 10px; right: 10px; cursor: pointer; }
