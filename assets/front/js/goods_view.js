@@ -36,6 +36,7 @@ const goodsView = {
 					html = html.replace(/<%optNo%>/g, data.optNo);
 					html = html.replace(/<%optItem%>/g, data.optItem);
 					html = html.replace(/<%optPrice%>/g, optPrice);
+					html = html.replace(/<%optPriceStr%>/g, optPrice.format());
 					
 					$(".selected_opts").append(html);
 					
@@ -70,7 +71,7 @@ const goodsView = {
 			
 		}
 		
-		$(".total_price").text(totalPrice);
+		$(".total_price").text(totalPrice.format());
 	}
 };
 
@@ -88,5 +89,16 @@ $(function() {
 		if (optNo) {
 			goodsView.selectOption(optNo);
 		}
+	});
+	
+	/** 옵션 선택 제거 */
+	$("body").on("click", ".selected_opts .remove", function() {
+		$(this).closest(".opt_rows").remove();
+		goodsView.updateTotalPrice();
+	});
+	
+	/** 수량 증감 처리 */
+	$("body").on("click", ".goodsCnt_up, .goodsCnt_dn", function() {
+		
 	});
 });

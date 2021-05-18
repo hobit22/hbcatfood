@@ -1,10 +1,9 @@
 /** number format 기능 */
-Number.numberFormat = function(num) {
-	let numStr = String(num);
-	if (numStr.length > 3) {
-		//const match = /([\d]{3})/g.exec(numStr.substring(1));
-		//console.log(match);
-	}
+Number.prototype.format = function() {
+	let numStr = String(this);
+
+	const pattern = /(\d+)(\d{3})$/g;
+	numStr = numStr.replace(pattern, "$1,$2");
 	return numStr;
 };
 

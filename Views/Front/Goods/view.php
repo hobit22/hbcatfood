@@ -109,7 +109,7 @@
 			<i class='xi-caret-down-square-o goodsCnt_dn'></i>
 		</div>
 		<div class='box opt_price'>
-			<span class='price'><%optPrice%></span>원
+			<span class='price'><%optPriceStr%></span>원
 		</div>
 		<i class='xi-close remove'></i>
 	</li>	
