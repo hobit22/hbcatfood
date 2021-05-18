@@ -68,6 +68,12 @@
 				</dd>
 			</dl>
 			<?php endif; ?>
+			
+			<div class='buy_btns'>
+				<span class='btns cart'>장바구니</span>
+				<span class='btns order'>바로구매</span>
+			</div>
+			<!--// buy_btns -->
 		</div>
 		<!--// info -->
 	</div>
