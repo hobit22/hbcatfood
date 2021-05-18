@@ -1,5 +1,7 @@
 <div class='goods_view'>
 	<form name='goodsFrm' id='goodsFrm' method='post' action='<?=siteUrl("goods/indb")?>' target='ifrmHidden' autocomplete='off'>
+	<input type='hidden' name='mode' value='cart'>
+	<input type='hidden' class='salePrice' value='<?=$salePrice?>'>
 	<div class='goods_top'>
 		<div class='images'>
 			<div class='swiper-container'>
