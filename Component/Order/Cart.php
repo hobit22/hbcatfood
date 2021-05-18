@@ -85,7 +85,7 @@ class Cart
 			}
 			
 			// 장바구니 중복 상품 처리 
-			$this->adjustCart(); 
+			$this->adjustCart($isDirect); 
 			
 			return $cartNos;
 			
@@ -100,7 +100,7 @@ class Cart
 			$cartNo = db()->table("cart")->data($inData)->insert();
 			
 			// 장바구니 중복 상품 처리 
-			$this->adjustCart();
+			$this->adjustCart($isDirect);
 			
 			return $cartNo;
 		}
@@ -111,9 +111,10 @@ class Cart
 	/**
 	* 장바구니 중복상품 처리 
 	*
+	* @param Integer $isDirect  1 - 바로구매, 0 - 장바구니 
 	* @return $this
 	*/
-	public function adjustCart() 
+	public function adjustCart($isDirect = 0) 
 	{
 		
 		/**
@@ -122,14 +123,15 @@ class Cart
 		3. 재계산한 상품을 다시 장바구니 추가
 		*/
 		
-		$table = db()->table("cart");
+		$where = ["isDirect" => $isDirect];
 		if (isLogin()) { // 회원
-			$table->where(["memNo" => $_SESSION['memNo']]);
+			$where['memNo'] = $_SESSION['memNo'];
 		} else { // 비회원 
 			
 		}
 		
-		$rows = $table->rows();
+		$rows = db()->table("cart")->where($where)->rows();
+		
 		$goodsCnts = [];
 		foreach ($rows as $row) {
 			$key = $row['goodsNo']."_".$row['optNo'];
