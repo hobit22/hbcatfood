@@ -92,7 +92,7 @@ $(function() {
 		let goodsCnt = Number($(this).val());
 		goodsCnt = (goodsCnt < 1)?1:goodsCnt;
 		
-		const cartNo = $(this).closest("tr").find("input[name^='carNo']").val();
+		const cartNo = $(this).closest("tr").find("input[name^='cartNo']").val();
 		cart.updateGoodsCnt(cartNo, goodsCnt);
 		
 		// 상품 개별 합계 

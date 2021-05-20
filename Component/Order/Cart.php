@@ -181,9 +181,11 @@ class Cart
 	* @param Integer $isDirect 
 	*									0 - 장바구니에 담은 상품
 	* 									1 - 바로구매 상품 
+	* @param Array $cartNo - 장바구니 
+	*
 	* @return Array
 	*/
-	public function getGoods($isDirect = 0)
+	public function getGoods($isDirect = 0, $cartNo = [])
 	{
 		$config = getConfig();
 		$px = $config['prefix'];
@@ -204,6 +206,10 @@ class Cart
 			 $where["{$px}cart.memNo"] = $_SESSION['memNo'];
 		} else { // 비회원일때 
 			
+		}
+		
+		if ($cartNo) {
+			$table->inWhere(["{$px}cart.cartNo" => $cartNo]);
 		}
 		
 		$list = $table->where($where)
