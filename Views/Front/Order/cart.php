@@ -21,7 +21,17 @@
 				</td>
 				<td width='80'>
 					<?php if ($li['goodsImage']) : ?>
-					<img src='<?=$li['goodsImage']?>' width='80'>
+					<a href='<?=siteUrl("goods/view?goodsNo={$li['goodsNo']}")?>' target='_blank'> 
+						<img src='<?=$li['goodsImage']?>' width='80'>
+					</a>
+					<?php endif; ?>
+				</td>
+				<td>
+					<a class='goods_nm' href='<?=siteUrl("goods/view?goodsNo={$li['goodsNo']}")?>' target='_blank'><?=$li['goodsNm']?></a>
+					<?php if ($li['optName']) : ?>
+					<div class='opt_info'>
+						<?=$li['optName']?> : <?=$li['optItem']?>
+					</div>
 					<?php endif; ?>
 				</td>
 			</tr>
