@@ -195,13 +195,14 @@ class DB extends \PDO {
 		foreach ($params as $key => $value) {
 			$bindValue = [];
 			foreach ($value as $k => $v) {
-				$bindValue[] = ":wherein_{$key}_{$k}";
-				$this->whereParams["wherein_{$key}_{$k}"] = $v;
+				$key2 = str_replace(".", "_", $key);
+				$bindValue[] = ":wherein_{$key2}_{$k}";
+				$this->whereParams["wherein_{$key2}_{$k}"] = $v;
 			}
 			
 			$this->where[] = $key  . " IN (".implode(",", $bindValue) . ")";
 		}
-		
+
 		return $this;
 	}
 	
