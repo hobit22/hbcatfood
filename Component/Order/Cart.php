@@ -244,11 +244,15 @@ class Cart
 			$totalGoodsPrice += $total;
 			
 			$v['totalGoodsPrice'] = $total;
+			
+			$list[$k] = $v;
 		}
 		
 		// 합배송 더하기
 		$totalDeliveryPrice += array_sum($hapDelivery);
 		
+		// 총 결제금액
+		$totalPayPrice = $totalGoodsPrice + $totalDeliveryPrice;
 		
 	}
 }
