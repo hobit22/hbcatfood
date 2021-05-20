@@ -42,7 +42,7 @@
 					<i class='xi-caret-down-square-o goodsCnt_dn'></i>
 				</td>
 				<td align='center'>
-					<span class='goodsTotal'><?=number_format($li['totalGoodsPrice'])?></span>원
+					<span class='goodsTotal' data-basic='<?=($li['salePrice'] + $li['addPrice'])?>'><?=number_format($li['totalGoodsPrice'])?></span>원
 				</td>
 				<td align='center'>
 					<span class='btn2 delete'>상품삭제</span><br>

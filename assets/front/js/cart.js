@@ -73,5 +73,12 @@ $(function() {
 		// 증가한 수량 -> DB에 반영, cartNo, goodsCnt
 		const cartNo = $(this).closest("tr").find("input[name^='cartNo'").val();
 		cart.updateGoodsCnt(cartNo, goodsCnt);
+		
+		// 상품 개별 합계 
+		$goodsTotal = $(this).closest("tr").find(".goodsTotal");
+		let basicPrice = $goodsTotal.data("basic");
+		basicPrice = Number(basicPrice);
+		
+		
 	});
 });
