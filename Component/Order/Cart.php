@@ -197,7 +197,9 @@ class Cart
 		$table = db()->table("cart", $joinTable)
 						  ->select($column);
 	
-		$where = [];
+		$where = [
+			"{$px}cart.isDirect" => $isDirect?1:0,
+		];
 		if (isLogin()) { // 회원일때 
 			 $where["{$px}cart.memNo"] = $_SESSION['memNo'];
 		} else { // 비회원일때 
