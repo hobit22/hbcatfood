@@ -119,4 +119,17 @@ $(function() {
 	$("input[type='checkbox']").click(function() {
 		cart.updateSummary();
 	});
+	
+	// 장바구니 비우기, 선택상품 삭제
+	$(".empty_cart, .selected_delete").click(function() {
+		if (confirm('정말 삭제하시겠습니까?')) {
+			// 장바구니 비우기 -> 전체 선택
+			if ($(this).hasClass("empty_cart")) {
+				$("input[name^='cartNo']").prop("checked", true);
+			}
+			
+			frmCart.mode.value = 'delete';
+			frmCart.submit();
+		} // endif 
+	});
 });

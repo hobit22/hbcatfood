@@ -1,7 +1,7 @@
 <div class='cart_order'>
 	<div class='main_title'>장바구니</div>
 	
-	<form method='post' action='<?=siteUrl("order/indb")?>' target='ifrmHidden' aucomplete='off'>
+	<form id='frmCart' name='frmCart' method='post' action='<?=siteUrl("order/indb")?>' target='ifrmHidden' aucomplete='off'>
 		<input type='hidden' name='mode' value='order'>
 		<table class='table_rows cart_goods'>
 			<thead>
