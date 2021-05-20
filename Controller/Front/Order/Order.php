@@ -11,6 +11,11 @@ use Component\Exception\OrderException;
 */
 class OrderController extends \Controller\Front\Controller
 {
+	public function __construct()
+	{
+		$this->addCss(["cart", "order"]);
+	}
+	
 	public function index()
 	{
 		try {
