@@ -32,4 +32,13 @@ $(function() {
 			} // endif 
 		});
 	});
+	
+	// 전체선택 토글 
+	$(".selectAll").click(function() {
+		const target = $(this).data('target-name');
+		$target = $("input[name^='" + target + "']");
+		if ($target.length > 0) {
+			$target.prop("checked", $(this).prop("checked"));
+		} // endif 
+	});
 });

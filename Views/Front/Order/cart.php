@@ -7,7 +7,7 @@
 			<thead>
 				<tr>
 					<th width='20'>
-						<input type='checkbox' class='selectAll' data-target-name='cartNo'>
+						<input type='checkbox' class='selectAll' data-target-name='cartNo' checked>
 					</th>
 					<th colspan='2'>상품</th>
 					<th width='150'>구매수량</th>
@@ -19,7 +19,7 @@
 		<?php foreach ($list as $li) : ?>
 			<tr>
 				<td align='center'>
-					<input type='checkbox' name='cartNo[]' value='<?=$li['cartNo']?>'>
+					<input type='checkbox' name='cartNo[]' value='<?=$li['cartNo']?>' checked>
 				</td>
 				<td width='80'>
 					<?php if ($li['goodsImage']) : ?>
@@ -73,6 +73,12 @@
 			</li>	
 		</ul>
 		
+		<div class='cart_btns'>
+			<span class='btn1 empty_cart'>장바구니 비우기</span>
+			<span class='btn1 selected_delete'>선택상품 삭제</span>
+			<span class='btn1 selected_order'>선택상품 주문</span>
+			<span class='btn1 order_all'>전체 상품 주문하기</span>
+		</div>
 	</form>
 </div>
 <!--// cart_page -->
