@@ -254,5 +254,13 @@ class Cart
 		// 총 결제금액
 		$totalPayPrice = $totalGoodsPrice + $totalDeliveryPrice;
 		
+		$data = [
+			'list' => $list, // 장바구니 상품 목록 
+			'totalGoodsPrice' => $totalGoodsPrice, // 총 상품 합계 
+			'totalDeliveryPrice' => $totalDeliveryPrice, // 총 배송비
+			'totalPayPrice' => $totalPayPrice, // 총 결제금액
+		];
+		
+		return $data;
 	}
 }
