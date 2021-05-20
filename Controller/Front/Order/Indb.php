@@ -46,7 +46,7 @@ class IndbController extends \Controller\Front\Controller
 					break;
 				/** 장바구니 요약정보 */
 				case "get_summary" : 
-					$result = $cart->getGoods();
+					$result = $cart->getGoods(0, $in['cartNo']);
 					
 					$data = [
 						'totalGoodsPrice' => $result['totalGoodsPrice'],

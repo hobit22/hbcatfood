@@ -35,10 +35,19 @@ const cart = {
 	* 
 	*/
 	updateSummary : function() {
+		const cartNo = [];
+		// 체크가 되어 있는 장바구니 checkbox 
+		$list = $("input[name^='cartNo']:checked");
+		if ($list.length > 0) {
+			$.each($list, function() {
+				cartNo.push($(this).val());
+			});
+		}
+		
 		$.ajax({
 			url : "../order/indb",
 			type : "post",
-			data : { mode : "get_summary" },
+			data : { mode : "get_summary", cartNo : cartNo },
 			dataType : "json",
 			success : function (res) {
 				if (res) {
@@ -101,5 +110,10 @@ $(function() {
 		basicPrice = Number(basicPrice);
 		const total = basicPrice * goodsCnt;
 		$goodsTotal.text(total.format());
+	});
+	
+	// 상품 선택 체크 박스 
+	$("input[type='checkbox']").click(function() {
+		cart.updateSummary();
 	});
 });

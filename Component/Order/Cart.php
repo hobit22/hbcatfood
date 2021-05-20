@@ -181,7 +181,9 @@ class Cart
 	* @param Integer $isDirect 
 	*									0 - 장바구니에 담은 상품
 	* 									1 - 바로구매 상품 
-	* @param Array $cartNo - 장바구니 
+	* @param Array $cartNo - 장바구니 추가번호
+	*								 - 없으면 전체 상품
+	*								 - 있으면 특정 상품
 	*
 	* @return Array
 	*/
