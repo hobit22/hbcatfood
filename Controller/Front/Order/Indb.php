@@ -58,6 +58,14 @@ class IndbController extends \Controller\Front\Controller
 					header("Content-Type: application/json; charset=utf-8");
 					echo json_encode($data);
 					break;
+				/** 장바구니 상품 삭제 */
+				case "delete" : 
+				
+					break;
+				/** 장바구니 상품 주문 */
+				case "order" : 
+				
+					break;
 			}
 			
 			

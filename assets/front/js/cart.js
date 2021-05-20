@@ -132,4 +132,16 @@ $(function() {
 			frmCart.submit();
 		} // endif 
 	});
+	
+	// 선택주문, 전체 주문하기 
+	$(".selected_order, .order_all").click(function() {
+		// 전체 주문하기 -> 전체 선택 
+		if ($(this).hasClass("order_all")) {
+			$("input[name^='cartNo']").prop("checked", true);
+		}
+		
+		frmCart.mode.value = 'order';
+		frmCart.submit();
+	});
+	
 });
