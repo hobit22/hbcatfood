@@ -14,6 +14,20 @@ class IndbController extends \Controller\Front\Controller
 {
 	public function index()
 	{
-		
+		try {
+			
+		} catch (CartException $e) {
+			echo $e;
+		} catch (OrderException $e) {
+			
+		} catch (\Exception $e) { // ajax 처리시 
+			$data = [
+				'error' => 1,
+				'message' => $e->getMessage(),
+			];
+			
+			header("Content-Type: application/json; charset=utf-8");
+			echo json_encode($data);
+		}
 	}
 }
