@@ -235,6 +235,15 @@ class Cart
 			} else { // 개별 배송은 바로 배송비 총합에 더하기 
 				$totalDeliveryPrice += $deliveryConf['deliveryPrice'];
 			}
+			
+			/** 
+			상품 합계 
+				(판매가 + 옵션추가 금액) * 구매 수량
+			*/
+			$total = ($v['salePrice'] + $v['addPrice']) * $v['goodsCnt'];
+			$totalGoodsPrice += $total;
+			
+			$v['totalGoodsPrice'] = $total;
 		}
 		
 		// 합배송 더하기
