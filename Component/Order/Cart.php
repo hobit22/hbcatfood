@@ -210,6 +210,15 @@ class Cart
 						  ->orderBy([["{$px}cart.regDt", "desc"]])
 						  ->rows();
 		
-		debug($list);
+		$goods = App::load(\Component\Goods\Goods::class);
+		
+		foreach ($list as $k => $v) {
+			/* 
+			  1. 이미지 
+			  2. 배송정책 
+			*/
+			$images = $goods->getImages($v['goodsNo']);
+			$v['goodsImage'] = isset($images['list'][0])?$images['list'][0]['url']:"";
+		}
 	}
 }
