@@ -16,7 +16,8 @@ $(function() {
 	$("#same_with_order_info").click(function() {
 		// 체크 되어 있을때 
 		if ($(this).prop("checked")) {
-			
+			frmOrder.receiverName.value = frmOrder.nameOrder.value;
+			frmOrder.receiverCellphone.value = frmOrder.cellPhoneOrder.value;
 		}
 	});
 });

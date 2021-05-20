@@ -18,7 +18,7 @@
 			<tr>
 				<th>휴대전화</th>
 				<td>
-					<input type='text' name='mobileOrder' value='<?=isLogin()?$_SESSION['member']['cellPhone']:""?>'>
+					<input type='text' name='cellPhoneOrder' value='<?=isLogin()?$_SESSION['member']['cellPhone']:""?>'>
 				</td>
 			</tr>
 			<tr>
