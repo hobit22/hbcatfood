@@ -19,6 +19,9 @@ input[type='number']:focus, select:focus { border-color: blue; }
 
 textarea { border: 1px solid #d5d5d5; padding: 10px; width: 100%; min-height:200px; resize: none; border-radius: 5px; }
 
+/** 공통 제목 */
+.main_title { font-size: 20px; font-weight: bold; color: #212121; padding: 0 10px 10px; border-bottom: 1px solid #d5d5d5; margin-bottom: 20px; }
+
 /** 버튼 공통 */
 .btn1 { background-color: blue; color: #ffffff; padding: 5px 10px; cursor: pointer; border: 0; margin-right: 2px; }
 
