@@ -11,3 +11,5 @@
 .cart_order .summary:after { clear: left; content: ''; display: block; }
 .cart_order .summary li .t1 { font-weight: bold; margin-bottom: 10px; }
 
+.cart_order .no_goods { padding: 150px 0; border-bottom: 1px solid #d5d5d5; text-align: center; font-size: 17px; font-weight: bold; }
+

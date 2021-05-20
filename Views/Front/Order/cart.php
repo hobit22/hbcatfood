@@ -45,7 +45,7 @@
 					<span class='goodsTotal' data-basic='<?=($li['salePrice'] + $li['addPrice'])?>'><?=number_format($li['totalGoodsPrice'])?></span>원
 				</td>
 				<td align='center'>
-					<span class='btn2 delete'>상품삭제</span><br>
+					<a class='btn2 delete' href='<?=siteUrl("order/indb?mode=delete&cartNo[]={$li['cartNo']}")?>' target='ifrmHidden' onclick="return confirm('정말 삭제하시겠습니까?');">상품삭제</a><br>
 					<span class='btn2 order'>바로구매</span>
 				</td>
 			</tr>
