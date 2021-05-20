@@ -31,6 +31,30 @@
 		
 		<div class='sub_title'>배송지 정보</div>
 		
+		<table class='table_cols'>
+			<tr>
+				<th>받는분 이름</th>
+				<td>
+					<input type='text' name='receiverName'>
+				</td>
+			</tr>
+			<tr>
+				<th>주소</th>
+				<td>
+					<div class='rows'>
+						<input type='text' name='zipcode' id='zipcode' readonly>
+						<span class='btn2 search_receiver_address'>주소 검색</span>
+					</div>
+					<div class='rows'>
+						<input type='text' name='receiverAddress' readonly>
+					</div>
+					<div class='rows'>
+						<input type='text' name='receiverAddressSub' placeholder='나머지 주소'>
+					</div>
+				</td>
+			</tr>
+		</table>
+		
 		
 		<div class='sub_title'>결제 정보</div>
 	</form>
