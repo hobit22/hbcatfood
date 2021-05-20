@@ -193,7 +193,7 @@ class Cart
 			'goodsOption' => ["{$px}cart.optNo", "{$px}goodsOption.optNo", "left"],
 		];
 		
-		$column = "{$px}cart.*, {$px}goods.goodsNm, {$px}goods.salePrice, {$px}goodsOption.optName, {$px}goodsOption.optItem, {$px}goodsOption.addPrice";
+		$column = "{$px}cart.*, {$px}goods.goodsNm, {$px}goods.salePrice, {$px}goodsOption.optName, {$px}goodsOption.optItem, {$px}goodsOption.addPrice, {$px}goods.deliveryNo";
 		$table = db()->table("cart", $joinTable)
 						  ->select($column);
 	
@@ -210,5 +210,6 @@ class Cart
 						  ->orderBy([["{$px}cart.regDt", "desc"]])
 						  ->rows();
 		
+		debug($list);
 	}
 }
