@@ -1,0 +1,6 @@
+/** 장바구니 상품 요약 */
+.cart_order .summary { background-color: #f8f8f8; border-bottom: 1px solid #d5d5d5; }
+.cart_order .summary li { float: left; width: calc(100% / 3); text-align: center; padding: 20px 10px; }
+
+.cart_order .summary:after { clear: left; content: ''; display: block; }
+.cart_order .summary li .t1 { font-weight: bold; margin-bottom: 10px; }

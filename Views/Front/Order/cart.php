@@ -1,4 +1,4 @@
-<div class='cart_page'>
+<div class='cart_order'>
 	<div class='main_title'>장바구니</div>
 	
 	<form method='post' action='<?=siteUrl("order/indb")?>' target='ifrmHidden' aucomplete='off'>
@@ -12,7 +12,7 @@
 					<th colspan='2'>상품</th>
 					<th width='150'>구매수량</th>
 					<th width='100'>합계</th>
-					<th width='100'></th>
+					<th width='130'></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -37,15 +37,16 @@
 					<?php endif; ?>
 				</td>
 				<td>
-					<input type='number' name='goodsCnt[<?=$li['cartNo']?>]' value='<?=$li['goodsCnt']?>'>
-					
+					<input type='number' name='goodsCnt[<?=$li['cartNo']?>]' value='<?=$li['goodsCnt']?>' class='goodsCnt'>
+					<i class='xi-caret-up-square-o goodsCnt_up'></i>
+					<i class='xi-caret-down-square-o goodsCnt_dn'></i>
 				</td>
-				<td>
+				<td align='center'>
 					<span class='goodsTotal'><?=number_format($li['totalGoodsPrice'])?></span>원
 				</td>
-				<td>
-					<span class='btn delete'>상품삭제</span><br>
-					<span class='btn order'>바로구매</span>
+				<td align='center'>
+					<span class='btn2 delete'>상품삭제</span><br>
+					<span class='btn2 order'>바로구매</span>
 				</td>
 			</tr>
 		<?php endforeach; ?>

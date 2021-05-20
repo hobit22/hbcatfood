@@ -22,8 +22,16 @@ textarea { border: 1px solid #d5d5d5; padding: 10px; width: 100%; min-height:200
 /** 공통 제목 */
 .main_title { font-size: 20px; font-weight: bold; color: #212121; padding: 0 10px 10px; border-bottom: 1px solid #d5d5d5; margin-bottom: 20px; }
 
+/* 테이블 공통 */
+.table_rows { border-spacing: 0; padding: 0; width: 100%; } 
+.table_rows thead th { background-color: #f8f8f8; padding: 10px; border-bottom: 1px solid #d5d5d5; }
+.table_rows thead tr:first-child th { border-top: 1px solid #d5d5d5; }
+.table_rows tbody td { padding: 10px; border-bottom: 1px solid #d5d5d5; }
+
+
 /** 버튼 공통 */
 .btn1 { background-color: blue; color: #ffffff; padding: 5px 10px; cursor: pointer; border: 0; margin-right: 2px; }
+.btn2 { border: 1px solid #212121; display: inline-block; padding: 5px 15px;  border-radius: 15px; color: #212121; cursor: pointer; margin: 2px 0; }
 
 /** 페이지네이션 */
 .pagination { text-align: center; padding: 10px; }

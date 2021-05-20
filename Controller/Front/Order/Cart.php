@@ -10,6 +10,12 @@ use App;
 */
 class CartController extends \Controller\Front\Controller
 {
+	public function __construct()
+	{
+		$this->addCss(["cart"])
+				->addScript(["cart"]);
+	}
+	
 	public function index()
 	{
 		$cart = App::load(\Component\Order\Cart::class);
