@@ -44,6 +44,19 @@ class IndbController extends \Controller\Front\Controller
 					header("Content-Type: application/json; charset=utf-8");
 					echo json_encode($data);
 					break;
+				/** 장바구니 요약정보 */
+				case "get_summary" : 
+					$result = $cart->getGoods();
+					
+					$data = [
+						'totalGoodsPrice' => $result['totalGoodsPrice'],
+						'totalDeliveryPrice' => $result['totalDeliveryPrice'],
+						'totalPayPrice' => $result['totalPayPrice'],
+					];
+					
+					header("Content-Type: application/json; charset=utf-8");
+					echo json_encode($data);
+					break;
 			}
 			
 			
