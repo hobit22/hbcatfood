@@ -82,7 +82,7 @@ class IndbController extends \Controller\Front\Controller
 						$qs[] = "cartNo[]=".$cartNo;
 					}
 					
-					$url = siteUrl("order/order")."?".implode("&", $qs);
+					$url = "order/order?".implode("&", $qs);
 					go($url, "parent");
 					break;
 			}
