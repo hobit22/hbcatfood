@@ -1,6 +1,6 @@
 <div class='cart_order'>
 	<div class='main_title'>장바구니</div>
-	
+	<?php if ($list) : ?>
 	<form id='frmCart' name='frmCart' method='post' action='<?=siteUrl("order/indb")?>' target='ifrmHidden' aucomplete='off'>
 		<input type='hidden' name='mode' value='order'>
 		<table class='table_rows cart_goods'>
@@ -80,5 +80,10 @@
 			<span class='btn1 order_all'>전체 상품 주문하기</span>
 		</div>
 	</form>
+	<?php else : // 담긴 상품이 없는 경우 ?>
+	<div class='no_goods'>
+		담겨있는 상품이 없습니다.
+	</div>
+	<?php endif; ?>
 </div>
 <!--// cart_page -->

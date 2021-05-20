@@ -68,6 +68,8 @@ class IndbController extends \Controller\Front\Controller
 						$cart->delete($cartNo);
 					}
 					
+					// 삭제 완료 시 -> 새로고침
+					reload("parent");
 					break;
 				/** 장바구니 상품 주문 */
 				case "order" : 
