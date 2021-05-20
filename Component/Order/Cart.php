@@ -213,7 +213,9 @@ class Cart
 		$goods = App::load(\Component\Goods\Goods::class);
 		$delivery = App::load(\Component\Goods\Delivery::class);
 		
-		$totalDeliveryPrice = 0;
+		$totalDeliveryPrice = 0; // 총 배송비
+		$totalGoodsPrice = 0; // 총 상품 합계
+	
 		$hapDelivery = [];
 		/**
 			합배송 - 배송비 설정이 동일하면 배송비 부과 1번
@@ -228,6 +230,16 @@ class Cart
 			$v['goodsImage'] = isset($images['list'][0])?$images['list'][0]['url']:"";
 				
 			$deliveryConf = $delivery->get($v['deliveryNo']);
+			if ($deliveryConf['isTogether']) { // 합배송 - 따로 모아서 합
+				$hapDelivery[$deliveryConf['deliveryNo']] = $deliveryConf['deliveryPrice'];
+			} else { // 개별 배송은 바로 배송비 총합에 더하기 
+				$totalDeliveryPrice += $deliveryConf['deliveryPrice'];
+			}
 		}
+		
+		// 합배송 더하기
+		$totalDeliveryPrice += array_sum($hapDelivery);
+		
+		
 	}
 }
