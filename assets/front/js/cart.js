@@ -16,8 +16,31 @@ const cart = {
 			url : "../order/indb",
 			type : "post", 
 			data : { mode : "update_goods_cnt", cartNo : cartNo, goodsCnt : goodsCnt },
-			dataType : "html",
+			dataType : "json",
 			success : function(res) {
+				if (res.error == '1') { // 에러가 있는 경우 
+					alert(res.message);
+				} else { // 에러가 없는 경우 
+					// 장바구니 요약정보 업데이트 
+					cart.updateSummary();
+				}
+			},
+			error : function (err) {
+				console.error(err);
+			}
+		});
+	},
+	/**
+	* 상품요약정보 업데이트
+	* 
+	*/
+	updateSummary : function() {
+		$.ajax({
+			url : "../order/indb",
+			type : "post",
+			data : { mode : "get_summary" },
+			dataType : "html",
+			success : function (res) {
 				console.log(res);
 			},
 			error : function (err) {
