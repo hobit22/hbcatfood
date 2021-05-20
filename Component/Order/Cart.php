@@ -174,4 +174,30 @@ class Cart
 		
 		return $this;
 	}
+	
+	/**
+	* 장바구니 상품 조회
+	*
+	* @param Integer $isDirect 
+	*									0 - 장바구니에 담은 상품
+	* 									1 - 바로구매 상품 
+	* @return Array
+	*/
+	public function getGoods($isDirect = 0)
+	{
+		$config = getConfig();
+		$px = $config['prefix'];
+		
+		$joinTable = [
+			'goods' => ["{$px}cart.goodsNo", "{$px}goods.goodsNo", "left"],
+			'goodsOption' => ["{$px}cart.optNo", "{$px}goodsOption.optNo", "left"],
+		];
+		
+		$column = "{$px}cart.*, {$px}goods.goodsNm, {$px}goods.salePrice, {$px}goodsOption.optName, {$px}goodsOption.optItem, {$px}goodsOption.addPrice";
+		$table = db()->table("cart", $joinTable)
+						  ->select($column);
+						
+		
+		
+	}
 }
