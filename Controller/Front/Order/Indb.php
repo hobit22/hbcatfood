@@ -26,7 +26,13 @@ class IndbController extends \Controller\Front\Controller
 			switch($in['mode']) {
 				// 장바구니 수량 변경 
 				case "update_goods_cnt" : 
-					print_r($in);
+					// 유효성 검사 
+					if (!isset($in['cartNo']) || !$in['cartNo'] || !isset($in['goodsCnt']) || !$in['goodsCnt'])) {
+						throw new \Exception("잘못된 접근입니다.");
+					}
+					
+					
+					$result = $cart->updateGoodsCnt($in['cartNo'], $in['goodsCnt']);
 					break;
 			}
 			
