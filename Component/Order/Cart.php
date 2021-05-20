@@ -263,4 +263,24 @@ class Cart
 		
 		return $data;
 	}
+	
+	/**
+	* 상품 구매수량 변경 
+	*
+	* @param Integer $cartNo 장바구니 추가 번호
+	* @param Integer $goodsCnt  구매 수량
+	* 
+	* @return Boolean
+	*/
+	public function updateGoodsCnt($cartNo, $goodsCnt)
+	{
+		$goodsCnt = ($goodsCnt < 1)?1:$goodsCnt;
+		
+		$result = db()->table("cart")
+						   ->data(["goodsCnt" => $goodsCnt])
+						   ->where(["cartNo" => $cartNo])
+						   ->update();
+						   
+		return $result !== false;
+	}
 }
