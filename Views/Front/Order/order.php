@@ -1,6 +1,6 @@
 <div class='cart_order order_page'>
 	<div class='main_title'>주문하기</div>
-	<form method='post' action='<?=siteUrl("order/indb")?>' target='ifrmHidden' autocomplete='off'>
+	<form name='frmOrder' method='post' action='<?=siteUrl("order/indb")?>' target='ifrmHidden' autocomplete='off'>
 		<input type='hidden' name='mode' value='order_process'>
 		<input type='hidden' name='isDirect' value='<?=$isDirect?>'>
 		<?php
@@ -30,12 +30,21 @@
 		</table>
 		
 		<div class='sub_title'>배송지 정보</div>
-		
+		<div class='rows'>
+			<input type='checkbox' id='same_with_order_info'>
+			<label for='same_with_order_info'>주문자 정보와 동일</label>
+		</div>
 		<table class='table_cols'>
 			<tr>
 				<th>받는분 이름</th>
 				<td>
 					<input type='text' name='receiverName'>
+				</td>
+			</tr>
+			<tr>
+				<th>휴대전화</th>
+				<td>
+					<input type='text' name='receiverCellphone'>
 				</td>
 			</tr>
 			<tr>

@@ -13,7 +13,8 @@ class OrderController extends \Controller\Front\Controller
 {
 	public function __construct()
 	{
-		$this->addCss(["cart", "order"]);
+		$this->addCss(["cart", "order"])
+			  ->addScript(["order"]);
 	}
 	
 	public function index()
