@@ -13,6 +13,20 @@
 					<th width='100'></th>
 				</tr>
 			</thead>
+			<tbody>
+		<?php foreach ($list as $li) : ?>
+			<tr>
+				<td align='center'>
+					<input type='checkbox' name='cartNo[]' value='<?=$li['cartNo']?>'>
+				</td>
+				<td width='80'>
+					<?php if ($li['goodsImage']) : ?>
+					<img src='<?=$li['goodsImage']?>' width='80'>
+					<?php endif; ?>
+				</td>
+			</tr>
+		<?php endforeach; ?>
+			</tbody>
 		</table>
 	</form>
 </div>
