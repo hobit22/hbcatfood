@@ -21,6 +21,7 @@ textarea { border: 1px solid #d5d5d5; padding: 10px; width: 100%; min-height:200
 
 /** 공통 제목 */
 .main_title { font-size: 20px; font-weight: bold; color: #212121; padding: 0 10px 10px; border-bottom: 1px solid #d5d5d5; margin-bottom: 20px; }
+.sub_title { font-size: 17px; font-weight: bold; color: #212121; padding: 15px 10px; margin-top: 20px; }
 
 /* 테이블 공통 */
 .table_rows { border-spacing: 0; padding: 0; width: 100%; } 

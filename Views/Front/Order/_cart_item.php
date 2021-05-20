@@ -39,10 +39,14 @@
 					</div>
 					<?php endif; ?>
 				</td>
-				<td>
+				<td align='center'>
+					<?php if (isset($isOrder)) : // 주문서 ?>
+					<?=number_format($li['goodsCnt'])?>개
+					<?php else : // 장바구니 ?>
 					<input type='number' name='goodsCnt[<?=$li['cartNo']?>]' value='<?=$li['goodsCnt']?>' class='goodsCnt'>
 					<i class='xi-caret-up-square-o goodsCnt_up'></i>
 					<i class='xi-caret-down-square-o goodsCnt_dn'></i>
+					<?php endif; ?>
 				</td>
 				<td align='center'>
 					<span class='goodsTotal' data-basic='<?=($li['salePrice'] + $li['addPrice'])?>'><?=number_format($li['totalGoodsPrice'])?></span>원
