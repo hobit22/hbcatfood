@@ -34,6 +34,17 @@
 					</div>
 					<?php endif; ?>
 				</td>
+				<td>
+					<input type='number' name='goodsCnt[<?=$li['cartNo']?>]' value='<?=$li['goodsCnt']?>'>
+					
+				</td>
+				<td>
+					<span class='goodsTotal'><?=number_format($li['totalGoodsPrice'])?></span>원
+				</td>
+				<td>
+					<span class='btn delete'>상품삭제</span><br>
+					<span class='btn order'>바로구매</span>
+				</td>
 			</tr>
 		<?php endforeach; ?>
 			</tbody>
