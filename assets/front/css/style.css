@@ -29,6 +29,11 @@ textarea { border: 1px solid #d5d5d5; padding: 10px; width: 100%; min-height:200
 .table_rows thead tr:first-child th { border-top: 1px solid #d5d5d5; }
 .table_rows tbody td { padding: 10px; border-bottom: 1px solid #d5d5d5; }
 
+.table_cols { border-spacing: 0; padding: 0; width: 100%; }
+.table_cols th { background-color: #f8f8f8; width: 120px; padding: 7px 10px; border-bottom: 1px solid #d5d5d5; }
+.table_cols td { padding: 7px 10px; border-bottom: 1px solid #d5d5d5; }
+
+.table_cols tr:first-child th, .table_cols tr:first-child td { border-top: 1px solid #d5d5d5; }
 
 /** 버튼 공통 */
 .btn1 { background-color: blue; color: #ffffff; padding: 5px 10px; cursor: pointer; border: 0; margin-right: 2px; }
