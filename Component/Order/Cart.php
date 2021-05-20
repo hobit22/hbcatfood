@@ -210,8 +210,6 @@ class Cart
 			
 		}
 		
-		debug($cartNo);
-
 		if ($cartNo) {
 			$table->inWhere(["{$px}cart.cartNo" => $cartNo]);
 		}

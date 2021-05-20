@@ -51,6 +51,7 @@ const cart = {
 			dataType : "json",
 			success : function (res) {
 				if (res) {
+					console.log(res);
 					$(".totalGoodsPrice").text(res.totalGoodsPrice.format());
 					$(".totalDeliveryPrice").text(res.totalDeliveryPrice.format());
 					$(".totalPayPrice").text(res.totalPayPrice.format());
