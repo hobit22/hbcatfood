@@ -28,11 +28,11 @@ class OrderController extends \Controller\Front\Controller
 			$cart = App::load(\Component\Order\Cart::class);
 			
 			$data = $cart->getGoods($isDirect, $cartNo);
-			debug($data);
+		
 		} catch (OrderException $e) {
 			echo $e;
 		}
 		
-		App::render("Order/order");
+		App::render("Order/order", $data);
 	}
 }
