@@ -211,7 +211,14 @@ class Cart
 						  ->rows();
 		
 		$goods = App::load(\Component\Goods\Goods::class);
+		$delivery = App::load(\Component\Goods\Delivery::class);
 		
+		$totalDeliveryPrice = 0;
+		$hapDelivery = [];
+		/**
+			합배송 - 배송비 설정이 동일하면 배송비 부과 1번
+			개별배송 - 배송비가 각각 부과 
+		*/
 		foreach ($list as $k => $v) {
 			/* 
 			  1. 이미지 
@@ -219,6 +226,8 @@ class Cart
 			*/
 			$images = $goods->getImages($v['goodsNo']);
 			$v['goodsImage'] = isset($images['list'][0])?$images['list'][0]['url']:"";
+				
+			$deliveryConf = $delivery->get($v['deliveryNo']);
 		}
 	}
 }
