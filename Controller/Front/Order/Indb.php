@@ -12,9 +12,24 @@ use Component\Exception\OrderException;
 */
 class IndbController extends \Controller\Front\Controller
 {
+	public function __construct()
+	{
+		$this->layoutBlank = true;
+	}
+	
 	public function index()
 	{
 		try {
+			$in = request()->all();
+			$cart = App::load(\Component\Order\Cart::class);
+			
+			switch($in['mode']) {
+				// 장바구니 수량 변경 
+				case "update_goods_cnt" : 
+					print_r($in);
+					break;
+			}
+			
 			
 		} catch (CartException $e) {
 			echo $e;
