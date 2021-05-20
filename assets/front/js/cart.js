@@ -3,7 +3,28 @@
 *
 */
 const cart = {
-	
+	/**
+	* 상품 구매수량 수정 
+	*
+	* @param Integer cartNo 장바구니 추가 번호
+	* @param Integer goodsCnt 구매수량
+	*/
+	updateGoodsCnt : function(cartNo, goodsCnt) {
+		if (!cartNo || !goodsCnt) return;
+		
+		$.ajax({
+			url : "../order/indb",
+			type : "post", 
+			data : { mode : "update_goods_cnt", cartNo : cartNo, goodsCnt : goodsCnt },
+			dataType : "html",
+			success : function(res) {
+				console.log(res);
+			},
+			error : function (err) {
+				console.error(err);
+			}
+		});
+	},
 };
 
 $(function() {
