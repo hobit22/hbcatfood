@@ -3,6 +3,9 @@
 	<form name='frmOrder' method='post' action='<?=siteUrl("order/indb")?>' target='ifrmHidden' autocomplete='off'>
 		<input type='hidden' name='mode' value='order_process'>
 		<input type='hidden' name='isDirect' value='<?=$isDirect?>'>
+		<input type='hidden' class='zipcode' value='<?=isLogin()?$_SESSION['member']['zipcode']:""?>'>
+		<input type='hidden' class='address' value='<?=isLogin()?$_SESSION['member']['address']:""?>'>
+		<input type='hidden' class='addressSub' value='<?=isLogin()?$_SESSION['member']['addressSub']:""?>'>
 		<?php
 			include "_cart_item.php";
 		?>

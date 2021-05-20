@@ -18,6 +18,9 @@ $(function() {
 		if ($(this).prop("checked")) {
 			frmOrder.receiverName.value = frmOrder.nameOrder.value;
 			frmOrder.receiverCellphone.value = frmOrder.cellPhoneOrder.value;
+			frmOrder.zipcode.value = $(".zipcode").val();
+			frmOrder.receiverAddress.value = $(".address").val();
+			frmOrder.receiverAddressSub.value = $(".addressSub").val();
 		}
 	});
 });
