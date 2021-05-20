@@ -28,7 +28,9 @@ class OrderController extends \Controller\Front\Controller
 			$cart = App::load(\Component\Order\Cart::class);
 			
 			$data = $cart->getGoods($isDirect, $cartNo);
-		
+			$data['isOrder'] = true;
+			$data['isDirect'] = $isDirect;
+			
 		} catch (OrderException $e) {
 			echo $e;
 		}
