@@ -39,9 +39,13 @@ const cart = {
 			url : "../order/indb",
 			type : "post",
 			data : { mode : "get_summary" },
-			dataType : "html",
+			dataType : "json",
 			success : function (res) {
-				console.log(res);
+				if (res) {
+					$(".totalGoodsPrice").text(res.totalGoodsPrice.format());
+					$(".totalDeliveryPrice").text(res.totalDeliveryPrice.format());
+					$(".totalPayPrice").text(res.totalPayPrice.format());
+				}
 			},
 			error : function (err) {
 				console.error(err);
