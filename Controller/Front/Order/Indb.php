@@ -60,7 +60,14 @@ class IndbController extends \Controller\Front\Controller
 					break;
 				/** 장바구니 상품 삭제 */
 				case "delete" : 
-				
+					if (!isset($in['cartNo']) || !$in['cartNo']) {
+						throw new CartException("삭제할 상품을 선택하세요.");
+					}
+					
+					foreach ($in['cartNo'] as $cartNo) {
+						$cart->delete($cartNo);
+					}
+					
 					break;
 				/** 장바구니 상품 주문 */
 				case "order" : 
