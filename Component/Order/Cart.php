@@ -291,4 +291,17 @@ class Cart
 						   
 		return $result !== false;
 	}
+	
+	/**
+	* 장바구니 상품 삭제 
+	*
+	* @param Integer $cartNo 장바구니 추가 번호
+	* @return Boolean
+	*/
+	public function delete($cartNo)
+	{
+		$result = db()->table("cart")->where(["cartNo" => $cartNo])->delete();
+		
+		return $result !== false;
+	}
 }
