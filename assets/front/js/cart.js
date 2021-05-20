@@ -42,6 +42,9 @@ const cart = {
 			$.each($list, function() {
 				cartNo.push($(this).val());
 			});
+		} else { // 전부 체크 해제 
+			$(".totalGoodsPrice, .totalDeliveryPrice, .totalPayPrice").text(0);
+			return;
 		}
 		
 		$.ajax({
@@ -51,7 +54,6 @@ const cart = {
 			dataType : "json",
 			success : function (res) {
 				if (res) {
-					console.log(res);
 					$(".totalGoodsPrice").text(res.totalGoodsPrice.format());
 					$(".totalDeliveryPrice").text(res.totalDeliveryPrice.format());
 					$(".totalPayPrice").text(res.totalPayPrice.format());
