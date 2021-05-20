@@ -196,8 +196,17 @@ class Cart
 		$column = "{$px}cart.*, {$px}goods.goodsNm, {$px}goods.salePrice, {$px}goodsOption.optName, {$px}goodsOption.optItem, {$px}goodsOption.addPrice";
 		$table = db()->table("cart", $joinTable)
 						  ->select($column);
-						
+	
+		$where = [];
+		if (isLogin()) { // 회원일때 
+			 $where["{$px}cart.memNo"] = $_SESSION['memNo'];
+		} else { // 비회원일때 
+			
+		}
 		
+		$list = $table->where($where)
+						  ->orderBy([["{$px}cart.regDt", "desc"]])
+						  ->rows();
 		
 	}
 }
