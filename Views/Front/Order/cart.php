@@ -1,4 +1,6 @@
 <div class='cart_page'>
+	<div class='main_title'>장바구니</div>
+	
 	<form method='post' action='<?=siteUrl("order/indb")?>' target='ifrmHidden' aucomplete='off'>
 		<input type='hidden' name='mode' value='order'>
 		<table class='table_rows cart_goods'>
@@ -49,6 +51,27 @@
 		<?php endforeach; ?>
 			</tbody>
 		</table>
+		<ul class='summary'>
+			<li>
+				<div class='t1'>상품 총 합계</div>
+				<div class='t2'>
+					<span class='totalGoodsPrice'><?=number_format($totalGoodsPrice)?></span>원
+				</div>
+			</li>
+			<li>
+				<div class='t1'>배송비 총 합계</div>
+				<div class='t2'>
+					<span class='totalDeliveryPrice'><?=number_format($totalDeliveryPrice)?></span>원
+				</div>
+			</li>
+			<li>
+				<div class='t1'>총 결제금액</div>
+				<div class='t2'>
+					<span class='totalPayPrice'><?=number_format($totalPayPrice)?></span>원
+				</div>
+			</li>	
+		</ul>
+		
 	</form>
 </div>
 <!--// cart_page -->
