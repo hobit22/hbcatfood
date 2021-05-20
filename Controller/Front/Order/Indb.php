@@ -31,9 +31,18 @@ class IndbController extends \Controller\Front\Controller
 						throw new \Exception("잘못된 접근입니다.");
 					}
 					
-					
 					$result = $cart->updateGoodsCnt($in['cartNo'], $in['goodsCnt']);
-					echo $result;
+					if (!$result) {
+						throw new \Exception("구매수량 변경 실패하였습니다.");
+					}
+					
+					// 수량 변경 성공
+					$data = [
+						'error' => 0,
+					];
+					
+					header("Content-Type: application/json; charset=utf-8");
+					echo json_encode($data);
 					break;
 			}
 			
