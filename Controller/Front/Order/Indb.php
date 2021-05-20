@@ -73,7 +73,15 @@ class IndbController extends \Controller\Front\Controller
 					break;
 				/** 장바구니 상품 주문 */
 				case "order" : 
-				
+					if (!isset($in['cartNo']) || !$in['cartNo']) {
+						throw new CartException("주문할 상품을 선택하세요.");
+					}
+					
+					$qs = [];
+					foreach ($in['cartNo'] as $cartNo) {
+						$qs[] = "cartNo[]=".$cartNo;
+					}
+					
 					break;
 			}
 			
