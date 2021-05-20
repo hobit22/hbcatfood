@@ -78,7 +78,28 @@ $(function() {
 		$goodsTotal = $(this).closest("tr").find(".goodsTotal");
 		let basicPrice = $goodsTotal.data("basic");
 		basicPrice = Number(basicPrice);
+		const total = basicPrice * goodsCnt;
+		$goodsTotal.text(total.format());
+	});
+	
+	$(".goodsCnt").on("keyup change", function() {
+		/**
+			1. 수량 체크 (0 이하 X -> 1) - O 
+			2. 수량을 DB에 반영  - cartNo, goodsCnt - O
+			3. 상품 개별 합계 - O 
+		*/
 		
+		let goodsCnt = Number($(this).val());
+		goodsCnt = (goodsCnt < 1)?1:goodsCnt;
 		
+		const cartNo = $(this).closest("tr").find("input[name^='carNo']").val();
+		cart.updateGoodsCnt(cartNo, goodsCnt);
+		
+		// 상품 개별 합계 
+		$goodsTotal = $(this).closest("tr").find(".goodsTotal");
+		let basicPrice = $goodsTotal.data("basic");
+		basicPrice = Number(basicPrice);
+		const total = basicPrice * goodsCnt;
+		$goodsTotal.text(total.format());
 	});
 });
