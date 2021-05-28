@@ -1,0 +1,36 @@
+<!-- Default 스킨 - 게시글 목록 -->
+<div class='board_skin_default list'>
+	<!-- 게시판 분류 S -->
+	<?php if ($confCategory) : ?>
+	<ul class='category_tab'>
+		<li class='tab<?php if (!$category) echo " on";?>'>
+			<a href='<?=siteUrl("board/list")?>?id=<?=$id?>'>전체</a>
+		</li>
+	<?php foreach ($confCategory as $cate) : ?>
+		<li class='tab<?php if ($category == $cate) echo " on";?>'>
+			<a href='<?=siteUrl("board/list")?>?id=<?=$id?>&category=<?=$cate?>'><?=$cate?></a>
+		</li>
+	<?php endforeach; ?>
+	</ul>
+	<?php endif; ?>
+	<!-- 게시판 분류 E -->
+	<ul>
+	<?php if ($list) : ?>
+	<?php foreach ($list as $li) : ?>
+		<li class='list_rows'>
+			<a href='<?=siteUrl("board/view")?>?idx=<?=$li['idx']?>' class='subject'>
+				<?php if (isset($li['attachFiles']['images'])) : ?>
+				<?php foreach ($li['attachFiles']['images'] as $im) :  ?>
+					<img src='<?=$im['url']?>'>
+				<?php endforeach; ?>
+				<?php endif; ?>
+			</a>
+		</li>
+	<?php endforeach; ?>
+	<?php else : // 게시글이 없는 경우 ?>
+		<li class='no_data'>게시글이 없습니다.</li>
+	<?php endif; ?>
+	</ul>
+	<?=$pagination?>
+</div>
+<!--// board_skin_default -->

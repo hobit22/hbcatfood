@@ -36,7 +36,6 @@ class OrderController extends \Controller\Front\Controller
 			$data = $cart->getGoods($isDirect, $cartNo);
 			$data['isOrder'] = true;
 			$data['isDirect'] = $isDirect;
-			
 		} catch (OrderException $e) {
 			echo $e;
 		}

@@ -22,6 +22,7 @@ class IndbController extends \Controller\Front\Controller
 		try {
 			$in = request()->all();
 			$cart = App::load(\Component\Order\Cart::class);
+			$order = App::load(\Component\Order\Order::class);
 			
 			switch($in['mode']) {
 				// 장바구니 수량 변경 
@@ -85,13 +86,26 @@ class IndbController extends \Controller\Front\Controller
 					$url = "order/order?".implode("&", $qs);
 					go($url, "parent");
 					break;
+				/** 주문하기 처리 */
+				case "order_process" : 
+					$orderNo = $order->data($in)
+										  ->validator()
+										  ->register();
+										  
+					if ($orderNo === false) {
+						throw new OrderException("주문접수 실패");
+					}
+					
+					$url = "order/end?orderNo=".$orderNo;
+					go($url, "parent");
+					break;
 			}
 			
 			
 		} catch (CartException $e) {
 			echo $e;
 		} catch (OrderException $e) {
-			
+			echo $e;
 		} catch (\Exception $e) { // ajax 처리시 
 			$data = [
 				'error' => 1,

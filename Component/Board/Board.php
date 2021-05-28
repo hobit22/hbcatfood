@@ -584,6 +584,14 @@ class Board
 						->orderBy([["{$px}boardData.regDt", "desc"]])
 						->rows();
 		
+		if ($list) {
+			$file = App::load(\Component\File::class);
+			foreach ($list as $k => $v) {
+				$v['attachFiles'] = $file->getGroupFiles($v['gid']);
+				$list[$k] = $v;
+			}
+		}
+		
 		$url = siteUrl("board/list")."?id={$id}";
 		if ($qs) $url .= "&".$qs;
 		

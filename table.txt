@@ -277,3 +277,54 @@ CREATE TABLE `yh_cart` (
 COLLATE='utf8mb4_general_ci'
 ENGINE=InnoDB
 ;
+
+
+yh_order
+
+CREATE TABLE `yh_order` (
+	`orderNo` INT(11) NOT NULL AUTO_INCREMENT COMMENT '주문번호',
+	`orderStatus` ENUM('주문접수','입금확인','배송준비중','배송중','배송완료','구매확정') NULL DEFAULT '주문접수' COMMENT '주문상태' COLLATE 'utf8mb4_general_ci',
+	`memNo` INT(11) NULL DEFAULT '0' COMMENT '회원번호',
+	`nameOrder` VARCHAR(20) NULL DEFAULT NULL COMMENT '주문자명' COLLATE 'utf8mb4_general_ci',
+	`cellPhoneOrder` VARCHAR(13) NULL DEFAULT NULL COMMENT '주문자 휴대폰번호' COLLATE 'utf8mb4_general_ci',
+	`emailOrder` VARCHAR(100) NULL DEFAULT NULL COMMENT '주문자 이메일주소' COLLATE 'utf8mb4_general_ci',
+	`receiverName` VARCHAR(20) NULL DEFAULT NULL COMMENT '받는분 이름' COLLATE 'utf8mb4_general_ci',
+	`receiverCellphone` VARCHAR(13) NULL DEFAULT NULL COMMENT '받는분 휴대전화 번호' COLLATE 'utf8mb4_general_ci',
+	`zipcode` VARCHAR(6) NULL DEFAULT NULL COMMENT '받는분 우편번호' COLLATE 'utf8mb4_general_ci',
+	`receiverAddress` VARCHAR(100) NULL DEFAULT NULL COMMENT '받는분 주소' COLLATE 'utf8mb4_general_ci',
+	`receiverAddressSub` VARCHAR(100) NULL DEFAULT NULL COMMENT '받는분 나머지주소' COLLATE 'utf8mb4_general_ci',
+	`settleKind` ENUM('무통장입금','신용카드','가상계좌') NULL DEFAULT '무통장입금' COMMENT '결재수단' COLLATE 'utf8mb4_general_ci',
+	`bankAccount` VARCHAR(100) NULL DEFAULT NULL COMMENT '입금계좌' COLLATE 'utf8mb4_general_ci',
+	`bankDepositor` VARCHAR(20) NULL DEFAULT NULL COMMENT '입금자명' COLLATE 'utf8mb4_general_ci',
+	`regDt` DATETIME NULL DEFAULT current_timestamp(),
+	`modDt` DATETIME NULL DEFAULT NULL,
+	PRIMARY KEY (`orderNo`) USING BTREE
+)
+COLLATE='utf8mb4_general_ci'
+ENGINE=InnoDB
+;
+
+
+yh_orderGoods
+
+CREATE TABLE `yh_orderGoods` (
+	`idx` INT(11) NOT NULL AUTO_INCREMENT,
+	`orderNo` INT(11) NULL DEFAULT '0',
+	`goodsNo` INT(11) NULL DEFAULT '0' COMMENT '주문번호',
+	`optNo` INT(11) NULL DEFAULT '0',
+	`goodsCnt` INT(11) NULL DEFAULT '0',
+	`goodsNm` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`opts` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`salePrice` INT(11) NULL DEFAULT '0',
+	`addPrice` INT(11) NULL DEFAULT '0',
+	`totalGoodsPrice` INT(11) NULL DEFAULT '0',
+	`deliveryNo` INT(11) NULL DEFAULT '0',
+	`regDt` DATETIME NULL DEFAULT current_timestamp(),
+	`modDt` DATETIME NULL DEFAULT NULL,
+	PRIMARY KEY (`idx`) USING BTREE,
+	INDEX `orderNo` (`orderNo`) USING BTREE,
+	INDEX `regDt` (`regDt`) USING BTREE
+)
+COLLATE='utf8mb4_general_ci'
+ENGINE=InnoDB
+;

@@ -470,7 +470,7 @@ class Member
 		$_SESSION['changePw_memId'] = $memId;
 	
 		$tokenUrl = $token->create($url);
-		
+
 		/* 이메일 전송 */
 		$subject = "[연희직업전문학교]비밀번호 초기화 안내";
 		$message = "비밀번호 초기화 : <a href='{$tokenUrl}' target='_blank'>{$tokenUrl}</a>";

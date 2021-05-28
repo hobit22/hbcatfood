@@ -16,7 +16,7 @@
 	<!-- 게시판 분류 E -->
 	<ul>
 	<?php if ($list) : ?>
-	<?php foreach ($list as $li) : ?>
+	<?php foreach ($list as $li) :  ?>
 		<li class='list_rows'>
 			<a href='<?=siteUrl("board/view")?>?idx=<?=$li['idx']?>' class='subject'>
 				<?=$li['category']?"[".$li['category']."]":""?>

@@ -23,4 +23,12 @@ $(function() {
 			frmOrder.receiverAddressSub.value = $(".addressSub").val();
 		}
 	});
+	
+	/** 결제 수단 선택 처리 */
+	$(".settleKind").click(function() {
+		$(".bank_transfer_pay").removeClass("dn").addClass("dn");
+		if ($(this).val() == '무통장입금') {
+			$(".bank_transfer_pay").removeClass("dn");
+		}
+	});
 });
