@@ -97,12 +97,12 @@ class App
 				}
 			}	
 			$path = array_reverse(array_values($path));
-			
+		
 			// 메인페이지 
-			if (empty($path[0])) {
+			if (empty($path)) {
 				$path = ["index", "main"];
 			}
-				
+
 			if (count($path) == 1) {
 				if ($path[0] == 'admin') { // 어드민 메인 
 					array_unshift($path, "index", "main");
