@@ -23,6 +23,7 @@ class ListController extends \Controller\Admin\Controller
 			'list' => $board->getBoards(),
 			'skins' => $board->getSkins(),
 		];
+		
 		App::render("Board/list", $data);
 	}
 }

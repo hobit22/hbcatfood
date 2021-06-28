@@ -1,4 +1,6 @@
-<h1><?=isset($memNo)?"회원정보수정":"회원가입"?></h1>
+<div class='inner'>
+<div class='join_wrap'>
+<h1 class='member_tit'><?=isset($memNo)?"회원정보수정":"회원가입"?></h1>
 <form method='post' action='<?=siteUrl("member/indb")?>' target='ifrmHidden' autocomplete='off'>
 	<input type='hidden' name='mode' value='<?=isset($memNo)?"update":"register"?>'>
 	<dl>
@@ -62,3 +64,5 @@
 	<?php endif; ?>
 	<input type='submit' value='<?=isset($memNo)?'정보수정':'회원가입'?>'>
 </form>
+</div>
+</div>

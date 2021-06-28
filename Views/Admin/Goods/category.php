@@ -12,6 +12,14 @@
 				<td>
 					<input type='text' name='cateNm'>
 				</td>
+				<th>브랜드</th>
+				<td>
+					<input type='text' name='brandCate'>
+				</td>
+				<th>서브 카테고리</th>
+				<td>
+					<input type='text' name='subCategory'>
+				</td>
 			</tr>
 		</table>
 		<input type='submit' value='등록하기' class='btn1 mt20 mb20'>
@@ -28,6 +36,8 @@
 				<th width='200'>분류명</th>
 				<th width='100'>진열여부</th>
 				<th width='100'>진열순서</th>
+				<th width='300'>브랜드</th>
+				<th width='300'>서브카테고리</th>
 				<th></th>
 			</tr>
 		</thead>
@@ -49,6 +59,12 @@
 				</td>
 				<td>
 					<input type='text' name='listOrder[<?=$li['cateCd']?>]' value='<?=$li['listOrder']?>'>
+				</td>
+				<td>
+					<input type='text' name='brandCate[<?=$li['cateCd']?>]' value='<?=$li['brandCate']?>'>
+				</td>
+				<td>
+					<input type='text' name='subCategory[<?=$li['cateCd']?>]' value='<?=$li['subCategory']?>'>
 				</td>
 				<td>
 					<a href='<?=siteUrl("goods/list")?>?cateCd=<?=$li['cateCd']?>' target='_blank' class='btn2'>상품 목록 미리보기</a>

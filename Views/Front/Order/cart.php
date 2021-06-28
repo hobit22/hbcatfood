@@ -1,4 +1,4 @@
-<div class='cart_order'>
+<div class='cart_order inner'>
 	<div class='main_title'>장바구니</div>
 	<?php if ($list) : ?>
 	<form id='frmCart' name='frmCart' method='post' action='<?=siteUrl("order/indb")?>' target='ifrmHidden' aucomplete='off'>

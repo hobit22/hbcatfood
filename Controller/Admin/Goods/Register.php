@@ -19,7 +19,7 @@ class RegisterController extends \Controller\Admin\Controller
 	public function __construct() 
 	{
 		parent::__construct(); // 관리자 페이지 접근 제한을 위해 
-		$this->addScript(["goods_register", 'goods_option'])
+		$this->addScript(["goods_register", 'goods_option', 'goods_subCate'])
 			   ->addCss(["goods"]);
 		
 	}
@@ -28,12 +28,25 @@ class RegisterController extends \Controller\Admin\Controller
 	{
 		$delivery = App::load(\Component\Goods\Delivery::class);
 		$goods = App::load(\Component\Goods\Goods::class);
+		$categories = $goods->getCategoriesWithSub();
+
+		/**
+		foreach($categories as $c){
+			$c['subCategory'] = explode('||', $c['subCategory']);
+		}
+		*/
+		/*
+		for($i = 0; $i<sizeof($categories); $i++){
+			$categories[$i]['subCategory'] =explode('||', $categories[$i]['subCategory']);
+		}
+		*/
 		$gid = gid();
 		$data = [
 			'gid' => $gid,
 			'deliveryConf' => $delivery->getList(),
-			'categories' => $goods->getCategories(),
+			'categories' => $categories,
 		];
+		
 		App::render("Goods/form", $data);
 	}
 }

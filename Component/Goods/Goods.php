@@ -111,7 +111,7 @@ class Goods
 	{
 		$upData = $this->getCommonColumns($this->params);
 		$upData['modDt'] = date("Y-m-d H:i:s");
-		
+
 		$result = db()->table("goods")
 						  ->data($upData)
 						  ->where(["goodsNo" => $this->params['goodsNo']])
@@ -136,6 +136,7 @@ class Goods
 			'gid' => isset($params['gid'])?$params['gid']:gid(),
 			'goodsNm' => isset($params['goodsNm'])?$params['goodsNm']:"",
 			'shortDescription' => isset($params['shortDescription'])?$params['shortDescription']:"",
+			'subCategory' => isset($params['subCategory'])?$params['subCategory']:"",
 			'salePrice' => isset($params['salePrice'])?$params['salePrice']:0,
 			'consumerPrice' => isset($params['consumerPrice'])?$params['consumerPrice']:0,
 			'description' => isset($params['description'])?$params['description']:"",
@@ -144,8 +145,8 @@ class Goods
 			'isDisplay' => isset($params['isDisplay'])?$params['isDisplay']:1,
 			'deliveryNo' => isset($params['deliveryNo'])?$params['deliveryNo']:0,
 			'cateCd' => isset($params['cateCd'])?$params['cateCd']:"",
+			'brandCate' => isset($params['brandCate'])?$params['brandCate']:"",
 		];
-		
 		return $columns;
 	}
 	
@@ -200,6 +201,7 @@ class Goods
 		if ($this->addWhere) {
 			$table->where($this->addWhere);
 		}
+		
 		$list = $table 
 					  ->orderBy([["regDt", "desc"]])
 					  ->limit($limit, $offset)
@@ -526,7 +528,7 @@ class Goods
 	* @return Boolean 
 	* @throw GoodsAdminException 
 	*/
-	public function registerCategory($cateCd, $cateNm) 
+	public function registerCategory($cateCd, $cateNm,$brandCate=null, $subCategory=null) 
 	{
 		/**
 		0. 필수 컬럼 체크(빈값이 들어오지 못하도록) - O
@@ -561,7 +563,10 @@ class Goods
 		$inData = [
 			'cateCd' => $cateCd,
 			'cateNm' => $cateNm,
+			'brandCate' =>$brandCate,
+			'subCategory' =>$subCategory,
 		];
+		
 		$result = db()->table("category")->data($inData)->insert();
 		
 		return $result !== false;
@@ -586,14 +591,14 @@ class Goods
 		if (!isset($this->params['cateNm']) || !$this->params['cateNm']) {
 			throw new GoodsAdminException("분류명을 입력해 주세요.");
 		}
-		
 		$upData = [
 			'cateNm' => $this->params['cateNm'],
 			'isDisplay' => isset($this->params['isDisplay'])?$this->params['isDisplay']:1,
 			'listOrder' => isset($this->params['listOrder'])?$this->params['listOrder']:0,
+			'brandCate' => isset($this->params['brandCate'])?$this->params['brandCate']:'',
+			'subCategory' => isset($this->params['subCategory'])?$this->params['subCategory']:'',
 			'modDt' =>date("Y-m-d H:i:s"),
 		];
-		
 		$result = db()->table("category")
 						->data($upData)
 						->where(["cateCd" => $this->params['cateCd']])
@@ -625,7 +630,40 @@ class Goods
 		$list = db()->table("category")
 						->orderBy([["listOrder", "desc"], ["regdt", "desc"]])
 						->rows();
-						
+			
 		return $list;
 	}
+	
+	/**
+	* 분류 + 서브 분류  + 브랜드
+	*
+	*/
+	public function getCategoriesWithSub()
+	{
+		$list = [];
+		$tmp = $this->getCategories();
+		foreach ($tmp as $t) {
+			$t['subCategory'] = $t['subCategory']?explode("||", $t['subCategory']):[];
+			$t['brandCate'] = $t['brandCate']?explode("||", $t['brandCate']):[];
+			$list[$t['cateCd']] = $t;
+		}
+		
+		return $list;
+	}
+		
+	/**
+	public function getSub($cateCd){
+		$list = [];
+		$tmp = db()->table("category")
+						->where(["cateCd" => $cateCd])
+						->rows();
+		foreach ($tmp as $t) {
+			$t['subCategory'] = $t['subCategory']?explode("||", $t['subCategory']):[];
+			$list[$t['cateCd']] = $t;
+		}				
+		//debug($list[$cateCd]['subCategory']);
+		
+		return $list[$cateCd]['subCategory'];
+	}
+	*/
 }

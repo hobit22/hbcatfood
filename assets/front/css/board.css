@@ -22,6 +22,8 @@
 .board_skin_default.list .list_rows:after { clear: both; content: ''; display: block; }
 
 .board_skin_default.list .list_rows:nth-child(2n) { background-color: #f8f8f8; }
+.board_skin_default.list .btn2{ float:right; background-color: #f8f8f8; margin-top: 10px;}
+.board_skin_default.list .btn2:hover{ background-color: #000; color: #fff;}
 
 /** 댓글 - comment.php */
 .board_skin_default.comment .comment_list li { border: 1px solid #d5d5d5; padding: 15px; border-radius: 15px; margin-bottom: 10px; position: relative; }

@@ -1,4 +1,4 @@
-<div class='cart_order order_page'>
+<div class='cart_order order_page inner'>
 	<div class='main_title'>주문하기</div>
 	<form name='frmOrder' method='post' action='<?=siteUrl("order/indb")?>' target='ifrmHidden' autocomplete='off'>
 		<input type='hidden' name='mode' value='order_process'>

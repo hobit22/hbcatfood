@@ -20,7 +20,7 @@ class UpdateController extends \Controller\Admin\Controller
 	{
 		parent::__construct();
 		
-		$this->addScript(["goods_register", 'goods_option'])
+		$this->addScript(["goods_register", 'goods_option', 'goods_subCate' ])
 			   ->addCss(["goods"]);
 	}
 	
@@ -40,8 +40,7 @@ class UpdateController extends \Controller\Admin\Controller
 		}
 	
 		$data['deliveryConf'] = $delivery->getList(); // 배송 설정 
-		$data['categories'] = $goods->getCategories(); // 상품분류
-		
+		$data['categories'] = $goods->getCategoriesWithSub(); // 상품분류
 		App::render("Goods/form", $data);
 	}
 }

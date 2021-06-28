@@ -23,6 +23,7 @@ class RegisterController extends \Controller\Admin\Controller
 		$data = [
 			'skins' => $skins,
 		];
+		
 		App::render("Board/form", $data);
 	}
 }

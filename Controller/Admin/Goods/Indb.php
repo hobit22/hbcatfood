@@ -140,7 +140,7 @@ class IndbController extends \Controller\Admin\Controller
 					}
 					
 					
-					$result = $goods->registerCategory($in['cateCd'], $in['cateNm']);
+					$result = $goods->registerCategory($in['cateCd'], $in['cateNm'],$in['brandCate'], $in['subCategory']);
 					if ($result === false) {
 						throw new GoodsAdminException("분류등록 실패!");
 					}
@@ -160,6 +160,8 @@ class IndbController extends \Controller\Admin\Controller
 							'cateNm' => $in['cateNm'][$cateCd],
 							'isDisplay' => $in['isDisplay'][$cateCd],
 							'listOrder' => $in['listOrder'][$cateCd],
+							'brandCate' =>$in['brandCate'][$cateCd],
+							'subCategory' =>$in['subCategory'][$cateCd],
 						];
 						
 						$goods->data($upData)->updateCategory();		
@@ -181,6 +183,30 @@ class IndbController extends \Controller\Admin\Controller
 					
 					// 삭제 완료 -> 새로고침
 					reload("parent");
+					break;
+				
+				/** 서브 메뉴 추출 */
+				case "get_sub_category" : 
+					$sub = [];
+					if ($in['cateCd']) {
+						$data = $goods->getCategoriesWithSub();
+						$sub = $data[$in['cateCd']]?$data[$in['cateCd']]['subCategory']:[];
+					}
+					
+					header("Content-type: application/json; charset=utf-8;");
+					echo json_encode($sub);
+					break;
+				/** 브랜드 카테고리 추출 */
+				case "get_brand_category" : 
+					$brand = [];
+					if ($in['cateCd']) {
+						$data = $goods->getCategoriesWithSub();
+						
+						$brand = $data[$in['cateCd']]?$data[$in['cateCd']]['brandCate']:[];
+					}
+					
+					header("Content-type: application/json; charset=utf-8;");
+					echo json_encode($brand);
 					break;
 			}
 			

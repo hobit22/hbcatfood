@@ -13,3 +13,9 @@
 
 .cart_order .no_goods { padding: 150px 0; border-bottom: 1px solid #d5d5d5; text-align: center; font-size: 17px; font-weight: bold; }
 
+.cart_order, .order_end{ padding: 20px 0; min-height: 608px;}
+
+.cart_order .cart_btns > .btn1 { border : 1px solid #ccc; background-color: #fff; font-size: 14px; font-weight: bold; padding: 10px; color:#000; float:left; margin: 0 10px;}
+
+.cart_order .cart_btns .order_all{float: right;}
+.cart_order .cart_btns:after { display:block; content:''; clear:both;}

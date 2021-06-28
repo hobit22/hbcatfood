@@ -14,8 +14,6 @@ Number.prototype.format = function() {
 
 	return numStr.format();
 };
-
-
 $(function() {
 	/** 주소 검색 버튼 클릭 */
 	$(".search_address").click(function() {

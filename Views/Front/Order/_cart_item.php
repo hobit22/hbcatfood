@@ -1,4 +1,4 @@
-		<table class='table_rows cart_goods'>
+		<table class='table_rows cart_goods inner'>
 			<thead>
 				<tr>
 					<?php if (!isset($isOrder)) : ?>

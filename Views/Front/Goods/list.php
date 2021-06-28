@@ -1,4 +1,35 @@
-<ul class='goods_list'>
+<div class='category_tab'>
+	<?php if($subCate['brand']) : ?>
+	<ul class='category_tab'>
+		<li class='tab<?php if (!$subCate['reqBrand']) echo " on";?>'>
+			<a href='<?=siteUrl("goods/list")?>?cateCd=<?=$subCate['cateCd']?>&subCate=<?=$subCate['reqSub']?>'>전체</a>
+		</li>
+	<?php for($i = 0; $i< sizeof($subCate['brand']); $i++): ?>
+		<li class='tab<?php if ($subCate['brand'][$i] == $subCate['reqBrand']) echo " on";?>'>
+			<a href='<?=siteUrl("goods/list")?>?cateCd=<?=$subCate['cateCd']?>&subCate=<?=$subCate['reqSub']?>&brandCate=<?=$subCate['brand'][$i]?>'><?=$subCate['brand'][$i]?></a>
+		</li>
+	<?php endfor; ?>
+	<?php endif;?>
+	</ul>
+	<?php if($subCate['sub']) : ?>
+	<ul class='category_tab'>
+		<li class='tab<?php if (!$subCate['reqSub']) echo " on";?>'>
+			<a href='<?=siteUrl("goods/list")?>?cateCd=<?=$subCate['cateCd']?>&brandCate=<?=$subCate['reqBrand']?>'>전체</a>
+		</li>
+	<?php for($i = 0; $i< sizeof($subCate['sub']); $i++): ?>
+		<li class='tab<?php if ($subCate['sub'][$i] == $subCate['reqSub']) echo " on";?>'>
+			<a href='<?=siteUrl("goods/list")?>?cateCd=<?=$subCate['cateCd']?>&subCate=<?=$subCate['sub'][$i]?>&brandCate=<?=$subCate['reqBrand']?>'><?=$subCate['sub'][$i]?></a>
+		</li>
+	<?php endfor; ?>
+	<?php endif;?>
+	</ul>
+</div>
+
+<ul class='goods_list inner'>
+
+<?php if(empty($list)): ?>
+<li class='no_data'>상품이 없습니다</li>
+<?php endif ;?>
 <?php foreach ($list as $li) :  ?>
 	<li class='goods'>
 		<a href='<?=siteUrl("goods/view")?>?goodsNo=<?=$li['goodsNo']?>'>

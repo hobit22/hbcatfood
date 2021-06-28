@@ -132,6 +132,7 @@ class DB extends \PDO {
 		
 		$conds = [];
 		if ($params) {
+			
 			$no = 0;
 			foreach ($params as $k => $v) {
 				if (strpos($k, '_same')) {
@@ -146,7 +147,6 @@ class DB extends \PDO {
 				} else { // 조건 부분이 문자열일때 
 					$str = $k." = :where_".$k2."_".$no;
 				}
-								
 				/* LIKE 조건 처리 S */
 				if (is_array($v) && $v[1] == 'LIKE') {
 					switch ($v[2]) {

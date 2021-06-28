@@ -93,8 +93,10 @@ class Controller extends \Controller
 		
 		// 기본 메뉴  - 상품분류 
 		$goods = App::load(\Component\Goods\Goods::class);
+		$board = App::load(\Component\Board\Board::class);
 		$data = [
 			'categories' => $goods->getCategories(),
+			'board' => $board->getBoards(),
 		];
 		
 		App::render("Menus/main", $data);

@@ -1,4 +1,4 @@
-<div class='goods_view'>
+<div class='goods_view inner'>
 	<form name='goodsFrm' id='goodsFrm' method='post' action='<?=siteUrl("goods/indb")?>' target='ifrmHidden' autocomplete='off'>
 	<input type='hidden' name='mode' value='cart'>
 	<input type='hidden' name='goodsNo' value='<?=$goodsNo?>'>

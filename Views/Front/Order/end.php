@@ -1,4 +1,4 @@
-<div class='order_end'>
+<div class='order_end inner'>
 	<div class='guide'>
 		<div class='t1'>주문이 완료 되었습니다.</div>
 		<div class='t2'>주문번호 : <?=$orderNo?></div>

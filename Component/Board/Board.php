@@ -189,6 +189,7 @@ class Board
 						->select("*, category as confCategory")
 						->where(["id" => $id])
 						->row();
+		
 		if ($row) {
 			$row['columns'] = $row['columns']?explode(",", $row['columns']):[];
 			$row['confCategory'] = $row['confCategory']?explode($this->divisionStr, $row['confCategory']):[];

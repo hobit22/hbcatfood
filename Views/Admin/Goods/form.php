@@ -29,9 +29,36 @@
 			<dt>상품분류</dt>
 			<dd>
 				<select name='cateCd'>
+					<option value=''>- 선택하세요 -</option>
 				<?php foreach ($categories as $c) : ?>
-					<option value='<?=$c['cateCd']?>'<?php if (isset($cateCd) && $cateCd == $c['cateCd']) echo " selected";?>><?=$c['cateNm']?></option>
+					<option value='<?=$c['cateCd']?>' data-subCate='<?=$c['subCategory']?>' <?php if (isset($cateCd) && $cateCd == $c['cateCd']) echo " selected";?>><?=$c['cateNm']?></option>
 				<?php endforeach; ?>
+				</select>
+			</dd>
+		</dl>
+		<dl>
+			<dt>브랜드</dt>
+			<dd class='brand'>
+				<select name='brandCate'>
+					<option value=''>- 선택 하세요 -</option>
+				<?php if ($cateCd && $categories[$cateCd]) : ?>
+				<?php foreach ($categories[$cateCd]['brandCate'] as $brand) :?>
+					<option value='<?=$brand?>'<?php if ($brandCate == $brand) echo " selected";?>><?=$brand?></option>
+				<?php endforeach; ?>
+				<?php endif; ?>
+				</select>
+			</dd>
+		</dl>
+		<dl>
+			<dt>서브메뉴</dt>
+			<dd class='subCate'>
+				<select name='subCategory'>
+					<option value=''>- 선택 하세요 -</option>
+				<?php if ($cateCd && $categories[$cateCd]) : ?>
+				<?php foreach ($categories[$cateCd]['subCategory'] as $sub) :?>
+					<option value='<?=$sub?>'<?php if ($subCategory == $sub) echo " selected";?>><?=$sub?></option>
+				<?php endforeach; ?>
+				<?php endif; ?>
 				</select>
 			</dd>
 		</dl>
@@ -57,6 +84,7 @@
 				<input type='text' name='shortDescription' value='<?=isset($shortDescription)?$shortDescription:""?>'>
 			</dd>
 		</dl>
+		
 		<dl>
 			<dt>상품가격</dt>
 			<dd>

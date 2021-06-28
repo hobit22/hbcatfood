@@ -1,5 +1,5 @@
 <?php if (!isset($isViewList) || !$isViewList) : ?>
-<div class='board_title'><?=$boardNm?></div>
+<div class='board_title inner'><?=$boardNm?></div>
 <?php endif; ?>
 <?php
 // 게시판 목록

@@ -56,27 +56,52 @@ textarea { border: 1px solid #d5d5d5; padding: 10px; width: 100%; min-height:200
 .w120 { width: 120px !important; }
 
 /** 기본 레이아웃 */
-#wrap { max-width: 1100px; margin: 0 auto; }
-
+#wrap {min-height: 739px;}
+.inner { max-width: 1200px !important; margin: 0 auto !important;}
 /** 메인 상단 메뉴 */
-.main_top { background-color: #f8f8f8; border-bottom: 1px solid #d5d5d5; text-align: right; padding: 5px 10px; }
+.gnb { height: 86px; }
+.gnb .box1{display: inline-block;}
+.gnb .main_top {float: right;}
+.gnb:after {display: block; content:''; clear: right;}
+.main_top {padding: 20px 0 40px; }
 .main_top a { margin-left: 10px; }
+.gnb .main_logo {padding: 20px 0 15px;}
 
 /** 로고 영역 */
-.main_logo { padding: 30px 0; text-align: center; }
 
 /** 메인 메뉴 */
-.main_menu { background: blue; margin-bottom: 20px; }
+.main_menu { border-bottom: 1px solid #000;}
 .main_menu:after { clear: left; content: ''; display: block; }
 .main_menu li { float: left; }
-.main_menu li a { display: block; padding: 15px 20px; color: #ffffff; }
+.main_menu li a { display: block; padding: 15px 30px; color: #9d6849; font-size: 17px;}
+.main_menu .search_box { border-bottom: 1px solid #9d6849; width: 230px; float:right; position: relative;}
+.main_menu input[type='text']{border : 0px; border-radius:0; font-size: 12px;width: 200px;}
+.main_menu i {position: absolute; font-size: 20px; top: 3px;cursor:pointer; padding: 5px;}
+
+.main_red_wrap{background-color:#da291c; width: 100%; text-align:center; padding: 110px 0; margin: 20px 0;}
+.main_red_wrap .box1{font-size: 40px; color:#fff; letter-spacing:-0.1rem;font-weight: 600;} 
+.line {width: 20px; height: 2px; margin: 40px 0; display:inline-block;background-color:#fff;}
+.main_red_wrap .box2{font-size: 26px; color: #fff; letter-spacing:-0.03rem;}
+
+.section {background-image:url("../images/studiotour_join_img.jpg"); height: 680px; text-align:center;padding: 10px; width: 1900px; margin: 0 auto;}
+.section .description{text-align: center;}
+.section .description p:first-child{padding-top: 130px; color:#fff; font-size:52px; font-weigth:700;}
+.section .description p:nth-child(2n){color:#fff; font-size:24px;}
+.section .btn a{ width:260px; height:60px; border: 1px solid #fff; background:rgba(0,0,0,0.5); color:#fff; font-size: 16px; font-weight:bold; line-height: 60px; display: inline-block;}
+
+/** 상품 분류 */
+ .category_tab { text-align: center; margin: 15px 0; }
+ .category_tab .tab { display: inline-block; margin: 0 5px; }
+ .category_tab a { display: inline-block; padding: 10px 20px; border: 1px solid #d5d5d5; border-radius: 15px; }
+ .category_tab a:hover,
+ .category_tab .tab.on a { background-color: #000000; border-color: #000000; color: #ffffff; }
 
 /** 상품 목록 */
-.goods_list { margin-bottom: 25px; }
+.goods_list { margin-bottom: 25px; padding: 10px 0;}
 .goods_list:after { clear: left; content: ''; display: block; }
-.goods_list li { float: left; width: calc(100% / 4 - 8px); margin-left: 10px; }
+.goods_list li { float: left; width: calc(100% / 4 - 8px); margin-left: 10px; padding: 10px 0;}
 .goods_list li:nth-child(4n+1) { margin-left: 0; }
-
+.goods_list .no_data{ border: 1px solid #d5d5d5; padding: 30px 0; text-align: center; font-size: 14px; width: 100%;}
 .goods_list .images img { width: 100%; display: block; }
 .goods_list .images { margin-bottom: 10px; }
 
@@ -93,3 +118,43 @@ textarea { border: 1px solid #d5d5d5; padding: 10px; width: 100%; min-height:200
 
 .order_end .btns { margin-top: 30px; }
 .order_end .btns a { display: inline-block; border: 1px solid #212121; padding: 10px 20px; }
+
+.banner_image{height: 680px; position:relative;}
+.banner_image > .swiper-slide img { position: absolute; width:100%; height: 100%; object-fit:contain; left: calc(50% - 950px);}
+.banner_image > .swiper-container { position:relative; height: 100%; width: 1900px;}
+
+.banner_image .swiper-pagination{position: absolute; top: 50%; right: calc(50% - 600px); }
+.banner_image .swiper-pagination .swiper-pagination-bullet{ box-shadow: 2px 2px #888888; width: 10px; height: 10px; background-color:#fff; }
+
+/** footer */
+#footer{ height: 280px; padding:60px 0;  background-color:#f7f9fa;margin-top:20px;}
+#footer:after{ display:block; clear:left; content:'';}
+#footer .inner {height: 100%;}
+.footer_box { width:29%; float: left; height: 100%;}
+.footer_box:nth-child(4n) { width: 13%;}
+.footer_box .tit {font-size: 16px; margin-bottom:20px;}
+.footer_box .txt {font-size: 11px; margin-bottom:4px;}
+.footer_box .red {font-size: 30px; margin-bottom:13px; color: #da291c;}
+.footer_box .last .family{width: 192px; padding-bottom: 10px; border-bottom:1px solid #666; font-size:11px;}
+.footer_box .sns{ margin-top:110px; text-align: right;}
+
+/** 로그인 회원가입 */
+.login_wrap {min-height: 480px; text-align:center; border-top :2px solid #666; border-bottom: 1px solid #ddd;}
+.member_tit { padding: 25px 0 10px; text-align:center;}
+.login_wrap .login_form{width: 304px; margin: 0 auto; padding: 50px 10px; text-align:left;}
+.login_wrap .login_form input[type='text'], .login_wrap .login_form input[type='password']{height: 48px; font-size: 14px; width:100%; border-radius:0; margin-bottom: 14px; border-color:#333;}
+.login_wrap .login_btn { width: 100%; height: 50px; background:#42362f; color: #fff; cursor:pointer;}
+.login_wrap .lbox_wrap { text-align: center;}
+.login_wrap .lbox { display:inline-block; font-size:14px; padding: 10px 5px;}
+.login_wrap .lbox:after{ border-right: 1px solid #000;}
+.login_wrap .lbox:last{ border:0px;}
+.sns_login{margin:60px 0; padding: 56px 0 60px; background-color:#f8f8f8; cursor:pointer;}
+
+.findPw_wrap, .findId_wrap{min-height: 509px; text-align:center; border-top :2px solid #666; border-bottom: 1px solid #ddd;}
+.findPw_tit{ padding: 25px 0 10px; text-align:center;}
+.find_form{width: 500px; margin: 0 auto; padding: 50px 10px; text-align:left;}
+.find_form input[type='text'], .find_form input[type='email'],
+.find_form input[type='password']{height: 52px; font-size: 14px; width:100%; border-radius:0;  border-color:#333;}
+.find_btn{width: 480px; height: 50px; background:#42362f; color: #fff; cursor:pointer;}
+
+.guide_box {width: 500px; margin: 0 auto; padding: 50px 10px; text-align:center; font-size: 20px;}

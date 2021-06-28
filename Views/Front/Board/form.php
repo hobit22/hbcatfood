@@ -1,4 +1,4 @@
-<div class='board_title'><?=$boardNm?></div>
+<div class='board_title inner'><?=$boardNm?></div>
 
 <form id='frmBoard' name='frmBoard' method='post' action='<?=siteUrl("board/indb")?>' target='ifrmHidden' autocomplete='off' enctype='multipart/form-data'>
 	<input type='hidden' name='mode' value='<?=isset($idx)?"update":"register"?>'>

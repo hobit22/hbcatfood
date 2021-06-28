@@ -1,4 +1,4 @@
-<div class='board_title'><?=$boardNm?></div>
+<div class='board_title inner'><?=$boardNm?></div>
 <?php
 // 게시판 조회
 $path = __DIR__ . "/Skins/".$boardSkin."/view.php";

@@ -1,5 +1,5 @@
 <!-- Default 스킨 - 게시글 목록 -->
-<div class='board_skin_default list'>
+<div class='board_skin_default list inner'>
 	<!-- 게시판 분류 S -->
 	<?php if ($confCategory) : ?>
 	<ul class='category_tab'>
@@ -29,10 +29,14 @@
 			</div>
 		</li>
 	<?php endforeach; ?>
+	
 	<?php else : // 게시글이 없는 경우 ?>
 		<li class='no_data'>게시글이 없습니다.</li>
 	<?php endif; ?>
 	</ul>
+	<?php if($id == "리뷰") : ?>
+	<a href='<?=siteUrl("board/write")?>?id=<?=$id?>' target='_blank' class='btn2'>글쓰기</a>
+	<?php endif ;?>
 	<?=$pagination?>
 </div>
 <!--// board_skin_default -->

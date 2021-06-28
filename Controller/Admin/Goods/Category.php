@@ -20,6 +20,7 @@ class CategoryController extends \Controller\Admin\Controller
 	{
 		$goods = App::load(\Component\Goods\Goods::class);
 		$list = $goods->getCategories();
+		
 		App::render("Goods/category", ['list' => $list]);
 	}
 }
